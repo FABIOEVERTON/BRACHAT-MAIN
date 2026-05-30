@@ -17,13 +17,18 @@
 - Estrutura de pastas organizada: `incremental_documents/` criada, documentos de governança (01‑06) adicionados.
 - Atualização de cards técnicos dos agentes para uso do `Mem0`.
 - Extração de conteúdo do caderno "STUDIES_TECHNOLOGY" (governance_*) para documentos incrementais.
-- Artefatos de resumo, tarefas e walkthrough atualizados.
+- Hugging Face CLI autenticado e repositório limpo de binários (reduzido de 122MB para 2.8MB).
+- Criado o Space privado `fabiobaruch/brachat-core` na Hugging Face.
+- Git commit e push realizados com sucesso para GitHub (`origin`) e Hugging Face (`huggingface`).
+- Criado o guia de monitor de Uptime (`uptime_config.md`) aprovado pelo Fábio.
+- Artefatos de tarefas e walkthrough atualizados.
 
 **Próximos passos sugeridos:**
-- **Autenticar Gemini:** Determinar método (p.ex., via `gcloud auth login` ou extensão Chrome) e obter token de acesso.
+- **Autenticar Gemini:** Investigar acesso à conta Gemini pessoal do usuário.
+- **Configurar Monitor de Uptime:** Seguir o guia `uptime_config.md` para manter o Space ativo 24/7.
 - **Auditar documentos:** Revisar arquivos em `incremental_documents/` com o usuário.
-- **Commit Git:** Executar `git add . && git commit -m "Atualiza documentos de governança e integração Gemini"` quando aprovado.
 
 **Notas de implementação:**
 - O projeto reside em `/Users/mac/brachat-main/portfolio/agents_team/hermes/`.
-- O resumo será salvo em `CONVERSATION_SUMMARY.md` dentro dessa pasta para aparecer na barra lateral do editor.
+- O resumo está salvo em `CONVERSATION_SUMMARY.md` para aparecer na barra lateral do editor.
+
