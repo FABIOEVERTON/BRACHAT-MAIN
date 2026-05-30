@@ -37,9 +37,41 @@ def call_gemini(system_prompt, user_content):
         res = requests.post(url, headers=headers, json=payload, timeout=25)
         if res.status_code == 200:
             return res.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
-        return f"⚠️ Erro de API do Gemini: HTTP {res.status_code}"
+        return f"⚠️ Erro de API do Gemini: HTTP {res.status_code} - {res.text}"
     except Exception as e:
-        return f"⚠️ Erro de conexão: {str(e)}"
+        return f"⚠️ Erro de conexão com Gemini: {str(e)}"
+
+def call_llm_with_fallback(system_prompt, user_content):
+    res_gemini = call_gemini(system_prompt, user_content)
+    if not res_gemini.startswith("⚠️ Erro"):
+        return res_gemini
+        
+    print(f"⚠️ Falha no Gemini: {res_gemini}. Tentando fallback no Claude...")
+    claude_key = os.environ.get("CLAUDE_API_KEY")
+    if claude_key:
+        url = "https://api.anthropic.com/v1/messages"
+        headers = {
+            "x-api-key": claude_key,
+            "anthropic-version": "2023-06-01",
+            "content-type": "application/json"
+        }
+        payload = {
+            "model": "claude-3-5-sonnet-20241022",
+            "max_tokens": 1000,
+            "temperature": 0.2,
+            "system": system_prompt,
+            "messages": [{"role": "user", "content": user_content}]
+        }
+        try:
+            res = requests.post(url, headers=headers, json=payload, timeout=25)
+            if res.status_code == 200:
+                print("✅ Fallback no Claude executado com sucesso.")
+                return res.json()["content"][0]["text"].strip()
+            print(f"⚠️ Falha no Claude: HTTP {res.status_code} - {res.text}")
+        except Exception as e:
+            print(f"⚠️ Erro ao conectar com o Claude: {str(e)}")
+            
+    return res_gemini
 
 # ==========================================
 # FRAMEWORK DE AGENTES: BRACHAT CREW (LangChain/CrewAI Style)
@@ -80,7 +112,7 @@ class BrachatAgent:
         if memories:
             full_system_prompt += f"\nMemórias persistentes de contexto:\n{memories}\n"
             
-        return call_gemini(full_system_prompt, prompt_text)
+        return call_llm_with_fallback(full_system_prompt, prompt_text)
 
 # ==========================================
 # DECLARAÇÃO DOS AGENTES CONFORME O REGISTRY.MD
