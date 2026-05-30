@@ -418,12 +418,32 @@ async def test_telegram():
     status["TELEGRAM_CHAT_ID_PRESENT"] = bool(os.environ.get("TELEGRAM_CHAT_ID"))
     status["GOOGLE_API_KEY_PRESENT"] = bool(os.environ.get("GOOGLE_API_KEY"))
     
-    # 2. Testar conectividade com api.telegram.org
+    # 2. Verificar variaveis de proxy no ambiente
+    proxy_vars = [k for k in os.environ.keys() if "proxy" in k.lower()]
+    status["PROXY_ENV_VARIABLES"] = proxy_vars
+    
+    # 3. Testar conectividade com api.telegram.org
     try:
         req = urllib.request.Request("https://api.telegram.org", method="GET")
         with urllib.request.urlopen(req, timeout=5) as response:
             status["TELEGRAM_API_CONNECTIVITY"] = f"OK (Status: {response.status})"
     except Exception as e:
         status["TELEGRAM_API_CONNECTIVITY"] = f"ERROR: {str(e)}"
+        
+    # 4. Testar conectividade com Google
+    try:
+        req = urllib.request.Request("https://www.google.com", method="GET")
+        with urllib.request.urlopen(req, timeout=5) as response:
+            status["GOOGLE_CONNECTIVITY"] = f"OK (Status: {response.status})"
+    except Exception as e:
+        status["GOOGLE_CONNECTIVITY"] = f"ERROR: {str(e)}"
+
+    # 5. Testar conectividade com GitHub
+    try:
+        req = urllib.request.Request("https://github.com", method="GET")
+        with urllib.request.urlopen(req, timeout=5) as response:
+            status["GITHUB_CONNECTIVITY"] = f"OK (Status: {response.status})"
+    except Exception as e:
+        status["GITHUB_CONNECTIVITY"] = f"ERROR: {str(e)}"
         
     return status
