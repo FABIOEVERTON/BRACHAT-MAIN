@@ -406,3 +406,24 @@ async def home():
 @app.get("/health")
 async def health():
     return {"status": "ok", "environment": "Hugging Face Spaces"}
+
+@app.get("/test-telegram")
+async def test_telegram():
+    import urllib.request
+    
+    status = {}
+    # 1. Verificar presenca de variaveis
+    status["TELEGRAM_HERMES_TOKEN_PRESENT"] = bool(os.environ.get("TELEGRAM_HERMES_TOKEN"))
+    status["TELEGRAM_ANTIGRAVITY_TOKEN_PRESENT"] = bool(os.environ.get("TELEGRAM_ANTIGRAVITY_TOKEN"))
+    status["TELEGRAM_CHAT_ID_PRESENT"] = bool(os.environ.get("TELEGRAM_CHAT_ID"))
+    status["GOOGLE_API_KEY_PRESENT"] = bool(os.environ.get("GOOGLE_API_KEY"))
+    
+    # 2. Testar conectividade com api.telegram.org
+    try:
+        req = urllib.request.Request("https://api.telegram.org", method="GET")
+        with urllib.request.urlopen(req, timeout=5) as response:
+            status["TELEGRAM_API_CONNECTIVITY"] = f"OK (Status: {response.status})"
+    except Exception as e:
+        status["TELEGRAM_API_CONNECTIVITY"] = f"ERROR: {str(e)}"
+        
+    return status
