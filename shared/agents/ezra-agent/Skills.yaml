@@ -1,0 +1,285 @@
+import yaml
+import os
+import glob
+import json
+import hashlib
+from pathlib import Path
+import ollama
+
+
+# =========================
+# OBSIDIAN MEMORY LAYER
+# =========================
+
+class ObsidianMemory:
+    def __init__(self, obsidian_dir):
+        self.obsidian_dir = Path(obsidian_dir)
+        self.cache = {}
+
+    def query_memory(self, query, top_k=3):
+        if query in self.cache:
+            return self.cache[query][:top_k]
+
+        results = []
+
+        for md_file in glob.glob(str(self.obsidian_dir / "**/*.md"), recursive=True):
+            path = Path(md_file)
+
+            try:
+                content = path.read_text(encoding="utf-8")
+
+                if query.lower() in path.name.lower() or query.lower() in content.lower():
+                    results.append({
+                        "path": str(path.relative_to(self.obsidian_dir)),
+                        "snippet": content[:500]
+                    })
+
+                    if len(results) >= top_k * 2:
+                        break
+
+            except:
+                continue
+
+        self.cache[query] = results
+        return results[:top_k]
+
+
+# =========================
+# SKILL READER
+# =========================
+
+class SkillReader:
+    def __init__(self, skills_dir):
+        self.skills_dir = Path(skills_dir)
+        self.cache = {}
+
+    def read_skill(self, nome, authorized_skills):
+        if nome not in authorized_skills:
+            return f"ERROR: Skill '{nome}' not authorized."
+
+        if nome in self.cache:
+            return self.cache[nome]
+
+        skill_path = self.skills_dir / nome / "SKILL.md"
+
+        if not skill_path.exists():
+            return "ERROR: Skill not found."
+
+        content = skill_path.read_text(encoding="utf-8")
+        self.cache[nome] = content
+
+        return content
+
+
+# =========================
+# API STORAGE LOADER (NEW)
+# =========================
+
+class APIStorage:
+    def __init__(self, api_dir):
+        self.api_dir = Path(api_dir)
+        self.cache = {}
+
+    def load_api(self, name):
+        if name in self.cache:
+            return self.cache[name]
+
+        api_file = self.api_dir / f"{name}.yaml"
+
+        if not api_file.exists():
+            return None
+
+        data = yaml.safe_load(api_file.read_text(encoding="utf-8"))
+        self.cache[name] = data
+
+        return data
+
+
+# =========================
+# CACHE SYSTEM
+# =========================
+
+class Cache:
+    def __init__(self, path):
+        self.path = Path(path)
+        self.data = self._load()
+
+    def _load(self):
+        if self.path.exists():
+            return json.loads(self.path.read_text())
+        return {}
+
+    def save(self):
+        self.path.write_text(json.dumps(self.data, indent=2))
+
+    def get(self, key):
+        return self.data.get(key)
+
+    def set(self, key, value):
+        self.data[key] = value
+        self.save()
+
+
+# =========================
+# ROUTING ENGINE (LIGHTWEIGHT BUT CORRECT)
+# =========================
+
+def route(user_input, authorized_skills):
+    selected = []
+
+    lower = user_input.lower()
+
+    # skill trigger
+    for s in authorized_skills:
+        if s.lower() in lower:
+            selected.append(s)
+
+    return selected
+
+
+# =========================
+# CONTEXT BUILDER
+# =========================
+
+def build_context(user_input, skills, memory, apis):
+    return {
+        "user": user_input,
+        "skills": skills,
+        "memory": memory,
+        "apis": apis
+    }
+
+
+# =========================
+# CACHE KEY (IMPORTANT FIX)
+# =========================
+
+def build_cache_key(context, config_version="v1"):
+    raw = json.dumps(context, sort_keys=True) + config_version
+    return hashlib.sha256(raw.encode()).hexdigest()
+
+
+# =========================
+# AGENT
+# =========================
+
+class Agent:
+    def __init__(self, nome_dir):
+        self.dir = Path(f"AGENTS_STORAGE/{nome_dir}")
+
+        self.skills_dir = self.dir.parent.parent / "SKILLS_STORAGE"
+        self.obsidian_dir = self.dir.parent.parent / "obsidian"
+        self.api_dir = self.dir.parent.parent / "APIS_Storage"
+
+        self.skill_reader = SkillReader(self.skills_dir)
+        self.memory = ObsidianMemory(self.obsidian_dir)
+        self.api = APIStorage(self.api_dir)
+
+        self.cache = Cache(self.dir / "cache.json")
+
+        self.load_config()
+
+    # =========================
+    # CONFIG
+    # =========================
+
+    def load_config(self):
+        with open(self.dir / "skills.yaml", "r") as f:
+            self.config = yaml.safe_load(f)
+
+        self.authorized_skills = self.config.get("skills", [])
+
+    # =========================
+    # PROMPT
+    # =========================
+
+    def build_prompt(self, context):
+        return f"""
+SYSTEM:
+You are {self.dir.name}
+
+SKILLS:
+{context['skills']}
+
+MEMORY:
+{context['memory']}
+
+APIS:
+{context['apis']}
+
+USER:
+{context['user']}
+"""
+
+    # =========================
+    # LLM CALL
+    # =========================
+
+    def call_llm(self, prompt):
+        response = ollama.chat(
+            model="qwen:latest",
+            messages=[{"role": "user", "content": prompt}]
+        )
+        return response["message"]["content"]
+
+    # =========================
+    # MAIN EXECUTION
+    # =========================
+
+    def process_message(self, user_input):
+
+        # routing
+        skills = route(user_input, self.authorized_skills)
+
+        # memory
+        memory = self.memory.query_memory(user_input)
+
+        # apis (simple keyword match)
+        apis = []
+        for api_name in os.listdir(self.api_dir):
+            if api_name.replace(".yaml", "") in user_input.lower():
+                apis.append(self.api.load_api(api_name.replace(".yaml", "")))
+
+        # context
+        context = build_context(user_input, skills, memory, apis)
+
+        # cache
+        cache_key = build_cache_key(context)
+
+        cached = self.cache.get(cache_key)
+        if cached:
+            return cached
+
+        # prompt
+        prompt = self.build_prompt(context)
+
+        # LLM
+        response = self.call_llm(prompt)
+
+        # save cache
+        self.cache.set(cache_key, response)
+
+        return response
+
+
+# =========================
+# FACTORY
+# =========================
+
+def fabrica(nome):
+    return Agent(nome)
+
+
+# =========================
+# TEST
+# =========================
+
+if __name__ == "__main__":
+    agent = fabrica("agente_vendas")
+
+    while True:
+        msg = input(">> ")
+        if msg in ["exit", "quit"]:
+            break
+
+        print(agent.process_message(msg))no codigo ta 

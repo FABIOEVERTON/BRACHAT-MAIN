@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mural Messiânico | Poesias, Orações e Pensamentos</title>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(145deg, #f9f3e6 0%, #f0e7d6 100%);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            padding: 1.5rem;
+            color: #2c2418;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fffef7;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
+            overflow: hidden;
+            border: 1px solid #dbcbaa;
+        }
+        .header {
+            background: #1e2f3b;
+            padding: 1.2rem 2rem;
+            border-bottom: 5px solid #c9a03d;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .title-section h1 {
+            font-size: 1.9rem;
+            color: #f7e5c2;
+            font-family: 'Times New Roman', serif;
+        }
+        .title-section p {
+            color: #d4bc8a;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        .messianic-icons {
+            display: flex;
+            gap: 18px;
+            font-size: 1.8rem;
+            background: #2a3f4b;
+            padding: 8px 18px;
+            border-radius: 60px;
+        }
+        .main-dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 2rem;
+        }
+        .creation-panel {
+            flex: 1.4;
+            min-width: 260px;
+            background: #fefaf2;
+            border-radius: 28px;
+            padding: 1.4rem;
+            border: 1px solid #e2d5bd;
+        }
+        .form-group { margin-bottom: 1.5rem; }
+        label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: #6b4c2c;
+            margin-bottom: 8px;
+        }
+        select, input, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: #ffffff;
+            border: 1.5px solid #e2cfaa;
+            border-radius: 24px;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+            outline: none;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 180px;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        button {
+            background: #f0e2ce;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #dbbb86;
+        }
+        button.primary {
+            background: #b8863b;
+            color: white;
+            border: none;
+        }
+        button.primary:hover { background: #9b6a2c; transform: translateY(-2px); }
+        .list-panel {
+            flex: 2;
+            min-width: 320px;
+            background: #fdf9f0;
+            border-radius: 28px;
+            padding: 1.2rem;
+            border: 1px solid #e9ddc3;
+        }
+        .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            border-bottom: 2px dashed #dccb9c;
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+        }
+        .filter-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
+        .filter-btn {
+            background: #ede3d1;
+            border: none;
+            font-size: 0.75rem;
+            padding: 5px 12px;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        .filter-btn.active { background: #b8863b; color: white; }
+        .writings-list { max-height: 550px; overflow-y: auto; }
+        .writing-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1rem 1.2rem;
+            margin-bottom: 1rem;
+            border-left: 8px solid #c9a03d;
+            transition: all 0.2s;
+        }
+        .writing-card:hover { transform: translateX(4px); background: #fffcf4; }
+        .card-type {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: #f1e8da;
+            padding: 4px 12px;
+            border-radius: 30px;
+            margin-bottom: 8px;
+        }
+        .card-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 8px; color: #2c3e2f; }
+        .card-author { font-size: 0.7rem; color: #b8863b; margin-bottom: 6px; }
+        .card-preview { font-size: 0.85rem; color: #5b4a36; line-height: 1.4; }
+        .card-actions { margin-top: 12px; display: flex; gap: 12px; justify-content: flex-end; }
+        .loading { text-align: center; padding: 2rem; color: #b89870; }
+        .footer {
+            background: #1e2f3b;
+            color: #decb9e;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.8rem;
+        }
+        @media (max-width: 780px) {
+            body { padding: 0.8rem; }
+            .header { flex-direction: column; align-items: center; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="title-section">
+            <h1>📜 Mural Messiânico <span>✡︎</span></h1>
+            <p>poesias · pensamentos · orações · textos messiânicos ✨ Mural colaborativo</p>
+        </div>
+        <div class="messianic-icons">
+            <span>🕎</span><span>✡️</span><span>🕊️</span><span>📖</span>
+        </div>
+    </div>
+
+    <div class="main-dashboard">
+        <div class="creation-panel">
+            <div class="form-group">
+                <label>✍️ Tipo de escrita</label>
+                <select id="tipoEscrita">
+                    <option value="poesia">🌸 Poesia</option>
+                    <option value="pensamento">💭 Pensamento</option>
+                    <option value="oracao">🕯️ Oração</option>
+                    <option value="escrito">📜 Escrito Messiânico</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>👤 Seu nome</label>
+                <input type="text" id="autorInput" placeholder="Ex: Ana, David, ou anônimo" maxlength="40">
+            </div>
+            <div class="form-group">
+                <label>🏷️ Título</label>
+                <input type="text" id="tituloInput" placeholder="Ex: Salmo da Manhã" maxlength="80">
+            </div>
+            <div class="form-group">
+                <label>🖋️ Conteúdo</label>
+                <textarea id="conteudoInput" placeholder="Escreva sua poesia, pensamento, oração..."></textarea>
+            </div>
+            <div class="btn-group">
+                <button id="salvarBtn" class="primary">💾 Publicar no Mural</button>
+                <button id="limparBtn" class="secondary">🗑️ Limpar</button>
+            </div>
+            <div style="margin-top: 20px; font-size: 0.75rem; color: #aa8b60; text-align: center;">
+                <span>🕊️ “Escreve a visão e torna-a plana sobre tábuas” (Habacuque 2:2)</span>
+            </div>
+        </div>
+
+        <div class="list-panel">
+            <div class="list-header">
+                <h2>📖 Mural Coletivo <span id="contadorRegistros">0</span> textos</h2>
+                <div class="filter-buttons">
+                    <button data-filter="todos" class="filter-btn active">Todos</button>
+                    <button data-filter="poesia" class="filter-btn">🌸 Poesia</button>
+                    <button data-filter="pensamento" class="filter-btn">💭 Pensamento</button>
+                    <button data-filter="oracao" class="filter-btn">🕯️ Oração</button>
+                    <button data-filter="escrito" class="filter-btn">📜 Escrito</button>
+                </div>
+            </div>
+            <div id="writingsContainer" class="writings-list">
+                <div class="loading">📡 Carregando mensagens do coração...</div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <small>שַׁבָּת שָׁלוֹם • Shema Yisrael, Adonai Eloheinu, Adonai Echad • Mural colaborativo messiânico ✡️🕊️</small>
+    </div>
+</div>
+
+<script>
+    // Firebase configuration - SUAS CONFIGURAÇÕES JÁ ESTÃO AQUI!
+    const firebaseConfig = {
+        apiKey: "AIzaSyBjOjCxducyAYS8K0AkuygX2AcaYd0700w",
+        authDomain: "mural-messianico.firebaseapp.com",
+        projectId: "mural-messianico",
+        storageBucket: "mural-messianico.firebasestorage.app",
+        messagingSenderId: "849416490464",
+        appId: "1:849416490464:web:b3fda768d6e59dcabaef85"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    
+    let currentFilter = "todos";
+    let writings = [];
+    
+    const tipoSelect = document.getElementById('tipoEscrita');
+    const autorInput = document.getElementById('autorInput');
+    const tituloInput = document.getElementById('tituloInput');
+    const conteudoInput = document.getElementById('conteudoInput');
+    const salvarBtn = document.getElementById('salvarBtn');
+    const limparBtn = document.getElementById('limparBtn');
+    const writingsContainer = document.getElementById('writingsContainer');
+    const contadorSpan = document.getElementById('contadorRegistros');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    
+    function getTypeInfo(tipo) {
+        const types = {
+            'poesia': { emoji: '🌸', label: 'Poesia' },
+            'pensamento': { emoji: '💭', label: 'Pensamento' },
+            'oracao': { emoji: '🕯️', label: 'Oração' },
+            'escrito': { emoji: '📜', label: 'Escrito Messiânico' }
+        };
+        return types[tipo] || { emoji: '📝', label: 'Escrito' };
+    }
+    
+    function formatDate(timestamp) {
+        if (!timestamp) return "agora mesmo";
+        const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+        return date.toLocaleDateString('pt-BR', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' });
+    }
+    
+    function escapeHtml(str) {
+        if(!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if(m === '&') return '&amp;';
+            if(m === '<') return '&lt;';
+            if(m === '>') return '&gt;';
+            return m;
+        });
+    }
+    
+    function renderWritings() {
+        let filtered = writings.filter(w => currentFilter === 'todos' ? true : w.tipo === currentFilter);
+        
+        if(filtered.length === 0) {
+            writingsContainer.innerHTML = `<div class="empty-message">📭 Nenhum escrito encontrado. Seja o primeiro a publicar! ✡️</div>`;
+            contadorSpan.innerText = writings.length;
+            return;
+        }
+        
+        let html = '';
+        for(let w of filtered) {
+            const typeInfo = getTypeInfo(w.tipo);
+            const tituloExib = w.titulo && w.titulo.trim() !== '' ? w.titulo : `Sem título`;
+            const autorExib = w.autor && w.autor.trim() !== '' ? w.autor : 'Anônimo';
+            const preview = w.conteudo.length > 100 ? w.conteudo.substring(0, 97) + '...' : w.conteudo;
+            
+            html += `
+                <div class="writing-card" data-id="${w.id}">
+                    <div class="card-type">${typeInfo.emoji} ${typeInfo.label}</div>
+                    <div class="card-title">${escapeHtml(tituloExib)}</div>
+                    <div class="card-author">✍️ ${escapeHtml(autorExib)} • 🕊️ ${formatDate(w.timestamp)}</div>
+                    <div class="card-preview">${escapeHtml(preview)}</div>
+                    <div class="card-actions">
+                        <button class="delete-btn" data-id="${w.id}">🗑️ Excluir</button>
+                    </div>
+                </div>
+            `;
+        }
+        writingsContainer.innerHTML = html;
+        contadorSpan.innerText = writings.length;
+        
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                e.stopPropagation();
+                const id = btn.dataset.id;
+                if(confirm("Tem certeza? Este texto será removido do mural para todos.")) {
+                    await db.collection("writings").doc(id).delete();
+                }
+            });
+        });
+    }
+    
+    async function saveWriting() {
+        const tipo = tipoSelect.value;
+        const autor = autorInput.value.trim() || "Anônimo";
+        const titulo = tituloInput.value.trim() || "";
+        const conteudo = conteudoInput.value.trim();
+        
+        if(conteudo === "") {
+            alert("Por favor, escreva algo para compartilhar no mural.");
+            return;
+        }
+        
+        const newWriting = {
+            tipo: tipo,
+            autor: autor,
+            titulo: titulo,
+            conteudo: conteudo,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        };
+        
+        try {
+            await db.collection("writings").add(newWriting);
+            tipoSelect.value = "poesia";
+            autorInput.value = "";
+            tituloInput.value = "";
+            conteudoInput.value = "";
+            alert("✨ Publicado no mural! Todos podem ver agora.");
+        } catch(error) {
+            console.error("Erro ao salvar:", error);
+            alert("Erro ao publicar. Verifique sua conexão.");
+        }
+    }
+    
+    function clearForm() {
+        tipoSelect.value = "poesia";
+        autorInput.value = "";
+        tituloInput.value = "";
+        conteudoInput.value = "";
+    }
+    
+    function setFilter(filterValue) {
+        currentFilter = filterValue;
+        filterBtns.forEach(btn => {
+            if(btn.dataset.filter === filterValue) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+        renderWritings();
+    }
+    
+    salvarBtn.addEventListener('click', saveWriting);
+    limparBtn.addEventListener('click', clearForm);
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => setFilter(btn.dataset.filter));
+    });
+    
+    db.collection("writings")
+        .orderBy("timestamp", "desc")
+        .onSnapshot((snapshot) => {
+            writings = [];
+            snapshot.forEach((doc) => {
+                writings.push({ id: doc.id, ...doc.data() });
+            });
+            renderWritings();
+        }, (error) => {
+            console.error("Erro:", error);
+            writingsContainer.innerHTML = `<div class="empty-message">⚠️ Erro ao conectar com o Firebase. Verifique as configurações.</div>`;
+        });
+</script>
+</body>
+</html>

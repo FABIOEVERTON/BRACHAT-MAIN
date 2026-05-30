@@ -1,0 +1,24 @@
+agent:
+  name: Ezra
+  version: 1.0
+
+skills:
+  personality:
+    - brand-guidelines
+    - empathy
+    - internal-comms
+
+  specific:
+    - pdf
+    - mcp-builder
+    - frontend-design
+    - webapp-testing
+
+execution:
+  max_skills: 10
+  allow_executables: true
+  cache_enabled: true
+
+security:
+  sandbox_scripts: true
+  allow_subprocess: true

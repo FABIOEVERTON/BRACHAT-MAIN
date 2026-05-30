@@ -1,0 +1,14 @@
+{
+  "name": "hermes-whatsapp",
+  "version": "1.0.0",
+  "description": "Script to send WhatsApp message via Puppeteer",
+  "main": "send_aisio.js",
+  "scripts": {
+    "start": "node send_aisio.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^22.15.0"
+  }
+}

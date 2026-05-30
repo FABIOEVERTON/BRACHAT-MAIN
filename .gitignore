@@ -1,0 +1,54 @@
+# Python virtual environments
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Workspace Specific Ignores
+5_integration/
+04_knowledge/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Secrets and Environment Configs
+.env
+*.env
+.hermes_history
+auth.json
+auth.lock
+
+# Caches
+.cache/
+.npm-cache/
+.claude/
+.notebooklm/
+models_dev_cache.json
+
+# Logs and Caches
+*.log
+logs/
+audio_cache/
+image_cache/
+
+# Node.js dependencies
+node_modules/
+package-lock.json
+
+# Database shm/wal files
+*.db-shm
+*.db-wal
+state.db
+state.db-shm
+state.db-wal
+
+# Large Compiled Binaries
+bin/uv
+bin/uvx
+portfolio/agents_team/hermes/bin/tirith
+**/bin/uv
+**/bin/uvx
+**/bin/tirith

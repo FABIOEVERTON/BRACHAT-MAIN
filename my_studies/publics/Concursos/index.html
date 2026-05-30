@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Simulador com Caderno de Erros - Fixação Dissertativa</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background: #f0f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .header {
+            background: linear-gradient(135deg, #0a2f44, #1e5a7a);
+            color: white;
+            padding: 24px 32px;
+            border-radius: 28px;
+            margin-bottom: 24px;
+        }
+        .header h1 { margin: 0 0 8px; font-size: 1.8rem; }
+        .header p { margin: 0; opacity: 0.9; }
+        .disciplines-bar {
+            background: white;
+            border-radius: 20px;
+            padding: 16px 24px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .disciplines-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .disciplines-selector select {
+            padding: 10px 20px;
+            border-radius: 40px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            font-weight: 600;
+            color: #1e4a6b;
+            cursor: pointer;
+        }
+        .stat-badge {
+            background: #eef3f8;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #1e5a7a;
+        }
+        .error-badge {
+            background: #c23b22;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+        .tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            background: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #1e4a6b;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #1e4a6b;
+            color: white;
+        }
+        .tab-btn.error-tab {
+            background: #c23b22;
+            color: white;
+        }
+        .tab-btn.error-tab.active {
+            background: #8b2a12;
+            box-shadow: 0 4px 12px rgba(194,59,34,0.3);
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1e4a6b;
+            border-left: 5px solid #2c7da0;
+            padding-left: 16px;
+        }
+        .card-title.error-title {
+            border-left-color: #c23b22;
+            color: #c23b22;
+        }
+        textarea {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 13px;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            resize: vertical;
+        }
+        textarea:focus { outline: none; border-color: #2c7da0; }
+        button {
+            background: #1e4a6b;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        button:hover { background: #0f3a55; transform: translateY(-1px); }
+        .btn-outline { background: transparent; border: 2px solid #1e4a6b; color: #1e4a6b; }
+        .btn-outline:hover { background: #eef3f8; transform: none; }
+        .btn-danger { background: #c23b22; }
+        .btn-danger:hover { background: #9e2e1a; }
+        .btn-success { background: #2c7a4d; }
+        .btn-warning { background: #d97706; }
+        .question-row {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px 16px;
+            border-bottom: 1px solid #eef2f5;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .question-row:hover { background: #fafcff; }
+        .quiz-container {
+            max-height: 650px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        .quiz-question {
+            background: white;
+            border: 2px solid #e2edf2;
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .quiz-question.correct-answer { border-left: 8px solid #2c7a4d; background: #f8fff8; }
+        .quiz-question.wrong-answer { border-left: 8px solid #c23b22; background: #fff8f8; }
+        .question-header {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            color: #1e4a6b;
+            line-height: 1.5;
+        }
+        .question-number {
+            background: #1e4a6b;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-right: 12px;
+            display: inline-block;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 20px;
+            background: #f9fbfd;
+            border-radius: 60px;
+            cursor: pointer;
+            border: 2px solid #e2edf2;
+        }
+        .option-item:hover { background: #eef3f8; transform: translateX(4px); }
+        .option-item.selected { background: #e3f2f9; border-color: #2c7da0; }
+        .option-letter {
+            font-weight: 800;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 30px;
+        }
+        .feedback-area {
+            margin-top: 20px;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border-left: 4px solid #2c7da0;
+            display: none;
+        }
+        .feedback-area.show { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback-correct { color: #2c7a4d; font-weight: bold; }
+        .feedback-wrong { color: #c23b22; font-weight: bold; }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+        .page-btn {
+            padding: 8px 14px;
+            background: white;
+            border: 1px solid #cbd5e1;
+            color: #1e4a6b;
+            cursor: pointer;
+            border-radius: 40px;
+        }
+        .page-btn.active-page { background: #1e4a6b; color: white; }
+        .progress-indicator {
+            background: #e8f0f5;
+            border-radius: 16px;
+            padding: 12px;
+            margin-top: 12px;
+            text-align: center;
+        }
+        .result-banner {
+            background: linear-gradient(135deg, #1e4a6b, #2c7da0);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        /* Caderno de Erros */
+        .error-card {
+            background: #fffaf5;
+            border: 2px solid #fed7aa;
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .error-question-text {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #c23b22;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        .error-gabarito {
+            background: #eef3f8;
+            padding: 10px 16px;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+        .dissertative-answer {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #fed7aa;
+            border-radius: 16px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+            margin-top: 12px;
+        }
+        .dissertative-answer:focus {
+            outline: none;
+            border-color: #c23b22;
+        }
+        .saved-feedback {
+            color: #2c7a4d;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            display: none;
+        }
+        .error-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            justify-content: flex-end;
+        }
+        .search-box {
+            margin-bottom: 20px;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 60px;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 768px) { .card { padding: 20px; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📚 Simulador com Caderno de Erros</h1>
+        <p>Responda o simulado | Questões erradas vão para o caderno | Responda dissertativamente para fixar o conteúdo</p>
+    </div>
+
+    <div class="disciplines-bar">
+        <div class="disciplines-selector">
+            <span style="font-weight:600;">📂 Disciplina:</span>
+            <select id="disciplineSelect"></select>
+            <button id="newDisciplineBtn" style="padding: 8px 18px; background:#4a6f8a;">➕ Nova</button>
+            <button id="renameDisciplineBtn" class="btn-outline" style="padding: 8px 18px;">✏️ Renomear</button>
+            <button id="deleteDisciplineBtn" class="btn-danger" style="padding: 8px 18px;">🗑️ Excluir</button>
+        </div>
+        <div class="stat-badge" id="disciplineStats">0 questões</div>
+        <div class="error-badge" id="errorCountBadge">📓 Erros: 0</div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="import">📥 Importar</button>
+        <button class="tab-btn" data-tab="list">📋 Gerenciar</button>
+        <button class="tab-btn" data-tab="quiz">🎯 Simulado</button>
+        <button class="tab-btn error-tab" data-tab="errors">📓 Caderno de Erros</button>
+    </div>
+
+    <!-- Aba Importação -->
+    <div id="import" class="tab-content active">
+        <div class="card">
+            <div class="card-title">📝 Importar questões para <span id="currentDisciplineName"></span></div>
+            <textarea id="rawInput" rows="18" placeholder="Cole as questões no formato padrão:
+
+QUESTION_ID: Q-1
+QUESTION_TEXT: Em situações excepcionais, membro do Conselho Fiscal pode participar concomitantemente do Conselho Deliberativo.
+ANSWER: FALSE
+EXPLANATION: Conforme Parágrafo único do Art. 2º...
+TAGS: Conselho Fiscal, Conselho Deliberativo"></textarea>
+            <div style="margin: 20px 0; display: flex; gap: 12px; flex-wrap: wrap;">
+                <button id="smartParseBtn">🚀 Importar</button>
+                <button id="exampleBtn" class="btn-outline">📋 Carregar exemplo</button>
+            </div>
+            <div id="parseResult" class="progress-indicator" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- Aba Gerenciar -->
+    <div id="list" class="tab-content">
+        <div class="card">
+            <div class="card-title">📋 Questões de <span id="listDisciplineName"></span></div>
+            <div id="questionsList" style="max-height: 550px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <!-- Aba Simulado -->
+    <div id="quiz" class="tab-content">
+        <div class="card">
+            <div class="card-title">🎯 Simulado - <span id="quizDisciplineName"></span></div>
+            <div id="quizArea"></div>
+            <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: center;">
+                <button id="submitQuizBtn" class="btn-success">✅ Corrigir e enviar erros ao caderno</button>
+                <button id="resetQuizBtn" class="btn-outline">🔄 Limpar respostas</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aba Caderno de Erros -->
+    <div id="errors" class="tab-content">
+        <div class="card">
+            <div class="card-title error-title">📓 Caderno de Erros - Responda dissertativamente para fixar</div>
+            <input type="text" id="errorSearch" class="search-box" placeholder="🔍 Pesquisar por palavra-chave no enunciado ou tags...">
+            <div class="filter-buttons">
+                <button id="showAllErrors" class="btn-outline" style="padding: 6px 16px;">Todas</button>
+                <button id="showUnansweredErrors" class="btn-outline" style="padding: 6px 16px;">Sem resposta</button>
+                <button id="showAnsweredErrors" class="btn-outline" style="padding: 6px 16px;">Com resposta</button>
+                <button id="clearAllErrorAnswers" class="btn-danger" style="padding: 6px 16px;">🗑️ Limpar todas as respostas</button>
+            </div>
+            <div id="errorListContainer" style="max-height: 600px; overflow-y: auto;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Estrutura de dados
+    let data = { disciplinas: {}, currentDiscipline: "Geral" };
+    let errorQuestions = []; // { discipline, question, userAnswer, correctAnswer, commentary, tags, dissertativeAnswer, date }
+    let userAnswers = {};
+    let quizSubmitted = false;
+    let currentPage = 1;
+    let errorFilter = "all"; // all, unanswered, answered
+    let errorSearchTerm = "";
+    const ITEMS_PER_PAGE = 10;
+
+    function loadFromStorage() {
+        const saved = localStorage.getItem('simulator_errors_v2');
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                data = parsed.data || { disciplinas: { "Geral": [] }, currentDiscipline: "Geral" };
+                errorQuestions = parsed.errorQuestions || [];
+            } catch(e) { initDefaultData(); }
+        } else { initDefaultData(); }
+        if (!data.disciplinas[data.currentDiscipline]) {
+            data.currentDiscipline = Object.keys(data.disciplinas)[0] || "Geral";
+        }
+        updateDisciplineSelect();
+        updateDisplays();
+        renderList();
+        renderQuiz();
+        renderErrorList();
+        updateErrorCount();
+    }
+    
+    function initDefaultData() {
+        data = {
+            disciplinas: { "Geral": [] },
+            currentDiscipline: "Geral"
+        };
+        errorQuestions = [];
+    }
+    
+    function saveToStorage() {
+        localStorage.setItem('simulator_errors_v2', JSON.stringify({
+            data: data,
+            errorQuestions: errorQuestions
+        }));
+        updateDisciplineStats();
+        updateErrorCount();
+    }
+    
+    function getCurrentQuestions() { return data.disciplinas[data.currentDiscipline] || []; }
+    function setCurrentQuestions(questions) { data.disciplinas[data.currentDiscipline] = questions; saveToStorage(); }
+    
+    function updateErrorCount() {
+        const count = errorQuestions.filter(e => e.discipline === data.currentDiscipline).length;
+        document.getElementById('errorCountBadge').innerHTML = `📓 Erros: ${count}`;
+    }
+    
+    function addToErrorLog(question, userAnswer, discipline) {
+        // Verificar se já existe no caderno de erros para esta disciplina
+        const exists = errorQuestions.some(e => e.discipline === discipline && e.question.id === question.id);
+        if (!exists) {
+            errorQuestions.push({
+                discipline: discipline,
+                question: { ...question },
+                userAnswer: userAnswer,
+                correctAnswer: question.correct,
+                commentary: question.commentary,
+                tags: question.tags || "",
+                dissertativeAnswer: "",
+                date: new Date().toISOString()
+            });
+            saveToStorage();
+        }
+    }
+    
+    function updateDissertativeAnswer(errorId, answer) {
+        if (errorQuestions[errorId]) {
+            errorQuestions[errorId].dissertativeAnswer = answer;
+            saveToStorage();
+            renderErrorList();
+        }
+    }
+    
+    function parsePadraoFormat() {
+        const raw = document.getElementById('rawInput').value;
+        if (!raw.trim()) { alert("Cole suas questões primeiro!"); return; }
+        
+        const resultDiv = document.getElementById('parseResult');
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = '<span>🔄 Processando...</span>';
+        
+        setTimeout(() => {
+            const newQuestions = [];
+            const blocks = raw.split(/(?=QUESTION_ID:)/g);
+            
+            for (let block of blocks) {
+                if (!block.trim() || !block.includes('QUESTION_ID:')) continue;
+                const question = extractQuestionFromPadrao(block);
+                if (question) newQuestions.push(question);
+            }
+            
+            if (newQuestions.length === 0) {
+                resultDiv.innerHTML = '<span style="color:#c23b22;">❌ Nenhuma questão identificada.</span>';
+                return;
+            }
+            
+            const currentQuestions = getCurrentQuestions();
+            currentQuestions.push(...newQuestions);
+            setCurrentQuestions(currentQuestions);
+            
+            resultDiv.innerHTML = `<span style="color:#2c7a4d;">✅ ${newQuestions.length} questões importadas! Total: ${currentQuestions.length}</span>`;
+            document.getElementById('rawInput').value = '';
+            renderList();
+            resetQuizState();
+            renderQuiz();
+        }, 50);
+    }
+    
+    function extractQuestionFromPadrao(block) {
+        const lines = block.split(/\r?\n/);
+        let id = '', text = '', answer = '', explanation = '', tags = '';
+        let currentField = '';
+        let textLines = [];
+        
+        for (let i = 0; i < lines.length; i++) {
+            let line = lines[i];
+            if (line.startsWith('QUESTION_ID:')) {
+                currentField = 'ID';
+                id = line.replace('QUESTION_ID:', '').trim();
+            } else if (line.startsWith('QUESTION_TEXT:')) {
+                currentField = 'TEXT';
+                textLines = [line.replace('QUESTION_TEXT:', '').trim()];
+            } else if (line.startsWith('ANSWER:')) {
+                currentField = 'ANSWER';
+                answer = line.replace('ANSWER:', '').trim().toUpperCase();
+            } else if (line.startsWith('EXPLANATION:')) {
+                currentField = 'EXPLANATION';
+                explanation = line.replace('EXPLANATION:', '').trim();
+            } else if (line.startsWith('TAGS:')) {
+                currentField = 'TAGS';
+                tags = line.replace('TAGS:', '').trim();
+            } else if (line.trim() === '') {
+                continue;
+            } else if (currentField === 'TEXT') {
+                textLines.push(line.trim());
+            } else if (currentField === 'EXPLANATION') {
+                explanation += ' ' + line.trim();
+            } else if (currentField === 'TAGS') {
+                tags += ' ' + line.trim();
+            }
+        }
+        
+        text = textLines.join(' ').trim();
+        if (!text || !answer) return null;
+        
+        let correct = answer === 'TRUE' ? 'a' : (answer === 'FALSE' ? 'b' : 'a');
+        
+        return {
+            id: id || Date.now(),
+            text: text,
+            options: ["Verdadeiro", "Falso"],
+            correct: correct,
+            commentary: explanation || "Sem comentário.",
+            tags: tags
+        };
+    }
+    
+    function submitQuiz() {
+        const questions = getCurrentQuestions();
+        if (questions.length === 0) { alert("Nenhuma questão para corrigir!"); return; }
+        
+        // Registrar erros
+        questions.forEach((q, idx) => {
+            const userAns = userAnswers[idx];
+            const isCorrect = (userAns === q.correct);
+            if (!isCorrect && userAns) {
+                addToErrorLog(q, userAns, data.currentDiscipline);
+            }
+        });
+        
+        quizSubmitted = true;
+        renderQuiz();
+        updateErrorCount();
+        renderErrorList();
+        
+        const total = questions.length;
+        const correctCount = questions.filter((q, idx) => userAnswers[idx] === q.correct).length;
+        alert(`✅ Simulado corrigido!\nAcertos: ${correctCount}/${total} (${Math.round(correctCount/total*100)}%)\n📓 Questões erradas foram adicionadas ao Caderno de Erros.`);
+    }
+    
+    function renderErrorList() {
+        const container = document.getElementById('errorListContainer');
+        if (!container) return;
+        
+        let filtered = errorQuestions.filter(e => e.discipline === data.currentDiscipline);
+        
+        // Filtro por busca
+        if (errorSearchTerm) {
+            const term = errorSearchTerm.toLowerCase();
+            filtered = filtered.filter(e => 
+                e.question.text.toLowerCase().includes(term) || 
+                (e.tags && e.tags.toLowerCase().includes(term))
+            );
+        }
+        
+        // Filtro por status
+        if (errorFilter === 'unanswered') {
+            filtered = filtered.filter(e => !e.dissertativeAnswer || e.dissertativeAnswer.trim() === '');
+        } else if (errorFilter === 'answered') {
+            filtered = filtered.filter(e => e.dissertativeAnswer && e.dissertativeAnswer.trim() !== '');
+        }
+        
+        if (filtered.length === 0) {
+            container.innerHTML = '<p style="text-align:center; padding:60px;">📭 Nenhum erro registrado nesta disciplina. Parabéns! 🎉</p>';
+            return;
+        }
+        
+        let html = '';
+        filtered.forEach((error, idx) => {
+            const originalIdx = errorQuestions.findIndex(e => e === error);
+            html += `<div class="error-card">
+                        <div class="error-question-text">
+                            <span style="background:#c23b22; color:white; padding:2px 10px; border-radius:20px; font-size:0.8rem;">ERRADA</span>
+                            <span style="margin-left:10px; font-size:0.8rem; color:#666;">${error.question.id || `Q${idx+1}`}</span>
+                            <div style="margin-top:12px;">${escapeHtml(error.question.text)}</div>
+                        </div>
+                        <div class="error-gabarito">
+                            <strong>📌 Gabarito:</strong> ${error.correctAnswer === 'a' ? 'Verdadeiro' : 'Falso'}<br>
+                            <strong>💬 Comentário:</strong> ${escapeHtml(error.commentary)}<br>
+                            ${error.tags ? `<strong>🏷️ Tags:</strong> ${escapeHtml(error.tags)}` : ''}
+                        </div>
+                        <textarea id="diss-${originalIdx}" class="dissertative-answer" rows="3" placeholder="✍️ Responda dissertativamente para fixar o conteúdo: Explique com suas palavras por que a afirmação está correta ou incorreta...">${escapeHtml(error.dissertativeAnswer || '')}</textarea>
+                        <div id="saved-${originalIdx}" class="saved-feedback">✓ Resposta salva!</div>
+                        <div class="error-actions">
+                            <button onclick="saveDissertative(${originalIdx})" style="background:#2c7a4d; padding:8px 20px;">💾 Salvar resposta</button>
+                            <button onclick="deleteError(${originalIdx})" class="btn-outline" style="border-color:#c23b22; color:#c23b22;">🗑️ Remover do caderno</button>
+                        </div>
+                     </div>`;
+        });
+        container.innerHTML = html;
+    }
+    
+    window.saveDissertative = function(errorIdx) {
+        const textarea = document.getElementById(`diss-${errorIdx}`);
+        if (textarea) {
+            errorQuestions[errorIdx].dissertativeAnswer = textarea.value;
+            saveToStorage();
+            const savedMsg = document.getElementById(`saved-${errorIdx}`);
+            if (savedMsg) {
+                savedMsg.style.display = 'block';
+                setTimeout(() => { savedMsg.style.display = 'none'; }, 2000);
+            }
+            renderErrorList();
+        }
+    };
+    
+    window.deleteError = function(errorIdx) {
+        if (confirm("Remover esta questão do caderno de erros?")) {
+            errorQuestions.splice(errorIdx, 1);
+            saveToStorage();
+            renderErrorList();
+            updateErrorCount();
+        }
+    };
+    
+    function clearAllErrorAnswers() {
+        if (confirm("Limpar todas as respostas dissertativas do caderno de erros?")) {
+            errorQuestions.forEach(e => { e.dissertativeAnswer = ""; });
+            saveToStorage();
+            renderErrorList();
+        }
+    }
+    
+    function updateDisciplineSelect() {
+        const select = document.getElementById('disciplineSelect');
+        select.innerHTML = '';
+        Object.keys(data.disciplinas).sort().forEach(disc => {
+            const option = document.createElement('option');
+            option.value = disc;
+            option.textContent = disc;
+            if (disc === data.currentDiscipline) option.selected = true;
+            select.appendChild(option);
+        });
+        select.onchange = () => {
+            data.currentDiscipline = select.value;
+            saveToStorage();
+            updateDisplays();
+            resetQuizState();
+            renderList();
+            renderQuiz();
+            renderErrorList();
+            updateErrorCount();
+        };
+    }
+    
+    function updateDisplays() {
+        document.getElementById('currentDisciplineName').innerText = data.currentDiscipline;
+        document.getElementById('listDisciplineName').innerText = data.currentDiscipline;
+        document.getElementById('quizDisciplineName').innerText = data.currentDiscipline;
+        updateDisciplineStats();
+    }
+    
+    function updateDisciplineStats() {
+        const questions = getCurrentQuestions();
+        document.getElementById('disciplineStats').innerHTML = `${questions.length} questões`;
+    }
+    
+    function resetQuizState() {
+        userAnswers = {};
+        quizSubmitted = false;
+        currentPage = 1;
+        const banner = document.getElementById('resultBanner');
+        if (banner) banner.remove();
+    }
+    
+    function renderList() {
+        const container = document.getElementById('questionsList');
+        const questions = getCurrentQuestions();
+        if (!container) return;
+        if (questions.length === 0) {
+            container.innerHTML = '<p style="padding: 40px; text-align:center;">Nenhuma questão.</p>';
+            return;
+        }
+        let html = '';
+        questions.forEach((q, idx) => {
+            html += `<div class="question-row">
+                        <div style="flex:3;"><strong>Q${idx+1}</strong> ${escapeHtml(q.text.substring(0, 100))}${q.text.length>100?'...':''}</div>
+                        <div class="question-gabarito">${q.correct === 'a' ? 'Verdadeiro' : 'Falso'}</div>
+                        <div><button onclick="editQuestion(${idx})" style="padding:4px 12px;">✏️</button>
+                        <button onclick="deleteQuestion(${idx})" style="padding:4px 12px; background:#fee; color:#c23b22;">🗑️</button></div>
+                     </div>`;
+        });
+        container.innerHTML = html;
+    }
+    
+    window.editQuestion = function(idx) {
+        const questions = getCurrentQuestions();
+        let q = questions[idx];
+        let newText = prompt("Editar enunciado:", q.text);
+        if (newText !== null) q.text = newText;
+        let newCorrect = prompt("Gabarito (TRUE/FALSE):", q.correct === 'a' ? 'TRUE' : 'FALSE');
+        if (newCorrect !== null) q.correct = (newCorrect.toUpperCase() === 'TRUE') ? 'a' : 'b';
+        let newComment = prompt("Comentário:", q.commentary);
+        if (newComment !== null) q.commentary = newComment;
+        setCurrentQuestions(questions);
+        renderList();
+        resetQuizState();
+        renderQuiz();
+    };
+    
+    window.deleteQuestion = function(idx) {
+        if (confirm("Remover esta questão?")) {
+            const questions = getCurrentQuestions();
+            questions.splice(idx, 1);
+            setCurrentQuestions(questions);
+            renderList();
+            resetQuizState();
+            renderQuiz();
+        }
+    };
+    
+    function renderQuiz() {
+        const container = document.getElementById('quizArea');
+        const questions = getCurrentQuestions();
+        if (!container) return;
+        if (questions.length === 0) {
+            container.innerHTML = '<p style="text-align:center; padding:60px;">📭 Nenhuma questão.</p>';
+            return;
+        }
+        
+        const totalPages = Math.ceil(questions.length / ITEMS_PER_PAGE);
+        const start = (currentPage - 1) * ITEMS_PER_PAGE;
+        const end = Math.min(start + ITEMS_PER_PAGE, questions.length);
+        const pageQuestions = questions.slice(start, end);
+        
+        let html = '';
+        pageQuestions.forEach((q, idxInPage) => {
+            const globalIdx = start + idxInPage;
+            const userAnswer = userAnswers[globalIdx];
+            const answerClass = quizSubmitted ? (userAnswer === q.correct ? 'correct-answer' : 'wrong-answer') : '';
+            
+            html += `<div class="quiz-question ${answerClass}">
+                        <div class="question-header">
+                            <span class="question-number">Q${globalIdx+1}</span>
+                            ${escapeHtml(q.text)}
+                        </div>
+                        <div class="options">
+                            <div class="option-item ${userAnswer === 'a' ? 'selected' : ''}" onclick="selectAnswer(${globalIdx}, 'a')">
+                                <div class="option-letter">A</div><div>Verdadeiro</div>
+                            </div>
+                            <div class="option-item ${userAnswer === 'b' ? 'selected' : ''}" onclick="selectAnswer(${globalIdx}, 'b')">
+                                <div class="option-letter">B</div><div>Falso</div>
+                            </div>
+                        </div>
+                        <div class="feedback-area" id="feedback-${globalIdx}"></div>
+                    </div>`;
+        });
+        
+        let pagination = '<div class="pagination">';
+        for (let i = 1; i <= totalPages; i++) {
+            pagination += `<button class="page-btn ${i === currentPage ? 'active-page' : ''}" onclick="goToPage(${i})">${i}</button>`;
+        }
+        pagination += '</div>';
+        
+        container.innerHTML = html + pagination;
+        
+        if (quizSubmitted) {
+            const questionsList = getCurrentQuestions();
+            let correctCount = 0;
+            questionsList.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                const isCorrect = (userAns === q.correct);
+                if (isCorrect) correctCount++;
+                const feedbackDiv = document.getElementById(`feedback-${idx}`);
+                if (feedbackDiv) {
+                    feedbackDiv.classList.add('show');
+                    feedbackDiv.innerHTML = `<div><span class="${isCorrect ? 'feedback-correct' : 'feedback-wrong'}">${isCorrect ? '✅ CORRETO!' : '❌ INCORRETO'}</span></div>
+                        <div><strong>Gabarito:</strong> ${q.correct === 'a' ? 'Verdadeiro' : 'Falso'}</div>
+                        <div><strong>📖 Comentário:</strong> ${escapeHtml(q.commentary)}</div>`;
+                }
+            });
+        }
+    }
+    
+    window.selectAnswer = function(qidx, answer) {
+        if (quizSubmitted) return;
+        userAnswers[qidx] = answer;
+        renderQuiz();
+    };
+    
+    window.goToPage = function(page) { currentPage = page; renderQuiz(); };
+    function resetQuiz() { resetQuizState(); renderQuiz(); }
+    function clearAll() { if(confirm("Apagar todas as questões?")) { setCurrentQuestions([]); resetQuizState(); renderList(); renderQuiz(); } }
+    function newDiscipline() {
+        let name = prompt("Nome da nova disciplina:");
+        if (name && name.trim()) {
+            name = name.trim();
+            if (data.disciplinas[name]) { alert("Já existe!"); return; }
+            data.disciplinas[name] = [];
+            data.currentDiscipline = name;
+            saveToStorage();
+            updateDisciplineSelect();
+            updateDisplays();
+            resetQuizState();
+            renderList();
+            renderQuiz();
+            renderErrorList();
+        }
+    }
+    function renameDiscipline() {
+        const oldName = data.currentDiscipline;
+        let newName = prompt("Novo nome:", oldName);
+        if (newName && newName.trim() && newName !== oldName) {
+            newName = newName.trim();
+            if (data.disciplinas[newName]) { alert("Já existe!"); return; }
+            data.disciplinas[newName] = data.disciplinas[oldName];
+            delete data.disciplinas[oldName];
+            data.currentDiscipline = newName;
+            saveToStorage();
+            updateDisciplineSelect();
+            updateDisplays();
+            resetQuizState();
+            renderList();
+            renderQuiz();
+            renderErrorList();
+        }
+    }
+    function deleteDiscipline() {
+        if (Object.keys(data.disciplinas).length === 1) { alert("Não é possível excluir a única disciplina."); return; }
+        if (confirm(`Excluir "${data.currentDiscipline}" e todas as suas questões?`)) {
+            delete data.disciplinas[data.currentDiscipline];
+            data.currentDiscipline = Object.keys(data.disciplinas)[0];
+            saveToStorage();
+            updateDisciplineSelect();
+            updateDisplays();
+            resetQuizState();
+            renderList();
+            renderQuiz();
+            renderErrorList();
+        }
+    }
+    function loadExample() {
+        document.getElementById('rawInput').value = `QUESTION_ID: Q-1
+QUESTION_TEXT: Em situações excepcionais, membro do Conselho Fiscal pode participar concomitantemente do Conselho Deliberativo.
+ANSWER: FALSE
+EXPLANATION: Conforme Parágrafo único do Art. 2º: "É vedada a participação cumulativa em mais de um dos órgãos previstos no caput"
+TAGS: Conselho Fiscal, Conselho Deliberativo, Vedação
+
+QUESTION_ID: Q-2
+QUESTION_TEXT: O órgão de deliberação superior da AgSUS é a Diretoria-Executiva.
+ANSWER: FALSE
+EXPLANATION: Conforme Art. 3º: "Compete ao Conselho Deliberativo, órgão de deliberação superior da AGSUS"
+TAGS: Conselho Deliberativo, Órgão Superior
+
+QUESTION_ID: Q-3
+QUESTION_TEXT: A AgSUS tem personalidade jurídica de direito privado.
+ANSWER: TRUE
+EXPLANATION: Conforme Art. 1º: a AGSUS foi "instituída na forma de pessoa jurídica de direito privado"
+TAGS: AGSUS, Personalidade Jurídica, Direito Privado`;
+        smartParseBtn.click();
+    }
+    
+    function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]); }
+    
+    const smartParseBtn = document.getElementById('smartParseBtn');
+    smartParseBtn?.addEventListener('click', parsePadraoFormat);
+    document.getElementById('submitQuizBtn')?.addEventListener('click', submitQuiz);
+    document.getElementById('resetQuizBtn')?.addEventListener('click', resetQuiz);
+    document.getElementById('clearAllBtn')?.addEventListener('click', clearAll);
+    document.getElementById('exampleBtn')?.addEventListener('click', loadExample);
+    document.getElementById('newDisciplineBtn')?.addEventListener('click', newDiscipline);
+    document.getElementById('renameDisciplineBtn')?.addEventListener('click', renameDiscipline);
+    document.getElementById('deleteDisciplineBtn')?.addEventListener('click', deleteDiscipline);
+    document.getElementById('showAllErrors')?.addEventListener('click', () => { errorFilter = 'all'; renderErrorList(); });
+    document.getElementById('showUnansweredErrors')?.addEventListener('click', () => { errorFilter = 'unanswered'; renderErrorList(); });
+    document.getElementById('showAnsweredErrors')?.addEventListener('click', () => { errorFilter = 'answered'; renderErrorList(); });
+    document.getElementById('clearAllErrorAnswers')?.addEventListener('click', clearAllErrorAnswers);
+    document.getElementById('errorSearch')?.addEventListener('input', (e) => { errorSearchTerm = e.target.value; renderErrorList(); });
+    
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.dataset.tab;
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
+            if (tabId === 'list') renderList();
+            if (tabId === 'quiz') { currentPage = 1; renderQuiz(); }
+            if (tabId === 'errors') { renderErrorList(); }
+        });
+    });
+    
+    loadFromStorage();
+</script>
+</body>
+</html>
