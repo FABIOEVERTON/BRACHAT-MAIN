@@ -56,35 +56,11 @@ async def start_antigravity_loop(app: FastAPI):
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    app.state.hermes_app = None
-    app.state.antigravity_app = None
-    
-    # Dispara as duas tarefas de loop independentes em segundo plano
-    asyncio.create_task(start_hermes_loop(app))
-    asyncio.create_task(start_antigravity_loop(app))
-    
+    # O painel de controle na nuvem serve apenas a interface web premium.
+    # O polling dos bots de Telegram e a orquestracao rodam no Mac local (Construtor).
+    logger.info("BRACHÁT Core Control Plane iniciado na nuvem.")
     yield
-    
-    # Shutdown: stop bots
-    logger.info("Encerrando conexões dos bots...")
-    if getattr(app.state, "hermes_app", None):
-        try:
-            await app.state.hermes_app.updater.stop()
-            await app.state.hermes_app.stop()
-            await app.state.hermes_app.shutdown()
-            logger.info("Bot do Hermes encerrado com sucesso.")
-        except Exception as e:
-            logger.error(f"Erro ao encerrar bot do Hermes: {str(e)}")
-            
-    if getattr(app.state, "antigravity_app", None):
-        try:
-            await app.state.antigravity_app.updater.stop()
-            await app.state.antigravity_app.stop()
-            await app.state.antigravity_app.shutdown()
-            logger.info("Bot da Antigravity encerrado com sucesso.")
-        except Exception as e:
-            logger.error(f"Erro ao encerrar bot da Antigravity: {str(e)}")
-    logger.info("Finalizado encerramento dos bots.")
+    logger.info("BRACHÁT Core Control Plane encerrado.")
 
 app = FastAPI(title="BRACHÁT Core Control Plane", lifespan=lifespan)
 
