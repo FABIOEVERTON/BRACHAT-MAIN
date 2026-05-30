@@ -443,6 +443,7 @@ async def test_telegram():
     status["TELEGRAM_ANTIGRAVITY_TOKEN_PRESENT"] = bool(os.environ.get("TELEGRAM_ANTIGRAVITY_TOKEN"))
     status["TELEGRAM_CHAT_ID_PRESENT"] = bool(os.environ.get("TELEGRAM_CHAT_ID"))
     status["GOOGLE_API_KEY_PRESENT"] = bool(os.environ.get("GOOGLE_API_KEY"))
+    status["CLICKUP_API_KEY_PRESENT"] = bool(os.environ.get("CLICKUP_API_KEY"))
     
     # 2. Verificar variaveis de proxy no ambiente
     proxy_vars = [k for k in os.environ.keys() if "proxy" in k.lower()]

@@ -87,12 +87,46 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not is_authorized(update):
         return
     text = update.message.text
-    # Log incoming message
     logger.info(f"Mensagem recebida do Fabio: {text}")
-    await update.message.reply_text(
-        f"📥 Hermes recebeu a mensagem: \"{text}\"\n"
-        f"Esta funcionalidade de execucao agentica sera integrada na proxima fase."
-    )
+    
+    # 1. Sinaliza acao de typing
+    await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
+    
+    clickup_key = os.environ.get("CLICKUP_API_KEY")
+    if not clickup_key:
+        await update.message.reply_text("⚠️ Erro: CLICKUP_API_KEY nao configurada na nuvem!")
+        return
+        
+    list_id = "901714169490"
+    url = f"https://api.clickup.com/api/v2/list/{list_id}/task"
+    headers = {
+        "Authorization": clickup_key,
+        "Content-Type": "application/json"
+    }
+    
+    import asyncio
+    import requests
+    
+    payload = {
+        "name": f"📥 [Telegram] {text[:30]}...",
+        "description": f"Mensagem recebida pelo Telegram Bot:\n\n{text}\n\nChat ID: {update.effective_chat.id}\nMessage ID: {update.message.message_id}",
+        "status": "to do",
+        "tags": ["telegram_pending"]
+    }
+    
+    try:
+        res = await asyncio.to_thread(requests.post, url, headers=headers, json=payload, timeout=10)
+        if res.status_code in [200, 201]:
+            task_data = res.json()
+            await update.message.reply_text(
+                f"📥 Mensagem enfileirada no ClickUp com sucesso!\n"
+                f"📌 **Tarefa:** [{task_data.get('name')}]({task_data.get('url')})\n"
+                f"⏳ Aguardando processamento pelo Mac local..."
+            )
+        else:
+            await update.message.reply_text(f"⚠️ Erro ao criar tarefa no ClickUp: HTTP {res.status_code}")
+    except Exception as e:
+        await update.message.reply_text(f"⚠️ Erro ao conectar com ClickUp: {str(e)}")
 
 from telegram.request import HTTPXRequest
 
