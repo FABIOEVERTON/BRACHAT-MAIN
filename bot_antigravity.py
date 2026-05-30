@@ -114,7 +114,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 reply = data["candidates"][0]["content"]["parts"][0]["text"]
                 # Add assistant reply to history
                 chat_history.append({"role": "model", "parts": [{"text": reply}]})
-                await update.message.reply_text(reply, parse_mode="Markdown")
+                try:
+                    await update.message.reply_text(reply, parse_mode="Markdown")
+                except Exception as parse_err:
+                    logger.warning(f"Falha ao enviar com Markdown, tentando texto puro: {parse_err}")
+                    await update.message.reply_text(reply)
             except (KeyError, IndexError) as parse_err:
                 logger.error(f"Erro ao parsear resposta do Gemini: {parse_err}. JSON: {data}")
                 await update.message.reply_text("⚠️ Ocorreu um erro ao processar a resposta da IA.")
