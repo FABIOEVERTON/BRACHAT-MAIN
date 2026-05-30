@@ -15,25 +15,27 @@ async def lifespan(app: FastAPI):
     hermes_app = None
     antigravity_app = None
     
+    # Inicializa Bot do Hermes de forma isolada
     try:
         from bot_hermes import get_app as get_hermes
-        from bot_antigravity import get_app as get_antigravity
-        
         hermes_app = get_hermes()
-        antigravity_app = get_antigravity()
-        
         await hermes_app.initialize()
         await hermes_app.updater.start_polling()
         await hermes_app.start()
         logger.info("Bot do Hermes online e escutando.")
+    except Exception as e:
+        logger.error(f"Erro ao inicializar bot do Hermes: {str(e)}")
         
+    # Inicializa Bot da Antigravity de forma isolada
+    try:
+        from bot_antigravity import get_app as get_antigravity
+        antigravity_app = get_antigravity()
         await antigravity_app.initialize()
         await antigravity_app.updater.start_polling()
         await antigravity_app.start()
         logger.info("Bot da Antigravity online e escutando.")
-        
     except Exception as e:
-        logger.error(f"Erro ao inicializar bots do Telegram: {str(e)}")
+        logger.error(f"Erro ao inicializar bot da Antigravity: {str(e)}")
         
     yield
     
@@ -44,6 +46,7 @@ async def lifespan(app: FastAPI):
             await hermes_app.updater.stop()
             await hermes_app.stop()
             await hermes_app.shutdown()
+            logger.info("Bot do Hermes encerrado com sucesso.")
         except Exception as e:
             logger.error(f"Erro ao encerrar bot do Hermes: {str(e)}")
             
@@ -52,6 +55,7 @@ async def lifespan(app: FastAPI):
             await antigravity_app.updater.stop()
             await antigravity_app.stop()
             await antigravity_app.shutdown()
+            logger.info("Bot da Antigravity encerrado com sucesso.")
         except Exception as e:
             logger.error(f"Erro ao encerrar bot da Antigravity: {str(e)}")
     logger.info("Finalizado encerramento dos bots.")

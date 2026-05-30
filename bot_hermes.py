@@ -94,9 +94,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Esta funcionalidade de execucao agentica sera integrada na proxima fase."
     )
 
+from telegram.request import HTTPXRequest
+
 def get_app():
     # Helper to build the application for main.py async runner
-    app = Application.builder().token(TOKEN).build()
+    req = HTTPXRequest(connect_timeout=30.0, read_timeout=30.0)
+    app = Application.builder().token(TOKEN).request(req).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("status", status))
     app.add_handler(CommandHandler("git", git_status))

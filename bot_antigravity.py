@@ -127,8 +127,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         logger.error(f"Erro ao chamar Gemini: {str(e)}")
         await update.message.reply_text(f"⚠️ Ocorreu um erro na comunicação: {str(e)}")
 
+from telegram.request import HTTPXRequest
+
 def get_app():
-    app = Application.builder().token(TOKEN).build()
+    req = HTTPXRequest(connect_timeout=30.0, read_timeout=30.0)
+    app = Application.builder().token(TOKEN).request(req).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("clear", clear_history))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
