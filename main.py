@@ -8,37 +8,60 @@ from fastapi.responses import HTMLResponse
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("BrachatMain")
 
-async def start_bots(app: FastAPI):
-    # Inicializa Bot do Hermes de forma isolada
-    try:
-        from bot_hermes import get_app as get_hermes
-        app.state.hermes_app = get_hermes()
-        await app.state.hermes_app.initialize()
-        await app.state.hermes_app.updater.start_polling()
-        await app.state.hermes_app.start()
-        logger.info("Bot do Hermes online e escutando.")
-    except Exception as e:
-        logger.error(f"Erro ao inicializar bot do Hermes: {str(e)}")
-        app.state.hermes_app = None
-        
-    # Inicializa Bot da Antigravity de forma isolada
-    try:
-        from bot_antigravity import get_app as get_antigravity
-        app.state.antigravity_app = get_antigravity()
-        await app.state.antigravity_app.initialize()
-        await app.state.antigravity_app.updater.start_polling()
-        await app.state.antigravity_app.start()
-        logger.info("Bot da Antigravity online e escutando.")
-    except Exception as e:
-        logger.error(f"Erro ao inicializar bot da Antigravity: {str(e)}")
-        app.state.antigravity_app = None
+async def start_hermes_loop(app: FastAPI):
+    from bot_hermes import get_app as get_hermes
+    
+    while True:
+        try:
+            logger.info("Tentando inicializar Bot do Hermes...")
+            app.state.hermes_app = get_hermes()
+            await app.state.hermes_app.initialize()
+            await app.state.hermes_app.updater.start_polling()
+            await app.state.hermes_app.start()
+            logger.info("Bot do Hermes online e escutando com sucesso!")
+            break
+        except Exception as e:
+            logger.error(f"Erro ao inicializar bot do Hermes: {str(e)}. Tentando novamente em 5 segundos...")
+            # Limpa estados para a próxima tentativa
+            try:
+                if app.state.hermes_app:
+                    await app.state.hermes_app.shutdown()
+            except:
+                pass
+            app.state.hermes_app = None
+            await asyncio.sleep(5)
+
+async def start_antigravity_loop(app: FastAPI):
+    from bot_antigravity import get_app as get_antigravity
+    
+    while True:
+        try:
+            logger.info("Tentando inicializar Bot da Antigravity...")
+            app.state.antigravity_app = get_antigravity()
+            await app.state.antigravity_app.initialize()
+            await app.state.antigravity_app.updater.start_polling()
+            await app.state.antigravity_app.start()
+            logger.info("Bot da Antigravity online e escutando com sucesso!")
+            break
+        except Exception as e:
+            logger.error(f"Erro ao inicializar bot da Antigravity: {str(e)}. Tentando novamente em 5 segundos...")
+            # Limpa estados para a próxima tentativa
+            try:
+                if app.state.antigravity_app:
+                    await app.state.antigravity_app.shutdown()
+            except:
+                pass
+            app.state.antigravity_app = None
+            await asyncio.sleep(5)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Inicia a tarefa em segundo plano sem esperar que ela complete
     app.state.hermes_app = None
     app.state.antigravity_app = None
-    asyncio.create_task(start_bots(app))
+    
+    # Dispara as duas tarefas de loop independentes em segundo plano
+    asyncio.create_task(start_hermes_loop(app))
+    asyncio.create_task(start_antigravity_loop(app))
     
     yield
     
