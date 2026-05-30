@@ -1,8 +1,63 @@
 import os
+import asyncio
+import logging
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
-app = FastAPI(title="BRACHÁT Core Control Plane")
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("BrachatMain")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup: start bots in background
+    logger.info("Iniciando bots do Telegram do ecossistema em segundo plano...")
+    hermes_app = None
+    antigravity_app = None
+    
+    try:
+        from bot_hermes import get_app as get_hermes
+        from bot_antigravity import get_app as get_antigravity
+        
+        hermes_app = get_hermes()
+        antigravity_app = get_antigravity()
+        
+        await hermes_app.initialize()
+        await hermes_app.updater.start_polling()
+        await hermes_app.start()
+        logger.info("Bot do Hermes online e escutando.")
+        
+        await antigravity_app.initialize()
+        await antigravity_app.updater.start_polling()
+        await antigravity_app.start()
+        logger.info("Bot da Antigravity online e escutando.")
+        
+    except Exception as e:
+        logger.error(f"Erro ao inicializar bots do Telegram: {str(e)}")
+        
+    yield
+    
+    # Shutdown: stop bots
+    logger.info("Encerrando conexões dos bots...")
+    if hermes_app:
+        try:
+            await hermes_app.updater.stop()
+            await hermes_app.stop()
+            await hermes_app.shutdown()
+        except Exception as e:
+            logger.error(f"Erro ao encerrar bot do Hermes: {str(e)}")
+            
+    if antigravity_app:
+        try:
+            await antigravity_app.updater.stop()
+            await antigravity_app.stop()
+            await antigravity_app.shutdown()
+        except Exception as e:
+            logger.error(f"Erro ao encerrar bot da Antigravity: {str(e)}")
+    logger.info("Finalizado encerramento dos bots.")
+
+app = FastAPI(title="BRACHÁT Core Control Plane", lifespan=lifespan)
+
 
 @app.get("/", response_class=HTMLResponse)
 async def home():
