@@ -105,8 +105,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             }
         }
         
-        logger.info("Enviando requisicao para o Gemini API...")
-        response = requests.post(url, headers=headers, json=payload, timeout=20)
+        import asyncio
+        response = await asyncio.to_thread(requests.post, url, headers=headers, json=payload, timeout=20)
         
         if response.status_code == 200:
             data = response.json()
