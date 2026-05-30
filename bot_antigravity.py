@@ -89,7 +89,6 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if len(chat_history) > 20:
         chat_history = chat_history[-20:]
         
-    await update.channel_chat_created # Keep connection alive or send typing
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action="typing")
 
     try:
