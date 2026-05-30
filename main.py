@@ -8,53 +8,56 @@ from fastapi.responses import HTMLResponse
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("BrachatMain")
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # Startup: start bots in background
-    logger.info("Iniciando bots do Telegram do ecossistema em segundo plano...")
-    hermes_app = None
-    antigravity_app = None
-    
+async def start_bots(app: FastAPI):
     # Inicializa Bot do Hermes de forma isolada
     try:
         from bot_hermes import get_app as get_hermes
-        hermes_app = get_hermes()
-        await hermes_app.initialize()
-        await hermes_app.updater.start_polling()
-        await hermes_app.start()
+        app.state.hermes_app = get_hermes()
+        await app.state.hermes_app.initialize()
+        await app.state.hermes_app.updater.start_polling()
+        await app.state.hermes_app.start()
         logger.info("Bot do Hermes online e escutando.")
     except Exception as e:
         logger.error(f"Erro ao inicializar bot do Hermes: {str(e)}")
+        app.state.hermes_app = None
         
     # Inicializa Bot da Antigravity de forma isolada
     try:
         from bot_antigravity import get_app as get_antigravity
-        antigravity_app = get_antigravity()
-        await antigravity_app.initialize()
-        await antigravity_app.updater.start_polling()
-        await antigravity_app.start()
+        app.state.antigravity_app = get_antigravity()
+        await app.state.antigravity_app.initialize()
+        await app.state.antigravity_app.updater.start_polling()
+        await app.state.antigravity_app.start()
         logger.info("Bot da Antigravity online e escutando.")
     except Exception as e:
         logger.error(f"Erro ao inicializar bot da Antigravity: {str(e)}")
-        
+        app.state.antigravity_app = None
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Inicia a tarefa em segundo plano sem esperar que ela complete
+    app.state.hermes_app = None
+    app.state.antigravity_app = None
+    asyncio.create_task(start_bots(app))
+    
     yield
     
     # Shutdown: stop bots
     logger.info("Encerrando conexões dos bots...")
-    if hermes_app:
+    if getattr(app.state, "hermes_app", None):
         try:
-            await hermes_app.updater.stop()
-            await hermes_app.stop()
-            await hermes_app.shutdown()
+            await app.state.hermes_app.updater.stop()
+            await app.state.hermes_app.stop()
+            await app.state.hermes_app.shutdown()
             logger.info("Bot do Hermes encerrado com sucesso.")
         except Exception as e:
             logger.error(f"Erro ao encerrar bot do Hermes: {str(e)}")
             
-    if antigravity_app:
+    if getattr(app.state, "antigravity_app", None):
         try:
-            await antigravity_app.updater.stop()
-            await antigravity_app.stop()
-            await antigravity_app.shutdown()
+            await app.state.antigravity_app.updater.stop()
+            await app.state.antigravity_app.stop()
+            await app.state.antigravity_app.shutdown()
             logger.info("Bot da Antigravity encerrado com sucesso.")
         except Exception as e:
             logger.error(f"Erro ao encerrar bot da Antigravity: {str(e)}")
