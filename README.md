@@ -1,6 +1,17 @@
+---
+title: Brachat Core
+emoji: 🧠
+colorFrom: indigo
+colorTo: purple
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # brachat-main
 
 A modular monorepo for AI systems, agent architectures, integrations, and structured knowledge.
+
 
 ---
 
