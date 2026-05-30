@@ -3,32 +3,26 @@
 ## Resumo da Sessão Atual (ID 26a90ea2-87ea-481c-aee6-0c619e926026)
 
 **Objetivo principal:**
-- Conectar a conta Gemini do usuário e permitir acesso ao seu conteúdo.
-- Revisar e organizar documentos de governança e incremental documents.
-- Preparar auditoria e possível commit Git.
+- Implementar o workflow determinístico de 8 fases (Software Factory) no Mac local.
+- Integrar a estrutura de múltiplos agentes (BrachatAgent) conforme o `REGISTRY.md`.
+- Habilitar o travamento físico de escrita (Workspace Guard) e Git Hook de pré-commit de segurança.
 
 **Principais solicitações do usuário:**
-1. **Conectar ao Gemini** – O usuário quer que a conta Gemini fique conectada e acessível.
-2. **Resumo da conversa** – Inserir um resumo completo desta conversa na barra lateral do projeto `agents_team`.
-3. **Revisar documentos** – Verificar o conteúdo em `incremental_documents/` e integrar governança.
-4. **Commit Git** – Quando aprovado, fazer commit das mudanças.
+1. **Ativar LLM no Hermes Local** – Rodar Gemini 2.5 Flash diretamente no script local do bot Hermes.
+2. **Workflow Genérico** – Tornar as 8 fases aplicáveis a qualquer pasta de projeto paralelo no Mac.
+3. **Determinismo e Bloqueio** – Implementar ganchos e restrições para impedir o humano e a IA de codificar sem passar pelas fases de planejamento.
 
 **Tarefas já realizadas:**
-- Estrutura de pastas organizada: `incremental_documents/` criada, documentos de governança (01‑06) adicionados.
-- Atualização de cards técnicos dos agentes para uso do `Mem0`.
-- Extração de conteúdo do caderno "STUDIES_TECHNOLOGY" (governance_*) para documentos incrementais.
-- Hugging Face CLI autenticado e repositório limpo de binários (reduzido de 122MB para 2.8MB).
-- Criado o Space privado `fabiobaruch/brachat-core` na Hugging Face.
-- Git commit e push realizados com sucesso para GitHub (`origin`) e Hugging Face (`huggingface`).
-- Criado o guia de monitor de Uptime (`uptime_config.md`) aprovado pelo Fábio.
-- Artefatos de tarefas e walkthrough atualizados.
+- Criados comandos `/switch`, `/status_projeto` e `/trabalhar` no `bot_hermes.py`.
+- Integrado o framework de agentes `BrachatAgent` e a lógica das 8 fases em `clickup_daemon.py`.
+- Desenvolvido e configurado o Git Hook de pré-commit em `portfolio/agents_team/hermes/hooks/pre-commit` com `chmod +x`.
+- Sincronizados repositórios remotos do GitHub e da Hugging Face.
+- Reiniciados os daemons locais e validados os logs de funcionamento estável.
 
 **Próximos passos sugeridos:**
-- **Autenticar Gemini:** Investigar acesso à conta Gemini pessoal do usuário.
-- **Configurar Monitor de Uptime:** Seguir o guia `uptime_config.md` para manter o Space ativo 24/7.
-- **Auditar documentos:** Revisar arquivos em `incremental_documents/` com o usuário.
+- **Testar Ciclo Completo** – Definir um projeto teste com `/switch` e rodar a criação de uma feature com `/trabalhar` de ponta a ponta.
+- **Validar Escopo de Memórias** – Integrar a leitura de memórias persistentes nos arquivos JSON locais na pasta `memories/`.
 
 **Notas de implementação:**
 - O projeto reside em `/Users/mac/brachat-main/portfolio/agents_team/hermes/`.
-- O resumo está salvo em `CONVERSATION_SUMMARY.md` para aparecer na barra lateral do editor.
-
+- O resumo está salvo em `CONVERSATION_SUMMARY.md` para exibição na barra lateral do editor.
