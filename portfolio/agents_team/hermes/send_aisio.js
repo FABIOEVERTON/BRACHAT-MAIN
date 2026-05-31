@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 const os = require('os');
 
-const WA_PROFILE = '/Users/mac/brachat-main/builder/wa_session';
+const WA_PROFILE = '/Users/mac/brachat-main/brachat_operational/wa_session';
 const PHONE = '5561991163206'; // Aisio
 
 (async () => {

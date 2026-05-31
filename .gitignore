@@ -53,6 +53,6 @@ portfolio/agents_team/hermes/bin/tirith
 **/bin/uvx
 **/bin/tirith
 
-# Local operational data (Hermes session & database)
-builder/wa_session/
-builder/hermes_data/
+# Local operational layout (centralizado na raiz)
+brachat_builder/
+brachat_operational/
