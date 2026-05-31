@@ -52,3 +52,7 @@ portfolio/agents_team/hermes/bin/tirith
 **/bin/uv
 **/bin/uvx
 **/bin/tirith
+
+# Local operational data (Hermes session & database)
+builder/wa_session/
+builder/hermes_data/
