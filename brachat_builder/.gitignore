@@ -1,0 +1,16 @@
+.DS_Store
+logs/
+*.log
+node_modules/
+**/node_modules/
+memories/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+.cache/
+.mypy_cache/
+__pycache__/
+*.pyc
+active_project.json
+.brachat-state.json

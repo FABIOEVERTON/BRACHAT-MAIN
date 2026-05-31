@@ -1,0 +1,28 @@
+provider: gemini
+model: gemini-3.5-flash
+base_url: https://googleapis.com
+context:
+  engine: compressor
+  threshold_tokens: 30000
+max_bytes: 15000
+max_lines: 500
+max_line_length: 500
+max_turns: 15
+max_consecutive_errors: 3
+auxiliary:
+  compression:
+    provider: gemini
+    model: gemini-2.5-flash
+  web_extract:
+    provider: gemini
+    model: gemini-2.5-flash
+tools:
+  enabled:
+  - bash
+  - view_file
+  - write_file
+  - grep
+display:
+  personality: professional
+  reasoning: 'off'
+max_retries: 1

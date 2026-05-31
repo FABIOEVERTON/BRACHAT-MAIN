@@ -1,0 +1,20 @@
+{
+  "platforms": [
+    "telegram"
+  ],
+  "telegramToken": "8823440139:AAEPi8Qw4UKw1EevD0rWrwlTzpB6vxapLeY",
+  "telegramAllowedUserIds": [
+    "8035491919"
+  ],
+  "workspaceBaseDir": "/Users/mac/brachat_builder/workspaces",
+  "autoApproveFileEdits": false,
+  "logLevel": "info",
+  "extractionMode": "structured",
+  "responseTimeoutMs": 900000,
+  "antigravityAccounts": [
+    {
+      "name": "default",
+      "cdpPort": 9222
+    }
+  ]
+}

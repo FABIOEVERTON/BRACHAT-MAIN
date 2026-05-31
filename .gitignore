@@ -1,4 +1,7 @@
-# Python virtual environments
+# ============================================================
+# PYTHON
+# ============================================================
+
 venv/
 .venv/
 __pycache__/
@@ -6,53 +9,94 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Workspace Specific Ignores
-5_integration/
-04_knowledge/
+# ============================================================
+# KNOWLEDGE BASES / STUDIES
+# ============================================================
 
-# System Files
-.DS_Store
-Thumbs.db
+**/aisio_book/
+**/my_studies/
 
-# Secrets and Environment Configs
+# ============================================================
+# SECRETS & CONFIGURATION
+# ============================================================
+
 .env
 *.env
-.hermes_history
+
 auth.json
 auth.lock
 
-# Caches
+.hermes_history
+
+# API KEYS / LOCAL CONFIGS
+apis.env
+
+# ============================================================
+# CACHE
+# ============================================================
+
 .cache/
 .npm-cache/
 .claude/
 .notebooklm/
+
 models_dev_cache.json
 
-# Logs and Caches
-*.log
-logs/
 audio_cache/
 image_cache/
 
-# Node.js dependencies
+# ============================================================
+# LOGS
+# ============================================================
+
+logs/
+*.log
+
+# ============================================================
+# NODE
+# ============================================================
+
 node_modules/
+
+# Se quiser reprodutibilidade, REMOVA esta linha
 package-lock.json
 
-# Database shm/wal files
-*.db-shm
-*.db-wal
+# ============================================================
+# SQLITE / RUNTIME DATABASES
+# ============================================================
+
 state.db
 state.db-shm
 state.db-wal
 
-# Large Compiled Binaries
-bin/uv
-bin/uvx
-portfolio/agents_team/hermes/bin/tirith
+*.db-shm
+*.db-wal
+
+# ============================================================
+# WHATSAPP / BROWSER SESSIONS
+# ============================================================
+
+wa_session/
+sessions/
+pairing/
+
+# ============================================================
+# CLAUDE / AGENT RUNTIME
+# ============================================================
+
+sandboxes/
+
+# ============================================================
+# BINARIES
+# ============================================================
+
 **/bin/uv
 **/bin/uvx
 **/bin/tirith
 
-# Local operational layout (centralizado na raiz)
-brachat_builder/
-brachat_operational/
+# ============================================================
+# SYSTEM FILES
+# ============================================================
+
+.DS_Store
+Thumbs.db
