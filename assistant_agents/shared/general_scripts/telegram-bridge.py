@@ -42,9 +42,13 @@ def send(chat_id, text):
         tg("sendMessage", {"chat_id": chat_id, "text": chunk, "parse_mode": "Markdown"})
 
 def ask_opencode(msg, conv_id):
+    SYSTEM_PROMPT = "Voce eh o EZRA, orquestrador do ecossistema BRACHAT. Assistente pessoal do Fabio Everton. Responda de forma direta, objetiva e em portugues."
     body = json.dumps({
         "model": ZEN_MODEL,
-        "messages": [{"role": "user", "content": msg}],
+        "messages": [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": msg}
+        ],
         "max_tokens": 1024,
         "temperature": 0,
         "conversation_id": conv_id,

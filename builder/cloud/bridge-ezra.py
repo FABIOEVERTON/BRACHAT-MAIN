@@ -1,117 +1,120 @@
 #!/usr/bin/env python3
-"""EZRA Telegram Bridge — conecta Telegram ao OpenCode via Zen API."""
-import os, sys, json, time, urllib.request, urllib.error, logging
+"""EZRA Bridge — orquestrador BRACHAT no Telegram."""
+import os, sys, json, time, subprocess, urllib.request, logging
 from pathlib import Path
 
-TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
-ALLOWED_CHAT = os.environ.get("ALLOWED_CHAT_ID")
-ZEN_API_KEY = os.environ.get("ZEN_API_KEY")
-ZEN_MODEL = "big-pickle"
-POLL_INTERVAL = 1
-STATE_FILE = Path("/tmp/telegram-bridge-state.json")
-LOG_FILE = Path("/tmp/telegram-bridge.log")
+TK = os.environ["TELEGRAM_TOKEN"]
+CID = os.environ["ALLOWED_CHAT_ID"]
+ZK = os.environ["ZEN_API_KEY"]
+CK = os.environ.get("CLICKUP_TOKEN","")
+REPO = Path("/opt/brachat/repo")
+ST = Path("/tmp/ezra-state.json")
+TG = f"https://api.telegram.org/bot{TK}"
+ZN = "https://opencode.ai/zen/v1/chat/completions"
 
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[logging.FileHandler(LOG_FILE), logging.StreamHandler()]
-)
-log = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[logging.FileHandler("/tmp/ezra.log"),logging.StreamHandler()])
+log = logging.getLogger("ezra")
 
-TG_API = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
-ZEN_API = "https://opencode.ai/zen/v1/chat/completions"
+SCHED = [(7,0,"*","Saudacao"),(7,15,"job-hunter","Job scan"),(7,30,"ingles","Ingles"),
+    (8,0,"estudos","Estudo"),(8,30,"google-skills","Google Skills"),(9,0,"estudos","Deep work"),
+    (11,0,"python","Python"),(12,0,None,"Almoco"),(14,0,"estudos","Deep work"),
+    (17,0,"portfolio","Portfolio"),(18,0,None,"Livre"),(20,0,"filosofia","Tora"),
+    (21,0,None,"Review"),(22,30,None,"Dormir")]
 
-def tg(method, data=None):
-    url = f"{TG_API}/{method}"
-    if data:
-        data = json.dumps(data).encode()
-        req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"})
-    else:
-        req = urllib.request.Request(url)
-    try:
-        with urllib.request.urlopen(req, timeout=15) as r:
-            return json.loads(r.read())
-    except Exception as e:
-        log.error(f"TG {method}: {e}")
-        return None
+def rj(p):
+    try: return json.loads(Path(p).read_text()) if Path(p).exists() else {}
+    except: return {}
 
-def send(chat_id, text):
-    if not text:
-        return
-    chunks = [text[i:i+4000] for i in range(0, len(text), 4000)]
-    for chunk in chunks:
-        tg("sendMessage", {"chat_id": chat_id, "text": chunk, "parse_mode": "Markdown"})
+def git_pull():
+    try: subprocess.run(["git","pull"], cwd=REPO, capture_output=True, timeout=15); return True
+    except: return False
 
-def ask_opencode(msg, conv_id):
-    body = json.dumps({
-        "model": ZEN_MODEL,
-        "messages": [{"role": "user", "content": msg}],
-        "max_tokens": 1024,
-        "temperature": 0,
-        "conversation_id": conv_id,
-        "continue": False
-    }).encode()
-    req = urllib.request.Request(
-        ZEN_API,
-        data=body,
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {ZEN_API_KEY}",
-            "User-Agent": "Mozilla/5.0"
-        }
-    )
+def build_context(msg):
+    s = rj(REPO/"assistant_agents"/"state.json")
+    est = rj(REPO/"assistant_agents"/"daily"/"estudos"/"cache.json")
+    now = time.localtime(); hm = now.tm_hour*60+now.tm_min
+    agent = label = None
+    for h,m,a,l in SCHED:
+        if hm >= h*60+m: agent, label = a, l
+    ctx = {"user":s.get("user",{}).get("name","Fabio"),"bio":s.get("bio",""),
+        "phase":f"{est.get('current_phase','?')} / Mod.{est.get('current_module','?')} / Dia {est.get('current_day','?')}",
+        "label":label,"agent":agent}
+    if agent:
+        d = REPO/"assistant_agents"/"daily"/agent
+        if (d/"AGENT.md").exists(): ctx["inst"] = (d/"AGENT.md").read_text()[:1500]
+        ac = rj(d/"cache.json")
+        if ac and "daily_log" in ac and ac["daily_log"]:
+            ctx["last"] = str(ac["daily_log"][-1])[:200]
+    return ctx
+
+def ask_zen(msgs):
+    b = json.dumps({"model":"big-pickle","messages":msgs,"max_tokens":2048,"temperature":0.3}).encode()
+    req = urllib.request.Request(ZN, data=b, headers={"Content-Type":"application/json","Authorization":f"Bearer {ZK}","User-Agent":"Mozilla/5.0"})
     try:
         with urllib.request.urlopen(req, timeout=120) as r:
-            resp = json.loads(r.read())
-            return resp["choices"][0]["message"]["content"].strip()
-    except Exception as e:
-        log.error(f"Zen API: {e}")
-        return None
+            return json.loads(r.read())["choices"][0]["message"]["content"].strip()
+    except Exception as e: log.error(f"Zen: {e}"); return None
 
-def handle_msg(chat_id, text):
-    if not text:
-        return
+def tg(m, d=None):
+    url = f"{TG}/{m}"
+    if d: d = json.dumps(d).encode()
+    try:
+        with urllib.request.urlopen(urllib.request.Request(url, data=d, headers={"Content-Type":"application/json"}) if d else urllib.request.Request(url), timeout=15) as r:
+            return json.loads(r.read())
+    except: return None
+
+def send(c, t):
+    if not t: return
+    for ch in [t[i:i+4000] for i in range(0,len(t),4000)]:
+        tg("sendMessage",{"chat_id":c,"text":ch,"parse_mode":"Markdown"})
+
+def on_msg(cid, text):
+    if not text: return
     log.info(f"<< {text[:100]}")
     if text.startswith("/"):
-        if text == "/start":
-            send(chat_id, "EZRA online via opencode serve. Envie sua mensagem.")
+        if text=="/start": send(cid,"EZRA online.")
+        elif text=="/status":
+            ctx=build_context("")
+            send(cid,f"Fase: {ctx['phase']}\nAgora: {ctx['label']}\nAgente: {ctx.get('agent','-')}")
+        elif text.startswith("/tasks") and CK:
+            try:
+                req=urllib.request.Request("https://api.clickup.com/api/v2/list/901009349312/task",headers={"Authorization":CK})
+                with urllib.request.urlopen(req,timeout=10) as r:
+                    ts=json.loads(r.read()).get("tasks",[])
+                send(cid,"\n".join([f"  {t['name']} ({t['status']['status']})" for t in ts[:10]]) or "Nenhuma.")
+            except Exception as e: send(cid,f"Erro ClickUp: {e}")
         return
-    tg("sendChatAction", {"chat_id": chat_id, "action": "typing"})
-    conv_id = f"telegram-{chat_id}"
-    resp = ask_opencode(text, conv_id)
-    if resp:
-        send(chat_id, resp)
-        log.info(f">> {resp[:100]}")
-    else:
-        send(chat_id, "Erro ao processar. Tente de novo.")
+    tg("sendChatAction",{"chat_id":cid,"action":"typing"})
+    git_pull(); ctx=build_context(text)
+    sysp = f"Voce eh o EZRA, orquestrador BRACHAT. Assistente de {ctx['user']}. Data: {time.strftime('%d/%m/%Y %H:%M')}. Fase: {ctx['phase']}. Atividade: {ctx['label']}. Contexto: {ctx.get('bio','')}"
+    if ctx.get("inst"): sysp += f"\n\nInstrucoes do agente ativo:\n{ctx['inst']}"
+    if ctx.get("last"): sysp += f"\n\nUltimo progresso: {ctx['last']}"
+    sysp += "\n\nResponda em portugues. Seja direto. Nao use emojis."
+    r=ask_zen([{"role":"system","content":sysp},{"role":"user","content":text}])
+    if r: send(cid,r); log.info(f">> {r[:100]}")
+    else: send(cid,"Erro. Tente de novo.")
 
 def main():
-    state = {"last_update_id": 0}
-    if STATE_FILE.exists():
-        try: state = json.loads(STATE_FILE.read_text())
+    st={"last_update_id":0}
+    if ST.exists():
+        try: st=json.loads(ST.read_text())
         except: pass
-    log.info(f"EZRA bridge (Zen API) started. Listening for {ALLOWED_CHAT}...")
+    log.info(f"EZRA iniciado. Chat: {CID}")
+    git_pull()
     while True:
         try:
-            updates = tg("getUpdates", {"offset": state.get("last_update_id", 0) + 1, "timeout": 10, "allowed_updates": ["message"]})
-            if updates and updates.get("ok") and updates.get("result"):
-                for upd in updates["result"]:
-                    state["last_update_id"] = upd["update_id"]
-                    if "message" not in upd: continue
-                    msg = upd["message"]
-                    chat_id = str(msg.get("chat", {}).get("id", ""))
-                    if chat_id != ALLOWED_CHAT:
-                        log.info(f"Ignored {chat_id}")
-                        continue
-                    if "text" in msg:
-                        handle_msg(chat_id, msg["text"].strip())
-            STATE_FILE.write_text(json.dumps(state))
-            time.sleep(POLL_INTERVAL)
-        except KeyboardInterrupt:
-            log.info("Shutdown.")
-            break
-        except Exception as e:
-            log.error(f"loop: {e}")
-            time.sleep(POLL_INTERVAL * 5)
+            u=tg("getUpdates",{"offset":st.get("last_update_id",0)+1,"timeout":10,"allowed_updates":["message"]})
+            if u and u.get("ok") and u.get("result"):
+                for up in u["result"]:
+                    st["last_update_id"]=up["update_id"]
+                    if "message" in up:
+                        m=up["message"]
+                        if str(m.get("chat",{}).get("id",""))==CID and "text" in m:
+                            on_msg(CID,m["text"].strip())
+            ST.write_text(json.dumps(st))
+            time.sleep(1)
+        except KeyboardInterrupt: log.info("Shutdown."); break
+        except Exception as e: log.error(f"loop: {e}"); time.sleep(5)
 
-if __name__ == "__main__":
-    main()
+if __name__=="__main__": main()
