@@ -1,0 +1,42 @@
+- generic [ref=e4]:
+  - link "English " [ref=e7] [cursor=pointer]:
+    - /url: "#"
+    - generic [ref=e8]: English
+    - generic [ref=e9]: 
+  - generic [ref=e12]:
+    - link [ref=e14] [cursor=pointer]:
+      - /url: /
+      - img [ref=e15]
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - heading "Login" [level=2] [ref=e19]:
+          - generic [ref=e20]: Login
+        - generic [ref=e21]:
+          - generic [ref=e22]:
+            - generic [ref=e24]:
+              - generic [ref=e25]: Email
+              - textbox "Email" [active] [ref=e26]
+            - generic [ref=e28]:
+              - generic [ref=e29]: Password
+              - generic [ref=e30]:
+                - textbox "Password" [ref=e31]
+                - button "Show password" [ref=e32] [cursor=pointer]:
+                  - img [ref=e33]
+          - paragraph [ref=e39]:
+            - link "Forgot your password?" [ref=e40] [cursor=pointer]:
+              - /url: https://www.workana.com/users/forgot
+          - button "Login" [ref=e42] [cursor=pointer]
+          - generic [ref=e43]: Or
+          - link "Continue with Facebook" [ref=e45] [cursor=pointer]:
+            - /url: https://www.workana.com/login/Facebook
+            - text: Continue with Facebook
+          - link "Continue with Google" [ref=e48] [cursor=pointer]:
+            - /url: https://www.workana.com/login/Google
+            - text: Continue with Google
+          - button "Continue with Apple" [disabled] [ref=e51]: Continue with Apple
+      - generic [ref=e53]:
+        - separator [ref=e54]
+        - generic [ref=e55]:
+          - text: Still haven’t created a Workana account?
+          - link "Sign up" [ref=e56] [cursor=pointer]:
+            - /url: /signup

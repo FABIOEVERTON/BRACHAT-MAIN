@@ -1,0 +1,10 @@
+{
+  "id": "freelancer",
+  "layer": "produtores",
+  "reasoning": "zero",
+  "temp": 0,
+  "actions": ["CHECK", "SCAN", "FILTER", "SHOW", "PROPOSTA"],
+  "state_deps": ["job_hunting_system.freelance"],
+  "tools": ["webfetch"],
+  "max_response_lines": 5
+}

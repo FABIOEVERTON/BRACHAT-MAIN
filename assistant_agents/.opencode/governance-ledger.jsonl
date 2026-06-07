@@ -1,0 +1,2 @@
+
+{"action_id":"pre-commit-1780865244","sequence":1780865244,"state":"REJECTED","tenant":"git","rejection_code":"POLICY_VIOLATION","evidence":"MVI violation: .playwright-mcp/page-2026-06-05T18-26-28-674Z.yml has      347 lines (>200)","timestamp":"2026-06-07T20:47:24Z"}

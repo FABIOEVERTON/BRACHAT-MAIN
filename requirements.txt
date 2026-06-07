@@ -1,6 +1,0 @@
-fastapi
-uvicorn
-jinja2
-requests
-python-telegram-bot
-huggingface_hub

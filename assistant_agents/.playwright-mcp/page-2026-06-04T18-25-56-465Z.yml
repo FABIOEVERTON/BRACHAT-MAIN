@@ -1,0 +1,337 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e4]:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - link "Jump to content":
+                - /url: "#jump-content"
+                - generic:
+                  - generic:
+                    - generic: Jump to content
+      - button "Menu" [ref=e10] [cursor=pointer]
+      - link "Google Skills" [ref=e17] [cursor=pointer]:
+        - /url: /
+        - img "Google Skills" [ref=e19]
+      - generic [ref=e23]:
+        - combobox "What do you want to learn today?" [ref=e24]
+        - button "Search" [ref=e28] [cursor=pointer]
+      - generic [ref=e34]:
+        - button "Help options" [ref=e38] [cursor=pointer]
+        - button "Language options" [ref=e46] [cursor=pointer]
+        - link "Sign in" [ref=e55] [cursor=pointer]:
+          - /url: /users/sign_in
+          - generic [ref=e57]:
+            - generic: Sign in
+        - generic "Join by creating an account" [ref=e58]:
+          - link "Join by creating an account" [ref=e62] [cursor=pointer]:
+            - /url: /users/sign_up
+            - generic [ref=e64]:
+              - generic: Join
+    - generic [ref=e65]:
+      - region [ref=e66]:
+        - navigation [ref=e67]:
+          - link "Sign in" [ref=e69] [cursor=pointer]:
+            - /url: /users/sign_in
+            - generic [ref=e70]: login
+          - link "Home" [ref=e72] [cursor=pointer]:
+            - /url: /
+            - generic:
+              - generic:
+                - generic: home
+            - generic: Home
+          - link "Catalog" [ref=e74] [cursor=pointer]:
+            - /url: /catalog
+            - generic:
+              - generic:
+                - generic: book_2
+            - generic: Catalog
+          - link "Paths" [ref=e76] [cursor=pointer]:
+            - /url: /paths
+            - generic:
+              - generic:
+                - generic: conversion_path
+            - generic: Paths
+          - generic [ref=e77]:
+            - button "Collections" [ref=e79] [cursor=pointer]:
+              - generic [ref=e82]: category
+              - generic: Collections
+              - generic [ref=e85]: arrow_drop_down
+            - generic:
+              - generic:
+                - generic:
+                  - link "AI Boost Bites" [ref=e87] [cursor=pointer]:
+                    - /url: /collections/ai-boost-bites
+                    - generic: AI Boost Bites
+                  - link "Career Certificates" [ref=e89] [cursor=pointer]:
+                    - /url: /collections/career-certificates
+                    - generic: Career Certificates
+                  - link "Cloud" [ref=e91] [cursor=pointer]:
+                    - /url: /collections/cloud
+                    - generic: Cloud
+                  - link "DeepMind" [ref=e93] [cursor=pointer]:
+                    - /url: /collections/deepmind
+                    - generic: DeepMind
+          - link "Subscriptions" [ref=e95] [cursor=pointer]:
+            - /url: /subscriptions
+            - generic:
+              - generic:
+                - generic: subscriptions
+            - generic: Subscriptions
+          - link "Organizations" [ref=e97] [cursor=pointer]:
+            - /url: /learningcenter
+            - generic:
+              - generic:
+                - generic: corporate_fare
+            - generic: Organizations
+      - generic [ref=e98]:
+        - generic:
+          - generic [ref=e99]:
+            - generic:
+              - generic [ref=e103]:
+                - paragraph [ref=e104]: Apply your skills in Google Cloud console
+                - link "Get started" [ref=e110] [cursor=pointer]:
+                  - /url: https://console.cloud.google.com/freetrial
+                  - generic [ref=e112]:
+                    - generic: Get started
+              - main [ref=e113]:
+                - generic [ref=e114]:
+                  - generic [ref=e118]:
+                    - heading "Build AI skills for tomorrow, today" [level=1] [ref=e119]
+                    - generic [ref=e120]: Whether you’re just getting started or looking to deepen your knowledge, future proof your skills on Google’s new learning platform built for you.
+                    - generic [ref=e121]:
+                      - generic [ref=e122]:
+                        - combobox "What do you want to learn today?" [ref=e123]
+                        - generic "Search button" [ref=e124]:
+                          - button "search" [ref=e127] [cursor=pointer]
+                      - generic [ref=e132]:
+                        - link "AI Boost Bites" [ref=e137] [cursor=pointer]:
+                          - /url: /catalog?keywords=AI+Boost+Bites
+                          - generic [ref=e141]:
+                            - generic:
+                              - generic: AI Boost Bites
+                        - link "Career Certificates" [ref=e146] [cursor=pointer]:
+                          - /url: /catalog?format=learning_plans&keywords=Career+Certificates
+                          - generic [ref=e150]:
+                            - generic:
+                              - generic: Career Certificates
+                        - link "DeepMind" [ref=e155] [cursor=pointer]:
+                          - /url: /catalog?keywords=DeepMind
+                          - generic [ref=e159]:
+                            - generic:
+                              - generic: DeepMind
+                        - link "Gemini" [ref=e164] [cursor=pointer]:
+                          - /url: /catalog?keywords=Gemini
+                          - generic [ref=e168]:
+                            - generic:
+                              - generic: Gemini
+                    - link "Get started" [ref=e174] [cursor=pointer]:
+                      - /url: /users/sign_up
+                      - generic [ref=e176]:
+                        - generic:
+                          - generic: Get started
+                  - generic [ref=e184]:
+                    - generic [ref=e187]:
+                      - generic:
+                        - link "Learn AI" [ref=e188] [cursor=pointer]:
+                          - /url: "#learn-ai"
+                        - link "Join GEAR" [ref=e189] [cursor=pointer]:
+                          - /url: "#join-gear"
+                        - link "Train your team" [ref=e190] [cursor=pointer]:
+                          - /url: "#train-your-team"
+                        - link "Get credentialed" [ref=e191] [cursor=pointer]:
+                          - /url: "#get-credentialed"
+                    - generic:
+                      - generic [ref=e192]:
+                        - generic [ref=e193]:
+                          - heading "Skill up on AI today" [level=2] [ref=e194]:
+                            - text: Skill up on
+                            - strong [ref=e195]: AI
+                            - text: today
+                          - generic [ref=e196]: AI isn’t a future state. It’s here to stay. With more than a decade of AI innovation and integration in the cloud, Google is your trusted partner in navigating this new reality.
+                        - generic [ref=e198]:
+                          - generic:
+                            - button "Featured" [pressed] [ref=e199]:
+                              - generic [ref=e200]:
+                                - generic: Featured
+                            - button "Artificial Intelligence" [ref=e201] [cursor=pointer]:
+                              - generic [ref=e202]:
+                                - generic: Artificial Intelligence
+                            - button "Vertex AI" [ref=e203] [cursor=pointer]:
+                              - generic [ref=e204]:
+                                - generic: Vertex AI
+                            - button "Gemini" [ref=e205] [cursor=pointer]:
+                              - generic [ref=e206]:
+                                - generic: Gemini
+                            - button "AutoML" [ref=e207] [cursor=pointer]:
+                              - generic [ref=e208]:
+                                - generic: AutoML
+                            - button "Prompt design" [ref=e209] [cursor=pointer]:
+                              - generic [ref=e210]:
+                                - generic: Prompt design
+                        - generic [ref=e212]:
+                          - link "learning_path icon Path Integrate Generative AI Into Your Data Workflow This learning path is for data professionals who want to integrate generative AI into their workflow. Learn how to use BigQuery Machine Learning for inference, work directly with Gemini models in BigQuery, and boost your productivity with Gemini's assistance. Finally, test your knowledge by creating machine learning models with BigQuery ML in a hands-on lab. Start" [ref=e214] [cursor=pointer]:
+                            - /url: /paths/1281
+                            - generic [ref=e216]:
+                              - generic:
+                                - generic:
+                                  - generic [ref=e217]:
+                                    - generic [ref=e222]:
+                                      - generic:
+                                        - img "learning_path icon" [ref=e223]
+                                        - text: Path
+                                    - heading "Integrate Generative AI Into Your Data Workflow" [level=3] [ref=e224]
+                                    - paragraph [ref=e225]: This learning path is for data professionals who want to integrate generative AI into their workflow. Learn how to use BigQuery Machine Learning for inference, work directly with Gemini models in BigQuery, and boost your productivity with Gemini's assistance. Finally, test your knowledge by creating machine learning models with BigQuery ML in a hands-on lab.
+                                  - generic "Start" [ref=e230]:
+                                    - button "arrow_right_alt" [ref=e233]:
+                                      - generic [ref=e236]:
+                                        - generic: arrow_right_alt
+                          - link "learning_path icon Path Deploy and Manage Generative AI Models This learning path provides a comprehensive introduction to machine learning operations (MLOps), with a specific focus on generative AI. You’ll learn to manage the entire lifecycle of generative AI models, from development and deployment to monitoring. Test your knowledge with a hands-on lab where you'll train and deploy a model in the cloud with Vertex AI. Start" [ref=e239] [cursor=pointer]:
+                            - /url: /paths/1283
+                            - generic [ref=e241]:
+                              - generic:
+                                - generic:
+                                  - generic [ref=e242]:
+                                    - generic [ref=e247]:
+                                      - generic:
+                                        - img "learning_path icon" [ref=e248]
+                                        - text: Path
+                                    - heading "Deploy and Manage Generative AI Models" [level=3] [ref=e249]
+                                    - paragraph [ref=e250]: This learning path provides a comprehensive introduction to machine learning operations (MLOps), with a specific focus on generative AI. You’ll learn to manage the entire lifecycle of generative AI models, from development and deployment to monitoring. Test your knowledge with a hands-on lab where you'll train and deploy a model in the cloud with Vertex AI.
+                                  - generic "Start" [ref=e255]:
+                                    - button "arrow_right_alt" [ref=e258]:
+                                      - generic [ref=e261]:
+                                        - generic: arrow_right_alt
+                          - link "learning_path icon Path Build and Modernize Applications With Generative AI This learning path is for application developers who want to enhance their projects with the power of generative AI. From understanding the core concepts of Gemini, Google's advanced language model, to building end-to-end applications on Google Cloud, this path will guide you through essential techniques and tools to seamlessly integrate gen AI capabilities into your development workflow. Finally, dive into a hands-on lab to learn how to build your own gen AI applications with Gemini and Streamlit. Start" [ref=e264] [cursor=pointer]:
+                            - /url: /paths/1282
+                            - generic [ref=e266]:
+                              - generic:
+                                - generic:
+                                  - generic [ref=e267]:
+                                    - generic [ref=e272]:
+                                      - generic:
+                                        - img "learning_path icon" [ref=e273]
+                                        - text: Path
+                                    - heading "Build and Modernize Applications With Generative AI" [level=3] [ref=e274]
+                                    - paragraph [ref=e275]: This learning path is for application developers who want to enhance their projects with the power of generative AI. From understanding the core concepts of Gemini, Google's advanced language model, to building end-to-end applications on Google Cloud, this path will guide you through essential techniques and tools to seamlessly integrate gen AI capabilities into your development workflow. Finally, dive into a hands-on lab to learn how to build your own gen AI applications with Gemini and Streamlit.
+                                  - generic "Start" [ref=e280]:
+                                    - button "arrow_right_alt" [ref=e283]:
+                                      - generic [ref=e286]:
+                                        - generic: arrow_right_alt
+                        - link "Explore catalog" [ref=e292] [cursor=pointer]:
+                          - /url: /catalog?sort_by=marketing_featured
+                          - generic [ref=e294]:
+                            - generic:
+                              - generic: Explore catalog
+                      - generic [ref=e296]:
+                        - heading "Learn and build with other developers" [level=2] [ref=e297]
+                        - generic [ref=e298]: Continuous learning starts with community. Join the GEAR program and fuel your cloud journey with 35 monthly credits for hands-on learning in Google Skills, at no cost to you.
+                        - link "Join GEAR" [ref=e304] [cursor=pointer]:
+                          - /url: https://developers.google.com/program/gear
+                          - generic [ref=e306]:
+                            - generic:
+                              - generic: Join GEAR
+                      - generic [ref=e308]:
+                        - generic [ref=e310]:
+                          - generic [ref=e313]: corporate_fare
+                          - generic [ref=e314]: For teams
+                        - heading "Hands-on learning is better for business" [level=2] [ref=e315]
+                        - generic [ref=e316]:
+                          - generic [ref=e317]:
+                            - heading "77%" [level=3] [ref=e318]
+                            - text: of
+                            - link "learners" [ref=e319] [cursor=pointer]:
+                              - /url: https://services.google.com/fh/files/misc/value_of_training_idc_paper.pdf
+                            - text: prefer some level of instructor-led training vs. on-demand training alone.
+                          - generic [ref=e320]:
+                            - heading "90%" [level=3] [ref=e321]
+                            - text: of
+                            - link "instructor-led learning" [ref=e322] [cursor=pointer]:
+                              - /url: https://services.google.com/fh/files/misc/value_of_training_idc_paper.pdf
+                            - text: is completed vs. less than 5% of self-paced.
+                          - generic [ref=e323]:
+                            - heading "133%" [level=3] [ref=e324]
+                            - text: increase in
+                            - link "employee retention" [ref=e325] [cursor=pointer]:
+                              - /url: https://services.google.com/fh/files/misc/value_of_training_idc_paper.pdf
+                            - text: when companies invest in hands-on learning.
+                        - link "Skill up your workforce" [ref=e331] [cursor=pointer]:
+                          - /url: /learningcenter
+                          - generic [ref=e333]:
+                            - generic:
+                              - generic: Skill up your workforce
+                      - generic [ref=e334]:
+                        - generic [ref=e335]:
+                          - heading "Future proof your career with Google credentials" [level=2] [ref=e336]
+                          - generic [ref=e337]: Certifications can be a big step, and a big investment. Need to build your skills first? Explore our Skill Badges and Certificates.
+                        - generic [ref=e341]:
+                          - generic:
+                            - generic [ref=e343]:
+                              - heading "Kickstart your career with certificates" [level=3] [ref=e345] [cursor=pointer]
+                              - generic [ref=e346]:
+                                - generic:
+                                  - paragraph [ref=e347]: Unlock new career paths and gain in-demand skills with certificates. Complete a certificate learning path on Google Skills to earn a shareable digital credential. No prerequisites required.
+                                  - link "Explore certificates" [ref=e348] [cursor=pointer]:
+                                    - /url: https://cloud.google.com/learn/certificates
+                            - heading "Level up with skill badges" [level=3] [ref=e352] [cursor=pointer]
+                            - heading "Prove your expertise with certifications" [level=3] [ref=e356] [cursor=pointer]
+                      - generic [ref=e357]:
+                        - heading "Start building your tomorrow, today" [level=2] [ref=e359]:
+                          - strong [ref=e360]: Start building
+                          - text: your tomorrow, today
+                        - generic [ref=e361]: Whether you’re all-in on AI, just want to brush up on the latest, or you’re here to skill up your team — get ready for the latest innovations with the technical experts behind Google Skills.
+                        - link "Get started" [ref=e366] [cursor=pointer]:
+                          - /url: /users/sign_up
+                          - generic [ref=e368]:
+                            - generic:
+                              - generic: Get started
+                  - generic:
+                    - generic:
+                      - dialog:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - button "close" [ref=e372] [cursor=pointer]:
+                                  - generic [ref=e375]:
+                                    - generic: close
+                                - heading [level=1]
+                              - generic:
+                                - generic:
+                                  - iframe
+          - contentinfo [ref=e378]:
+            - navigation [ref=e379]:
+              - generic [ref=e380]:
+                - link "Google Skills" [ref=e382] [cursor=pointer]:
+                  - /url: /
+                  - img "Google Skills" [ref=e384]
+                - generic [ref=e385]:
+                  - link "Home" [ref=e386] [cursor=pointer]:
+                    - /url: /
+                  - link "Catalog" [ref=e387] [cursor=pointer]:
+                    - /url: /catalog
+                  - link "Paths" [ref=e388] [cursor=pointer]:
+                    - /url: /paths
+                  - link "Subscriptions" [ref=e389] [cursor=pointer]:
+                    - /url: /subscriptions
+                  - link "Activities" [ref=e390] [cursor=pointer]:
+                    - /url: /profile/stay_on_track
+                  - link "Achievements" [ref=e391] [cursor=pointer]:
+                    - /url: /profile/badges
+                  - link "Settings" [ref=e392] [cursor=pointer]:
+                    - /url: /my_account/profile
+                  - link "Sign in or Join" [ref=e393] [cursor=pointer]:
+                    - /url: /users/sign_in
+                - generic [ref=e394]:
+                  - link "Youtube" [ref=e395] [cursor=pointer]:
+                    - /url: https://www.youtube.com/@googlecloud
+                    - generic [ref=e398]: video_youtube
+                    - text: Youtube
+                  - link "Help Center" [ref=e399] [cursor=pointer]:
+                    - /url: /help
+                  - link "Terms" [ref=e400] [cursor=pointer]:
+                    - /url: /terms_of_service
+                  - link "Privacy" [ref=e401] [cursor=pointer]:
+                    - /url: /privacy_policy
+  - alert

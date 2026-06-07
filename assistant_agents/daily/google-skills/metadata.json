@@ -1,0 +1,10 @@
+{
+  "id": "google-skills",
+  "layer": "gerentes",
+  "reasoning": "moderado",
+  "temp": 0.2,
+  "actions": ["CHECK", "ASK", "COBRA", "PROOF", "SAVE"],
+  "state_deps": ["study_schedule.axes.google_skill"],
+  "schedule": "08:30, 2x/semana",
+  "max_response_lines": 3
+}

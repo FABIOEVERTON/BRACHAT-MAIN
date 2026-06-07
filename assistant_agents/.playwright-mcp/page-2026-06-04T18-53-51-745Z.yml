@@ -1,0 +1,543 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner:
+      - generic:
+        - navigation [ref=e4]:
+          - generic [ref=e5]:
+            - generic [ref=e6]:
+              - text:   
+              - link "Workana - Acesse os melhores talentos da América Latina" [ref=e7] [cursor=pointer]:
+                - /url: https://www.workana.com/dashboard
+                - img "Workana - Acesse os melhores talentos da América Latina" [ref=e8]
+            - generic [ref=e9]:
+              - generic:
+                - list [ref=e10]:
+                  - listitem [ref=e11]:
+                    - button "Encontre trabalho" [ref=e12] [cursor=pointer]
+                  - listitem [ref=e13]:
+                    - button "Meus projetos" [ref=e14] [cursor=pointer]
+                  - listitem [ref=e15]:
+                    - button "Minhas finanças" [ref=e16] [cursor=pointer]
+                  - listitem [ref=e17]:
+                    - button "Planos" [ref=e18] [cursor=pointer]
+                  - text:      
+                - list [ref=e19]:
+                  - listitem [ref=e20]:
+                    - button "" [ref=e21] [cursor=pointer]:
+                      - generic [ref=e22]: 
+                  - listitem [ref=e23]:
+                    - button "" [ref=e24] [cursor=pointer]:
+                      - generic [ref=e25]: 
+                  - listitem [ref=e26]:
+                    - button "Fabio Barbosa Everton" [ref=e27] [cursor=pointer]:
+                      - img "Fabio Barbosa Everton" [ref=e28]
+                    - text:   
+              - button "" [ref=e30] [cursor=pointer]:
+                - generic [ref=e31]: 
+          - complementary [ref=e32]:
+            - link "Você ainda não pode enviar propostas, seu perfil está em revisão Quer começar hoje mesmo?" [ref=e33] [cursor=pointer]:
+              - /url: https://www.workana.com/checkout/priority_moderation
+              - text: Você ainda não pode enviar propostas, seu perfil está em revisão
+              - generic [ref=e34]: Quer começar hoje mesmo?
+        - text: 
+    - list [ref=e37]:
+      - listitem [ref=e38]:
+        - link "Meu Perfil Como Freelancer" [ref=e39] [cursor=pointer]:
+          - /url: https://www.workana.com/freelancer/6d68d2d996c63d023abf8b7f144fe78a
+      - listitem [ref=e40]:
+        - link "Meu Perfil Como Cliente" [ref=e41] [cursor=pointer]:
+          - /url: /e/6d68d2d996c63d023abf8b7f144fe78a
+    - main [ref=e42]:
+      - generic [ref=e43]:
+        - generic [ref=e46]:
+          - figure [ref=e48]:
+            - img "workana icons" [ref=e49]
+          - generic [ref=e50]:
+            - paragraph [ref=e51]: Webinar gratuito
+            - heading "Faça mais de 10 mil reais como freelancer na Workana" [level=3] [ref=e52]
+            - paragraph [ref=e53]: Aprenda o passo a passo para criar um perfil que vende e enviar propostas ganhadoras
+            - paragraph [ref=e54]: Webinar gratuito com táticas práticas, exemplos de perfis e modelos de propostas. Vagas limitadas.
+            - generic [ref=e56]:
+              - generic [ref=e57]:
+                - img "schedule icon" [ref=e58]
+                - paragraph [ref=e59]:
+                  - strong [ref=e60]: Agende a próxima aula.
+              - generic [ref=e62] [cursor=pointer]: Quero participar grátis
+        - generic [ref=e63]:
+          - generic [ref=e64]:
+            - generic [ref=e66]:
+              - generic [ref=e69]:
+                - img "Freelancer Fabio Barbosa Everton" [ref=e70]
+                - generic [ref=e71] [cursor=pointer]:  Editar foto 
+              - generic [ref=e76]:
+                - generic [ref=e77]:
+                  - generic [ref=e78]:
+                    - generic [ref=e79]:
+                      - generic [ref=e81]: Fabio Barbosa Everton
+                      - generic [ref=e82] [cursor=pointer]:  Editar 
+                      - heading "Agregata Construções - Fundador e Operações" [level=1] [ref=e84]
+                      - generic [ref=e85]:
+                        - generic [ref=e86]:
+                          - generic "Nenhuma avaliação ainda" [ref=e87]:
+                            - text: 
+                            - generic: 
+                          - paragraph [ref=e88]: Nenhuma avaliação ainda
+                        - generic [ref=e89]:
+                          - link "Brasil" [ref=e90] [cursor=pointer]:
+                            - /url: https://www.workana.com/freelancers/brazil
+                            - img "Brasil" [ref=e91]
+                          - link "Brasil" [ref=e93] [cursor=pointer]:
+                            - /url: https://www.workana.com/freelancers/brazil
+                    - generic [ref=e95]:
+                      - generic [ref=e96] [cursor=pointer]:  Editar 
+                      - generic [ref=e98]:
+                        - text: BRL
+                        - generic [ref=e99]: 25.00 /hora
+                  - heading "Freelancer experiente em TI e Programação" [level=2] [ref=e102]
+                - separator [ref=e103]
+                - generic [ref=e104]:
+                  - article [ref=e105]:
+                    - generic [ref=e106]: Perfil da Agência
+                    - button "Ver mais detalhes" [ref=e108] [cursor=pointer]
+                  - article [ref=e109]:
+                    - generic [ref=e110]: Perfil público
+                    - button "Ver mais detalhes" [ref=e112] [cursor=pointer]
+                  - generic [ref=e114]:
+                    - paragraph [ref=e115]:
+                      - button "Selecione suas 3 habilidades principais" [ref=e116] [cursor=pointer]
+                    - list
+            - generic [ref=e119]:
+              - generic [ref=e120]: Sobre mim
+              - link " Editar " [ref=e121] [cursor=pointer]:
+                - /url: "#"
+              - paragraph [ref=e124]:
+                - generic [ref=e125]:
+                  - text: Profissional com 16+ anos de experiência em operações estruturadas, atuando em ambientes administrativos e técnicos de alta complexidade. Experiência com controle de dados, organização de processos, suporte operacional e validação de informações em contextos corporativos e regulados.
+                  - text: Atua
+                - text: ...
+                - link "Ver mais" [ref=e126] [cursor=pointer]:
+                  - /url: "#"
+            - generic [ref=e127]:
+              - generic [ref=e128]:
+                - paragraph [ref=e130]: "Habilidades (Máximo: 3)"
+                - link "Editar" [ref=e133] [cursor=pointer]:
+                  - /url: "#"
+              - table [ref=e136]:
+                - rowgroup [ref=e137]:
+                  - row "Habilidades Projetos trabalhados Anos de experiência" [ref=e138]:
+                    - columnheader "Habilidades" [ref=e139]
+                    - columnheader "Projetos trabalhados" [ref=e140]
+                    - columnheader "Anos de experiência" [ref=e141]
+                    - columnheader [ref=e142]
+                - rowgroup [ref=e143]:
+                  - row "Microsoft Excel - 5 a 10 anos" [ref=e144]:
+                    - cell "Microsoft Excel" [ref=e145]:
+                      - link "Microsoft Excel" [ref=e146] [cursor=pointer]:
+                        - /url: https://www.workana.com/freelancers/microsoft-excel
+                    - cell "-" [ref=e147]
+                    - cell "5 a 10 anos" [ref=e148]
+                    - cell [ref=e149]
+                  - row "Tradução ao Inglês - 1 a 3 anos" [ref=e150]:
+                    - cell "Tradução ao Inglês" [ref=e151]:
+                      - link "Tradução ao Inglês" [ref=e152] [cursor=pointer]:
+                        - /url: https://www.workana.com/freelancers/english-translation
+                    - cell "-" [ref=e153]
+                    - cell "1 a 3 anos" [ref=e154]
+                    - cell [ref=e155]
+                  - row "API - 1 a 3 anos" [ref=e156]:
+                    - cell "API" [ref=e157]:
+                      - link "API" [ref=e158] [cursor=pointer]:
+                        - /url: https://www.workana.com/freelancers/api
+                    - cell "-" [ref=e159]
+                    - cell "1 a 3 anos" [ref=e160]
+                    - cell [ref=e161]
+                  - row "Docker - 1 ano" [ref=e162]:
+                    - cell "Docker" [ref=e163]:
+                      - link "Docker" [ref=e164] [cursor=pointer]:
+                        - /url: https://www.workana.com/freelancers/docker
+                    - cell "-" [ref=e165]
+                    - cell "1 ano" [ref=e166]
+                    - cell [ref=e167]
+                  - row "Google Cloud Platform (GCP) - 1 ano" [ref=e168]:
+                    - cell "Google Cloud Platform (GCP)" [ref=e169]:
+                      - link "Google Cloud Platform (GCP)" [ref=e170] [cursor=pointer]:
+                        - /url: https://www.workana.com/freelancers/google-cloud-platform
+                    - cell "-" [ref=e171]
+                    - cell "1 ano" [ref=e172]
+                    - cell [ref=e173]
+                  - row "Python - 1 ano" [ref=e174]:
+                    - cell "Python" [ref=e175]:
+                      - link "Python" [ref=e176] [cursor=pointer]:
+                        - /url: https://www.workana.com/freelancers/python
+                    - cell "-" [ref=e177]
+                    - cell "1 ano" [ref=e178]
+                    - cell [ref=e179]
+              - text:            
+            - generic [ref=e182]:
+              - generic [ref=e183]: Histórico Profissional
+              - generic [ref=e184]:
+                - generic [ref=e185]:
+                  - generic [ref=e186]:
+                    - generic [ref=e187]: Agregata Construções - Fundador e Operações
+                    - generic [ref=e188]:
+                      - img [ref=e190]
+                      - generic [ref=e193]: Agregata Construções
+                    - generic [ref=e194]:
+                      - img [ref=e196]
+                      - generic [ref=e198]: janeiro 2008 - janeiro 2024
+                  - paragraph [ref=e201]:
+                    - text: Agregata Construções - Fundador e Operações (–) • Gestão de operações em projetos de infraestrutura e escritórios corporativos Coordenação de forneced ...
+                    - link "Ver mais" [ref=e202] [cursor=pointer]:
+                      - /url: "#"
+                  - generic [ref=e203]:
+                    - button "Editar" [ref=e204] [cursor=pointer]:
+                      - img [ref=e206]
+                    - button "Apagar" [ref=e208] [cursor=pointer]:
+                      - img [ref=e210]
+                - generic [ref=e212]:
+                  - generic [ref=e213]:
+                    - generic [ref=e214]: Operações e Compliance
+                    - generic [ref=e215]:
+                      - img [ref=e217]
+                      - generic [ref=e220]: Banco do Brasil
+                    - generic [ref=e221]:
+                      - img [ref=e223]
+                      - generic [ref=e225]: janeiro 2007 - dezembro 2007
+                  - paragraph [ref=e228]:
+                    - text: Banco do Brasil • ― - Operações e Compliance () Processamento de documentos e validação de dados Rotinas administrativas em ambiente regulado • Contro ...
+                    - link "Ver mais" [ref=e229] [cursor=pointer]:
+                      - /url: "#"
+                  - generic [ref=e230]:
+                    - button "Editar" [ref=e231] [cursor=pointer]:
+                      - img [ref=e233]
+                    - button "Apagar" [ref=e235] [cursor=pointer]:
+                      - img [ref=e237]
+                - generic [ref=e239]:
+                  - generic [ref=e240]:
+                    - generic [ref=e241]: Coordenação Institucional
+                    - generic [ref=e242]:
+                      - img [ref=e244]
+                      - generic [ref=e247]: MERCOPLAN
+                    - generic [ref=e248]:
+                      - img [ref=e250]
+                      - generic [ref=e252]: janeiro 2004 - janeiro 2006
+                  - paragraph [ref=e255]:
+                    - text: MERCOPLAN - - Coordenação Institucional (-) • Suporte a processos administrativos entre órgãos públicos Organização de documentação regulatória • . In ...
+                    - link "Ver mais" [ref=e256] [cursor=pointer]:
+                      - /url: "#"
+                  - generic [ref=e257]:
+                    - button "Editar" [ref=e258] [cursor=pointer]:
+                      - img [ref=e260]
+                    - button "Apagar" [ref=e262] [cursor=pointer]:
+                      - img [ref=e264]
+                - generic [ref=e266]:
+                  - generic [ref=e267]:
+                    - generic [ref=e268]: Government Relations & Regulatory Coordination
+                    - generic [ref=e269]:
+                      - img [ref=e271]
+                      - generic [ref=e274]: Mercoplan
+                    - generic [ref=e275]:
+                      - img [ref=e277]
+                      - generic [ref=e279]: janeiro 2004 - janeiro 2007
+                  - paragraph [ref=e282]:
+                    - text: Trabalhou em ambientes estruturados de interface com o setor público, apoiando interações entre governos municipais e ministérios federais, com foco e ...
+                    - link "Ver mais" [ref=e283] [cursor=pointer]:
+                      - /url: "#"
+                  - generic [ref=e284]:
+                    - button "Editar" [ref=e285] [cursor=pointer]:
+                      - img [ref=e287]
+                    - button "Apagar" [ref=e289] [cursor=pointer]:
+                      - img [ref=e291]
+            - generic [ref=e294]:
+              - generic [ref=e298]:
+                - generic [ref=e299]: Idiomas
+                - link " Editar " [ref=e300] [cursor=pointer]:
+                  - /url: "#"
+                - list [ref=e302]:
+                  - listitem [ref=e303]:
+                    - paragraph [ref=e304]:
+                      - strong [ref=e305]: Português
+                      - text: Nativo ou bilíngue
+                  - listitem [ref=e306]:
+                    - paragraph [ref=e307]:
+                      - strong [ref=e308]: Inglês
+                      - text: Avançado
+                      - generic [ref=e309]:
+                        - generic [ref=e310]: 
+                        - text: Certifique o idioma realizando o
+                        - link "teste de inglês" [ref=e311] [cursor=pointer]:
+                          - /url: https://www.workana.com/certification_tests/view/test-de-ingles-2
+                        - text: para que fique visível em seu perfil público.
+              - generic [ref=e316]:
+                - text: Certificações (0)
+                - link " Editar " [ref=e317] [cursor=pointer]:
+                  - /url: "#"
+            - generic [ref=e321]:
+              - paragraph [ref=e322]: Projetos em destaque
+              - paragraph [ref=e323]: Nesta seção você pode incluir os projetos em que já trabalhou
+              - generic [ref=e326]:
+                - button "Adicionar projeto" [ref=e328] [cursor=pointer]:
+                  - img [ref=e330]
+                  - generic [ref=e332]: Adicionar projeto
+                - link "Vincular conta" [ref=e334] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e336]
+                  - generic [ref=e340]: Vincular conta
+            - link "Scroll to top" [ref=e342] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e343]: 
+              - generic [ref=e344]: Voltar ao topo
+          - complementary [ref=e345]:
+            - generic [ref=e348]:
+              - article [ref=e349]:
+                - paragraph [ref=e350]: Atividade
+                - paragraph [ref=e351]:
+                  - text: Projetos realizados
+                  - strong [ref=e352]: "0"
+                - paragraph [ref=e353]:
+                  - text: Projetos em execução
+                  - strong [ref=e354]: "0"
+                - paragraph [ref=e355]:
+                  - text: Horas trabalhadas
+                  - strong [ref=e356]: "0"
+                - paragraph [ref=e357]:
+                  - text: Limite de projetos em execução
+                  - generic [ref=e358]: 
+                  - strong [ref=e359]: "1"
+              - article [ref=e360]:
+                - paragraph [ref=e361]: Informação
+                - paragraph [ref=e362]:
+                  - text: Classificações dos clientes
+                  - link "0" [ref=e363] [cursor=pointer]:
+                    - /url: "#section-ratings"
+                - paragraph [ref=e364]:
+                  - text: Violações
+                  - link "0" [ref=e365] [cursor=pointer]:
+                    - /url: "#section-ratings"
+                - paragraph [ref=e366]:
+                  - text: Certificações
+                  - link "0" [ref=e367] [cursor=pointer]:
+                    - /url: "#section-certifications"
+                - paragraph [ref=e368]:
+                  - text: Último login
+                  - generic "04 de Junho de 2026 15:50":
+                    - strong [ref=e369]: Agora mesmo
+                - paragraph [ref=e370]:
+                  - text: Ingressou
+                  - generic "16 de Maio de 2026 20:25":
+                    - strong [ref=e371]: há 3 semanas
+            - generic [ref=e374]:
+              - generic [ref=e376]:
+                - generic [ref=e377]: Seu nível atual é IRON
+                - generic [ref=e379]:
+                  - generic "Iron" [ref=e380]
+                  - generic "Bronze" [ref=e381]
+                  - generic "Silver" [ref=e382]
+                  - generic "Gold" [ref=e383]
+                  - generic "Platinum" [ref=e384]
+                  - generic "Hero" [ref=e385]
+              - generic [ref=e387]:
+                - paragraph [ref=e388]:
+                  - link "Ver os benefícios por nível" [ref=e389] [cursor=pointer]:
+                    - /url: ""
+                - generic [ref=e390]:
+                  - strong [ref=e391]: Conexões disponíveis
+                  - paragraph [ref=e392]:
+                    - text: Conexões semanais
+                    - generic [ref=e393]:
+                      - strong [ref=e394]: "2"
+                      - text: em 2
+                    - text: Serão renovadas em 0 dias
+                - generic [ref=e395]:
+                  - article [ref=e396]:
+                    - paragraph [ref=e397]:
+                      - strong [ref=e398]: Ranking Workana
+                      - strong [ref=e400]: Sem classificar
+                  - paragraph [ref=e401]:
+                    - link "Conhecer mais sobre níveis e ranking" [ref=e402] [cursor=pointer]:
+                      - /url: https://help.workana.com/hc/pt/articles/360040844954-%c2%bfqu%c3%a9-necesito-para-subir-de-posici%c3%b3n-en-mi-perfil-
+            - generic [ref=e403]:
+              - paragraph [ref=e404]: Compartilhe este perfil
+              - list [ref=e405]:
+                - listitem [ref=e406]:
+                  - link [ref=e408] [cursor=pointer]:
+                    - /url: "#"
+                - listitem [ref=e410]:
+                  - link "Fabio Barbosa Everton" [ref=e412] [cursor=pointer]:
+                    - /url: "#"
+                - listitem [ref=e414]:
+                  - link "Fabio Barbosa Everton" [ref=e416] [cursor=pointer]:
+                    - /url: "#"
+    - contentinfo [ref=e418]:
+      - generic [ref=e419]:
+        - generic [ref=e420]:
+          - generic [ref=e421]:
+            - paragraph [ref=e422]:
+              - link "Workana" [ref=e423] [cursor=pointer]:
+                - /url: https://www.workana.com/dashboard
+                - img "Workana" [ref=e424]
+            - text: © 2012 - 2026 | Workana LLC - Todos os direitos reservados
+          - generic [ref=e425]:
+            - link "Português " [ref=e427] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e428]: Português
+              - generic [ref=e429]: 
+            - generic [ref=e430]:
+              - link "Veja-nos no YouTube" [ref=e431] [cursor=pointer]:
+                - /url: https://www.youtube.com/user/WorkanaTV
+              - link "Siga-nos no Instagram" [ref=e433] [cursor=pointer]:
+                - /url: http://instagram.com/workanabr
+              - link "Siga-nos no Facebook" [ref=e435] [cursor=pointer]:
+                - /url: https://www.facebook.com/workanabrasil
+              - link "Siga-nos no Twitter" [ref=e437] [cursor=pointer]:
+                - /url: https://twitter.com/workanabr
+              - link "Siga-nos no Linkedin" [ref=e439] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/workana/
+        - generic [ref=e442]:
+          - list [ref=e443]:
+            - listitem [ref=e444]:
+              - strong [ref=e445]: Quem somos?
+            - listitem [ref=e446]:
+              - link "Sobre nós" [ref=e447] [cursor=pointer]:
+                - /url: https://www.workana.com/pt/about
+            - listitem [ref=e448]:
+              - link "Contato" [ref=e449] [cursor=pointer]:
+                - /url: https://www.workana.com/contact/
+            - listitem [ref=e450]:
+              - link "Blog" [ref=e451] [cursor=pointer]:
+                - /url: https://blog.workana.com/pt/
+            - listitem [ref=e452]:
+              - link "Guias" [ref=e453] [cursor=pointer]:
+                - /url: https://i.workana.com/glosario/
+            - listitem [ref=e454]:
+              - link "Contratar" [ref=e455] [cursor=pointer]:
+                - /url: https://www.workana.com/hire/
+            - listitem [ref=e456]:
+              - link "Políticas da Workana" [ref=e457] [cursor=pointer]:
+                - /url: https://help.workana.com/hc/pt/articles/360040841214-pol%c3%adticas-de-workana
+            - listitem [ref=e458]:
+              - link "Política de privacidade" [ref=e459] [cursor=pointer]:
+                - /url: https://help.workana.com/hc/pt/articles/360041613914-pol%c3%adtica-de-privacidade
+            - listitem [ref=e460]:
+              - link "Termos de serviço" [ref=e461] [cursor=pointer]:
+                - /url: https://help.workana.com/hc/pt/articles/360041499974-TERMOS-E-CONDI%C3%87%C3%95ES-DA-WORKANA
+            - listitem [ref=e462]:
+              - link "Configuração de cookies" [ref=e463] [cursor=pointer]:
+                - /url: "#cookies-config"
+            - listitem
+          - list [ref=e464]:
+            - listitem [ref=e465]:
+              - strong [ref=e466]: Recursos
+            - listitem [ref=e467]:
+              - link "Central de ajuda" [ref=e468] [cursor=pointer]:
+                - /url: https://help.workana.com/hc/pt
+            - listitem [ref=e469]:
+              - link "Como funciona" [ref=e470] [cursor=pointer]:
+                - /url: https://www.workana.com/how-it-works
+            - listitem [ref=e471]:
+              - link "Como funcionam os projetos por hora" [ref=e472] [cursor=pointer]:
+                - /url: https://www.workana.com/how-it-works-hours
+            - listitem [ref=e473]:
+              - link "Histórias de sucesso dos clientes" [ref=e474] [cursor=pointer]:
+                - /url: https://blog.workana.com/pt/cases-de-sucesso/
+            - listitem [ref=e475]:
+              - link "Planos de benefícios" [ref=e476] [cursor=pointer]:
+                - /url: https://www.workana.com/pt/plans
+            - listitem [ref=e477]:
+              - link "Imprensa" [ref=e478] [cursor=pointer]:
+                - /url: https://www.workana.com/pt/press
+            - listitem [ref=e479]:
+              - link "Empresas" [ref=e480] [cursor=pointer]:
+                - /url: https://www.workana.com/business
+            - listitem [ref=e481]:
+              - link "Tutoriais para clientes" [ref=e482] [cursor=pointer]:
+                - /url: https://www.youtube.com/playlist?list=PLkDtVLMsEd5iPjEdqQgO0_wORWLZM--iz
+            - listitem [ref=e483]:
+              - link "Tutoriais para freelancers" [ref=e484] [cursor=pointer]:
+                - /url: https://www.youtube.com/playlist?list=PLkDtVLMsEd5hZqtkV2jXH04TXp4ERm6cm
+            - listitem [ref=e485]:
+              - link "Mapa do site" [ref=e486] [cursor=pointer]:
+                - /url: https://www.workana.com/pt/sitemap
+          - list [ref=e487]:
+            - listitem [ref=e488]:
+              - strong [ref=e489]: Encontre trabalho
+            - listitem [ref=e490]:
+              - link "TI e Programação" [ref=e491] [cursor=pointer]:
+                - /url: https://www.workana.com/jobs?category=it-programming
+            - listitem [ref=e492]:
+              - link "Design & Multimedia" [ref=e493] [cursor=pointer]:
+                - /url: https://www.workana.com/jobs?category=design-multimedia
+            - listitem [ref=e494]:
+              - link "Tradução e conteúdos" [ref=e495] [cursor=pointer]:
+                - /url: https://www.workana.com/jobs?category=writing-translation
+            - listitem [ref=e496]:
+              - link "Marketing e Vendas" [ref=e497] [cursor=pointer]:
+                - /url: https://www.workana.com/jobs?category=sales-marketing
+            - listitem [ref=e498]:
+              - link "Suporte Administrativo" [ref=e499] [cursor=pointer]:
+                - /url: https://www.workana.com/jobs?category=admin-support
+            - listitem [ref=e500]:
+              - link "Jurídico" [ref=e501] [cursor=pointer]:
+                - /url: https://www.workana.com/jobs?category=legal
+            - listitem [ref=e502]:
+              - link "Finanças e Administração" [ref=e503] [cursor=pointer]:
+                - /url: https://www.workana.com/jobs?category=finance-management
+            - listitem [ref=e504]:
+              - link "Engenharia e Manufatura" [ref=e505] [cursor=pointer]:
+                - /url: https://www.workana.com/jobs?category=engineering-manufacturing
+          - list [ref=e506]:
+            - listitem [ref=e507]:
+              - strong [ref=e508]: Freelancers
+            - listitem [ref=e509]:
+              - link "Freelancers Argentina" [ref=e510] [cursor=pointer]:
+                - /url: https://www.workana.com/freelancers/argentina
+            - listitem [ref=e511]:
+              - link "Freelancers Brasil" [ref=e512] [cursor=pointer]:
+                - /url: https://www.workana.com/freelancers/brazil
+            - listitem [ref=e513]:
+              - link "Freelancers Colômbia" [ref=e514] [cursor=pointer]:
+                - /url: https://www.workana.com/freelancers/colombia
+            - listitem [ref=e515]:
+              - link "Freelancers Uruguai" [ref=e516] [cursor=pointer]:
+                - /url: https://www.workana.com/freelancers/uruguay
+            - listitem [ref=e517]:
+              - link "Freelancers México" [ref=e518] [cursor=pointer]:
+                - /url: https://www.workana.com/freelancers/mexico
+            - listitem [ref=e519]:
+              - link "Freelancers Venezuela" [ref=e520] [cursor=pointer]:
+                - /url: https://www.workana.com/freelancers/venezuela
+            - listitem [ref=e521]:
+              - link "Freelancers Paraguai" [ref=e522] [cursor=pointer]:
+                - /url: https://www.workana.com/freelancers/paraguay
+            - listitem [ref=e523]:
+              - link "Freelancers Honduras" [ref=e524] [cursor=pointer]:
+                - /url: https://www.workana.com/freelancers/honduras
+          - list [ref=e525]:
+            - listitem [ref=e526]:
+              - strong [ref=e527]: Parceiros internacionais
+            - listitem [ref=e528]:
+              - link "Bdjobs (Bangladesh)" [ref=e529] [cursor=pointer]:
+                - /url: https://www.bdjobs.com
+            - listitem [ref=e530]:
+              - link "Catho (Brazil)" [ref=e531] [cursor=pointer]:
+                - /url: https://www.catho.com.br
+            - listitem [ref=e532]:
+              - link "JobStreet (S.E. Asia)" [ref=e533] [cursor=pointer]:
+                - /url: https://www.jobstreet.com
+            - listitem [ref=e534]:
+              - link "Jora (Worldwide)" [ref=e535] [cursor=pointer]:
+                - /url: https://www.jora.com
+            - listitem [ref=e536]:
+              - link "OCC Mundial (Mexico)" [ref=e537] [cursor=pointer]:
+                - /url: https://www.occ.com.mx
+            - listitem [ref=e538]:
+              - link "SEEK (Australia)" [ref=e539] [cursor=pointer]:
+                - /url: https://www.seek.com.au
+            - listitem [ref=e540]:
+              - link "Ver mais" [ref=e541] [cursor=pointer]:
+                - /url: ""
+    - generic: 
+  - iframe [ref=e542]:
+    - button "Help" [ref=f20e4] [cursor=pointer]:
+      - img [ref=f20e6]
+      - generic [ref=f20e13]: Help

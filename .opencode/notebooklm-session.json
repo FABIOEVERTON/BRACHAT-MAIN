@@ -1,0 +1,7 @@
+{
+  "note": "NotebookLM session state — saved for persistence across sessions. Load this file and restore cookies/browser context to re-authenticate.",
+  "saved_at": "2026-06-07T09:07:00-03:00",
+  "login_email": "jae.engenharia@gmail.com",
+  "login_url": "https://notebooklm.google.com",
+  "restore_instructions": "Call playwright to restore cookies from this file before navigating to notebooklm.google.com"
+}

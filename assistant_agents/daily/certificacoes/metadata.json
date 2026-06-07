@@ -1,0 +1,10 @@
+{
+  "id": "certificacoes",
+  "layer": "gerentes",
+  "reasoning": "moderado",
+  "temp": 0.1,
+  "actions": ["AUDIT", "SCOPE", "PLAN", "MATERIAL", "TRACK"],
+  "state_deps": ["study_schedule.axes.certificacoes"],
+  "schedule": "sob demanda / semanal",
+  "max_response_lines": 8
+}

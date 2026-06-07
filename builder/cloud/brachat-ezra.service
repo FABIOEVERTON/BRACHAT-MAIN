@@ -1,0 +1,21 @@
+[Unit]
+Description=BRACHAT EZRA Telegram Bridge
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/brachat/bridge-ezra.py
+WorkingDirectory=/opt/brachat
+EnvironmentFile=/opt/brachat/.env
+Restart=always
+RestartSec=5
+User=nobody
+Group=nogroup
+
+# Logs
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

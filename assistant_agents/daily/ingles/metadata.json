@@ -1,0 +1,10 @@
+{
+  "id": "ingles",
+  "layer": "gerentes",
+  "reasoning": "moderado",
+  "temp": 0.3,
+  "actions": ["TOPIC", "VOCAB", "READ", "EXERCISE", "CORRECT"],
+  "state_deps": ["study_schedule.axes.ingles"],
+  "schedule": "07:30-08:00, 18:00-18:30",
+  "max_response_lines": 8
+}

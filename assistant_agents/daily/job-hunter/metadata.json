@@ -1,0 +1,10 @@
+{
+  "id": "job-hunter",
+  "layer": "produtores",
+  "reasoning": "zero",
+  "temp": 0,
+  "actions": ["SCAN", "FILTER", "NOTIFY", "CURRICULO", "APPLY"],
+  "state_deps": ["job_hunting_system"],
+  "tools": ["webfetch"],
+  "max_response_lines": 5
+}

@@ -1,0 +1,10 @@
+{
+  "id": "filosofia",
+  "layer": "gerentes",
+  "reasoning": "moderado",
+  "temp": 0.3,
+  "actions": ["TOPIC", "TEXT", "CONNECT", "PROMPT", "DIALOGUE"],
+  "state_deps": ["study_schedule.axes.filosofia"],
+  "schedule": "19:00-19:30",
+  "max_response_lines": 6
+}

@@ -1,0 +1,30 @@
+{
+  "root": "brachat-main",
+  "updated": "2026-06-04",
+  "folders": {
+    "branding": "Estratégia de posicionamento profissional — job hunting, freela, site, redes sociais",
+    "portfolio": "Tudo que foi criado — projetos, publicações e produções",
+    "writings_studies": "Produções escritas — livros, artigos, publicações",
+    "builder": "Scripts, daemons e agentes de infraestrutura"
+  },
+  "subfolders": {
+    "portfolio/builder_agents": "Agentes, ferramentas e configurações de criação",
+    "portfolio/builder_agents/shared": "Assets compartilhados — skills, prompts, memória",
+    "portfolio/products": "Produtos prontos e publicáveis",
+    "portfolio/builder_agents/.opencode": "Configuração do OpenCode (big-pickle)",
+    "portfolio/builder_agents/.hermes": "Configuração do Hermes (WhatsApp bridge)",
+    "portfolio/builder_agents/scripts": "Scripts de operação — Telegram bridge (EZRA), launchd wrapper"
+  },
+  "memory_system": {
+    "central_state": "brachat-main/state.json",
+    "folder_states": [
+      "branding/state.json",
+      "portfolio/state.json",
+      "portfolio/builder_agents/state.json",
+      "writings_studies/state.json",
+      "builder/state.json"
+    ],
+    "operational_memory": "builder_agents/.opencode/state.json",
+    "mem0_config": ".mem0/"
+  }
+}
