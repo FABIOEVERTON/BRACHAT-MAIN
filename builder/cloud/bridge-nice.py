@@ -1,137 +1,101 @@
 #!/usr/bin/env python3
 """NICE Bridge — governança doméstica BRACHAT no Telegram."""
-import os, sys, json, time, subprocess, urllib.request, urllib.error, logging
+import os, sys, json, time, subprocess, urllib.request, logging
 from pathlib import Path
 
-TELEGRAM_TOKEN = os.environ.get("NICE_TELEGRAM_TOKEN")
-ALLOWED_CHAT = os.environ.get("NICE_ALLOWED_CHAT_ID")
-ZEN_API_KEY = os.environ.get("ZEN_API_KEY")
-CLICKUP_TOKEN = os.environ.get("CLICKUP_TOKEN")
-ZEN_MODEL = "big-pickle"
-POLL_INTERVAL = 1
-STATE_FILE = Path("/tmp/nice-bridge-state.json")
-REPO_DIR = Path("/opt/brachat/repo")
+TK = os.environ.get("NICE_TELEGRAM_TOKEN","")
+CID = os.environ.get("NICE_ALLOWED_CHAT_ID","")
+ZK = os.environ.get("ZEN_API_KEY","")
+CK = os.environ.get("CLICKUP_TOKEN","")
+REPO = Path("/opt/brachat/repo")
+ST = Path("/tmp/nice-state.json")
+MALHA = Path("/opt/brachat/state/nice.json")
+TG = f"https://api.telegram.org/bot{TK}"
+ZN = "https://opencode.ai/zen/v1/chat/completions"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[logging.FileHandler("/tmp/nice-bridge.log"), logging.StreamHandler()])
+    handlers=[logging.FileHandler("/tmp/nice.log"),logging.StreamHandler()])
 log = logging.getLogger("nice")
+START = time.time()
 
-TG_API = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
-ZEN_API = "https://opencode.ai/zen/v1/chat/completions"
-
-def git_pull():
-    try:
-        r = subprocess.run(["git","pull"], cwd=REPO_DIR, capture_output=True, text=True, timeout=15)
-        if r.returncode == 0: return True
-        return False
-    except: return False
-
-def read_json(path):
-    try: return json.loads(Path(path).read_text())
+def rj(p):
+    try: return json.loads(Path(p).read_text()) if Path(p).exists() else {}
     except: return {}
 
-def build_prompt(msg):
-    now = time.strftime("%H:%M")
-    date = time.strftime("%d/%m/%Y")
-    agent_dir = REPO_DIR / "assistant_agents" / "daily" / "nice"
-    agent_md = agent_dir / "AGENT.md"
-    agent_cache = read_json(agent_dir / "cache.json")
-    contacts = read_json(REPO_DIR / "Branding" / "contacts.json") if (REPO_DIR / "Branding" / "contacts.json").exists() else {}
+def git_pull():
+    try: subprocess.run(["git","pull"], cwd=REPO, capture_output=True, timeout=15); return True
+    except: return False
 
-    instructions = ""
-    if agent_md.exists():
-        instructions = agent_md.read_text()[:2000]
-    return f"""Voce eh a NICE, agente de governanca domestica do ecossistema BRACHAT.
-Data: {date}  Hora: {now}
+def pub(**kw):
+    try:
+        MALHA.parent.mkdir(parents=True, exist_ok=True)
+        data = {"type":"nice","timestamp":time.strftime("%H:%M:%S"),"uptime":int(time.time()-START),**kw}
+        tmp = MALHA.with_suffix(".tmp")
+        tmp.write_text(json.dumps(data)); tmp.rename(MALHA)
+    except: pass
 
-{instructions}
-
-Ultimo estado: {json.dumps(agent_cache, ensure_ascii=False)[:500]}
-
-Regras: Responda em portugues. Seja breve (5-8 linhas). Nao use emojis.
-Thresholds: <=R$100 automatico. R$101-500 aval Dona Lu. >R$500 bloqueado CEO.
-Chame Dona Lu de "Dona Lu" sempre."""
-
-def ask_zen(messages):
-    body = json.dumps({"model":ZEN_MODEL,"messages":messages,"max_tokens":1024,"temperature":0.2}).encode()
-    req = urllib.request.Request(ZEN_API, data=body, headers={
-        "Content-Type":"application/json","Authorization":f"Bearer {ZEN_API_KEY}","User-Agent":"Mozilla/5.0"})
+def ask_zen(msgs):
+    b = json.dumps({"model":"big-pickle","messages":msgs,"max_tokens":1024,"temperature":0.2}).encode()
+    req = urllib.request.Request(ZN, data=b, headers={"Content-Type":"application/json","Authorization":f"Bearer {ZK}","User-Agent":"Mozilla/5.0"})
     try:
         with urllib.request.urlopen(req, timeout=120) as r:
-            data = json.loads(r.read())
-            return data["choices"][0]["message"]["content"].strip()
-    except Exception as e:
-        log.error(f"Zen: {e}")
-        return None
+            return json.loads(r.read())["choices"][0]["message"]["content"].strip()
+    except Exception as e: log.error(f"Zen: {e}"); return None
 
-def tg(method, data=None):
-    url = f"{TG_API}/{method}"
-    if data:
-        data = json.dumps(data).encode()
-        req = urllib.request.Request(url, data=data, headers={"Content-Type":"application/json"})
-    else:
-        req = urllib.request.Request(url)
+def tg(m, d=None):
+    url = f"{TG}/{m}"
+    if d: d = json.dumps(d).encode()
     try:
-        with urllib.request.urlopen(req, timeout=15) as r:
+        with urllib.request.urlopen(urllib.request.Request(url, data=d, headers={"Content-Type":"application/json"}) if d else urllib.request.Request(url), timeout=15) as r:
             return json.loads(r.read())
-    except Exception as e:
-        log.error(f"TG {method}: {e}")
-        return None
+    except: return None
 
-def send(chat_id, text):
-    if not text: return
-    for chunk in [text[i:i+4000] for i in range(0, len(text), 4000)]:
-        tg("sendMessage", {"chat_id":chat_id,"text":chunk,"parse_mode":"Markdown"})
+def send(c, t):
+    if not t: return
+    for ch in [t[i:i+4000] for i in range(0,len(t),4000)]:
+        tg("sendMessage",{"chat_id":c,"text":ch,"parse_mode":"Markdown"})
 
-def handle_msg(chat_id, text):
+def on_msg(cid, text):
     if not text: return
     log.info(f"<< {text[:100]}")
+    pub(status="processing",last_msg=text[:200])
     if text.startswith("/"):
-        if text == "/start": send(chat_id, "NICE — governanca domestica online.")
-        elif text == "/status":
-            ctx = read_json(agent_dir / "cache.json")
-            send(chat_id, f"NICE ativa.\nThreshold: {ctx.get('threshold_atual','R$100 auto')}")
-        return
-    tg("sendChatAction", {"chat_id":chat_id,"action":"typing"})
+        if text=="/start": send(cid,"NICE online.")
+        pub(status="idle"); return
+    tg("sendChatAction",{"chat_id":cid,"action":"typing"})
     git_pull()
-    system = build_prompt(text)
-    messages = [
-        {"role":"system","content":system},
-        {"role":"user","content":text}
-    ]
-    resp = ask_zen(messages)
-    if resp:
-        send(chat_id, resp)
-        log.info(f">> {resp[:100]}")
+    agent_dir = REPO/"assistant_agents"/"daily"/"nice"
+    agent_md = agent_dir/"AGENT.md"
+    ac = rj(agent_dir/"cache.json")
+    instructions = agent_md.read_text()[:2000] if agent_md.exists() else ""
+    sysp = f"Voce eh a NICE, agente de governanca domestica BRACHAT.\nData: {time.strftime('%d/%m/%Y %H:%M')}\n\n{instructions}\n\nThreshold: {ac.get('threshold_atual','R$100 auto')}\nRegras: Portugues, breve, sem emojis."
+    r=ask_zen([{"role":"system","content":sysp},{"role":"user","content":text}])
+    if r:
+        send(cid,r); log.info(f">> {r[:100]}")
+        pub(status="idle",last_msg=text[:200],last_resp=r[:200],threshold=ac.get("threshold_atual",""))
     else:
-        send(chat_id, "Erro ao processar. Tente de novo.")
+        send(cid,"Erro."); pub(status="error")
 
 def main():
-    state = {"last_update_id":0}
-    if STATE_FILE.exists():
-        try: state = json.loads(STATE_FILE.read_text())
+    st={"last_update_id":0}
+    if ST.exists():
+        try: st=json.loads(ST.read_text())
         except: pass
-    log.info(f"NICE orquestrador iniciado. Chat: {ALLOWED_CHAT}")
-    git_pull()
+    log.info(f"NICE iniciado. Chat: {CID}")
+    git_pull(); pub(status="online")
     while True:
         try:
-            updates = tg("getUpdates", {"offset":state.get("last_update_id",0)+1,"timeout":10,"allowed_updates":["message"]})
-            if updates and updates.get("ok") and updates.get("result"):
-                for upd in updates["result"]:
-                    state["last_update_id"] = upd["update_id"]
-                    if "message" not in upd: continue
-                    msg = upd["message"]
-                    chat_id = str(msg.get("chat",{}).get("id",""))
-                    if chat_id != ALLOWED_CHAT: continue
-                    if "text" in msg:
-                        handle_msg(chat_id, msg["text"].strip())
-            STATE_FILE.write_text(json.dumps(state))
-            time.sleep(POLL_INTERVAL)
-        except KeyboardInterrupt:
-            log.info("Shutdown."); break
-        except Exception as e:
-            log.error(f"loop: {e}")
-            time.sleep(POLL_INTERVAL*5)
+            u=tg("getUpdates",{"offset":st.get("last_update_id",0)+1,"timeout":10,"allowed_updates":["message"]})
+            if u and u.get("ok") and u.get("result"):
+                for up in u["result"]:
+                    st["last_update_id"]=up["update_id"]
+                    if "message" in up:
+                        m=up["message"]
+                        if str(m.get("chat",{}).get("id",""))==CID and "text" in m:
+                            on_msg(CID,m["text"].strip())
+            ST.write_text(json.dumps(st))
+            time.sleep(1)
+        except KeyboardInterrupt: log.info("Shutdown."); break
+        except Exception as e: log.error(f"loop: {e}"); time.sleep(5)
 
-if __name__ == "__main__":
-    main()
+if __name__=="__main__": main()

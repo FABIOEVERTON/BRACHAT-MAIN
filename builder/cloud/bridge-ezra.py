@@ -9,12 +9,14 @@ ZK = os.environ["ZEN_API_KEY"]
 CK = os.environ.get("CLICKUP_TOKEN","")
 REPO = Path("/opt/brachat/repo")
 ST = Path("/tmp/ezra-state.json")
+MALHA = Path("/opt/brachat/state/malha.json")
 TG = f"https://api.telegram.org/bot{TK}"
 ZN = "https://opencode.ai/zen/v1/chat/completions"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[logging.FileHandler("/tmp/ezra.log"),logging.StreamHandler()])
 log = logging.getLogger("ezra")
+START = time.time()
 
 SCHED = [(7,0,"*","Saudacao"),(7,15,"job-hunter","Job scan"),(7,30,"ingles","Ingles"),
     (8,0,"estudos","Estudo"),(8,30,"google-skills","Google Skills"),(9,0,"estudos","Deep work"),
@@ -30,6 +32,17 @@ def git_pull():
     try: subprocess.run(["git","pull"], cwd=REPO, capture_output=True, timeout=15); return True
     except: return False
 
+def pub_state(**kw):
+    try:
+        MALHA.parent.mkdir(parents=True, exist_ok=True)
+        now = time.strftime("%H:%M:%S")
+        data = {"type":"ezra","timestamp":now,"uptime":int(time.time()-START),
+            "chat":CID,**kw}
+        tmp = MALHA.with_suffix(".tmp")
+        tmp.write_text(json.dumps(data))
+        tmp.rename(MALHA)
+    except: pass
+
 def build_context(msg):
     s = rj(REPO/"assistant_agents"/"state.json")
     est = rj(REPO/"assistant_agents"/"daily"/"estudos"/"cache.json")
@@ -38,14 +51,16 @@ def build_context(msg):
     for h,m,a,l in SCHED:
         if hm >= h*60+m: agent, label = a, l
     ctx = {"user":s.get("user",{}).get("name","Fabio"),"bio":s.get("bio",""),
-        "phase":f"{est.get('current_phase','?')} / Mod.{est.get('current_module','?')} / Dia {est.get('current_day','?')}",
+        "phase":f"{est.get('current_phase','?')} / M{est.get('current_module','?')} / D{est.get('current_day','?')}",
         "label":label,"agent":agent}
     if agent:
         d = REPO/"assistant_agents"/"daily"/agent
         if (d/"AGENT.md").exists(): ctx["inst"] = (d/"AGENT.md").read_text()[:1500]
         ac = rj(d/"cache.json")
-        if ac and "daily_log" in ac and ac["daily_log"]:
-            ctx["last"] = str(ac["daily_log"][-1])[:200]
+        if ac:
+            ctx["agent_cache"] = ac
+            if "daily_log" in ac and ac["daily_log"]:
+                ctx["last"] = str(ac["daily_log"][-1])[:200]
     return ctx
 
 def ask_zen(msgs):
@@ -72,6 +87,7 @@ def send(c, t):
 def on_msg(cid, text):
     if not text: return
     log.info(f"<< {text[:100]}")
+    pub_state(status="processing",last_msg=text[:200])
     if text.startswith("/"):
         if text=="/start": send(cid,"EZRA online.")
         elif text=="/status":
@@ -83,7 +99,8 @@ def on_msg(cid, text):
                 with urllib.request.urlopen(req,timeout=10) as r:
                     ts=json.loads(r.read()).get("tasks",[])
                 send(cid,"\n".join([f"  {t['name']} ({t['status']['status']})" for t in ts[:10]]) or "Nenhuma.")
-            except Exception as e: send(cid,f"Erro ClickUp: {e}")
+            except Exception as e: send(cid,f"Erro: {e}")
+        pub_state(status="idle")
         return
     tg("sendChatAction",{"chat_id":cid,"action":"typing"})
     git_pull(); ctx=build_context(text)
@@ -92,8 +109,13 @@ def on_msg(cid, text):
     if ctx.get("last"): sysp += f"\n\nUltimo progresso: {ctx['last']}"
     sysp += "\n\nResponda em portugues. Seja direto. Nao use emojis."
     r=ask_zen([{"role":"system","content":sysp},{"role":"user","content":text}])
-    if r: send(cid,r); log.info(f">> {r[:100]}")
-    else: send(cid,"Erro. Tente de novo.")
+    if r:
+        send(cid,r); log.info(f">> {r[:100]}")
+        pub_state(status="idle",active_agent=ctx.get("agent"),active_label=ctx.get("label"),
+            last_msg=text[:200],last_resp=r[:200],phase=ctx.get("phase"))
+    else:
+        send(cid,"Erro. Tente de novo.")
+        pub_state(status="error")
 
 def main():
     st={"last_update_id":0}
@@ -102,6 +124,7 @@ def main():
         except: pass
     log.info(f"EZRA iniciado. Chat: {CID}")
     git_pull()
+    pub_state(status="online")
     while True:
         try:
             u=tg("getUpdates",{"offset":st.get("last_update_id",0)+1,"timeout":10,"allowed_updates":["message"]})
