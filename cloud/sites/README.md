@@ -13,7 +13,7 @@ Só os bridges do Telegram vão pra nuvem. O resto do sistema fica no Mac.
 
 - OpenCode CLI — só faz sentido com você usando
 - Seus arquivos e agentes (`state.json`, `daily/*`, `AGENT.md`, etc.)
-- `builder/daemons/` (launchd)
+- `cloud/daemons/` (launchd)
 
 ## Como subir
 

@@ -14,6 +14,7 @@
 
 10. Load `shared/governance/` — AGCP, QILIS, regulatory compliance framework. Aísio ativo — toda ação passa por commit-bound authorization.
 11. Check `assistant_agents/.opencode/governance-ledger.jsonl` — pending governance items
+12. Start dashboard — `ssh root@167.233.30.115 'systemctl is-active brachat-dashboard || systemctl restart brachat-dashboard'`; confirm HTTP 200 at `http://167.233.30.115:8080`
 12. Economy: `skills-cache/POLICY.md` — NUNCA carregar mais que active-index.json em contexto.
 
 ## Response format

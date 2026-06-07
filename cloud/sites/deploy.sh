@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # BRACHÁT CLOUD DEPLOY — sobe bridges no VPS
-# Uso: scp -r builder/cloud user@vps:~ && ssh user@vps ./cloud/deploy.sh
+# Uso: scp -r cloud/cloud user@vps:~ && ssh user@vps ./cloud/deploy.sh
 
 REMOTE_USER="${1:-root}"
 REMOTE_HOST="${2:-}"
