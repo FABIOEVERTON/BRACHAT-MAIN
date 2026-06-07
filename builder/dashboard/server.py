@@ -14,6 +14,7 @@ DAILY = [
     "google-skills","ingles","job-hunter","ml-engineer",
     "nice","pmp","portfolio","python","torah",
 ]
+DIRECTORS = ["aisio","gilmario","jessica","josue","nice"]
 
 def rj(p):
     try: return json.loads(p.read_text()) if p.exists() else {}
@@ -31,16 +32,16 @@ def read_system():
     load = run_cmd(["bash","-c","uptime | awk -F'load average:' '{print $2}' | xargs"])
     return {"cpu":cpu,"memory":mem,"disk":disk,"processes":procs,"load":load}
 
-def read_daily():
+def _read_agents(base, names):
     res = {}
-    for name in DAILY:
-        d = REPO / "assistant_agents" / "daily" / name
+    for name in names:
+        d = REPO / "assistant_agents" / base / name
         cache = rj(d / "cache.json")
         meta = rj(d / "metadata.json")
         md = ""
         if (d / "AGENT.md").exists():
             for line in (d / "AGENT.md").read_text().split("\n"):
-                if line.startswith("# ") and "NICE" not in line:
+                if line.startswith("# "):
                     md = line.replace("# ","").strip(); break
         res[name] = {"nome": meta.get("label") or md or name.capitalize(), "cache": cache}
     return res
@@ -60,7 +61,8 @@ def build():
                 "threshold":ni.get("threshold",""),"timestamp":ni.get("timestamp","")},
         },
         "system": read_system(),
-        "daily": read_daily(),
+        "daily": _read_agents("daily", DAILY),
+        "directors": _read_agents("directors", DIRECTORS),
         "timestamp": time.strftime("%H:%M:%S"),
     }
 

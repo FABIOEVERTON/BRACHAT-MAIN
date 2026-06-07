@@ -46,8 +46,10 @@ h1 small{color:#8b949e;font-size:12px}
     <div class="row"><span class="l">Branch</span><span class="v" id="git-branch"></span></div>
     <div class="row"><span class="l">Commit</span><span class="v" id="git-commit"></span></div></div>
 </div>
-<div class="grid" id="daily-header" style="margin-bottom:0"><div class="card" style="grid-column:1/-1;padding:6px 10px"><span id="agents-count"></span> agentes diarios — ultima atividade</div></div>
+<div class="grid" id="daily-header" style="margin-bottom:0"><div class="card" style="grid-column:1/-1;padding:6px 10px"><span id="daily-count"></span> agentes diarios</div></div>
 <div class="grid" id="daily-grid"></div>
+<div class="grid" id="dir-header" style="margin-bottom:0;margin-top:8px"><div class="card" style="grid-column:1/-1;padding:6px 10px"><span id="dir-count"></span> diretores</div></div>
+<div class="grid" id="dir-grid"></div>
 <div class="footer" id="footer"></div>
 <script>
 function set(id,v){ var e=document.getElementById(id); if(e) e.textContent=v??'-' }
@@ -57,16 +59,11 @@ function dot(id,st){
   e.className='dot '+(st=='online'||st=='idle'?'on':st=='processing'?'busy':st=='error'?'er':'off');
 }
 function fmtDur(s){ if(!s)return'-'; var h=Math.floor(s/3600),m=Math.floor((s%3600)/60); return h+'h'+m+'m' }
-
-function renderAgents(daily){
+function renderCards(data, gridId, countId){
   var html='', count=0;
-  for(var name in daily){
-    var a=daily[name], c=a.cache||{}; count++;
-    var parts=[];
-    if(c.current_phase) parts.push(c.current_phase);
-    if(c.current_module) parts.push('M'+c.current_module);
-    if(c.current_day) parts.push('D'+c.current_day);
-    var phase=parts.join(' ');
+  for(var name in data){
+    var a=data[name], c=a.cache||{}; count++;
+    var phase=[c.current_phase,c.current_module?'M'+c.current_module:'',c.current_day?'D'+c.current_day:''].filter(Boolean).join(' ');
     var info=c.threshold_atual||c.start_date||'';
     var log=''; if(c.daily_log&&c.daily_log.length) log=String(c.daily_log[c.daily_log.length-1]).slice(0,120);
     html+='<div class="card"><h2>'+a.nome+'</h2>';
@@ -75,8 +72,8 @@ function renderAgents(daily){
     if(log) html+='<div class="msg">'+log+'</div>';
     html+='</div>';
   }
-  document.getElementById('daily-grid').innerHTML=html;
-  document.getElementById('agents-count').textContent=count;
+  document.getElementById(gridId).innerHTML=html;
+  if(countId) document.getElementById(countId).textContent=count;
 }
 
 function connectWS(){
@@ -91,7 +88,8 @@ function connectWS(){
     set('nice-msg',ni.last_msg?'📩 '+ni.last_msg.slice(0,140):''); set('nice-resp',ni.last_resp?'💬 '+ni.last_resp.slice(0,140):'');
     set('sys-cpu',sys.cpu||'-'); set('sys-ram',sys.memory||'-'); set('sys-disk',sys.disk||'-'); set('sys-procs',sys.processes||'-'); set('sys-load',sys.load||'-');
     set('footer','Atualizado: '+d.timestamp);
-    if(d.daily) renderAgents(d.daily);
+    if(d.daily) renderCards(d.daily,'daily-grid','daily-count');
+    if(d.directors) renderCards(d.directors,'dir-grid','dir-count');
   };
   ws.onclose=function(){ setTimeout(connectWS,2000) };
   ws.onerror=function(){ ws.close() };
