@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRACHAT Organograma - IA Agents Dashboard</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:linear-gradient(135deg,#0a0e1a 0%,#0d1117 100%);font-family:'SF Mono','Fira Code','Courier New',monospace;padding:20px;min-height:100vh;color:#e6edf3}
+        .dashboard{max-width:1600px;margin:0 auto}
+        .header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:30px;padding-bottom:15px;border-bottom:1px solid #30363d;flex-wrap:wrap;gap:15px}
+        .title{font-size:24px;font-weight:bold;background:linear-gradient(135deg,#58a6ff,#f0883e);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:2px}
+        .title small{font-size:12px;color:#8b949e;letter-spacing:normal}
+        .system-stats{display:flex;gap:20px;font-size:12px;font-family:monospace;background:#161b22;padding:8px 15px;border-radius:8px;border:1px solid #30363d;flex-wrap:wrap}
+        .stat{display:flex;gap:5px}.stat-label{color:#8b949e}.stat-value{color:#58a6ff;font-weight:bold}
+        .section-title{font-size:14px;text-transform:uppercase;letter-spacing:2px;color:#58a6ff;margin:25px 0 15px 0;padding-left:10px;border-left:3px solid #f0883e}
+        .cards-container{display:flex;flex-wrap:wrap;gap:15px;margin-bottom:20px;position:relative}
+        .card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:15px;transition:all .2s ease;position:relative;flex:1;min-width:150px}
+        .card:hover{transform:translateY(-2px);border-color:#58a6ff;box-shadow:0 4px 12px rgba(88,166,255,.1)}
+        .card-bridge{flex:2;min-width:300px;background:linear-gradient(135deg,#1a1f2e 0%,#161b22 100%);border-color:#58a6ff}
+        .card-bridge .card-title{font-size:20px;color:#58a6ff}
+        .card-bridge-nice{flex:1;min-width:220px}
+        .card-core{flex:1;min-width:200px;background:linear-gradient(135deg,#1e242c 0%,#161b22 100%);border-color:#d29922}
+        .card-core .card-title{color:#d29922}
+        .card-title{font-size:16px;font-weight:bold;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+        .status-dot{width:10px;height:10px;border-radius:50%;display:inline-block;animation:pulse 2s infinite}
+        .status-dot.online{background:#3fb950;box-shadow:0 0 5px #3fb950}
+        .status-dot.idle{background:#d29922;box-shadow:0 0 5px #d29922}
+        .status-dot.processing{background:#db61a2;box-shadow:0 0 8px #db61a2;animation:pulse-fast .5s infinite}
+        .status-dot.offline{background:#f85149}.status-dot.inactive{background:#6e7681}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+        @keyframes pulse-fast{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.2)}}
+        .card-info{font-size:11px;color:#8b949e;line-height:1.6}
+        .card-info span{color:#e6edf3}
+        .badge{background:#21262d;padding:2px 6px;border-radius:20px;font-size:10px;font-family:monospace}
+        .phase-badge{background:#1f3a3f;color:#7ee787}
+        .core-badge{background:#3d2e1f;color:#d29922}
+        .footer{text-align:center;margin-top:30px;font-size:10px;color:#3d444d;border-top:1px solid #21262d;padding-top:15px}
+        .last-update{position:fixed;bottom:10px;right:10px;font-size:9px;background:#161b22;padding:4px 8px;border-radius:6px;color:#6e7681}
+        @media(max-width:1200px){.cards-container{gap:10px}.card{padding:12px}}
+    </style>
+</head>
+<body>
+<div class="dashboard">
+    <div class="header">
+        <div class="title">BRACHAT organograma <small>· IA Agents Flow</small></div>
+        <div class="system-stats" id="systemStats">
+            <div class="stat"><span class="stat-label">CPU</span><span class="stat-value" id="cpu">--</span></div>
+            <div class="stat"><span class="stat-label">RAM</span><span class="stat-value" id="ram">--</span></div>
+            <div class="stat"><span class="stat-label">LOAD</span><span class="stat-value" id="load">--</span></div>
+            <div class="stat"><span class="stat-label">DISK</span><span class="stat-value" id="disk">--</span></div>
+            <div class="stat"><span class="stat-label">PROC</span><span class="stat-value" id="proc">--</span></div>
+        </div>
+    </div>
+    <div class="section-title">⚡ BRIDGES · ORCHESTRATORS</div>
+    <div class="cards-container" id="bridgesContainer"></div>
+    <div class="section-title">🧠 CORE AGENTS · PLANNING & EXECUTION</div>
+    <div class="cards-container" id="coreContainer"></div>
+    <div class="section-title">🎯 DIRECTORS · STRATEGY</div>
+    <div class="cards-container" id="directorsContainer"></div>
+    <div class="section-title">🛠️ DAILY AGENTS · EXECUTION</div>
+    <div class="cards-container" id="dailyContainer"></div>
+</div>
+<div class="last-update" id="lastUpdate">⏻ connecting...</div>
+<script>
+const WS_URL='ws://'+location.hostname+':8765';
+let ws=null,reconnectAttempts=0;
+
+function dot(st,hasCache){
+  if(st==='online'||st==='processing') return '<span class="status-dot online"></span>';
+  if(st==='idle') return '<span class="status-dot idle"></span>';
+  if(st==='offline') return '<span class="status-dot offline"></span>';
+  return hasCache?'<span class="status-dot online"></span>':'<span class="status-dot inactive"></span>';
+}
+function fmt(t){if(!t)return'0s';var h=Math.floor(t/3600),m=Math.floor((t%3600)/60);return h?h+'h '+m+'m':m?m+'m':t+'s'}
+function tr(s,m=20){return s?s.length>m?s.substring(0,m)+'…':s:'—'}
+
+function render(d){
+  if(!d)return;
+  if(d.system){
+    document.getElementById('cpu').innerText=d.system.cpu||'--';
+    document.getElementById('ram').innerText=d.system.memory||'--';
+    document.getElementById('load').innerText=d.system.load||'--';
+    document.getElementById('disk').innerText=d.system.disk||'--';
+    document.getElementById('proc').innerText=d.system.processes||'--';
+  }
+  if(d.timestamp) document.getElementById('lastUpdate').innerHTML='🕘 '+d.timestamp;
+
+  // Bridges
+  var ez=d.bridges?.ezra||{},ni=d.bridges?.nice||{};
+  document.getElementById('bridgesContainer').innerHTML=
+    '<div class="card card-bridge"><div class="card-title">'+dot(ez.status)+'🧠 EZRA <span class="badge">bridge</span></div><div class="card-info">'+
+    'status: <span style="color:'+(ez.status==='processing'?'#db61a2':'#e6edf3')+'">'+(ez.status||'offline')+'</span><br>'+
+    'uptime: <span>'+fmt(ez.uptime)+'</span><br>'+
+    'active: <span>'+(ez.active_agent||'—')+' / '+(ez.active_label||'—')+'</span><br>'+
+    'phase: <span class="badge phase-badge">'+(ez.phase||'—')+'</span><br>'+
+    'last msg: <span title="'+(ez.last_msg||'')+'">'+tr(ez.last_msg,25)+'</span><br>'+
+    'last resp: <span>'+tr(ez.last_resp,25)+'</span></div></div>'+
+    '<div class="card card-bridge-nice"><div class="card-title">'+dot(ni.status)+'🌉 NICE</div><div class="card-info">'+
+    'status: <span>'+(ni.status||'offline')+'</span><br>'+
+    'uptime: <span>'+fmt(ni.uptime)+'</span><br>'+
+    'threshold: <span>'+(ni.threshold||'—')+'</span><br>'+
+    'last: '+tr(ni.last_msg||ni.last_resp||'—',20)+'</div></div>';
+
+  // Core Agents (Coder + Planner from bridges active_agent)
+  var coderStatus=ez.active_agent==='coder'?'processing':(ez.status==='online'||ez.status==='idle'?'online':'offline');
+  var plannerStatus=ez.active_agent==='planner'?'processing':(ez.status==='online'||ez.status==='idle'?'online':'offline');
+  document.getElementById('coreContainer').innerHTML=
+    '<div class="card card-core"><div class="card-title">'+dot(coderStatus)+'💻 CODER <span class="badge core-badge">executor</span></div><div class="card-info">'+
+    'status: <span>'+(coderStatus==='online'?'🟢 Ativo':coderStatus==='processing'?'🟡 Processando':'⭘ Inativo')+'</span><br>'+
+    'phase: <span class="badge phase-badge">'+tr(ez.phase||'—',20)+'</span><br>'+
+    'role: <span>code generation & review</span>'+(ez.active_agent==='coder'?'<br><span class="badge" style="background:#db61a2">⚡ current task</span>':'')+'</div></div>'+
+    '<div class="card card-core"><div class="card-title">'+dot(plannerStatus)+'📐 PLANNER <span class="badge core-badge">architect</span></div><div class="card-info">'+
+    'status: <span>'+(plannerStatus==='online'?'🟢 Ativo':plannerStatus==='processing'?'🟡 Processando':'⭘ Inativo')+'</span><br>'+
+    'phase: <span class="badge phase-badge">'+tr(ez.phase||'—',20)+'</span><br>'+
+    'role: <span>task decomposition & routing</span>'+(ez.active_agent==='planner'?'<br><span class="badge" style="background:#db61a2">⚡ current task</span>':'')+'</div></div>';
+
+  // Directors
+  var dirs=d.directors||{},dirNames=['aisio','gilmario','jessica','josue','nice'];
+  var dh='';
+  for(var i=0;i<dirNames.length;i++){
+    var dir=dirs[dirNames[i]]||{},cache=dir.cache||{},log=cache.daily_log||{};
+    var hasLog=Object.keys(log).length>0||Object.keys(cache).length>1;
+    var ds=(dirNames[i]==='nice'?(ni.status==='offline'?'offline':'online'):hasLog?'online':'idle');
+    var ph='—',task='';
+    if(typeof log==='object'&&Object.keys(log).length){var lk=Object.keys(log).pop();ph=log[lk]?.phase||lk||'active';task=log[lk]?.task?'task: '+tr(log[lk].task,18):'';}
+    else if(cache.current_phase)ph=cache.current_phase;
+    dh+='<div class="card card-director"><div class="card-title">'+dot(ds)+'🎯 '+tr((dir.nome||dirNames[i].toUpperCase()),16)+'</div><div class="card-info">'+
+      'status: <span>'+(ds==='online'?'🟢 Ativo':'⭘ Inativo')+'</span><br>'+
+      'phase: <span class="badge phase-badge">'+tr(ph,15)+'</span><br>'+
+      (task?task+'<br>':'')+
+      (dirNames[i]==='nice'?'bridge: '+ni.status:'cache: '+(hasLog?'✓':'∅'))+'</div></div>';
+  }
+  document.getElementById('directorsContainer').innerHTML=dh;
+
+  // Daily agents
+  var daily=d.daily||{},dl=['certificacoes','estudos','filosofia','freelancer','google-skills','ingles','job-hunter','ml-engineer','pmp','portfolio','python','torah','nice'];
+  var dh2='';
+  for(var i=0;i<dl.length;i++){
+    var ag=daily[dl[i]]||{},cache=ag.cache||{},hasCache=Object.keys(cache).length>0;
+    var ph=cache.current_phase||cache.phase||(hasCache?'active':'inactive');
+    var nm=ag.nome||dl[i].replace('-',' ').toUpperCase();
+    if(dl[i]==='google-skills')nm='GOOGLE SKILLS';
+    if(dl[i]==='job-hunter')nm='JOB HUNTER';
+    if(dl[i]==='ml-engineer')nm='ML ENGINEER';
+    dh2+='<div class="card card-daily"><div class="card-title">'+dot('',hasCache)+'📋 '+tr(nm,14)+'</div><div class="card-info">'+
+      (hasCache?'🟢 Ativo':'⭘ Inativo')+'<br>'+
+      (hasCache?'<span class="badge phase-badge">'+tr(ph,12)+'</span>':'<span class="badge">—</span>')+'<br>'+
+      (hasCache?'log: '+Object.keys(cache).length+' entries':'no cache')+'</div></div>';
+  }
+  document.getElementById('dailyContainer').innerHTML=dh2;
+}
+
+function connect(){
+  if(ws&&(ws.readyState===WebSocket.OPEN||ws.readyState===WebSocket.CONNECTING))return;
+  ws=new WebSocket(WS_URL);
+  ws.onopen=()=>{document.getElementById('lastUpdate').innerHTML='🟢 live';reconnectAttempts=0};
+  ws.onmessage=e=>{try{render(JSON.parse(e.data))}catch(ex){}};
+  ws.onerror=()=>{document.getElementById('lastUpdate').innerHTML='⚠️ error'};
+  ws.onclose=()=>{document.getElementById('lastUpdate').innerHTML='🔴 retrying...';setTimeout(connect,Math.min(3000+reconnectAttempts*1000,15000))};
+}
+
+// Placeholder until WS connects
+render({bridges:{ezra:{status:'loading'},nice:{}},directors:{},daily:{},system:{cpu:'--',memory:'--',load:'--',disk:'--',processes:'--'},timestamp:new Date().toLocaleTimeString()});
+connect();
+</script>
+</body>
+</html>
