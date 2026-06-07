@@ -186,21 +186,21 @@
   "folder_structure": {
     "root": "/Users/mac/brachat-main",
     "central_state": "brachat-main/state.json",
-    "branding": "branding/ — Job hunting, freela, site, redes sociais",
+    "integrations": "integrations/ — WhatsApp bot, APIs, Instagram, conexões externas",
     "portfolio": "portfolio/ — Projetos criados, publicações e produções",
     "writings_studies": "writings_studies/ — Produções escritas",
-    "builder": "builder/ — Scripts, daemons e agentes de infraestrutura",
+    "cloud": "cloud/ — Scripts, daemons e agentes de infraestrutura",
     "builder_agents": "portfolio/builder_agents/ — Agentes e ferramentas de criação"
   },
   "memory_files": {
     "canonical_state": "/Users/mac/.opencode/state.json",
     "central_state": "/Users/mac/brachat-main/state.json",
     "folder_states": [
-      "/Users/mac/brachat-main/branding/state.json",
+      "/Users/mac/brachat-main/integrations/state.json",
       "/Users/mac/brachat-main/portfolio/state.json",
       "/Users/mac/brachat-main/portfolio/builder_agents/state.json",
       "/Users/mac/brachat-main/writings_studies/state.json",
-      "/Users/mac/brachat-main/builder/state.json"
+      "/Users/mac/brachat-main/cloud/state.json"
     ]
   },
   "session_log": [

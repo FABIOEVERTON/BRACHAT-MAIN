@@ -202,7 +202,7 @@ writings_studies/{area}/summaries/{topico}.md
 - Job hunting pipeline
 - Armazenado em: `assistant_agents/state.json`
 
-### branding/contacts.json (agenda WhatsApp)
+### integrations/contacts.json (agenda WhatsApp)
 - Contém número Business + contatos cadastrados
 - Agentes consultam: "quem devo contactar?"
 - Agentes inserem: novos contatos conforme necessário

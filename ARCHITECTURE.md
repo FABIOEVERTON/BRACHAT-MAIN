@@ -285,8 +285,8 @@ brachat-main/                         ← RAIZ DO ECOSSISTEMA
 | `daily/*/AGENT.md` | `cache.json` local | `cache.json` local | Orquestrador, Estudos |
 | `daily/estudos/AGENT.md` | `daily/*/cache.json` | `writings_studies/YYYY-MM-DD-progress.md` | Todos os agentes de estudo |
 | `aisio/AGENT.md` | `REGRAS.md`, `shared/governance/`, `state.json` | `governance-ledger.jsonl` | Orquestrador (pode bloquear) |
-| `nice/AGENT.md` | `branding/contacts.json`, `directors/nice/metadata.json` | `directors/nice/cache.json` | Telegram bot @luevertonbot |
-| `branding/contacts.json` | — | — | Agentes que precisam de contatos |
+| `nice/AGENT.md` | `integrations/contacts.json`, `directors/nice/metadata.json` | `directors/nice/cache.json` | Telegram bot @luevertonbot |
+| `integrations/contacts.json` | — | — | Agentes que precisam de contatos |
 | `builder/clickup_daemon.py` | `CLICKUP_LIST_ID` (env) | `builder/cache/clickup.json` | ClickUp via Composio SDK |
 | `builder/com.brachat.opencode.plist` | — | — | launchd → Telegram → OpenCode |
 | `writings_studies/official_schedule.md` | — | — | Orquestrador (lê todo início de sessão) |
