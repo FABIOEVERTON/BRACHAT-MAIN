@@ -129,3 +129,10 @@ telegram-*-state.json
 nice-telegram-*-state.json
 
 .playwright-mcp/
+
+# WebJS sessions
+.wwebjs_auth/
+.wwebjs_cache/
+
+# Playwright artifacts
+.playwright-mcp/
