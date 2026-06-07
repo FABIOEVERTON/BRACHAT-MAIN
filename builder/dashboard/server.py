@@ -10,9 +10,9 @@ EZRA_FILE = Path("/opt/brachat/state/malha.json")
 NICE_FILE = Path("/opt/brachat/state/nice.json")
 
 DAILY = [
-    "certificacoes","estudos","filosofia","freelancer",
+    "certificacoes","coder","estudos","filosofia","freelancer",
     "google-skills","ingles","job-hunter","ml-engineer",
-    "nice","pmp","portfolio","python","torah",
+    "nice","planner","pmp","portfolio","python","torah",
 ]
 DIRECTORS = ["aisio","gilmario","jessica","josue","nice"]
 

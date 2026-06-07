@@ -35,12 +35,12 @@ h1 small{color:#8b949e;font-size:12px}
 </style>
 </head>
 <body>
-<h1>BRACHAT <small>organograma</small></h1>
-
-<!-- Sistema + Git row -->
-<div class="lvl" style="margin-bottom:4px">
-  <div class="card" style="min-width:auto;flex:0"><h2>💻 <span id="sys-cpu"></span> · <span id="sys-ram"></span> · <span id="sys-load"></span></h2></div>
-  <div class="card" style="min-width:auto;flex:0"><h2>📦 <span id="git-branch"></span> <span id="git-commit"></span></h2></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px">
+  <h1 style="margin:0">BRACHAT <small>organograma</small></h1>
+  <div style="font-size:10px;color:#8b949e;text-align:right">
+    <div>💻 <span id="sys-cpu"></span> · <span id="sys-ram"></span> · <span id="sys-load"></span></div>
+    <div style="margin-top:1px">📦 <span id="git-branch"></span> <span id="git-commit"></span></div>
+  </div>
 </div>
 
 <!-- ORCHESTRATOR -->
