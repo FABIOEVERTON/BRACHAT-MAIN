@@ -49,9 +49,8 @@ h1 small,.sub{color:#8b949e;font-size:11px;margin-bottom:14px}
     <div class="row"><span class="l">Commit</span><span class="v" id="git-commit"></span><span class="l" style="margin-left:12px">Data</span><span class="v" id="git-date"></span></div></div>
 </div>
 
-<!-- Agentes Diarios -->
-  <div style="margin-top:14px;margin-bottom:6px;color:#8b949e;font-size:12px;text-transform:uppercase;letter-spacing:1px">📋 <span id="agents-count"></span> Agentes Diarios</div>
-<div id="daily-grid" style="display:flex;flex-wrap:wrap;gap:4px"></div>
+<div style="margin:14px 0 6px;color:#8b949e;font-size:12px;text-transform:uppercase;letter-spacing:1px">📋 <span id="agents-count"></span> Agentes Diarios</div>
+<div class="grid" id="daily-grid"></div>
 
 <div class="footer" id="footer"></div>
 
@@ -82,15 +81,14 @@ function fmtDur(s){ if(!s)return'-'; var h=Math.floor(s/3600),m=Math.floor((s%36
 function renderAgents(daily){
   var html='', count=0;
   for(var name in daily){
-    var a=daily[name];
-    var c=a.cache||{};
-    count++;
-    var phase=c.current_phase||c.ultima_tarefa||'-';
-    var day=c.current_day?'D'+c.current_day:'';
-    var extra=day||c.threshold_atual||'';
-    html+='<div class="mini"><b>'+a.nome+'</b>';
-    if(phase!='-') html+=' <span style="color:#8b949e">'+phase.slice(0,20)+'</span>';
-    if(extra) html+=' <span style="color:#484f58">'+extra+'</span>';
+    var a=daily[name], c=a.cache||{}; count++;
+    var phase=c.current_phase||'', mod=c.current_module||'', day=c.current_day||'';
+    var log=''; if(c.daily_log&&c.daily_log.length) log=String(c.daily_log[c.daily_log.length-1]).slice(0,120);
+    var extra=c.threshold_atual||c.start_date||'';
+    html+='<div class="card"><h2>🤖 '+a.nome+'</h2>';
+    if(phase||mod) html+='<div class="row"><span class="l">Fase</span><span class="v">'+phase+' '+(mod?'M'+mod:'')+(day?' D'+day:'')+'</span></div>';
+    if(extra) html+='<div class="row"><span class="l">Info</span><span class="v">'+extra.slice(0,30)+'</span></div>';
+    if(log) html+='<div class="msg">'+log+'</div>';
     html+='</div>';
   }
   document.getElementById('daily-grid').innerHTML=html;
