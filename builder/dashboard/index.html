@@ -4,14 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>BRACHAT · Organizational Chart</title>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter','system-ui',-apple-system,sans-serif;background:#f0f2f5;padding:20px;min-height:100vh;color:#1f2937}
 .container{max-width:1400px;margin:0 auto}
 
-/* header */
-.header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;flex-wrap:wrap;gap:12px}
+.header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;flex-wrap:wrap;gap:12px}
 .title h1{font-size:22px;font-weight:700;color:#111827;margin:0}
 .title h1 span{color:#7c3aed}
 .title p{font-size:12px;color:#6b7280;margin-top:2px;letter-spacing:.5px}
@@ -19,26 +17,56 @@ body{font-family:'Inter','system-ui',-apple-system,sans-serif;background:#f0f2f5
 .sys div{display:flex;gap:4px;align-items:center}
 .sys .l{color:#9ca3af}.sys .v{color:#111827;font-weight:600;font-variant-numeric:tabular-nums}
 
-/* mermaid container */
-.chart-wrap{background:#fff;border-radius:14px;border:1px solid #e5e7eb;padding:24px 16px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow-x:auto}
-.chart-wrap .mermaid{display:flex;justify-content:center;min-width:600px}
+/* org tree */
+.tree{display:flex;flex-direction:column;align-items:center;gap:0}
+.lvl{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;position:relative;padding:8px 0}
+.lvl+.lvl::before{content:'';display:block;position:absolute;top:-8px;left:50%;width:2px;height:8px;background:#d1d5db}
+.lbl{width:100%;text-align:center;font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;font-weight:600}
 
-/* legend */
+/* cards */
+.card{background:#fff;border-radius:10px;padding:10px 14px;border:1px solid #e5e7eb;box-shadow:0 1px 2px rgba(0,0,0,.04);text-align:center;min-width:110px;cursor:default;position:relative;transition:all .15s}
+.card:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.card .nm{font-size:13px;font-weight:700;margin-bottom:2px;display:flex;align-items:center;justify-content:center;gap:5px}
+.card .role{font-size:9px;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.card .status{font-size:10px;display:flex;align-items:center;justify-content:center;gap:4px;margin-bottom:2px}
+.card .phase{font-size:9px;background:#f3f4f6;padding:1px 6px;border-radius:4px;color:#6b7280;display:inline-block}
+
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
+.dot.on{background:#10b981;box-shadow:0 0 4px rgba(16,185,129,.4)}
+.dot.off{background:#d1d5db}
+.dot.busy{background:#f59e0b;box-shadow:0 0 4px rgba(245,158,11,.4);animation:pulse .6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* level colors */
+.lvl-orch .card{border-color:#fbbf24;background:linear-gradient(135deg,#fffbeb,#fff)}
+.lvl-orch .card .nm{color:#d97706}
+.lvl-dir .card{border-color:#0e7490;background:linear-gradient(135deg,#ecfeff,#fff)}
+.lvl-dir .card .nm{color:#0e7490}
+.lvl-build .card{border-color:#059669;background:linear-gradient(135deg,#ecfdf5,#fff)}
+.lvl-build .card .nm{color:#059669}
+.lvl-study .card{border-color:#d1d5db;background:#fafafa}
+.lvl-study .card .nm{color:#4b5563}
+
+/* tooltip */
+.tt{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1f2937;color:#f9fafb;padding:6px 10px;border-radius:6px;font-size:10px;white-space:nowrap;z-index:10;pointer-events:none}
+.tt::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1f2937}
+.card:hover .tt{display:block}
+
 .legend{display:flex;gap:20px;justify-content:center;margin:20px 0 0;flex-wrap:wrap;font-size:11px;color:#6b7280}
 .legend div{display:flex;align-items:center;gap:5px}
 .legend .sw{width:12px;height:12px;border-radius:3px}
-
-/* footer / status bar */
 .ft{text-align:center;font-size:10px;color:#9ca3af;margin-top:20px;padding-top:12px;border-top:1px solid #e5e7eb}
 
-/* tooltip override for mermaid */
-.mermaidTooltip{font-size:11px!important;padding:6px 10px!important;border-radius:8px!important}
+/* connector lines between levels */
+.tree{position:relative}
+.conn{display:flex;justify-content:center;gap:4px;height:16px;position:relative}
+.conn-line{width:2px;height:12px;background:#d1d5db}
 
 @media(max-width:640px){
   body{padding:12px}
   .header{flex-direction:column}
   .sys{gap:10px;flex-wrap:wrap}
-  .chart-wrap{padding:12px 8px}
+  .lvl{gap:10px}
 }
 </style>
 </head>
@@ -56,131 +84,116 @@ body{font-family:'Inter','system-ui',-apple-system,sans-serif;background:#f0f2f5
     </div>
   </div>
 
-  <div class="chart-wrap">
-    <pre class="mermaid" id="mermaid">
-flowchart TD
-  subgraph ORCHESTRATOR[" "]
-    EZRA["EZRA<br/><small>orchestrator</small>"]
-  end
+  <div class="tree">
+    <!-- ORCHESTRATOR -->
+    <div class="lvl lvl-orch" id="lvl-orch"><div class="lbl">orchestrator</div></div>
 
-  subgraph DIRECTORS[" "]
-    AISIO["AÍSIO<br/><small>governance</small>"]
-    NICE_DIR["NICE<br/><small>home governance</small>"]
-    JESSICA["JÉSSICA<br/><small>legal</small>"]
-  end
+    <div class="conn" id="conn1"><div class="conn-line"></div></div>
 
-  subgraph BUILDERS[" "]
-    PLANNER["PLANNER<br/><small>architecture</small>"]
-    CODER["CODER<br/><small>implementation</small>"]
-  end
+    <!-- DIRECTORS + BUILDERS -->
+    <div class="lvl lvl-dir" id="lvl-dir"><div class="lbl">directors</div></div>
+    <div class="lvl lvl-build" id="lvl-build"><div class="lbl">builders</div></div>
 
-  subgraph STUDIES[" "]
-    CERT["CERTIFICAC"]
-    ESTUDOS["ESTUDOS"]
-    FILO["FILOSOFIA"]
-    FREE["FREELANCER"]
-    GSKILLS["GOOGLE‑SKILLS"]
-    INGLES["INGLÊS"]
-    JH["JOB‑HUNTER"]
-    MLC["ML‑CENTER"]
-    PORT["PORTFOLIO"]
-    TORAH["TORAH"]
-  end
+    <div class="conn" id="conn3"><div class="conn-line"></div></div>
 
-  EZRA --> AISIO
-  EZRA --> NICE_DIR
-  EZRA --> JESSICA
-  EZRA --> PLANNER
-  PLANNER --> CODER
-  EZRA --> ESTUDOS
-  EZRA --> CERT
-  EZRA --> FILO
-  EZRA --> FREE
-  EZRA --> GSKILLS
-  EZRA --> INGLES
-  EZRA --> JH
-  EZRA --> MLC
-  EZRA --> PORT
-  EZRA --> TORAH
-
-  style EZRA fill:#fbbf24,stroke:#d97706,color:#111,font-weight:bold
-  style AISIO fill:#0e7490,stroke:#155e75,color:#fff
-  style NICE_DIR fill:#0e7490,stroke:#155e75,color:#fff
-  style JESSICA fill:#0e7490,stroke:#155e75,color:#fff
-  style PLANNER fill:#059669,stroke:#047857,color:#fff
-  style CODER fill:#059669,stroke:#047857,color:#fff
-  style CERT fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
-  style ESTUDOS fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
-  style FILO fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
-  style FREE fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
-  style GSKILLS fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
-  style INGLES fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
-  style JH fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
-  style MLC fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
-  style PORT fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
-  style TORAH fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
-    </pre>
+    <!-- STUDIES -->
+    <div class="lvl lvl-study" id="lvl-study"><div class="lbl">studies</div></div>
   </div>
 
   <div class="legend">
     <div><span class="sw" style="background:#fbbf24"></span>Orchestrator</div>
     <div><span class="sw" style="background:#0e7490"></span>Directors</div>
-    <div><span class="sw" style="background:#059669"></span>Builder Agents</div>
-    <div><span class="sw" style="background:#e5e7eb"></span>Studies Agents</div>
+    <div><span class="sw" style="background:#059669"></span>Builders</div>
+    <div><span class="sw" style="background:#d1d5db"></span>Studies</div>
   </div>
 
   <div class="ft" id="ft">⏻ connecting to live data…</div>
 </div>
 
 <script>
-mermaid.initialize({
-  startOnLoad:true,
-  theme:'base',
-  themeVariables:{
-    fontFamily:'Inter,system-ui,sans-serif',
-    fontSize:'13px',
-    primaryColor:'#f3f4f6',
-    primaryBorderColor:'#e5e7eb',
-    primaryTextColor:'#1f2937',
-    lineColor:'#9ca3af',
-    secondaryColor:'#fff',
-    tertiaryColor:'#f9fafb',
-    mainBkg:'#fff',
-    nodeBorder:'#e5e7eb',
-    clusterBkg:'#f9fafb',
-    clusterBorder:'#e5e7eb',
-    titleColor:'#6b7280',
-  },
-  flowchart:{
-    useMaxWidth:true,
-    htmlLabels:true,
-    curve:'basis',
-    padding:12,
-  }
-});
-
-// WebSocket live update for system metrics
-const WS='ws://'+location.hostname+':8765';
-let ws=null,rt=0;
-
+const WS='ws://'+location.hostname+':8765';let ws=null,rt=0;
 function set(id,v){var e=document.getElementById(id);if(e)e.textContent=v||'—'}
+
+// determine real status from cache
+function realSt(c){
+  if(!c||typeof c!=='object')return 'off';
+  if(c.daily_log){
+    if(Array.isArray(c.daily_log)&&c.daily_log.length>0)return 'on';
+    if(typeof c.daily_log==='object'&&Object.keys(c.daily_log).length>0)return 'on';
+  }
+  if(c.history&&Array.isArray(c.history)&&c.history.length>0)return 'on';
+  if(c.current_phase&&c.current_phase!=='')return 'on';
+  if(c.current_day&&c.current_day>0)return 'on';
+  if(c.ultima_tarefa&&c.ultima_tarefa!==null)return 'on';
+  if(c.ultima_acao&&c.ultima_acao!==null)return 'on';
+  return 'off';
+}
+
+function card(nm,role,dotSt,phase,tip){
+  return '<div class="card"><div class="nm"><span class="dot '+dotSt+'"></span>'+nm+'</div>'+
+    '<div class="role">'+role+'</div>'+
+    '<div class="status">'+(dotSt==='on'?'🟢 active':dotSt==='busy'?'🟡 processing':'⭘ inactive')+
+    (phase&&phase!=='—'?' · <span class="phase">'+phase+'</span>':'')+'</div>'+
+    '<div class="tt">'+tip+'</div></div>';
+}
+
+function render(d){
+  if(!d)return;
+  if(d.system){
+    set('cpu',d.system.cpu||'—');set('ram',d.system.memory||'—');set('load',d.system.load||'—');
+  }
+  set('ft',d.timestamp?'🕘 '+d.timestamp+' · live':'⏻ connecting…');
+
+  var ez=d.bridges?.ezra||{},ni=d.bridges?.nice||{};
+  var ezSt=ez.status==='processing'?'busy':(ez.status==='online'||ez.status==='idle'?'on':'off');
+  var niSt=ni.status==='processing'?'busy':(ni.status==='online'||ni.status==='idle'?'on':'off');
+  var daily=d.daily||{},dirs=d.directors||{};
+
+  // ORCHESTRATOR
+  document.getElementById('lvl-orch').innerHTML=
+    '<div class="lbl">orchestrator</div>'+
+    card('EZRA','orchestrator',ezSt,ez.phase||'—','Agent: '+(ez.active_agent||'—')+' | Msgs: '+(ez.last_msg?ez.last_msg.slice(0,30):'—'))+
+    card('NICE','home governance bridge',niSt,ni.threshold||'—','Threshold: '+(ni.threshold||'—'));
+
+  // DIRECTORS
+  var dirN=['aisio','gilmario','jessica','josue','nice'];
+  var dirMap={'aisio':'AÍSIO','gilmario':'GILMÁRIO','jessica':'JÉSSICA','josue':'JOSUÉ','nice':'NICE'};
+  var dirRole={'aisio':'governance & compliance','gilmario':'education & branding','jessica':'legal','josue':'executive & finance','nice':'home governance'};
+  var dh='<div class="lbl">directors</div>';
+  for(var i=0;i<dirN.length;i++){
+    var dir=dirs[dirN[i]]||{},c=dir.cache||{},st=realSt(c);
+    var ph=c.current_phase||'—';
+    dh+=card(dirMap[dirN[i]],dirRole[dirN[i]],st,ph,dirRole[dirN[i]]);
+  }
+  document.getElementById('lvl-dir').innerHTML=dh;
+
+  // BUILDERS
+  var coderSt=ez.active_agent==='coder'?'busy':realSt(daily.coder?.cache);
+  var planSt=ez.active_agent==='planner'?'busy':realSt(daily.planner?.cache);
+  document.getElementById('lvl-build').innerHTML=
+    '<div class="lbl">builders</div>'+
+    card('PLANNER','architecture & planning',planSt,ez.phase||'—','Plans system architecture, contracts, workflows')+
+    card('CODER','implementation',coderSt,ez.phase||'—','Develops code per architecture');
+
+  // STUDIES
+  var studyN=['certificacoes','estudos','filosofia','freelancer','google-skills','ingles','job-hunter','ml-engineer','portfolio','torah'];
+  var studyNm={'certificacoes':'CERTIFICAC','estudos':'STUDIES','filosofia':'PHILOSOPHY','freelancer':'FREELANCER','google-skills':'GOOGLE SKILLS','ingles':'ENGLISH','job-hunter':'JOB HUNTER','ml-engineer':'ML ENGINEER','portfolio':'PORTFOLIO','torah':'TORAH'};
+  var studyRole={'certificacoes':'certifications','estudos':'main studies','filosofia':'philosophy','freelancer':'freelance','google-skills':'google skills','ingles':'english','job-hunter':'job search','ml-engineer':'machine learning','portfolio':'portfolio','torah':'torah'};
+  var sh='<div class="lbl">studies</div>';
+  for(var i=0;i<studyN.length;i++){
+    var ag=daily[studyN[i]]||{},c=ag.cache||{},st=realSt(c);
+    var ph=[c.current_phase,c.current_module?'M'+c.current_module:'',c.current_day?'D'+c.current_day:''].filter(Boolean).join(' ')||'—';
+    sh+=card(studyNm[studyN[i]],studyRole[studyN[i]],st,ph,studyRole[studyN[i]]);
+  }
+  document.getElementById('lvl-study').innerHTML=sh;
+}
 
 function connect(){
   if(ws&&(ws.readyState===WebSocket.OPEN||ws.readyState===WebSocket.CONNECTING))return;
   ws=new WebSocket(WS);
-  ws.onopen=()=>{rt=0;set('ft','🟢 live data · every 1s')};
-  ws.onmessage=e=>{
-    try{
-      var d=JSON.parse(e.data);
-      if(d.system){
-        set('cpu',d.system.cpu||'—');
-        set('ram',d.system.memory||'—');
-        set('load',d.system.load||'—');
-      }
-      if(d.timestamp) set('ft','🕘 '+d.timestamp+' · live');
-    }catch(ex){}
-  };
-  ws.onerror=ws.onclose=()=>{setTimeout(connect,Math.min(3000+rt++*1000,15000));set('ft','⚠️ reconnecting…')};
+  ws.onopen=()=>{rt=0};
+  ws.onmessage=e=>{try{render(JSON.parse(e.data))}catch(ex){}};
+  ws.onerror=ws.onclose=()=>{setTimeout(connect,Math.min(3000+rt++*1000,15000))};
 }
 connect();
 </script>
