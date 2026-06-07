@@ -63,13 +63,18 @@ function renderCards(data, gridId, countId){
   var html='', count=0;
   for(var name in data){
     var a=data[name], c=a.cache||{}; count++;
-    var phase=[c.current_phase,c.current_module?'M'+c.current_module:'',c.current_day?'D'+c.current_day:''].filter(Boolean).join(' ');
-    var info=c.threshold_atual||c.start_date||'';
-    var log=''; if(c.daily_log&&c.daily_log.length) log=String(c.daily_log[c.daily_log.length-1]).slice(0,120);
-    html+='<div class="card"><h2>'+a.nome+'</h2>';
-    if(phase) html+='<div class="row"><span class="v">'+phase+'</span></div>';
-    if(info) html+='<div class="row"><span class="l">Info</span><span class="v">'+info+'</span></div>';
-    if(log) html+='<div class="msg">'+log+'</div>';
+    var fase=c.current_phase||'-', mod=c.current_module||'', dia=c.current_day||'';
+    var faseStr=[fase,mod?'M'+mod:'',dia?'D'+dia:''].filter(Boolean).join(' ');
+    var info=c.threshold_atual||c.ultima_tarefa||c.ultima_acao||c.start_date||'';
+    var log=''; if(c.daily_log&&typeof c.daily_log==='object'){
+      if(Array.isArray(c.daily_log)&&c.daily_log.length) log=String(c.daily_log[c.daily_log.length-1]).slice(0,120);
+      else if(typeof c.daily_log==='object'&&Object.keys(c.daily_log).length) log=JSON.stringify(Object.values(c.daily_log).pop()).slice(0,120);
+    }
+    var ativo=fase!='-'||info||log;
+    html+='<div class="card"><h2>'+(ativo?'':'○ ')+a.nome+'</h2>';
+    html+='<div class="row"><span class="l">Fase</span><span class="v">'+faseStr+'</span></div>';
+    html+='<div class="row"><span class="l">Info</span><span class="v">'+(info||'inativo')+'</span></div>';
+    html+='<div class="row'+(log?'':'')+'"><span class="l">Log</span><span class="v">'+(log||'-')+'</span></div>';
     html+='</div>';
   }
   document.getElementById(gridId).innerHTML=html;
