@@ -26,6 +26,7 @@ body{font-family:'Inter','system-ui',-apple-system,sans-serif;background:#f0f2f5
 /* cards */
 .card{background:#fff;border-radius:10px;padding:10px 14px;border:1px solid #e5e7eb;box-shadow:0 1px 2px rgba(0,0,0,.04);text-align:center;min-width:110px;cursor:default;position:relative;transition:all .15s}
 .card:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.card.inactive{opacity:.25;filter:grayscale(.9);pointer-events:none}
 .card .nm{font-size:13px;font-weight:700;margin-bottom:2px;display:flex;align-items:center;justify-content:center;gap:5px}
 .card .role{font-size:9px;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
 .card .status{font-size:10px;display:flex;align-items:center;justify-content:center;gap:4px;margin-bottom:2px}
@@ -130,7 +131,8 @@ function realSt(c){
 }
 
 function card(nm,role,dotSt,phase,tip){
-  return '<div class="card"><div class="nm"><span class="dot '+dotSt+'"></span>'+nm+'</div>'+
+  var cls=dotSt==='off'?' card inactive':'';
+  return '<div class="card'+cls+'"><div class="nm"><span class="dot '+dotSt+'"></span>'+nm+'</div>'+
     '<div class="role">'+role+'</div>'+
     '<div class="status">'+(dotSt==='on'?'🟢 active':dotSt==='busy'?'🟡 processing':'⭘ inactive')+
     (phase&&phase!=='—'?' · <span class="phase">'+phase+'</span>':'')+'</div>'+
