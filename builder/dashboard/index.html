@@ -1,196 +1,186 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>BRACHAT Organograma</title>
+<title>BRACHAT · Organizational Chart</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'SF Mono','Fira Code','Courier New',monospace;background:linear-gradient(135deg,#0a0e1a,#0d1117);padding:20px;min-height:100vh;color:#e6edf3}
-.d{max-width:1600px;margin:0 auto}
-.h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid #30363d;flex-wrap:wrap;gap:12px}
-.t{font-size:22px;font-weight:bold;background:linear-gradient(135deg,#58a6ff,#f0883e);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:2px}
-.t small{font-size:11px;color:#8b949e;letter-spacing:normal}
-.sys{display:flex;gap:16px;font-size:11px;background:#161b22;padding:6px 12px;border-radius:8px;border:1px solid #30363d;flex-wrap:wrap}
-.sys span{color:#58a6ff;font-weight:bold}
-.sec{font-size:13px;text-transform:uppercase;letter-spacing:2px;color:#58a6ff;margin:20px 0 12px 0;padding-left:8px;border-left:3px solid #f0883e;font-weight:bold}
-.r{display:flex;gap:12px;margin-bottom:16px}
-.r .c{flex:1;min-width:0;background:#161b22;border:1px solid #30363d;border-radius:10px;padding:12px;transition:all .2s}
-.r .c:hover{border-color:#58a6ff;box-shadow:0 4px 12px rgba(88,166,255,.1)}
-.c h3{font-size:13px;margin-bottom:8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.c hr{border:none;border-top:1px solid #21262d;margin:6px 0}
-.rw{display:flex;justify-content:space-between;padding:2px 0;font-size:11px;gap:8px}
-.rw .l{color:#8b949e;white-space:nowrap}
-.rw .v{color:#e6edf3;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:55%}
-.msg{background:#0d1117;border-radius:4px;padding:3px 5px;margin-top:4px;font-size:10px;color:#8b949e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
-.dot.on{background:#3fb950;box-shadow:0 0 4px #3fb950}
-.dot.busy{background:#db61a2;box-shadow:0 0 6px #db61a2;animation:pulse .6s infinite}
-.dot.off{background:#6e7681}
-.dot.idle{background:#d29922;box-shadow:0 0 4px #d29922}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.bdg{background:#21262d;padding:1px 5px;border-radius:10px;font-size:9px}
-.bdg.p{background:#1f3a3f;color:#7ee787}
-.bdg.g{background:#3d2e1f;color:#d29922}
-.bdg.l{background:#1f2e3d;color:#58a6ff}
-#ft{position:fixed;bottom:8px;right:8px;font-size:9px;background:#161b22;padding:3px 7px;border-radius:5px;color:#6e7681}
-@media(max-width:800px){.r{flex-wrap:wrap}.r .c{min-width:140px}}
+body{font-family:'Inter','system-ui',-apple-system,sans-serif;background:#f0f2f5;padding:20px;min-height:100vh;color:#1f2937}
+.container{max-width:1400px;margin:0 auto}
+
+/* header */
+.header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;flex-wrap:wrap;gap:12px}
+.title h1{font-size:22px;font-weight:700;color:#111827;margin:0}
+.title h1 span{color:#7c3aed}
+.title p{font-size:12px;color:#6b7280;margin-top:2px;letter-spacing:.5px}
+.sys{display:flex;gap:14px;font-size:11px;background:#fff;padding:6px 14px;border-radius:10px;border:1px solid #e5e7eb;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.sys div{display:flex;gap:4px;align-items:center}
+.sys .l{color:#9ca3af}.sys .v{color:#111827;font-weight:600;font-variant-numeric:tabular-nums}
+
+/* mermaid container */
+.chart-wrap{background:#fff;border-radius:14px;border:1px solid #e5e7eb;padding:24px 16px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow-x:auto}
+.chart-wrap .mermaid{display:flex;justify-content:center;min-width:600px}
+
+/* legend */
+.legend{display:flex;gap:20px;justify-content:center;margin:20px 0 0;flex-wrap:wrap;font-size:11px;color:#6b7280}
+.legend div{display:flex;align-items:center;gap:5px}
+.legend .sw{width:12px;height:12px;border-radius:3px}
+
+/* footer / status bar */
+.ft{text-align:center;font-size:10px;color:#9ca3af;margin-top:20px;padding-top:12px;border-top:1px solid #e5e7eb}
+
+/* tooltip override for mermaid */
+.mermaidTooltip{font-size:11px!important;padding:6px 10px!important;border-radius:8px!important}
+
+@media(max-width:640px){
+  body{padding:12px}
+  .header{flex-direction:column}
+  .sys{gap:10px;flex-wrap:wrap}
+  .chart-wrap{padding:12px 8px}
+}
 </style>
 </head>
 <body>
-<div class="d">
-<div class="h">
-<div class="t">BRACHAT <small>organograma</small></div>
-<div class="sys">CPU&nbsp;<span id="cpu">--</span> · RAM&nbsp;<span id="ram">--</span> · LOAD&nbsp;<span id="load">--</span> · 📦&nbsp;<span id="git">--</span></div>
+<div class="container">
+  <div class="header">
+    <div class="title">
+      <h1>BRACHAT <span>·</span> Organizational Chart</h1>
+      <p>Governance and Execution</p>
+    </div>
+    <div class="sys" id="sys">
+      <div><span class="l">CPU</span><span class="v" id="cpu">—</span></div>
+      <div><span class="l">RAM</span><span class="v" id="ram">—</span></div>
+      <div><span class="l">LOAD</span><span class="v" id="load">—</span></div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <pre class="mermaid" id="mermaid">
+flowchart TD
+  subgraph ORCHESTRATOR[" "]
+    EZRA["EZRA<br/><small>orchestrator</small>"]
+  end
+
+  subgraph DIRECTORS[" "]
+    AISIO["AÍSIO<br/><small>governance</small>"]
+    NICE_DIR["NICE<br/><small>home governance</small>"]
+    JESSICA["JÉSSICA<br/><small>legal</small>"]
+  end
+
+  subgraph BUILDERS[" "]
+    PLANNER["PLANNER<br/><small>architecture</small>"]
+    CODER["CODER<br/><small>implementation</small>"]
+  end
+
+  subgraph STUDIES[" "]
+    CERT["CERTIFICAC"]
+    ESTUDOS["ESTUDOS"]
+    FILO["FILOSOFIA"]
+    FREE["FREELANCER"]
+    GSKILLS["GOOGLE‑SKILLS"]
+    INGLES["INGLÊS"]
+    JH["JOB‑HUNTER"]
+    MLC["ML‑CENTER"]
+    PORT["PORTFOLIO"]
+    TORAH["TORAH"]
+  end
+
+  EZRA --> AISIO
+  EZRA --> NICE_DIR
+  EZRA --> JESSICA
+  EZRA --> PLANNER
+  PLANNER --> CODER
+  EZRA --> ESTUDOS
+  EZRA --> CERT
+  EZRA --> FILO
+  EZRA --> FREE
+  EZRA --> GSKILLS
+  EZRA --> INGLES
+  EZRA --> JH
+  EZRA --> MLC
+  EZRA --> PORT
+  EZRA --> TORAH
+
+  style EZRA fill:#fbbf24,stroke:#d97706,color:#111,font-weight:bold
+  style AISIO fill:#0e7490,stroke:#155e75,color:#fff
+  style NICE_DIR fill:#0e7490,stroke:#155e75,color:#fff
+  style JESSICA fill:#0e7490,stroke:#155e75,color:#fff
+  style PLANNER fill:#059669,stroke:#047857,color:#fff
+  style CODER fill:#059669,stroke:#047857,color:#fff
+  style CERT fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
+  style ESTUDOS fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
+  style FILO fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
+  style FREE fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
+  style GSKILLS fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
+  style INGLES fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
+  style JH fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
+  style MLC fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
+  style PORT fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
+  style TORAH fill:#e5e7eb,stroke:#d1d5db,color:#1f2937
+    </pre>
+  </div>
+
+  <div class="legend">
+    <div><span class="sw" style="background:#fbbf24"></span>Orchestrator</div>
+    <div><span class="sw" style="background:#0e7490"></span>Directors</div>
+    <div><span class="sw" style="background:#059669"></span>Builder Agents</div>
+    <div><span class="sw" style="background:#e5e7eb"></span>Studies Agents</div>
+  </div>
+
+  <div class="ft" id="ft">⏻ connecting to live data…</div>
 </div>
-
-<div class="sec">⚡ ORQUESTRADOR</div>
-<div class="r" id="r0"></div>
-
-<div class="sec">🎯 DIRETORES</div>
-<div class="r" id="r1"></div>
-
-<div class="sec">🛠️ OPERÁRIOS</div>
-<div class="r" id="r2"></div>
-</div>
-<div id="ft">⏻ connecting…</div>
 
 <script>
-const WS='ws://'+location.hostname+':8765';let ws=null,rt=0;
-
-function dot(st){return '<span class="dot '+(st||'off')+'"></span>'}
-function tr(s,n=120){return s?s.length>n?s.slice(0,n)+'…':s:'—'}
-function fmt(t){if(!t)return'—';var h=Math.floor(t/3600),m=Math.floor((t%3600)/60);return h?h+'h'+m+'m':m?m+'m':t+'s'}
-
-// Real status checker: only ATIVO if there's actual activity data
-function realStatus(c){
-  if(!c||typeof c!=='object')return 'off';
-  // Has real activity: daily_log with entries, history with entries, or current_phase+day
-  if(c.daily_log) {
-    if(Array.isArray(c.daily_log)&&c.daily_log.length>0) return 'on';
-    if(typeof c.daily_log==='object'&&Object.keys(c.daily_log).length>0) return 'on';
+mermaid.initialize({
+  startOnLoad:true,
+  theme:'base',
+  themeVariables:{
+    fontFamily:'Inter,system-ui,sans-serif',
+    fontSize:'13px',
+    primaryColor:'#f3f4f6',
+    primaryBorderColor:'#e5e7eb',
+    primaryTextColor:'#1f2937',
+    lineColor:'#9ca3af',
+    secondaryColor:'#fff',
+    tertiaryColor:'#f9fafb',
+    mainBkg:'#fff',
+    nodeBorder:'#e5e7eb',
+    clusterBkg:'#f9fafb',
+    clusterBorder:'#e5e7eb',
+    titleColor:'#6b7280',
+  },
+  flowchart:{
+    useMaxWidth:true,
+    htmlLabels:true,
+    curve:'basis',
+    padding:12,
   }
-  if(c.history&&Array.isArray(c.history)&&c.history.length>0) return 'on';
-  if(c.current_phase&&c.current_phase!=='') return 'on';
-  if(c.current_day&&c.current_day>0) return 'on';
-  if(c.ultima_tarefa&&c.ultima_tarefa!==null&&c.ultima_tarefa!=='') return 'on';
-  if(c.ultima_acao&&c.ultima_acao!==null&&c.ultima_acao!=='') return 'on';
-  return 'off';
-}
+});
 
-function buildCard(title, badge, cls, rows, dotSt){
-  var h='<div class="c '+cls+'"><h3>'+dot(dotSt)+title+(badge?' <span class="bdg '+badge.cl+'">'+badge.t+'</span>':'')+'</h3>';
-  for(var i=0;i<rows.length;i++){
-    if(rows[i][0]==='_msg') h+='<div class="msg">'+tr(rows[i][1],130)+'</div>';
-    else h+='<div class="rw"><span class="l">'+rows[i][0]+'</span><span class="v">'+tr(rows[i][1],45)+'</span></div>';
-  }
-  return h+'</div>';
-}
-
-function render(d){
-  if(!d)return;
-
-  // System + Git
-  if(d.system){
-    set('cpu',d.system.cpu||'—');set('ram',d.system.memory||'—');set('load',d.system.load||'—');
-  }
-  set('ft',d.timestamp?'🕘 '+d.timestamp+' · live':'⏻ connecting…');
-
-  // ---- ROW 0: EZRA + NICE ----
-  var ez=d.bridges?.ezra||{},ni=d.bridges?.nice||{};
-  var ezSt=ez.status==='processing'?'busy':ez.status==='online'||ez.status==='idle'?'on':'off';
-  var niSt=ni.status==='processing'?'busy':ni.status==='online'||ni.status==='idle'?'on':'off';
-
-  var cd='<div class="c" style="flex:2;border-color:#58a6ff;background:linear-gradient(135deg,#1a1f2e,#161b22)"><h3 style="font-size:16px;color:#58a6ff">'+dot(ezSt)+'EZRA <span class="bdg l">orquestrador</span></h3>'+
-    '<div class="rw"><span class="l">status</span><span class="v">'+(ez.status||'offline')+' · '+fmt(ez.uptime)+'</span></div>'+
-    '<div class="rw"><span class="l">agente</span><span class="v">'+(ez.active_label||ez.active_agent||'—')+'</span></div>'+
-    '<div class="rw"><span class="l">fase</span><span class="v"><span class="bdg p">'+(ez.phase||'—')+'</span></span></div>'+
-    (ez.last_msg?'<div class="msg">📩 '+tr(ez.last_msg,130)+'</div>':'')+
-    (ez.last_resp?'<div class="msg">💬 '+tr(ez.last_resp,130)+'</div>':'')+'</div>';
-
-  cd+='<div class="c" style="flex:1"><h3>'+dot(niSt)+'NICE <span class="bdg l">bridge</span></h3>'+
-    '<div class="rw"><span class="l">status</span><span class="v">'+(ni.status||'offline')+'</span></div>'+
-    '<div class="rw"><span class="l">uptime</span><span class="v">'+fmt(ni.uptime)+'</span></div>'+
-    '<div class="rw"><span class="l">threshold</span><span class="v">'+(ni.threshold||'—')+'</span></div>'+
-    (ni.last_msg?'<div class="msg">📩 '+tr(ni.last_msg,100)+'</div>':'')+'</div>';
-
-  // Core agents: CODER + PLANNER (status from EZRA dispatch)
-  var coderSt=ez.active_agent==='coder'?'busy':realStatus(d.daily?.coder?.cache);
-  var planSt=ez.active_agent==='planner'?'busy':realStatus(d.daily?.planner?.cache);
-  var coderRows=[
-    ['status',coderSt==='busy'?'🟡 processando':coderSt==='on'?'🟢 ativo':'⭘ inativo'],
-    ['fase',ez.phase||'—'],
-    ['role','code gen & review'],
-  ];
-  var planRows=[
-    ['status',planSt==='busy'?'🟡 processando':planSt==='on'?'🟢 ativo':'⭘ inativo'],
-    ['fase',ez.phase||'—'],
-    ['role','task decomposition'],
-  ];
-  cd+=buildCard('CODER',{t:'executor',cl:'g'},'',coderRows,coderSt);
-  cd+=buildCard('PLANNER',{t:'architect',cl:'g'},'',planRows,planSt);
-  document.getElementById('r0').innerHTML=cd;
-
-  // ---- ROW 1: DIRECTORS ----
-  var dirs=d.directors||{},dirN=['aisio','gilmario','jessica','josue','nice'];
-  var dh='';
-  for(var i=0;i<dirN.length;i++){
-    var dir=dirs[dirN[i]]||{},c=dir.cache||{};
-    var st=realStatus(c);
-    var ph=c.current_phase||'—';
-    var last='';
-    if(st==='on'&&c.daily_log){
-      if(Array.isArray(c.daily_log)&&c.daily_log.length) last=String(c.daily_log[c.daily_log.length-1]).slice(0,40);
-      else if(typeof c.daily_log==='object'){
-        var k=Object.keys(c.daily_log);if(k.length)last=JSON.stringify(c.daily_log[k[k.length-1]]).slice(0,40);
-      }
-    }
-    dh+='<div class="c"><h3>'+dot(st)+'🎯 '+tr(dir.nome||dirN[i].toUpperCase(),16)+'</h3>'+
-      '<div class="rw"><span class="l">status</span><span class="v">'+(st==='on'?'🟢 ativo':'⭘ inativo')+'</span></div>'+
-      '<div class="rw"><span class="l">fase</span><span class="v">'+tr(ph,15)+'</span></div>'+
-      (last?'<div class="rw"><span class="l">log</span><span class="v">'+tr(last,35)+'</span></div>':'')+'</div>';
-  }
-  document.getElementById('r1').innerHTML=dh;
-
-  // ---- ROW 2: DAILY AGENTS ----
-  var daily=d.daily||{},dl=['certificacoes','estudos','filosofia','freelancer','google-skills','ingles','job-hunter','ml-engineer','nice','pmp','portfolio','python','torah','coder','planner'];
-  var dh2='';
-  for(var i=0;i<dl.length;i++){
-    var ag=daily[dl[i]]||{},c=ag.cache||{};
-    var st=realStatus(c);
-    var ph=[c.current_phase,c.current_module?'M'+c.current_module:'',c.current_day?'D'+c.current_day:''].filter(Boolean).join(' ')||'—';
-    var info=c.threshold_atual||c.start_date||'';
-    var last='';
-    if(c.daily_log){
-      if(Array.isArray(c.daily_log)&&c.daily_log.length) last=String(c.daily_log[c.daily_log.length-1]).slice(0,50);
-      else if(typeof c.daily_log==='object'){
-        var k=Object.keys(c.daily_log);if(k.length)last=JSON.stringify(c.daily_log[k[k.length-1]]).slice(0,50);
-      }
-    }
-    var nm=ag.nome||dl[i].replace('-',' ').toUpperCase();
-    dh2+='<div class="c"><h3>'+dot(st)+'📋 '+tr(nm,14)+'</h3>'+
-      '<div class="rw"><span class="l">status</span><span class="v">'+(st==='on'?'🟢 ativo':'⭘ inativo')+'</span></div>'+
-      '<div class="rw"><span class="l">fase</span><span class="v">'+(ph!=='—'?('<span class="bdg p">'+tr(ph,12)+'</span>'):'—')+'</span></div>'+
-      (info?'<div class="rw"><span class="l">info</span><span class="v">'+tr(info,20)+'</span></div>':'')+
-      (last?'<div class="rw"><span class="l">log</span><span class="v">'+tr(last,35)+'</span></div>':'')+'</div>';
-  }
-  document.getElementById('r2').innerHTML=dh2;
-}
+// WebSocket live update for system metrics
+const WS='ws://'+location.hostname+':8765';
+let ws=null,rt=0;
 
 function set(id,v){var e=document.getElementById(id);if(e)e.textContent=v||'—'}
-
-// Git via HTTP
-async function loadGit(){
-  try{var r=await fetch('/api/status'),d=await r.json();set('git',(d.git?.branch||'')+' '+(d.git?.last_commit||'').slice(0,14))}catch(e){}
-}
-loadGit();setInterval(loadGit,5000);
 
 function connect(){
   if(ws&&(ws.readyState===WebSocket.OPEN||ws.readyState===WebSocket.CONNECTING))return;
   ws=new WebSocket(WS);
-  ws.onopen=()=>{rt=0};
-  ws.onmessage=e=>{try{render(JSON.parse(e.data))}catch(ex){}};
-  ws.onerror=ws.onclose=()=>{setTimeout(connect,Math.min(3000+rt++*1000,15000))};
+  ws.onopen=()=>{rt=0;set('ft','🟢 live data · every 1s')};
+  ws.onmessage=e=>{
+    try{
+      var d=JSON.parse(e.data);
+      if(d.system){
+        set('cpu',d.system.cpu||'—');
+        set('ram',d.system.memory||'—');
+        set('load',d.system.load||'—');
+      }
+      if(d.timestamp) set('ft','🕘 '+d.timestamp+' · live');
+    }catch(ex){}
+  };
+  ws.onerror=ws.onclose=()=>{setTimeout(connect,Math.min(3000+rt++*1000,15000));set('ft','⚠️ reconnecting…')};
 }
 connect();
 </script>
