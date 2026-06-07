@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""BRACHAT Dashboard — sistema + bridges + 13 agentes via WebSocket."""
+"""BRACHAT Dashboard — organograma bridges + diretores + operarios."""
 import http.server, json, subprocess, time
 
 HOST = "0.0.0.0"; PORT = 8080
@@ -7,49 +7,68 @@ HOST = "0.0.0.0"; PORT = 8080
 HTML = """<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BRACHAT — Painel</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BRACHAT — Organograma</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font:13px/1.5 monospace;background:#0d1117;color:#c9d1d9;padding:16px}
-h1{color:#58a6ff;font-size:18px;margin-bottom:4px}
+body{font:13px/1.5 monospace;background:#0d1117;color:#c9d1d9;padding:16px;text-align:center}
+h1{color:#58a6ff;font-size:18px;margin-bottom:18px}
 h1 small{color:#8b949e;font-size:12px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;margin-bottom:2px}
-.card{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:10px}
-.card h2{font-size:11px;color:#8b949e;margin:0 0 4px;text-transform:uppercase;letter-spacing:1px}
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
+.lvl{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;position:relative;margin-bottom:24px}
+.lvl:not(:last-child)::after{content:'';display:block;position:absolute;bottom:-14px;left:50%;width:2px;height:10px;background:#30363d}
+.lvl-label{width:100%;font-size:10px;color:#484f58;text-transform:uppercase;letter-spacing:2px;margin-bottom:2px}
+.card{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:8px 12px;min-width:130px;text-align:left;position:relative}
+.card.orchestrator{background:#1f6feb11;border-color:#1f6feb66;min-width:180px}
+.card.director{background:#d2992211;border-color:#d2992266}
+.card.operario{background:#3fb95011;border-color:#3fb95044}
+.card h2{font-size:11px;color:#8b949e;margin:0 0 3px;text-transform:uppercase;letter-spacing:1px}
+.card h2 b{color:#c9d1d9;text-transform:none;letter-spacing:0}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:3px}
 .on{background:#3fb950}.off{background:#484f58}.busy{background:#d29922}.er{background:#f85149}
-.row{display:flex;justify-content:space-between;padding:2px 0;font-size:12px}
-.row+.row{border-top:1px solid #21262d}
-.l{color:#8b949e}.v{color:#c9d1d9;font-weight:600;text-align:right;max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.msg{background:#0d1117;border-radius:4px;padding:3px 5px;margin-top:4px;font-size:11px;color:#8b949e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.footer{text-align:center;color:#484f58;font-size:10px;margin:10px 0}
+.row{display:flex;justify-content:space-between;padding:1px 0;font-size:11px}
+.l{color:#8b949e}.v{color:#c9d1d9;max-width:55%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right}
+.msg{background:#0d1117;border-radius:3px;padding:2px 4px;margin-top:3px;font-size:10px;color:#8b949e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.connector{position:relative;height:20px;margin:-8px 0}
+.connector::before{content:'';position:absolute;top:0;left:50%;width:2px;height:100%;background:#30363d}
+.connector::after{content:'';position:absolute;top:50%;left:0;right:0;height:2px;background:#30363d}
+.footer{text-align:center;color:#484f58;font-size:10px;margin:14px 0}
 </style>
 </head>
 <body>
-<h1>BRACHAT <small>painel de controle</small></h1>
-<div class="grid">
-  <div class="card"><h2><span class="dot" id="d-ezra"></span>Bridge EZRA</h2>
-    <div class="row"><span class="l">Status</span><span class="v" id="ezra-status"></span><span class="l" style="margin-left:8px">Agente</span><span class="v" id="ezra-agent"></span></div>
-    <div class="row"><span class="l">Uptime</span><span class="v" id="ezra-uptime"></span><span class="l" style="margin-left:8px">Fase</span><span class="v" id="ezra-phase"></span></div>
-    <div class="msg" id="ezra-msg"></div><div class="msg" id="ezra-resp"></div></div>
-  <div class="card"><h2><span class="dot" id="d-nice"></span>Bridge NICE</h2>
-    <div class="row"><span class="l">Status</span><span class="v" id="nice-status"></span><span class="l" style="margin-left:8px">Threshold</span><span class="v" id="nice-threshold"></span></div>
-    <div class="row"><span class="l">Uptime</span><span class="v" id="nice-uptime"></span></div>
-    <div class="msg" id="nice-msg"></div><div class="msg" id="nice-resp"></div></div>
-  <div class="card"><h2>💻 Sistema</h2>
-    <div class="row"><span class="l">CPU</span><span class="v" id="sys-cpu"></span><span class="l" style="margin-left:8px">RAM</span><span class="v" id="sys-ram"></span></div>
-    <div class="row"><span class="l">Disco</span><span class="v" id="sys-disk"></span><span class="l" style="margin-left:8px">Processos</span><span class="v" id="sys-procs"></span></div>
-    <div class="row"><span class="l">Load</span><span class="v" id="sys-load"></span></div></div>
-  <div class="card"><h2>📦 Git</h2>
-    <div class="row"><span class="l">Branch</span><span class="v" id="git-branch"></span></div>
-    <div class="row"><span class="l">Commit</span><span class="v" id="git-commit"></span></div></div>
+<h1>BRACHAT <small>organograma</small></h1>
+
+<!-- Sistema + Git row -->
+<div class="lvl" style="margin-bottom:4px">
+  <div class="card" style="min-width:auto;flex:0"><h2>💻 <span id="sys-cpu"></span> · <span id="sys-ram"></span> · <span id="sys-load"></span></h2></div>
+  <div class="card" style="min-width:auto;flex:0"><h2>📦 <span id="git-branch"></span> <span id="git-commit"></span></h2></div>
 </div>
-<div class="grid" id="daily-header" style="margin-bottom:0"><div class="card" style="grid-column:1/-1;padding:6px 10px"><span id="daily-count"></span> agentes diarios</div></div>
-<div class="grid" id="daily-grid"></div>
-<div class="grid" id="dir-header" style="margin-bottom:0;margin-top:8px"><div class="card" style="grid-column:1/-1;padding:6px 10px"><span id="dir-count"></span> diretores</div></div>
-<div class="grid" id="dir-grid"></div>
+
+<!-- ORCHESTRATOR -->
+<div class="lvl"><div class="lvl-label">orquestrador</div>
+  <div class="card orchestrator" id="orchestrator-card">
+    <h2><span class="dot" id="d-ezra"></span>Bridge <b>EZRA</b></h2>
+    <div class="row"><span class="l">Status</span><span class="v" id="ezra-status"></span></div>
+    <div class="row"><span class="l">Agente ativo</span><span class="v" id="ezra-agent"></span></div>
+    <div class="row"><span class="l">Fase</span><span class="v" id="ezra-phase"></span></div>
+    <div class="msg" id="ezra-msg"></div><div class="msg" id="ezra-resp"></div>
+  </div>
+  <div class="card" style="min-width:auto;flex:0">
+    <h2><span class="dot" id="d-nice"></span>Bridge <b>NICE</b></h2>
+    <div class="row"><span class="l"><span id="nice-status"></span></span><span class="v" id="nice-threshold"></span></div>
+    <div class="msg" id="nice-msg"></div>
+  </div>
+</div>
+
+<!-- DIRECTORS -->
+<div class="lvl"><div class="lvl-label">diretores</div>
+  <div id="dir-grid" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px"></div>
+</div>
+
+<!-- OPERARIOS -->
+<div class="lvl"><div class="lvl-label"><span id="daily-count"></span> operarios</div>
+  <div id="daily-grid" style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px"></div>
+</div>
+
 <div class="footer" id="footer"></div>
 <script>
 function set(id,v){ var e=document.getElementById(id); if(e) e.textContent=v??'-' }
@@ -59,24 +78,28 @@ function dot(id,st){
   e.className='dot '+(st=='online'||st=='idle'?'on':st=='processing'?'busy':st=='error'?'er':'off');
 }
 function fmtDur(s){ if(!s)return'-'; var h=Math.floor(s/3600),m=Math.floor((s%3600)/60); return h+'h'+m+'m' }
-function renderCards(data, gridId, countId){
-  var html='', count=0;
-  for(var name in data){
-    var a=data[name], c=a.cache||{}; count++;
-    var fase=c.current_phase||'-', mod=c.current_module||'', dia=c.current_day||'';
-    var faseStr=[fase,mod?'M'+mod:'',dia?'D'+dia:''].filter(Boolean).join(' ');
-    var info=c.threshold_atual||c.ultima_tarefa||c.ultima_acao||c.start_date||'';
-    var log=''; if(c.daily_log&&typeof c.daily_log==='object'){
-      if(Array.isArray(c.daily_log)&&c.daily_log.length) log=String(c.daily_log[c.daily_log.length-1]).slice(0,120);
-      else if(typeof c.daily_log==='object'&&Object.keys(c.daily_log).length) log=JSON.stringify(Object.values(c.daily_log).pop()).slice(0,120);
-    }
-    var ativo=fase!='-'||info||log;
-    html+='<div class="card"><h2>'+(ativo?'':'○ ')+a.nome+'</h2>';
-    html+='<div class="row"><span class="l">Fase</span><span class="v">'+faseStr+'</span></div>';
-    html+='<div class="row"><span class="l">Info</span><span class="v">'+(info||'inativo')+'</span></div>';
-    html+='<div class="row'+(log?'':'')+'"><span class="l">Log</span><span class="v">'+(log||'-')+'</span></div>';
-    html+='</div>';
+
+function cardHTML(a,cl){
+  var c=a.cache||{};
+  var fase=[c.current_phase||'',c.current_module?'M'+c.current_module:'',c.current_day?'D'+c.current_day:''].filter(Boolean).join(' ')||'-';
+  var info=c.threshold_atual||c.ultima_tarefa||c.ultima_acao||c.start_date||'';
+  var log='';
+  if(c.daily_log&&typeof c.daily_log==='object'){
+    if(Array.isArray(c.daily_log)&&c.daily_log.length) log=String(c.daily_log[c.daily_log.length-1]).slice(0,80);
+    else if(Object.keys(c.daily_log).length) log=JSON.stringify(Object.values(c.daily_log).pop()).slice(0,80);
   }
+  var ativo=fase!='-'||!!info||!!log;
+  var html='<div class="card '+cl+'"><h2><b>'+a.nome+'</b>&nbsp;<span class="dot '+(ativo?'on':'off')+'"></span></h2>';
+  html+='<div class="row"><span class="l">Status</span><span class="v"><b>'+(ativo?'🟢 Ativo':'⭘ Inativo')+'</b></span></div>';
+  html+='<div class="row"><span class="l">Fase</span><span class="v">'+fase+'</span></div>';
+  html+='<div class="row"><span class="l">Info</span><span class="v">'+(info||'-')+'</span></div>';
+  if(log) html+='<div class="msg">'+log+'</div>';
+  return html+'</div>';
+}
+
+function renderOrg(data,gridId,cl,countId){
+  var html='',count=0;
+  for(var n in data){ count++; html+=cardHTML(data[n],cl); }
   document.getElementById(gridId).innerHTML=html;
   if(countId) document.getElementById(countId).textContent=count;
 }
@@ -84,27 +107,29 @@ function renderCards(data, gridId, countId){
 function connectWS(){
   var ws=new WebSocket('ws://'+location.hostname+':8765');
   ws.onmessage=function(e){
-    var d=JSON.parse(e.data);
-    var ez=d.bridges.ezra, ni=d.bridges.nice, sys=d.system;
+    var d=JSON.parse(e.data), ez=d.bridges.ezra, ni=d.bridges.nice, sys=d.system;
     dot('d-ezra',ez.status); dot('d-nice',ni.status);
-    set('ezra-status',ez.status); set('ezra-agent',ez.active_label||ez.active_agent||'-'); set('ezra-phase',ez.phase||'-'); set('ezra-uptime',fmtDur(ez.uptime));
-    set('ezra-msg',ez.last_msg?'📩 '+ez.last_msg.slice(0,140):''); set('ezra-resp',ez.last_resp?'💬 '+ez.last_resp.slice(0,140):'');
-    set('nice-status',ni.status); set('nice-threshold',ni.threshold||'-'); set('nice-uptime',fmtDur(ni.uptime));
-    set('nice-msg',ni.last_msg?'📩 '+ni.last_msg.slice(0,140):''); set('nice-resp',ni.last_resp?'💬 '+ni.last_resp.slice(0,140):'');
-    set('sys-cpu',sys.cpu||'-'); set('sys-ram',sys.memory||'-'); set('sys-disk',sys.disk||'-'); set('sys-procs',sys.processes||'-'); set('sys-load',sys.load||'-');
+    set('ezra-status',ez.status+' · '+fmtDur(ez.uptime));
+    set('ezra-agent',ez.active_label||ez.active_agent||'-');
+    set('ezra-phase',ez.phase||'-');
+    set('ezra-msg',ez.last_msg?'📩 '+ez.last_msg.slice(0,130):'');
+    set('ezra-resp',ez.last_resp?'💬 '+ez.last_resp.slice(0,130):'');
+    set('nice-status',ni.status); set('nice-threshold',ni.threshold||'-');
+    set('nice-msg',ni.last_msg?'📩 '+ni.last_msg.slice(0,100):'');
+    set('sys-cpu','CPU '+sys.cpu+'%'); set('sys-ram','RAM '+sys.memory); set('sys-load','Load '+sys.load);
     set('footer','Atualizado: '+d.timestamp);
-    if(d.daily) renderCards(d.daily,'daily-grid','daily-count');
-    if(d.directors) renderCards(d.directors,'dir-grid','dir-count');
+    if(d.directors) renderOrg(d.directors,'dir-grid','director');
+    if(d.daily) renderOrg(d.daily,'daily-grid','operario','daily-count');
   };
   ws.onclose=function(){ setTimeout(connectWS,2000) };
   ws.onerror=function(){ ws.close() };
 }
 connectWS();
 
-// Git via HTTP polling (5s)
+// Git via HTTP (5s)
 async function loadGit(){
   var r=await fetch('/api/status'), d=await r.json();
-  set('git-branch',d.git.branch||'-'); set('git-commit',d.git.last_commit||'-');
+  set('git-branch',d.git.branch||''); set('git-commit',d.git.last_commit||'');
 }
 setInterval(loadGit,5000); loadGit();
 </script>
@@ -137,5 +162,5 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write(HTML.encode())
 
 if __name__=="__main__":
-    print(f"BRACHAT Dashboard em http://{HOST}:{PORT}")
+    print(f"BRACHAT Organograma em http://{HOST}:{PORT}")
     http.server.HTTPServer((HOST,PORT),Handler).serve_forever()
