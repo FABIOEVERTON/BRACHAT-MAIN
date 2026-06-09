@@ -13,8 +13,7 @@ MALHA = Path("/opt/brachat/state/malha.json")
 TG = f"https://api.telegram.org/bot{TK}"
 ZN = "https://opencode.ai/zen/v1/chat/completions"
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[logging.FileHandler("/tmp/ezra.log"),logging.StreamHandler()])
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 log = logging.getLogger("ezra")
 START = time.time()
 
@@ -31,6 +30,19 @@ def rj(p):
 def git_pull():
     try: subprocess.run(["git","pull"], cwd=REPO, capture_output=True, timeout=15); return True
     except: return False
+
+def git_push(msg="update: ezra state"):
+    try:
+        subprocess.run(["git", "add", "."], cwd=REPO, check=True, capture_output=True, timeout=15)
+        res = subprocess.run(["git", "status", "--porcelain"], cwd=REPO, check=True, capture_output=True, text=True, timeout=15)
+        if res.stdout.strip():
+            subprocess.run(["git", "commit", "--no-verify", "-m", msg], cwd=REPO, check=True, capture_output=True, timeout=15)
+            subprocess.run(["git", "push"], cwd=REPO, check=True, capture_output=True, timeout=15)
+            log.info("Git changes pushed successfully.")
+        return True
+    except Exception as e:
+        log.error(f"Git push failed: {e}")
+        return False
 
 def pub_state(**kw):
     try:
@@ -113,6 +125,7 @@ def on_msg(cid, text):
         send(cid,r); log.info(f">> {r[:100]}")
         pub_state(status="idle",active_agent=ctx.get("agent"),active_label=ctx.get("label"),
             last_msg=text[:200],last_resp=r[:200],phase=ctx.get("phase"))
+        git_push(f"update: ezra state on msg '{text[:20]}'")
     else:
         send(cid,"Erro. Tente de novo.")
         pub_state(status="error")

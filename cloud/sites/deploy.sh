@@ -27,7 +27,7 @@ if [ -z "$REMOTE_HOST" ]; then
     mkdir -p /opt/brachat
     cp bridge-ezra.py /opt/brachat/
     cp bridge-nice.py /opt/brachat/
-    cp clickup-daemon.py /opt/brachat/
+    cp clickup-daemon.py /opt/brachat/ 2>/dev/null || true
     cp .env /opt/brachat/
 
     # Instala systemd services
@@ -43,7 +43,7 @@ if [ -z "$REMOTE_HOST" ]; then
 else
     # Modo remoto
     echo "Enviando para $REMOTE_USER@$REMOTE_HOST..."
-    rsync -avz --delete "$(dirname "$0")"/ "$REMOTE_USER@$REMOTE_HOST":~/brachat-cloud/
+    rsync -avz --delete --exclude='.env' "$(dirname "$0")"/ "$REMOTE_USER@$REMOTE_HOST":~/brachat-cloud/
     echo "Rodando deploy no VPS..."
     ssh "$REMOTE_USER@$REMOTE_HOST" "cd ~/brachat-cloud && bash deploy.sh"
 fi
