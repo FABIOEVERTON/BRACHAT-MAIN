@@ -47,12 +47,25 @@ def pub(**kw):
     except: pass
 
 def ask_zen(msgs):
+    # 1. Tenta OpenCode Zen (Primary)
     b = json.dumps({"model":"big-pickle","messages":msgs,"max_tokens":1024,"temperature":0.2}).encode()
     req = urllib.request.Request(ZN, data=b, headers={"Content-Type":"application/json","Authorization":f"Bearer {ZK}","User-Agent":"Mozilla/5.0"})
     try:
-        with urllib.request.urlopen(req, timeout=120) as r:
+        with urllib.request.urlopen(req, timeout=60) as r:
             return json.loads(r.read())["choices"][0]["message"]["content"].strip()
-    except Exception as e: log.error(f"Zen: {e}"); return None
+    except Exception as e:
+        log.warning(f"Zen falhou: {e}. Tentando Ollama local (llama3.2:1b)...")
+        
+    # 2. Fallback local para o Ollama na VPS
+    ollama_url = "http://127.0.0.1:11434/v1/chat/completions"
+    b_local = json.dumps({"model":"llama3.2:1b","messages":msgs,"max_tokens":1024,"temperature":0.2}).encode()
+    req_local = urllib.request.Request(ollama_url, data=b_local, headers={"Content-Type":"application/json"})
+    try:
+        with urllib.request.urlopen(req_local, timeout=60) as r:
+            return json.loads(r.read())["choices"][0]["message"]["content"].strip()
+    except Exception as e_local:
+        log.error(f"Ollama local falhou: {e_local}")
+        return None
 
 def tg(m, d=None):
     url = f"{TG}/{m}"
