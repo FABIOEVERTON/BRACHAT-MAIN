@@ -120,10 +120,11 @@ def on_msg(cid, text):
             send(cid,f"Fase: {ctx['phase']}\nAgora: {ctx['label']}\nAgente: {ctx.get('agent','-')}")
         elif text.startswith("/tasks") and CK:
             try:
-                req=urllib.request.Request("https://api.clickup.com/api/v2/list/901009349312/task",headers={"Authorization":CK})
+                list_id = os.environ.get("CLICKUP_LIST_ID", "901714234972")
+                req=urllib.request.Request(f"https://api.clickup.com/api/v2/list/{list_id}/task",headers={"Authorization":CK})
                 with urllib.request.urlopen(req,timeout=10) as r:
                     ts=json.loads(r.read()).get("tasks",[])
-                send(cid,"\n".join([f"  {t['name']} ({t['status']['status']})" for t in ts[:10]]) or "Nenhuma.")
+                send(cid,"\n".join([f"  • {t['name']} ({t['status']['status']})" for t in ts[:10]]) or "Nenhuma tarefa ativa.")
             except Exception as e: send(cid,f"Erro: {e}")
         pub_state(status="idle")
         return
@@ -132,9 +133,31 @@ def on_msg(cid, text):
     sysp = f"Voce eh o EZRA, orquestrador BRACHAT. Assistente de {ctx['user']}. Data: {time.strftime('%d/%m/%Y %H:%M')}. Fase: {ctx['phase']}. Atividade: {ctx['label']}. Contexto: {ctx.get('bio','')}"
     if ctx.get("inst"): sysp += f"\n\nInstrucoes do agente ativo:\n{ctx['inst']}"
     if ctx.get("last"): sysp += f"\n\nUltimo progresso: {ctx['last']}"
+    sysp += "\n\nSe o usuario pedir para criar uma tarefa no ClickUp ou na agenda, inclua a tag [CREATE_TASK: Nome da Tarefa] no inicio ou final da resposta. Exemplo: [CREATE_TASK: Comprar cafe]."
     sysp += "\n\nResponda em portugues. Seja direto. Nao use emojis."
+    
     r=ask_zen([{"role":"system","content":sysp},{"role":"user","content":text}])
     if r:
+        if "[CREATE_TASK:" in r and CK:
+            try:
+                start_idx = r.find("[CREATE_TASK:") + len("[CREATE_TASK:")
+                end_idx = r.find("]", start_idx)
+                task_name = r[start_idx:end_idx].strip()
+                list_id = os.environ.get("CLICKUP_LIST_ID", "901714234972")
+                url_create = f"https://api.clickup.com/api/v2/list/{list_id}/task"
+                payload = json.dumps({"name": task_name}).encode()
+                req_create = urllib.request.Request(url_create, data=payload, headers={
+                    "Authorization": CK,
+                    "Content-Type": "application/json"
+                }, method="POST")
+                with urllib.request.urlopen(req_create, timeout=15) as resp_c:
+                    log.info(f"Tarefa criada com sucesso via NLP: {task_name}")
+                r = r.replace(f"[CREATE_TASK:{r[start_idx:end_idx]}]", "").strip()
+                r += f"\n\n[✓] Tarefa '{task_name}' criada no ClickUp!"
+            except Exception as ex_c:
+                log.error(f"Erro ao criar tarefa via NLP: {ex_c}")
+                r += f"\n\n[x] Nao consegui criar a tarefa: {ex_c}"
+                
         send(cid,r); log.info(f">> {r[:100]}")
         pub_state(status="idle",active_agent=ctx.get("agent"),active_label=ctx.get("label"),
             last_msg=text[:200],last_resp=r[:200],phase=ctx.get("phase"))
