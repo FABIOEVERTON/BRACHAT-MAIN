@@ -1,3 +1,0 @@
-hermes-cli
-obsidian-cli
-notebooklm-py[browser]

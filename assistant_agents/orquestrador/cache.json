@@ -1,7 +1,0 @@
-{
-  "_instruction": "Resetado toda sessao. Contem estado transiente do orquestrador.",
-  "session_start": "",
-  "agentes_executados": [],
-  "agentes_pulados": [],
-  "ultimo_dispatch": ""
-}

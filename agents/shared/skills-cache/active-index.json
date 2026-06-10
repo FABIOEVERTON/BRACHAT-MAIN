@@ -1,0 +1,26 @@
+{
+  "version": "2.0",
+  "note": "Metadata index for skill search. ~4KB. Always loaded in context. Individual SKILL.md files loaded on demand.",
+  "skill_categories": [
+    { "name": "linguagens", "count": 48, "desc": "Python, JS, TS, Go, Rust, Java, C, C++, etc" },
+    { "name": "frontend", "count": 62, "desc": "React, Next.js, Vue, Tailwind, HTML/CSS, UI/UX" },
+    { "name": "backend", "count": 55, "desc": "FastAPI, Node.js, Flask, Django, Express, APIs" },
+    { "name": "cloud-infra", "count": 40, "desc": "AWS, GCP, Azure, Docker, K8s, Terraform" },
+    { "name": "dados-ml-ia", "count": 75, "desc": "SQL, NoSQL, pandas, sklearn, LLMs, RAG, agentes" },
+    { "name": "seguranca", "count": 35, "desc": "LGPD, criptografia, OWASP, pentest, ISO 27001" },
+    { "name": "devops-ci-cd", "count": 30, "desc": "GitHub Actions, CI/CD, Git, testes, deploy" },
+    { "name": "automacao", "count": 25, "desc": "Make, n8n, Zapier, Telegram bots, scraping" },
+    { "name": "gestao-projetos", "count": 20, "desc": "PMP, Scrum, Kanban, ITIL, COBIT" },
+    { "name": "governanca", "count": 15, "desc": "AGCP, QILIS, EU AI Act, NIST, PL 2338" },
+    { "name": "design-criativo", "count": 30, "desc": "Figma, Three.js, animacao, branding" },
+    { "name": "mobile", "count": 20, "desc": "React Native, Flutter, Swift, Kotlin" },
+    { "name": "outros", "count": 1020, "desc": "remaining specialized skills" }
+  ],
+  "governance": {
+    "path": "shared/governance/",
+    "docs": ["AGCP.md", "QILIS.md", "REGULATORY.md", "DEVSECOPS.md"],
+    "note": "Always active — every action passes through commit-bound authorization"
+  },
+  "total_skills_available": 1465,
+  "loading_policy": "1) Check local cache_skills/ 2) Search this index for category 3) grep master-index.json for exact path 4) Load specific SKILL.md 5) Cache locally"
+}

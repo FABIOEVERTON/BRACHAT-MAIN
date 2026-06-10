@@ -1,0 +1,5 @@
+{"action_id":"pre-commit-1781043042","sequence":1781043042,"state":"AUTHORIZED","tenant":"git","rejection_code":null,"evidence":"Commit validation passed","timestamp":"2026-06-09T22:10:42Z"}
+{"action_id":"pre-commit-1781080502","sequence":1781080502,"state":"REJECTED","tenant":"git","rejection_code":"POLICY_VIOLATION","evidence":"MVI violation: integrations/clickup/clickup_daemon.py has      201 lines (>200)","timestamp":"2026-06-10T08:35:02Z"}
+{"action_id":"pre-commit-1781080522","sequence":1781080522,"state":"AUTHORIZED","tenant":"git","rejection_code":null,"evidence":"Commit validation passed","timestamp":"2026-06-10T08:35:22Z"}
+{"action_id":"pre-commit-1781080655","sequence":1781080655,"state":"AUTHORIZED","tenant":"git","rejection_code":null,"evidence":"Commit validation passed","timestamp":"2026-06-10T08:37:35Z"}
+{"action_id":"pre-commit-1781081130","sequence":1781081130,"state":"AUTHORIZED","tenant":"git","rejection_code":null,"evidence":"Commit validation passed","timestamp":"2026-06-10T08:45:30Z"}

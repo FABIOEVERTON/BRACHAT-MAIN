@@ -10,8 +10,8 @@ WorkingDirectory=/opt/brachat
 EnvironmentFile=/opt/brachat/.env
 Restart=always
 RestartSec=5
-User=nobody
-Group=nogroup
+User=opc
+Group=opc
 
 # Logs
 StandardOutput=journal

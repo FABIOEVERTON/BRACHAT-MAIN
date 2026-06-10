@@ -9,6 +9,8 @@ ExecStart=/usr/bin/python3 /opt/brachat/dashboard.py
 WorkingDirectory=/opt/brachat
 Restart=always
 RestartSec=5
+User=opc
+Group=opc
 StandardOutput=journal
 StandardError=journal
 

@@ -6,7 +6,7 @@ Sistema de agente de IA com orquestração multi-modelo, memória persistente e 
 
 ```
 ┌──────────────────────────────────────────────────┐
-│                   Hermes Gateway                │
+│                    BRACHÁT                       │
 │            (Orquestrador + Produto)              │
 ├──────────────────────────────────────────────────┤
 │   ┌──────────────┐         ┌──────────────────┐  │
@@ -16,7 +16,7 @@ Sistema de agente de IA com orquestração multi-modelo, memória persistente e 
 ├──────────────────────────────────────────────────┤
 │   Skills Library: 1475 skills especializados     │
 │   Memory System: JSON persistente com cache      │
-│   Telegram: Conectado via Hermes Gateway         │
+│   Telegram: Conectado via EZRA Gateway           │
 └──────────────────────────────────────────────────┘
 ```
 
@@ -24,7 +24,7 @@ Sistema de agente de IA com orquestração multi-modelo, memória persistente e 
 
 | Componente | Descrição |
 |------------|-----------|
-| `hermes/` | Hermes Gateway config — orquestrador multi-provider |
+| `ezra/` | EZRA orchestrator config |
 | `opencode-config/` | Config OpenCode com modelo big-pickle (free) |
 | `memory-system/` | Sistema de memória persistente em JSON |
 | `skills/` | Catálogo de 1475 skills para IA |
@@ -32,16 +32,13 @@ Sistema de agente de IA com orquestração multi-modelo, memória persistente e 
 ## Stack
 
 - **Modelos**: Qwen 2.5 Coder 7B (Ollama), Big-Pickle (OpenCode Zen)
-- **Orquestrador**: Hermes Agent v0.15.2
+- **Orquestrador**: EZRA v1.0
 - **Infra**: macOS, Python 3.14, Ollama (Windows)
 - **Integrações**: Telegram, OpenCode Zen API
 
 ## Como usar
 
 ```bash
-# Hermes Gateway (auto-inicia via launchctl)
-hermes gateway run
-
 # OpenCode CLI
 opencode run
 ```

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "last_session": "2026-06-08T22:32:43-03:00",
+  "orchestrator": {
+    "name": "ezra",
+    "role": "orchestrator",
+    "status": "audit_mode",
+    "current_subagent": null,
+    "active_since": "2026-06-08T22:32:43-03:00"
+  },
+  "system": {
+    "total_subagents": 20,
+    "builders": ["planner", "coder"],
+    "studies": ["ingles", "python", "estudos", "politica", "filosofia", "pmp", "google-skills", "freelancer", "job-hunter", "portfolio", "ml-engineer", "certificacoes"],
+    "directors": ["aisio", "gilmario", "jessica", "josue", "nice"],
+    "dashboard": "http://147.15.18.252:8080",
+    "last_dashboard_check": "200 OK"
+  },
+  "telegram": {
+    "ezra": { "bot": "@Baruch_Everton_bot", "status": "active" },
+    "nice": { "bot": "@luevertonbot", "status": "active" }
+  }
+}

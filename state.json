@@ -12,7 +12,7 @@
     "portfolio/builder_agents/shared": "Assets compartilhados — skills, prompts, memória",
     "portfolio/products": "Produtos prontos e publicáveis",
     "portfolio/builder_agents/.opencode": "Configuração do OpenCode (big-pickle)",
-    "portfolio/builder_agents/.hermes": "Configuração do Hermes (WhatsApp bridge)",
+    "portfolio/builder_agents/telegram": "Configuração do Telegram bridge (EZRA)",
     "portfolio/builder_agents/scripts": "Scripts de operação — Telegram bridge (EZRA), launchd wrapper"
   },
   "memory_system": {

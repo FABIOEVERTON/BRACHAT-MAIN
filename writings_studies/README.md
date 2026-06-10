@@ -28,4 +28,4 @@ text
 - Terraform, Docker, GitHub Actions
 
 ## 📅 Schedule
-Ver `writings_studies/official_schedule.md` para o cronograma completo de 252 dias.
+Ver `writings_studies/OFICIAL_SCHEDULE.md` para o cronograma unificado (Mês 1-5, dias detalhados).

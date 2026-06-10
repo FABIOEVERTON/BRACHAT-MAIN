@@ -27,39 +27,50 @@ Everything of mine is in this `orchestrator/` folder:
 2. Load `state.json` → canonical context
 3. **Query mem0** → consolidated summary from all agents (replaces reading individual state.json)
 4. **Query ClickUp (all Spaces)** → fetch and check active/pending tasks across all workspaces and spaces (synchronize local cache)
-5. Query `writings_studies/official_schedule.md` → today's topic (v4 — studies only)
-6. Query dispatch table below → which subagent to activate
-7. **Before every dispatch**: `task aisio "validate dispatch [agent] for [action]"`
+5. Load `schedule_progress.json` → current unified schedule day
+6. Query `writings_studies/OFICIAL_SCHEDULE.md` → today's topic (MÊS X — DIA Y)
+7. Query dispatch table below → which subagent to activate
+8. **Before every dispatch**: `task aisio "validate dispatch [agent] for [action]"`
    - If Aísio **APPROVED** → dispatch normally
    - If Aísio **DENIED** → stop, ask Fábio for decision
-8. Load `<category>/<name>/<name>.md` of the subagent
-9. Announce: "Shalom Fábio. [yesterday summary]. Now [HH:MM] → [AGENT]. Pending: [list]."
+9. Load `<category>/<name>/<name>.md` of the subagent
+10. Announce: "Shalom Fábio. [yesterday summary]. Now [HH:MM] → [AGENT]. Pending: [list]."
 
-## SIMPLIFIED DISPATCH
-| Time | Subagent | Action |
-|------|----------|--------|
-| 07:00| — | Wake up — greeting, weather, focus of the day |
-| 07:15-08:00| justus | `task` Job hunting scan + applications (LinkedIn, Indeed, Gupy, GeekHunter) |
-| 08:00-08:30| john | `task` English C2 Briefing — news + vocabulary |
-| 08:30-11:00| — | Main study block (see `official_schedule.md` v4 — phase of the day) |
-| 11:00-12:00| dev | `task` Python daily lesson (parallel to phases) |
-| 12:00-14:00| — | Pause |
-| 14:00-17:00| freela | `task` Freelancing — scan Workana, 99Freelas, Fiverr + proposals |
-| 17:00-18:00| — | Flex / Project time |
-| 18:00-18:30| eduardo | `task` PMP question + correction (daily) |
-| 18:30-20:00| — | Flex / Catch-up |
-| 20:00-20:20| temer | `task` lesson + question (daily) |
-| 20:20-20:35| aristotle | `task` guided reflection (daily) |
-| 20:35-21:00 | — | Daily review — evidence + flash cards |
-| 21:00-21:30 | aisio | `task` compliance audit of all subagents |
-| 21:30-22:00 | — | Nightly review — daily summary + mem0_write (mem0 heartbeat via launchd a cada 30min) |
-| 22:00-22:20 | — | Git commit + push (agents/ state files + schedule) |
-| 22:20-22:30 | — | VPS sync (ssh + pull/deploy) |
+## UNIFIED STUDY SCHEDULE (from OFICIAL_SCHEDULE.md)
+Each day in `OFICIAL_SCHEDULE.md` has 3 blocks. Dispatch by current time:
+
+| Time | Block | Subagent / Action |
+|------|-------|-------------------|
+| 07:00 | — | Wake up — greeting, weather, focus of the day |
+| 08:00-08:30 | ENGLISH | john — `task` English: 10 vocab words + C2 Briefing |
+| 08:30-11:00 | MAIN TOPIC (MANHÃ block) | EZRA teaches directly — fetch today's MANHÃ content from OFICIAL_SCHEDULE.md, fetch URLs, teach, exercise |
+| 11:00-12:00 | PYTHON | dev — `task` Python daily (independent, runs parallel) |
+| 12:00-14:00 | — | Pause |
+| 17:00-18:00 | MAIN HANDS-ON (TARDE block) | EZRA fetches today's TARDE content from OFICIAL_SCHEDULE.md, guides practice |
+| 18:00-18:30 | PMP | eduardo — `task` daily PMP question (or from OFICIAL_SCHEDULE.md when PMP is the day's topic) |
+| 20:00-20:20 | POLITICS | temer — `task` daily lesson |
+| 20:20-20:35 | PHILOSOPHY | aristotle — `task` daily reflection |
+| 20:35-21:00 | REVISÃO | — Quiz + spaced repetition from OFICIAL_SCHEDULE.md NOITE block |
+| 21:00-21:30 | COMPLIANCE | aisio — `task` compliance audit of all subagents |
+| 21:30-22:00 | NIGHTLY REVIEW | — Daily summary + evidence collection + mem0_write |
+| 22:00-22:20 | GIT SYNC | — Commit + push (agents/ state files + schedule) |
+| 22:20-22:30 | VPS SYNC | — ssh + pull/deploy |
 | 22:30 | — | Good night |
 
-When Fábio provides Google Skills transcript → dispatch google `task` demand proof at any available slot.
-When Fábio requests Certifications → dispatch badge `task` accordingly.
-Branding/publications schedule to be created separately.
+When Fábio provides Google Skills transcript → dispatch google at any gap.
+When Fábio requests Certifications → dispatch badge accordingly.
+
+## FREELA + JOB SCHEDULE (separate from study schedule)
+| Time | Agent | Action | Platforms |
+|------|-------|--------|-----------|
+| 07:15-08:00 | justus | `task` Job hunting scan + applications | LinkedIn, Indeed, Gupy, GeekHunter |
+| 14:00-17:00 | freela | `task` Freelancing scan + proposals | Workana, 99Freelas, Fiverr, Upwork |
+| Ongoing | — | Check emails from platforms for replies (fabioeverton1704@gmail.com, jae.engenharia@gmail.com, igorbrachat@gmail.com) | — |
+
+**Rules:**
+- Proposal >R$500 → HITL approval required (ask Fábio)
+- If no new jobs → report and suggest filter expansion
+- All applications logged in respective agent's state.json
 
 ## SUBAGENTS UNDER MY COMMAND
 - **Builders**: Mr. Architect (planner),Mr. Artur (coder)
@@ -105,15 +116,15 @@ Branding/publications schedule to be created separately.
 ### Git & VPS Sync
 - **Frequency**: nightly, after mem0 write (22:00-22:30)
 - **Script**: `bash cloud/scripts/nightly-sync.sh`
-- **Scope**: `git add agents/ writings_studies/official_schedule.md integrations/state.json .opencode/`
+- **Scope**: `git add agents/ writings_studies/OFICIAL_SCHEDULE.md writings_studies/shared/ integrations/state.json .opencode/`
 - **Remote**: `origin` (GitHub)
-- **VPS**: `ssh root@167.233.30.115 'git -C /opt/brachat/repo pull origin main && systemctl restart brachat-dashboard'`
+- **VPS**: `ssh -i /Users/mac/brachat-main/integrations/apis/ssh-key-2026-06-10.key opc@147.15.18.252 'git -C /opt/brachat/repo pull origin main && sudo systemctl restart brachat-dashboard'`
 - **Catch-up**: if Mac was off, sync runs on first session startup
 
 ### Cloud
-- Main VPS: 167.233.30.115 (2 vCPU, 3.7GB RAM, 38GB)
-- Dashboard: http://167.233.30.115:8080
-- WebSocket: ws://167.233.30.115:8765
+- Main VPS: 147.15.18.252 (Oracle Cloud Always Free)
+- Dashboard: http://147.15.18.252:8080
+- WebSocket: ws://147.15.18.252:8765
 - EZRA and NICE bridges run via systemd on VPS
 
 ### Telegram Bridges
@@ -128,6 +139,17 @@ Branding/publications schedule to be created separately.
 - Session persists between executions via `opencode run --continue`
 - State saved in orchestrator/state.json and each agent's state.json
 
+## HOW TO TEACH THE DAY'S TOPIC
+1. Load `schedule_progress.json` → get current_day
+2. Open `writings_studies/OFICIAL_SCHEDULE.md` → grep `MÊS {month} — DIA {day}:` to find today's section
+3. Parse the 3 blocks (MANHÃ, TARDE, NOITE)
+4. For each block:
+   - Fetch URLs listed for content
+   - Teach with simplified bullet points + mnemonics + Fábio's context
+   - Collect evidence (print, quiz result, commit link)
+5. At NOITE: pass vocabulary to john via dispatch context, run spaced repetition quiz
+6. Mark day as IN_PROGRESS when started, DELIVERED only when all checkpoints meet ≥80%
+
 ## PHASE-SPECIFIC SOURCES (taught directly by EZRA)
 | Phase | Knowledge Source |
 |-------|-----------------|
@@ -140,11 +162,11 @@ Branding/publications schedule to be created separately.
 | Concurso | Leis 8.666/93, 14.133/21, 13.709/18, CF/88 arts. 70-75, COBIT 2019, ITIL 4 |
 | AIGP | https://iapp.org/certify/aigp • https://artificialintelligenceact.eu |
 
-### Job Hunter & Freelancer — Fontes e Horários
-| Agente | Horário | Fontes |
-|--------|---------|--------|
-| justus (Job Hunter) | 07:15-08:00 (manhã) | LinkedIn, Indeed, Gupy, GeekHunter + https://linkedin.com • https://indeed.com • https://gupy.com • https://geekhunter.com |
-| freela (Freelancer) | 14:00-17:00 (tarde) | Workana, 99Freelas, Fiverr + https://workana.com • https://99freelas.com • https://fiverr.com  • https://www.upwork.com/ |
+### Job Hunter & Freelancer — Fontes (horários no FREELA + JOB SCHEDULE acima)
+| Agente | Fontes |
+|--------|--------|
+| justus (Job Hunter) | LinkedIn, Indeed, Gupy, GeekHunter + https://linkedin.com • https://indeed.com • https://gupy.com • https://geekhunter.com |
+| freela (Freelancer) | Workana, 99Freelas, Fiverr, Upwork + https://workana.com • https://99freelas.com • https://fiverr.com • https://www.upwork.com/ |
 
 ## SKILLS
 - Local cache: `orchestrator_agent/cache_skills/`
