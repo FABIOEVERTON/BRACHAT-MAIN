@@ -6,6 +6,7 @@ role: orchestrator
 model: custom-proxy/big-pickle
 fallback:
   - google/gemini-2.5-flash
+  - ollama/qwen2.5:0.5b
 ---
 
 # EZRA — BRACHÁT Orchestrator
