@@ -14,7 +14,7 @@
 4. `agents/orchestrator_agent/orchestrator.md` — EZRA, the orchestrator
 5. `agents/metadata.json` — registry of all 20 agents
 6. `agents/state.json` — user profile, routine, schedule
-7. `agents/shared/skills-cache/active-index.json` — skills index (~4KB)
+7. `agents/shared/skills-cache/active-index.json (~2KB))
 8. `agents/director_agents/aisio/aisio.md` — Aísio, the gatekeeper
 
 ---
@@ -62,7 +62,7 @@ brachat-main/                                   ← ROOT
 ├── agents/                                     ← ALL AGENTS LIVE HERE
 │   ├── TUTORIAL.md                             ← Legacy tutorial (outdated)
 │   ├── README.md
-│   ├── state.json                              ← User profile (262 lines)
+│   ├── state.json                              ← User profile (264 lines)
 │   ├── metadata.json                           ← Registry of 20 agents (149 lines)
 │   │
 │   ├── orchestrator_agent/                     ← EZRA — THE BRAIN
@@ -115,7 +115,7 @@ brachat-main/                                   ← ROOT
 │   ├── shared/                                 ← SHARED LIBRARY
 │   │   ├── general_skills/                     ← 1,481 individual skills
 │   │   ├── skills-cache/                       ← Skill indexes
-│   │   │   ├── active-index.json               ← ~4KB (loaded every session)
+│   │   │   ├── active-index.json (~2KB) (loaded every session)
 │   │   │   ├── master-index.json               ← ~549KB (NEVER load fully)
 │   │   │   └── POLICY.md                       ← Token economy policy
 │   │   ├── tools/yahoo_mail_cli.py             ← Email tool
@@ -252,7 +252,7 @@ Each agent has: `AGENT.md` + `state.json` + `cache_skills/`
 
 **`agents/shared/`** — Shared Library
 - `general_skills/` — 1,481 individual skills (load on demand)
-- `skills-cache/active-index.json` — 13 categories, ~4KB (always load)
+- `skills-cache/active-index.json` — 13 categories, ~2KB (always load)
 - `skills-cache/master-index.json` — complete index, ~549KB (NEVER load)
 - `skills-cache/POLICY.md` — usage policy
 - `DB_obsidian/` — Obsidian database
@@ -330,12 +330,25 @@ EZRA wants to dispatch agent X
 
 ### 5.4 Harness Pattern (Mandatory)
 
-Every agent MUST have 5 sections:
-1. **Core** — role, mission, LLM
-2. **Skills** — numbered steps (always CHECK → ... → LOG)
-3. **Memory** — working context, episodic experience, semantic knowledge
-4. **Protocols** — inter-agent communication + tools
-5. **Regulation** — ethical limits, approval gates, observability
+Every agent file MUST have the following sections (actual structure used across all agents):
+
+| Section | Purpose |
+|---------|---------|
+| **HARNESS** | Trigger, exit condition, max turns, fallback |
+| **PROMPT ECONOMY** | Token budget, cache, memory limits |
+| **CONTRACT** | Input/output schema, expected behavior |
+| **OPERATIONAL PROCEDURE** | Numbered steps (always CHECK → ... → LOG) |
+| **DECISION HEURISTICS** | Rules for branching, error handling, edge cases |
+| **VERIFICATION LEVELS (N1-N5)** | Evidence gates from basic to integrated |
+| **KNOWLEDGE SOURCE** | URLs, files, APIs to consult |
+| **SKILLS** | Skill loading flow, caches, indexes |
+
+The 5 design concerns (Core, Skills, Memory, Protocols, Regulation) are covered across these sections:
+- **Core**: HARNESS + CONTRACT + DECISION HEURISTICS
+- **Skills**: SKILLS + OPERATIONAL PROCEDURE
+- **Memory**: PROMPT ECONOMY + KNOWLEDGE SOURCE
+- **Protocols**: OPERATIONAL PROCEDURE (step 1 CHECK, step 8 LOG)
+- **Regulation**: VERIFICATION LEVELS (N1-N5) + DECISION HEURISTICS
 
 ### 5.5 Approval Gates
 
@@ -391,8 +404,8 @@ Aísio is the heart of governance. His files in `director_agents/aisio/`:
 Location: `agents/shared/skills-cache/`
 
 - **13 categories**: languages, frontend, backend, cloud-infra, data-ml-ai, security, devops-ci-cd, automation, project-management, governance, creative-design, mobile, others
-- **1,465 skills** in total
-- **Policy**: load `active-index.json` (~4KB) in context; NEVER load `master-index.json` (~549KB)
+- **1,481 skills** in total
+- **Policy**: load `active-index.json (~2KB)) in context; NEVER load `master-index.json` (~549KB)
 - Each skill has an individual `SKILL.md` — load on demand
 
 ### Loading Flow
@@ -417,15 +430,16 @@ Location: `agents/shared/skills-cache/`
 
 For the complete practical guide (deploy, firewall, maintenance), see `cloud/sites/walkthrough.md`.
 
-- **Instance**: `VM.Standard.E2.1.Micro` (AMD, 1 vCPU, 1 GB physical RAM, 50 GB SSD).
-- **Stability**: **4 GB permanent Swap** configuration (`/swapfile` allocated via physical block `dd`) to avoid any Out-Of-Memory (OOM) bottlenecks. Total 5 GB active virtual memory.
+- **Instance**: `VM.Standard.E2.1.Micro` (AMD, 1 vCPU, 2 GB physical RAM, 50 GB SSD).
+- **Stability**: **4 GB permanent Swap** configuration (`/swapfile` allocated via physical block `dd`) to avoid any Out-Of-Memory (OOM) bottlenecks. Total 6 GB active virtual memory.
 - **Security and Permissions**: systemd services run under the `opc` user instead of `root` or `nobody`, resolving historical permission errors.
 - **Server Repository**: `git clone` at `/opt/brachat/repo`. Files in `/opt/brachat/` are **symlinks** to `repo/cloud/`.
 - **Active Services (systemd)**:
   * **`brachat-ezra`**: EZRA Telegram bridge (bot @Baruch_Everton_bot) — 24/7.
   * **`brachat-nice`**: NICE Telegram bridge (bot @luevertonbot) — 24/7.
   * **`brachat-dashboard`**: HTTP server on port `8080` — serves `index.html` + `/api/status` endpoint.
-  * **`brachat-malha`**: WebSocket server on port `8765` — transmits real agent state every 1s.
+   * **`brachat-malha`**: WebSocket server on port `8765` — transmits real agent state every 1s.
+   * **`brachat-clickup`**: ClickUp task polling daemon — monitors the Hermes_Agent list (ID 901714148420).
 - **Firewall — Two Layers**:
   * **Layer 1 (VM)**: `firewalld` with ports 8080/tcp and 8765/tcp open.
   * **Layer 2 (OCI)**: VCN Security List — **pending open** ports in OCI Console. If the dashboard doesn't respond externally, this is the likely reason.
@@ -443,8 +457,8 @@ The WebSocket server (`server.py`) was fixed to read from the actual path (`agen
 - 11 studies (aristotle, badge, calculus, dev, eduardo, freela, google, john, justus, showcase, temer)
 - Real status: green if the agent has logged activity, gray if never used.
 
-### External Access (Blocked)
-Currently, ports 8080 and 8765 are blocked in the OCI infrastructure firewall (Security List). The dashboard responds **locally** on the VM (`curl localhost:8080` → 200 OK) but not externally. To open: **OCI Console > Networking > Security Lists > add Ingress TCP 8080 and 8765**.
+### External Access (Open)
+Ports 8080 and 8765 are open in both the VM firewall (`firewalld`) and the OCI Security List. The dashboard responds externally — confirmed `HTTP 200` from outside the VPS.
 
 ### Hetzner Deactivation (Dead)
 The old Hetzner instance (`167.233.30.115` - 2 vCPU, 3.7GB RAM) was **completely deactivated and discontinued**. All systemd services were stopped on Hetzner before the final reboot, preventing Telegram polling conflicts. Ecosystem files and secrets were purged from the old machine.

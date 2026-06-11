@@ -11,7 +11,7 @@
 | Original | mar/2026 | Hetzner CX22 | 167.233.30.115 | 🪦 Morto |
 | Atual | jun/2026 | Oracle Always Free | 147.15.18.252 | ✅ Ativo |
 
-**Motivo**: Hetzner custava €4/mês, Oracle é free. Upgrade de 2 vCPU + 3.7GB RAM → 1 vCPU + 1GB RAM + 4GB swap.
+**Motivo**: Hetzner custava €4/mês, Oracle é free. Migração para 1 vCPU + 2GB RAM + 4GB swap.
 
 ---
 
@@ -19,8 +19,8 @@
 
 ### 2.1. Instância
 
-- **Shape**: `VM.Standard.E2.1.Micro` (AMD, 1 vCPU, 1 GB RAM, 50 GB SSD)
-- **Swap**: 4 GB em `/swapfile` (5 GB memória virtual total)
+- **Shape**: `VM.Standard.E2.1.Micro` (AMD, 1 vCPU, 2 GB RAM, 50 GB SSD)
+- **Swap**: 4 GB em `/swapfile` (6 GB memória virtual total)
 - **OS**: Oracle Linux 9 (compat RHEL)
 
 ### 2.2. Firewall — Duas Camadas
