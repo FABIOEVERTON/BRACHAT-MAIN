@@ -75,24 +75,14 @@ def build_context(msg):
                 ctx["last"] = str(ac["daily_log"][-1])[:200]
     return ctx
 
-def ask_zen(msgs):
-    # 1. Tenta OpenCode Zen (Primary)
-    b = json.dumps({"model":"big-pickle","messages":msgs,"max_tokens":2048,"temperature":0.3}).encode()
-    req = urllib.request.Request(ZN, data=b, headers={"Content-Type":"application/json","Authorization":f"Bearer {ZK}","User-Agent":"Mozilla/5.0"})
-    try:
-        with urllib.request.urlopen(req, timeout=60) as r:
-            return json.loads(r.read())["choices"][0]["message"]["content"].strip()
-    except Exception as e:
-        log.warning(f"Zen falhou: {e}. Tentando Ollama local (llama3.2:1b)...")
-        
-    # 2. Fallback local
+def ask_llama(msgs):
     try:
         data = json.dumps({"model":"llama3.2:1b","prompt":json.dumps(msgs),"stream":False}).encode()
-        req2 = urllib.request.Request("http://127.0.0.1:11434/api/generate", data=data, headers={"Content-Type":"application/json"})
-        with urllib.request.urlopen(req2, timeout=120) as r:
+        req = urllib.request.Request("http://127.0.0.1:11434/api/generate", data=data, headers={"Content-Type":"application/json"})
+        with urllib.request.urlopen(req, timeout=120) as r:
             return json.loads(r.read())["response"].strip()
-    except Exception as e2:
-        return f"Erro crítico: OpenCode Zen caiu e Ollama local falhou ({e2}). VPS sem recursos."
+    except Exception as e:
+        return f"Erro: Falha ao contatar Ollama local ({e}). Verifique se o daemon está rodando."
 
 def tg(m, d=None):
     url = f"{TG}/{m}"
@@ -134,7 +124,7 @@ def on_msg(cid, text):
     sysp += "\n\nSe o usuario pedir para criar uma tarefa no ClickUp ou na agenda, inclua a tag [CREATE_TASK: Nome da Tarefa] no inicio ou final da resposta. Exemplo: [CREATE_TASK: Comprar cafe]."
     sysp += "\n\nResponda em portugues. Seja direto. Nao use emojis."
     
-    r=ask_zen([{"role":"system","content":sysp},{"role":"user","content":text}])
+    r=ask_llama([{"role":"system","content":sysp},{"role":"user","content":text}])
     if r:
         if "[CREATE_TASK:" in r and CK:
             try:
