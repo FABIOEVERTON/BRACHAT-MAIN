@@ -57,7 +57,13 @@ def ask_zen(msgs):
         log.warning(f"Zen falhou: {e}. Tentando Ollama local (llama3.2:1b)...")
         
     # 2. Fallback local
-    return "O sistema principal (OpenCode Zen) está indisponível e a VPS não possui recursos (RAM) para rodar a IA localmente. Tente novamente mais tarde."
+    try:
+        data = json.dumps({"model":"llama3.2:1b","prompt":json.dumps(msgs),"stream":False}).encode()
+        req2 = urllib.request.Request("http://127.0.0.1:11434/api/generate", data=data, headers={"Content-Type":"application/json"})
+        with urllib.request.urlopen(req2, timeout=120) as r:
+            return json.loads(r.read())["response"].strip()
+    except Exception as e2:
+        return f"Erro crítico: OpenCode Zen caiu e Ollama local falhou ({e2})."
 
 def tg(m, d=None):
     url = f"{TG}/{m}"
