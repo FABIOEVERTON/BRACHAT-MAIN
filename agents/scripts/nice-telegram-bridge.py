@@ -3,7 +3,7 @@ import os, sys, json, time, urllib.request, urllib.error, logging
 from pathlib import Path
 
 TELEGRAM_TOKEN = os.environ.get("NICE_TELEGRAM_TOKEN")
-ZEN_MODEL = "llama3.2:1b"
+ZEN_MODEL = "qwen2.5:3b"
 POLL_INTERVAL = 1
 STATE_FILE = Path("/tmp/nice-telegram-bridge-state.json")
 CHAT_FILE = Path("/tmp/nice-telegram-chat.json")
@@ -85,7 +85,7 @@ def broadcast(text):
 def ask_llama(sys_prompt, user_msg):
     try:
         payload = json.dumps({
-            "model": "llama3.2:1b",
+            "model": "qwen2.5:3b",
             "messages": [
                 {"role": "system", "content": sys_prompt},
                 {"role": "user", "content": user_msg}

@@ -5,7 +5,7 @@ from pathlib import Path
 
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 ALLOWED_CHAT = os.environ.get("ALLOWED_CHAT_ID")
-ZEN_MODEL = "llama3.2:1b"
+ZEN_MODEL = "qwen2.5:3b"
 POLL_INTERVAL = 1
 STATE_FILE = Path("/tmp/telegram-bridge-state.json")
 LOG_FILE = Path("/tmp/telegram-bridge.log")
@@ -63,7 +63,7 @@ def send(chat_id, text):
 def ask_llama(sys_prompt, user_msg):
     try:
         payload = json.dumps({
-            "model": "llama3.2:1b",
+            "model": "qwen2.5:3b",
             "messages": [
                 {"role": "system", "content": sys_prompt},
                 {"role": "user", "content": user_msg}
