@@ -1,140 +1,139 @@
-# TUTORIAL — Ecossistema BRACHÁT
+# TUTORIAL — BRACHÁT Ecosystem
 
-> Leia este documento **primeiro** para entender 100% do sistema: pastas, arquivos, agentes, regras e fluxos.
+> ⚡ **AUTO-LOAD:** Read this document **first** to understand 100% of the system: folders, files, agents, rules, and workflows.
 >
-> **Depois** leia `cloud/sites/walkthrough.md` para o guia prático de infraestrutura (VPS, services, deploy, firewall).
+> **Then** read `cloud/sites/walkthrough.md` for the practical infrastructure guide (VPS, services, deploy, firewall).
 
 ---
 
-## 1. ORDEM DE LEITURA RECOMENDADA
+## 1. RECOMMENDED READING ORDER
 
-1. `TUTORIAL.md` ← **você está aqui**
-2. `cloud/sites/walkthrough.md` — guia prático de infraestrutura em nuvem
-3. `agents/director_agents/aisio/governance/REGRAS.md` — regras do ecossistema
-4. `agents/orchestrator_agent/orchestrator.md` — EZRA, o orquestrador
-5. `agents/metadata.json` — registro de todos os 20 agentes
-6. `agents/state.json` — perfil do usuário, rotina, cronograma
-7. `agents/shared/skills-cache/active-index.json` — index de skills (~4KB)
-8. `agents/director_agents/aisio/aisio.md` — Aísio, o gatekeeper
+1. `TUTORIAL.md` ← **you are here**
+2. `cloud/sites/walkthrough.md` — practical cloud infrastructure guide
+3. `agents/director_agents/aisio/governance/REGRAS.md` — ecosystem rules
+4. `agents/orchestrator_agent/orchestrator.md` — EZRA, the orchestrator
+5. `agents/metadata.json` — registry of all 20 agents
+6. `agents/state.json` — user profile, routine, schedule
+7. `agents/shared/skills-cache/active-index.json` — skills index (~4KB)
+8. `agents/director_agents/aisio/aisio.md` — Aísio, the gatekeeper
 
 ---
 
-## 2. VISÃO GERAL
+## 2. OVERVIEW
 
-BRACHAT é um ecossistema pessoal de **agentes IA** para **Fábio Everton**. Cada agente tem papel único, e todos se coordenam via **EZRA** (orquestrador). Aísio (gatekeeper) valida toda ação antes de executar.
+BRACHAT is a personal **AI agent** ecosystem for **Fábio Everton**. Each agent has a unique role, and all are coordinated via **EZRA** (orchestrator). Aísio (gatekeeper) validates every action before execution.
 
-```
+```text
 Fábio (Telegram / CLI)
    │
-   ▼ EZRA (orquestrador)
-   │   ├── Lê state.json, schedule, cache dos agentes
-   │   └── Antes de cada dispatch → consulta Aísio
+   ▼ EZRA (orchestrator)
+   │   ├── Reads state.json, schedule, agent caches
+   │   └── Before each dispatch → consults Aísio
    │
-   ├── 5 Diretores (governança, operações, ensino, jurídico, casa)
-   ├── 5 Diretores (governança, operações, ensino, jurídico, casa)
-   ├── 11 Agentes de Estudo reais (inglês, dev, aristotle, etc)
-   ├── 2 Agentes Produtores (job hunter, freelancer)
-   ├── 2 Builders (arquiteto + programador)
-   └── 24/7 Daemons (Telegram bridges com fallback robusto, e ClickUp service agora integrado via systemd)
+   ├── 5 Directors (governance, operations, teaching, legal, home)
+   ├── 11 Real Study Agents (english, dev, aristotle, etc)
+   ├── 2 Producer Agents (job hunter, freelancer)
+   ├── 2 Builders (architect + programmer)
+   └── 24/7 Daemons (Telegram bridges with robust fallback, and ClickUp service now integrated via systemd)
 ```
 
-**Três princípios fundamentais:**
-1. **Nada executa sem aprovação de Aísio** — toda ação passa pelo gatekeeper
-2. **MVI — Maximum Viable Information** — arquivos <200 linhas, prompts <60 linhas
-3. **CHECK/LOG obrigatório** — todo agente começa lendo cache e termina escrevendo
+**Three fundamental principles:**
+1. **Nothing executes without Aísio's approval** — every action goes through the gatekeeper
+2. **MVI — Maximum Viable Information** — files <200 lines, prompts <60 lines
+3. **Mandatory CHECK/LOG** — every agent starts by reading cache and ends by writing
 
 ---
 
-## 3. ÁRVORE COMPLETA DO SISTEMA
+## 3. FULL SYSTEM TREE
 
-```
-brachat-main/                                   ← RAIZ
+```text
+brachat-main/                                   ← ROOT
 │
-├── TUTORIAL.md                                 ← Este documento
-├── README.md                                   ← Descrição geral
-├── ARCHITECTURE.md                             ← Documento legado (desatualizado)
-├── state.json                                  ← Estado central do sistema
-├── opencode.json                               ← Config OpenCode CLI
+├── TUTORIAL.md                                 ← This document
+├── README.md                                   ← General description
+├── ARCHITECTURE.md                             ← Legacy document (outdated)
+├── state.json                                  ← Central system state
+├── opencode.json                               ← OpenCode CLI config
 │
-├── .opencode/                                  ← Config do OpenCode
-│   ├── instructions/memory.md                  ← Startup protocol (carregado em toda sessão)
+├── .opencode/                                  ← OpenCode config
+│   ├── instructions/memory.md                  ← Startup protocol (loaded every session)
 │   └── package.json
 │
-├── agents/                                     ← TODOS OS AGENTES VIVEM AQUI
-│   ├── TUTORIAL.md                             ← Tutorial legado (desatualizado)
+├── agents/                                     ← ALL AGENTS LIVE HERE
+│   ├── TUTORIAL.md                             ← Legacy tutorial (outdated)
 │   ├── README.md
-│   ├── state.json                              ← Perfil do usuário (262 linhas)
-│   ├── metadata.json                           ← Registry de 20 agentes (149 linhas)
+│   ├── state.json                              ← User profile (262 lines)
+│   ├── metadata.json                           ← Registry of 20 agents (149 lines)
 │   │
-│   ├── orchestrator_agent/                     ← EZRA — O CÉREBRO
-│   │   ├── orchestrator.md                     ← Dispatch puro, temperatura 0
+│   ├── orchestrator_agent/                     ← EZRA — THE BRAIN
+│   │   ├── orchestrator.md                     ← Pure dispatch, temperature 0
 │   │   ├── state.json
 │   │   └── cache_skills/
 │   │
-│   ├── director_agents/                        ← 5 DIRETORES
+│   ├── director_agents/                        ← 5 DIRECTORS
 │   │   ├── aisio/                              ← Dr. Aísio — Runtime Gatekeeper
-│   │   │   ├── aisio.md                        ← Missão, validação, heurísticas
+│   │   │   ├── aisio.md                        ← Mission, validation, heuristics
 │   │   │   ├── state.json
-│   │   │   ├── governance/                     ← 6 arquivos de governança
+│   │   │   ├── governance/                     ← 6 governance files
 │   │   │   │   ├── AGCP.md                     ← AI Governance Control Protocol
 │   │   │   │   ├── QILIS.md                    ← Interpretability System
-│   │   │   │   ├── REGRAS.md                   ← Regras do ecossistema
-│   │   │   │   ├── REGULATORY.md               ← LGPD, EU AI Act, NIST, PL 2338
+│   │   │   │   ├── REGRAS.md                   ← Ecosystem rules
+│   │   │   │   ├── REGULATORY.md               ← GDPR, EU AI Act, NIST, PL 2338
 │   │   │   │   ├── DEVSECOPS.md                ← Commit boundary & pipeline
-│   │   │   │   └── boundary.sh                 ← CLI de validação de 8 estágios
-│   │   │   ├── frameworks/                     ← 3 frameworks regulatórios
-│   │   │   │   ├── lgpd.md + lgpd.opa          ← LGPD (referência + política OPA)
-│   │   │   │   ├── eu-ai-act.md + eu-ai-act.opa← EU AI Act (ref + política OPA)
-│   │   │   │   └── nist-ai-rmf.md + nist-ai-rmf.opa ← NIST AI RMF (ref + política OPA)
-│   │   │   ├── harness/harness.md              ← Padrão harness mandatório
-│   │   │   ├── memory/README.md                ← Sistema de memória
+│   │   │   │   └── boundary.sh                 ← 8-stage validation CLI
+│   │   │   ├── frameworks/                     ← 3 regulatory frameworks
+│   │   │   │   ├── lgpd.md + lgpd.opa          ← GDPR (reference + OPA policy)
+│   │   │   │   ├── eu-ai-act.md + eu-ai-act.opa← EU AI Act (ref + OPA policy)
+│   │   │   │   └── nist-ai-rmf.md + nist-ai-rmf.opa ← NIST AI RMF (ref + OPA policy)
+│   │   │   ├── harness/harness.md              ← Mandatory harness pattern
+│   │   │   ├── memory/README.md                ← Memory system
 │   │   │   └── cache_skills/
 │   │   │
-│   │   ├── nice/nice.md                        ← Dr. Nice — Governança Doméstica
-│   │   ├── josue/josue.md                      ← Dr. Josué — Diretor de Operações
-│   │   ├── gilmario/gilmario.md                ← Dr. Gilmário — Ensino, Branding
-│   │   └── jessica/jessica.md                  ← Dr. Jessica — Diretora Jurídica
+│   │   ├── nice/nice.md                        ← Dr. Nice — Domestic Governance
+│   │   ├── josue/josue.md                      ← Dr. Josué — Operations Director
+│   │   ├── gilmario/gilmario.md                ← Dr. Gilmário — Teaching, Branding
+│   │   └── jessica/jessica.md                  ← Dr. Jessica — Legal Director
 │   │
-│   ├── studies_agents/                         ← 12 AGENTES DE ESTUDO
-│   │   ├── john/john.md                        ← Inglês C2 (Mr. John Who)
+│   ├── studies_agents/                         ← 11 STUDY AGENTS
+│   │   ├── john/john.md                        ← English C2 (Mr. John Who)
 │   │   ├── dev/dev.md                          ← Python Masterclass (Mr. Dev)
-│   │   ├── aristotle/aristotle.md              ← Filosofia (Mr. Aristotle)
-│   │   ├── temer/temer.md                      ← Política (Mr. Temer)
-│   │   ├── badge/badge.md                      ← Certificações (Mr. Badge)
+│   │   ├── aristotle/aristotle.md              ← Philosophy (Mr. Aristotle)
+│   │   ├── temer/temer.md                      ← Politics (Mr. Temer)
+│   │   ├── badge/badge.md                      ← Certifications (Mr. Badge)
 │   │   ├── eduardo/eduardo.md                  ← PMP (Mr. Eduardo)
 │   │   ├── calculus/calculus.md                ← ML Engineering (Mr. Calculus)
 │   │   ├── google/google.md                    ← Google Skills (Mr. Google)
-│   │   ├── showcase/showcase.md                ← Portfólio (Mr. Showcase)
+│   │   ├── showcase/showcase.md                ← Portfolio (Mr. Showcase)
 │   │   ├── justus/justus.md                    ← Job Hunter (Mr. Justus)
 │   │   ├── freela/freela.md                    ← Freelancer (Mr. Freela)
-│   │   └── studies/                            ← Agente de Estudos (consolida)
+│   │   └── studies/                            ← Study Agent (consolidates)
 │   │
 │   ├── builder_agents/                         ← 2 BUILDERS
-│   │   ├── architect/architect.md              ← Planejamento
-│   │   └── artur/artur.md                      ← Programação
+│   │   ├── architect/architect.md              ← Planning
+│   │   └── artur/artur.md                      ← Programming
 │   │
-│   ├── shared/                                 ← BIBLIOTECA COMPARTILHADA
-│   │   ├── general_skills/                     ← 1.481 skills individuais
-│   │   ├── skills-cache/                       ← Índices de skills
-│   │   │   ├── active-index.json               ← ~4KB (carregado em toda sessão)
-│   │   │   ├── master-index.json               ← ~549KB (NUNCA carregar completo)
-│   │   │   └── POLICY.md                       ← Política de economia de tokens
-│   │   ├── tools/yahoo_mail_cli.py             ← Ferramenta de e-mail
-│   │   ├── DB_obsidian/                        ← Banco de dados Obsidian
-│   │   └── build_notebooklm.py                 ← Script de base NotebookLM
+│   ├── shared/                                 ← SHARED LIBRARY
+│   │   ├── general_skills/                     ← 1,481 individual skills
+│   │   ├── skills-cache/                       ← Skill indexes
+│   │   │   ├── active-index.json               ← ~4KB (loaded every session)
+│   │   │   ├── master-index.json               ← ~549KB (NEVER load fully)
+│   │   │   └── POLICY.md                       ← Token economy policy
+│   │   ├── tools/yahoo_mail_cli.py             ← Email tool
+│   │   ├── DB_obsidian/                        ← Obsidian database
+│   │   └── build_notebooklm.py                 ← NotebookLM base script
 │   │
-│   ├── auditing/                               ← Auditorias passadas
+│   ├── auditing/                               ← Past audits
 │   │   ├── AUDITORIA.md
 │   │   └── rebuild-2026-06-07.md
 │   │
-│   └── scripts/                                ← Scripts de infraestrutura
-│       ├── telegram-bridge.py                  ← Bridge EZRA
-│       ├── nice-telegram-bridge.py             ← Bridge NICE
+│   └── scripts/                                ← Infrastructure scripts
+│       ├── telegram-bridge.py                  ← EZRA bridge
+│       ├── nice-telegram-bridge.py             ← NICE bridge
 │       ├── rewrite_schedule.py
 │       └── run.sh
 │
-├── writings_studies/                           ← CONHECIMENTO DE LONGO PRAZO
-│   ├── OFICIAL_SCHEDULE.md                     ← Cronograma unificado de estudos (13.655 linhas)
+├── writings_studies/                           ← LONG-TERM KNOWLEDGE
+│   ├── OFICIAL_SCHEDULE.md                     ← Unified study schedule (13,655 lines)
 │   ├── state.json
 │   ├── 00_strategy_business/
 │   ├── ai-engineering/                         ← Notebooks 01-08
@@ -148,382 +147,379 @@ brachat-main/                                   ← RAIZ
 │   ├── law/
 │   └── politica/summaries/
 │
-├── cloud/                                      ← INFRAESTRUTURA EM NUVEM
+├── cloud/                                      ← CLOUD INFRASTRUCTURE
 │   ├── agents/README.md
 │   ├── daemons/                                ← 2 launchd plists (EZRA + NICE)
-│   ├── dashboard/                              ← Dashboard web (porta 8080)
+│   ├── dashboard/                              ← Web dashboard (port 8080)
 │   │   ├── dashboard.py
 │   │   ├── server.py
 │   │   └── index.html
 │   ├── scripts/clickup_daemon.py
-│   ├── scripts/clickup_daemon.py
-│   └── sites/                                  ← systemd services, bridges, deploy
-│       ├── walkthrough.md                      ← Guia prático de infraestrutura (leitura obrigatória)
-│       ├── deploy.sh                           ← Script de deploy automatizado
-│       ├── bridge-ezra.py                      ← Telegram bridge do EZRA (24/7)
-│       ├── bridge-nice.py                      ← Telegram bridge da NICE (24/7)
-│       ├── brachat-ezra.service                ← systemd: bridge EZRA
-│       ├── brachat-nice.service                ← systemd: bridge NICE
-│       ├── brachat-dashboard.service           ← systemd: HTTP (porta 8080)
-│       └── brachat-malha.service               ← systemd: WebSocket (porta 8765)
+│   └── sites/                                  ← VPS systemd services (147.15.18.252)
+│       ├── walkthrough.md                      ← Practical infra guide (mandatory reading)
+│       ├── deploy.sh                           ← Automated deploy script
+│       ├── bridge-ezra.py                      ← EZRA Telegram bridge (24/7)
+│       ├── bridge-nice.py                      ← NICE Telegram bridge (24/7)
+│       ├── brachat-ezra.service                ← systemd: EZRA bridge
+│       ├── brachat-nice.service                ← systemd: NICE bridge
+│       ├── brachat-dashboard.service           ← systemd: HTTP (port 8080)
+│       └── brachat-malha.service               ← systemd: WebSocket (port 8765)
 │
-├── integrations/                               ← INTEGRAÇÕES EXTERNAS
+├── integrations/                               ← EXTERNAL INTEGRATIONS
 │   ├── agenda_lu.json
 │   ├── apis/
 │   ├── blocks.json
 │   ├── contacts.json
 │   ├── instagram/
 │   ├── state.json
-│   └── whatsapp/                               ← Baileys client, fila, servidor
+│   └── whatsapp/                               ← Baileys client, queue, server
 │
-├── portfolio/                                  ← PROJETOS E PUBLICAÇÕES
+├── portfolio/                                  ← PROJECTS AND PUBLICATIONS
 │   ├── products/
 │   ├── README.md
 │   └── state.json
 │
-├── branding/                                   ← MARCA PESSOAL
+├── branding/                                   ← PERSONAL BRANDING
 │   └── whatsapp/
 │       ├── auth_baileys/
 │       └── status.json
 │
-├── assistant_agents/                           ← VAZIO (legado — não usar)
+├── assistant_agents/                           ← EMPTY (legacy — do not use)
 │
 └── .github/
 ```
 
 ---
 
-## 4. CADA PASTA EM DETALHE
+## 4. EACH FOLDER IN DETAIL
 
-### 4.1 `agents/` — O Cérebro do Sistema
+### 4.1 `agents/` — The System Brain
 
 **`agents/orchestrator_agent/orchestrator.md`** — EZRA
-- Temperatura 0, sem reasoning
-- Único ponto de contato com Fábio
-- Lê `state.json` + `OFICIAL_SCHEDULE.md` + `schedule_progress.json` + `cache.json` de todos os agentes
-- Antes de todo dispatch → consulta Aísio
-- Gerencia sessão: `date` → report → dispatch → log
+- Temperature 0, no reasoning
+- Sole point of contact with Fábio
+- Reads `state.json` + `OFICIAL_SCHEDULE.md` + `schedule_progress.json` + `cache.json` of all agents
+- Before any dispatch → consults Aísio
+- Manages session: `date` → report → dispatch → log
 
 **`agents/director_agents/aisio/`** — Dr. Aísio
-- Runtime gatekeeper: nada executa sem aprovação
-- Valida contra: AGCP, QILIS, REGULATORY, DEVSECOPS, REGRAS
-- OPA policies em `frameworks/*.opa` para LGPD, EU AI Act, NIST
-- Log em `.opencode/governance-ledger.jsonl` (append-only)
-- Decisões: APPROVED / DENIED / POLICY_VIOLATION / CONSTRAINT_VIOLATION
+- Runtime gatekeeper: nothing executes without approval
+- Validates against: AGCP, QILIS, REGULATORY, DEVSECOPS, REGRAS
+- OPA policies in `frameworks/*.opa` for GDPR, EU AI Act, NIST
+- Logs in `.opencode/governance-ledger.jsonl` (append-only)
+- Decisions: APPROVED / DENIED / POLICY_VIOLATION / CONSTRAINT_VIOLATION
 
 **`agents/director_agents/nice/nice.md`** — Dr. Nice
-- Governança doméstica: compras, contas, agenda da Dona Lu
-- Gatilhos financeiros: ≤R$100 auto, R$101-500 consulta Lu, >R$500 bloqueado
+- Domestic governance: purchases, bills, Dona Lu's schedule
+- Financial triggers: ≤R$100 auto, R$101-500 consults Lu, >R$500 blocked
 
 **`agents/director_agents/josue/josue.md`** — Dr. Josué
-- Diretor de Operações: demandas operacionais, viabilidade, alocação de recursos
+- Operations Director: operational demands, feasibility, resource allocation
 
 **`agents/director_agents/gilmario/gilmario.md`** — Dr. Gilmário
-- Ensino, Branding & Autoridade: revisa material de estudo, produz conteúdo de branding
-- Rejeita material >200 linhas
+- Teaching, Branding & Authority: reviews study material, produces branding content
+- Rejects material >200 lines
 
 **`agents/director_agents/jessica/jessica.md`** — Dr. Jessica
-- Diretora Jurídica: analisa contratos, emite pareceres, pode vetar
-- Memória isolada — invisível para outros agentes
+- Legal Director: analyzes contracts, issues opinions, can veto
+- Isolated memory — invisible to other agents
 
-**`agents/studies_agents/`** — 11 Agentes de Estudo e 1 Consolidador
+**`agents/studies_agents/`** — 11 Study Agents and 1 Consolidator
 
-| Pasta | Agente | Temperatura | Função |
-|-------|--------|-------------|--------|
-| `john/` | Mr. John Who | 0.3 | Inglês C2 — vocabulário + leitura + exercícios |
-| `dev/` | Mr. Dev | 0.2 | Python Masterclass — fases 1-2 |
-| `aristotle/` | Mr. Aristotle | 0.3 | Filosofia — diálogo socrático |
-| `temer/` | Mr. Temer | 0.2 | Política — contexto + questões |
-| `badge/` | Mr. Badge | 0.2 | Certificações AWS/GCP/Azure — MVI + quiz |
-| `eduardo/` | Mr. Eduardo | 0.2 | PMP — domínios People/Process/Business |
-| `calculus/` | Mr. Calculus | 0.2 | ML Engineering — paper + exercício + code review |
-| `google/` | Mr. Google | 0.2 | Google Skills — cobra transcrições |
-| `showcase/` | Mr. Showcase | 0.3 | Portfólio — drafts LinkedIn |
-| `justus/` | Mr. Justus | 0 | Job Hunter — varre LinkedIn, Indeed, Gupy, GeekHunter |
-| `freela/` | Mr. Freela | 0 | Freelancer — varre Workana, 99Freelas, Fiverr |
-| `studies/` | Estudos | 0.2 | Consolida progresso de todos |
+| Folder | Agent | Temperature | Function |
+|--------|-------|-------------|----------|
+| `john/` | Mr. John Who | 0.3 | English C2 — vocabulary + reading + exercises |
+| `dev/` | Mr. Dev | 0.2 | Python Masterclass — phases 1-2 |
+| `aristotle/` | Mr. Aristotle | 0.3 | Philosophy — Socratic dialogue |
+| `temer/` | Mr. Temer | 0.2 | Politics — context + questions |
+| `badge/` | Mr. Badge | 0.2 | Certifications AWS/GCP/Azure — MVI + quiz |
+| `eduardo/` | Mr. Eduardo | 0.2 | PMP — People/Process/Business domains |
+| `calculus/` | Mr. Calculus | 0.2 | ML Engineering — paper + exercise + code review |
+| `google/` | Mr. Google | 0.2 | Google Skills — enforces transcriptions |
+| `showcase/` | Mr. Showcase | 0.3 | Portfolio — LinkedIn drafts |
+| `justus/` | Mr. Justus | 0 | Job Hunter — scrapes LinkedIn, Indeed, Gupy, GeekHunter |
+| `freela/` | Mr. Freela | 0 | Freelancer — scrapes Workana, 99Freelas, Fiverr |
+| `studies/` | Estudos | 0.2 | Consolidates progress of all |
 
-Cada agente tem: `AGENT.md` + `state.json` + `cache_skills/`
+Each agent has: `AGENT.md` + `state.json` + `cache_skills/`
 
 **`agents/builder_agents/`** — 2 Builders
 
-| Pasta | Agente | Função |
-|-------|--------|--------|
-| `architect/` | Mr. Architect | Planejamento, priorização, estrutura |
-| `artur/` | Mr. Artur | Implementação, segurança, code review |
+| Folder | Agent | Function |
+|--------|-------|----------|
+| `architect/` | Mr. Architect | Planning, prioritization, structure |
+| `artur/` | Mr. Artur | Implementation, security, code review |
 
-**`agents/shared/`** — Biblioteca Compartilhada
-- `general_skills/` — 1.481 skills individuais (carregar sob demanda)
-- `skills-cache/active-index.json` — 13 categorias, ~4KB (carregar sempre)
-- `skills-cache/master-index.json` — índice completo, ~549KB (NUNCA carregar)
-- `skills-cache/POLICY.md` — política de uso
-- `DB_obsidian/` — banco de dados Obsidian
-- `tools/yahoo_mail_cli.py` — ferramenta de e-mail
-- `build_notebooklm.py` — script de base NotebookLM
+**`agents/shared/`** — Shared Library
+- `general_skills/` — 1,481 individual skills (load on demand)
+- `skills-cache/active-index.json` — 13 categories, ~4KB (always load)
+- `skills-cache/master-index.json` — complete index, ~549KB (NEVER load)
+- `skills-cache/POLICY.md` — usage policy
+- `DB_obsidian/` — Obsidian database
+- `tools/yahoo_mail_cli.py` — email tool
+- `build_notebooklm.py` — NotebookLM base script
 
-### 4.2 `writings_studies/` — Conhecimento de Longo Prazo
+### 4.2 `writings_studies/` — Long-Term Knowledge
 
-- `OFICIAL_SCHEDULE.md` — cronograma unificado (13.655 linhas, Mês 1-5 com dias detalhados manhã/tarde/noite, hands-on com commit, evidência obrigatória)
-- Subpastas por área: `ai-engineering/`, `ai-governance/`, `cloud-architecture/`, `software-engineering/`, `certifications/`, `law/`, `judaism/`, etc.
-- Cada área tem notebooks numerados e `summaries/` com resumos MVI
+- `OFICIAL_SCHEDULE.md` — unified schedule (13,655 lines, Month 1-5 with detailed morning/afternoon/night days, hands-on with commit, mandatory evidence)
+- Subfolders by area: `ai-engineering/`, `ai-governance/`, `cloud-architecture/`, `software-engineering/`, `certifications/`, `law/`, `judaism/`, etc.
+- Each area has numbered notebooks and `summaries/` with MVI summaries
 
-### 4.3 `cloud/` — Infraestrutura
+### 4.3 `cloud/` — Infrastructure
 
-- `daemons/` — 2 plists launchd (EZRA Telegram + NICE Telegram)
-- `dashboard/` — dashboard web em Python (porta 8080 no VPS)
-- `sites/` — systemd services no VPS (147.15.18.252)
-  - `brachat-clickup.service`: serviço que roda de fato o poll no ClickUp.
+- `daemons/` — 2 launchd plists (EZRA Telegram + NICE Telegram)
+- `dashboard/` — Python web dashboard (port 8080 on VPS)
+- `sites/` — systemd services on VPS (147.15.18.252)
+  - `brachat-clickup.service`: actual service running the ClickUp poll.
 
-### 4.4 `integrations/` — Conexões Externas
+### 4.4 `integrations/` — External Connections
 
-- `contacts.json` — agenda de contatos
-- `whatsapp/` — cliente Baileys, fila de mensagens, servidor
-- `instagram/` — integração Instagram
-- `apis/` — configurações de API
+- `contacts.json` — contact book
+- `whatsapp/` — Baileys client, message queue, server
+- `instagram/` — Instagram integration
+- `apis/` — API configurations
 
-### 4.5 `portfolio/` — Projetos e Publicações
+### 4.5 `portfolio/` — Projects and Publications
 
-- `products/` — produtos criados
-- `state.json` — estado do portfólio
+- `products/` — created products
+- `state.json` — portfolio state
 
-### 4.6 `branding/` — Marca Pessoal
+### 4.6 `branding/` — Personal Branding
 
-- `whatsapp/` — autenticação Baileys + status
+- `whatsapp/` — Baileys authentication + status
 
 ---
 
-## 5. ARQUITETURA DE EXECUÇÃO
+## 5. EXECUTION ARCHITECTURE
 
-### 5.1 Ciclo de Sessão
+### 5.1 Session Cycle
 
-1. EZRA abre sessão
-2. Roda `date` → descobre horário
-3. Lê `state.json` → sabe quem é Fábio, qual a rotina
-4. Lê `schedule_progress.json` → O script `advance_schedule.py` gerencia a passagem de dias (começando agora do Day 1, não mais o Day 0 paralisado).
-5. Lê `cache.json` de todos os agentes → sabe o que foi feito
-6. Reporta a Fábio: "Ontem você fez X. Ficou pendente Y."
-7. Dispatcha o agente do horário
+1. EZRA opens session
+2. Runs `date` → discovers time
+3. Reads `state.json` → knows who Fábio is, routine
+4. Reads `schedule_progress.json` → The `advance_schedule.py` script manages day progression (now starting from Day 1, no longer paralyzed at Day 0).
+5. Reads `cache.json` of all agents → knows what was done
+6. Reports to Fábio: "Yesterday you did X. Y is pending."
+7. Dispatches the agent for the current time
 
-### 5.2 Fluxo de Dispatch
+### 5.2 Dispatch Flow
 
-```
-EZRA quer despachar agente X
+```text
+EZRA wants to dispatch agent X
    │
-   ▼ Consulta Aísio
+   ▼ Consults Aísio
    │
-   ├── Aísio valida contra:
-   │   ├── governance/AGCP.md (ciclo de vida da ação)
-   │   ├── governance/QILIS.md (interpretabilidade)
-   │   ├── governance/REGRAS.md (regras do sistema)
-   │   ├── governance/REGULATORY.md (LGPD, EU AI Act, NIST)
+   ├── Aísio validates against:
+   │   ├── governance/AGCP.md (action lifecycle)
+   │   ├── governance/QILIS.md (interpretability)
+   │   ├── governance/REGRAS.md (system rules)
+   │   ├── governance/REGULATORY.md (GDPR, EU AI Act, NIST)
    │   ├── governance/DEVSECOPS.md (commit boundary)
    │   └── frameworks/*.opa (OPA policies)
    │
-   ├── APPROVED → EZRA despacha
-   └── DENIED → EZRA para e pergunta a Fábio
+   ├── APPROVED → EZRA dispatches
+   └── DENIED → EZRA stops and asks Fábio
 ```
 
-### 5.3 Ciclo de Cada Agente
+### 5.3 Cycle of Each Agent
 
-1. **CHECK** — lê `state.json` + `cache.json` próprio
-2. **EXECUTA** — faz a tarefa
-3. **CONFIRM** — pergunta a Fábio se fez/conseguiu
-4. **LOG** — escreve `daily_log` no `cache.json`
+1. **CHECK** — reads `state.json` + own `cache.json`
+2. **EXECUTE** — performs the task
+3. **CONFIRM** — asks Fábio if done/achieved
+4. **LOG** — writes `daily_log` in `cache.json`
 
-### 5.4 Padrão Harness (Mandatório)
+### 5.4 Harness Pattern (Mandatory)
 
-Todo agente DEVE ter 5 seções:
-1. **Núcleo Central** — papel, missão, LLM
-2. **Habilidades** — steps numerados (sempre CHECK → ... → LOG)
-3. **Memória** — working context, experiência episódica, conhecimento semântico
-4. **Protocolos** — comunicação entre agentes + ferramentas
-5. **Regulação** — limites éticos, approval gates, observabilidade
+Every agent MUST have 5 sections:
+1. **Core** — role, mission, LLM
+2. **Skills** — numbered steps (always CHECK → ... → LOG)
+3. **Memory** — working context, episodic experience, semantic knowledge
+4. **Protocols** — inter-agent communication + tools
+5. **Regulation** — ethical limits, approval gates, observability
 
 ### 5.5 Approval Gates
 
-| Situação | Regra |
-|----------|-------|
-| Compra ≤R$100 | Nice decide automático |
-| Compra R$101-500 | Nice consulta Dona Lu |
-| Compra >R$500 | Bloqueado |
-| Proposta freela >R$500 | Aprovação humana |
-| Post LinkedIn | Fábio revisa e publica |
-| Cross-domain | PROIBIDO sem permissão |
-| Novo agente | Precisa AUTHORIZED no ledger |
+| Situation | Rule |
+|-----------|------|
+| Purchase ≤R$100 | Nice decides automatically |
+| Purchase R$101-500 | Nice consults Dona Lu |
+| Purchase >R$500 | Blocked |
+| Freelance proposal >R$500 | Human approval |
+| LinkedIn post | Fábio reviews and publishes |
+| Cross-domain | FORBIDDEN without permission |
+| New agent | Needs AUTHORIZED in ledger |
 | Hardcoded secret | POLICY_VIOLATION → DENY |
 
 ---
 
-## 6. GOVERNANÇA — Aísio em Detalhe
+## 6. GOVERNANCE — Aísio in Detail
 
-Aísio é o coração da governança. Seus arquivos em `director_agents/aisio/`:
+Aísio is the heart of governance. His files in `director_agents/aisio/`:
 
-| Arquivo | Função |
-|---------|--------|
-| `aisio.md` | Missão, fluxo de validação, heurísticas de decisão |
-| `governance/AGCP.md` | Ciclo de vida da ação em 6 estados + 20 códigos de rejeição |
-| `governance/QILIS.md` | Sistema de interpretabilidade em 6 estágios |
-| `governance/REGRAS.md` | 13 regras do ecossistema |
-| `governance/REGULATORY.md` | Mapeamento de compliance (LGPD, EU AI Act, NIST) |
-| `governance/DEVSECOPS.md` | Pipeline de commit em 8 estágios |
-| `governance/boundary.sh` | CLI que implementa a validação de 8 estágios |
-| `frameworks/lgpd.md` | Referência completa da LGPD |
-| `frameworks/lgpd.opa` | Política OPA de compliance LGPD |
-| `frameworks/eu-ai-act.md` | Referência completa do EU AI Act |
-| `frameworks/eu-ai-act.opa` | Política OPA de compliance EU AI Act |
-| `frameworks/nist-ai-rmf.md` | Referência completa do NIST AI RMF |
-| `frameworks/nist-ai-rmf.opa` | Política OPA de compliance NIST |
-| `harness/harness.md` | Template do padrão harness |
-| `memory/README.md` | Documentação do sistema de memória |
+| File | Function |
+|------|----------|
+| `aisio.md` | Mission, validation flow, decision heuristics |
+| `governance/AGCP.md` | Action lifecycle in 6 states + 20 rejection codes |
+| `governance/QILIS.md` | Interpretability system in 6 stages |
+| `governance/REGRAS.md` | 13 ecosystem rules |
+| `governance/REGULATORY.md` | Compliance mapping (GDPR, EU AI Act, NIST) |
+| `governance/DEVSECOPS.md` | Commit pipeline in 8 stages |
+| `governance/boundary.sh` | CLI implementing the 8-stage validation |
+| `frameworks/lgpd.md` | Complete GDPR reference |
+| `frameworks/lgpd.opa` | GDPR compliance OPA policy |
+| `frameworks/eu-ai-act.md` | Complete EU AI Act reference |
+| `frameworks/eu-ai-act.opa` | EU AI Act compliance OPA policy |
+| `frameworks/nist-ai-rmf.md` | Complete NIST AI RMF reference |
+| `frameworks/nist-ai-rmf.opa` | NIST compliance OPA policy |
+| `harness/harness.md` | Harness pattern template |
+| `memory/README.md` | Memory system documentation |
 
-### Níveis de Verificação (N1-N5)
+### Verification Levels (L1-L5)
 
-| Nível | O que acontece |
-|-------|----------------|
-| N1 | Regras carregadas e parseadas |
-| N2 | Ação validada contra todos os frameworks |
-| N3 | Decisão emitida (APPROVED/DENIED) |
-| N4 | Log no ledger com evidência |
-| N5 | Fábio notificado se negado |
-
----
-
-## 7. SKILLS — Biblioteca de Especialização
-
-Local: `agents/shared/skills-cache/`
-
-- **13 categorias**: linguagens, frontend, backend, cloud-infra, dados-ml-ia, seguranca, devops-ci-cd, automacao, gestao-projetos, governanca, design-criativo, mobile, outros
-- **1.465 skills** no total
-- **Política**: carregar `active-index.json` (~4KB) em contexto; NUNCA carregar `master-index.json` (~549KB)
-- Cada skill tem `SKILL.md` individual — carregar sob demanda
-
-### Fluxo de Loading
-1. Verificar `cache_skills/` local do agente
-2. Buscar em `active-index.json` pela categoria
-3. Grep em `master-index.json` pelo nome exato
-4. Load do `SKILL.md` individual
-5. Cache local em `cache_skills/`
+| Level | What happens |
+|-------|--------------|
+| L1 | Rules loaded and parsed |
+| L2 | Action validated against all frameworks |
+| L3 | Decision issued (APPROVED/DENIED) |
+| L4 | Log in ledger with evidence |
+| L5 | Fábio notified if denied |
 
 ---
 
-## 8. INFRAESTRUTURA 24/7
+## 7. SKILLS — Specialization Library
 
-### Daemons (launchd no macOS)
+Location: `agents/shared/skills-cache/`
 
-| Plist | Função |
-|-------|--------|
-| `com.brachat.opencode.plist` | Telegram bridge do EZRA (bot @Baruch_Everton_bot) |
-| `com.brachat.nice.plist` | Telegram bridge da NICE (bot @luevertonbot) |
+- **13 categories**: languages, frontend, backend, cloud-infra, data-ml-ai, security, devops-ci-cd, automation, project-management, governance, creative-design, mobile, others
+- **1,465 skills** in total
+- **Policy**: load `active-index.json` (~4KB) in context; NEVER load `master-index.json` (~549KB)
+- Each skill has an individual `SKILL.md` — load on demand
 
-### VPS (147.15.18.252) — Oracle Cloud Always Free (Nova Infraestrutura)
+### Loading Flow
+1. Check agent's local `cache_skills/`
+2. Search in `active-index.json` by category
+3. Grep in `master-index.json` by exact name
+4. Load the individual `SKILL.md`
+5. Local cache in `cache_skills/`
 
-Para o guia prático completo (deploy, firewall, manutenção), veja `cloud/sites/walkthrough.md`.
+---
 
-- **Instância**: `VM.Standard.E2.1.Micro` (AMD, 1 vCPU, 1 GB RAM física, 50 GB SSD).
-- **Estabilidade**: Configuração de **4 GB de Swap permanente** (`/swapfile` alocado via `dd` de blocos físicos) para evitar qualquer gargalo de Out-Of-Memory (OOM). Total de 5 GB de memória virtual ativa.
-- **Segurança e Permissões**: Os serviços systemd rodam sob o usuário `opc` em vez de `root` ou `nobody`, resolvendo erros históricos de permissão.
-- **Repositório do Servidor**: `git clone` em `/opt/brachat/repo`. Arquivos em `/opt/brachat/` são **symlinks** para `repo/cloud/`.
-- **Serviços Ativos (systemd)**:
-  * **`brachat-ezra`**: Telegram bridge do EZRA (bot @Baruch_Everton_bot) — 24/7.
-  * **`brachat-nice`**: Telegram bridge da NICE (bot @luevertonbot) — 24/7.
-  * **`brachat-dashboard`**: HTTP server na porta `8080` — serve `index.html` + endpoint `/api/status`.
-  * **`brachat-malha`**: WebSocket server na porta `8765` — transmite estado real dos agentes a cada 1s.
-- **Firewall — Duas Camadas**:
-  * **Camada 1 (VM)**: `firewalld` com portas 8080/tcp e 8765/tcp abertas.
-  * **Camada 2 (OCI)**: Security List da VCN — **pendente liberar** as portas no Console OCI. Se o dashboard não responder externamente, este é o motivo provável.
-- **Dashboard — Como Funciona**:
-  * `index.html` abre WebSocket `ws://hostname:8765` e recebe JSON a cada 1s.
-  * O servidor WebSocket lê `agents/{director,builder,studies}_agents/*/state.json` do disco.
-  * Se um agente tem `daily_log` preenchido, o dashboard mostra ◉ verde. Se vazio, mostra ○ cinza.
-  * **Nada é fake** — o dashboard reflete exatamente o estado no filesystem.
+## 8. 24/7 INFRASTRUCTURE
 
-### Atualização: Dashboard com Dados Reais (10/06/2026)
+### Daemons (launchd on macOS)
 
-O servidor WebSocket (`server.py`) foi corrigido para ler do caminho real (`agents/` em vez de `assistant_agents/`). Agora o dashboard mostra:
-- 5 diretores (aisio, gilmario, jessica, josue, nice)
+| Plist | Function |
+|-------|----------|
+| `com.brachat.opencode.plist` | EZRA Telegram bridge (bot @Baruch_Everton_bot) |
+| `com.brachat.nice.plist` | NICE Telegram bridge (bot @luevertonbot) |
+
+### VPS (147.15.18.252) — Oracle Cloud Always Free (New Infrastructure)
+
+For the complete practical guide (deploy, firewall, maintenance), see `cloud/sites/walkthrough.md`.
+
+- **Instance**: `VM.Standard.E2.1.Micro` (AMD, 1 vCPU, 1 GB physical RAM, 50 GB SSD).
+- **Stability**: **4 GB permanent Swap** configuration (`/swapfile` allocated via physical block `dd`) to avoid any Out-Of-Memory (OOM) bottlenecks. Total 5 GB active virtual memory.
+- **Security and Permissions**: systemd services run under the `opc` user instead of `root` or `nobody`, resolving historical permission errors.
+- **Server Repository**: `git clone` at `/opt/brachat/repo`. Files in `/opt/brachat/` are **symlinks** to `repo/cloud/`.
+- **Active Services (systemd)**:
+  * **`brachat-ezra`**: EZRA Telegram bridge (bot @Baruch_Everton_bot) — 24/7.
+  * **`brachat-nice`**: NICE Telegram bridge (bot @luevertonbot) — 24/7.
+  * **`brachat-dashboard`**: HTTP server on port `8080` — serves `index.html` + `/api/status` endpoint.
+  * **`brachat-malha`**: WebSocket server on port `8765` — transmits real agent state every 1s.
+- **Firewall — Two Layers**:
+  * **Layer 1 (VM)**: `firewalld` with ports 8080/tcp and 8765/tcp open.
+  * **Layer 2 (OCI)**: VCN Security List — **pending open** ports in OCI Console. If the dashboard doesn't respond externally, this is the likely reason.
+- **Dashboard — How It Works**:
+  * `index.html` opens WebSocket `ws://hostname:8765` and receives JSON every 1s.
+  * The WebSocket server reads `agents/{director,builder,studies}_agents/*/state.json` from disk.
+  * If an agent has a filled `daily_log`, the dashboard shows a green ◉. If empty, shows a gray ○.
+  * **Nothing is fake** — the dashboard reflects exactly the state on the filesystem.
+
+### Update: Dashboard with Real Data (06/10/2026)
+
+The WebSocket server (`server.py`) was fixed to read from the actual path (`agents/` instead of `assistant_agents/`). Now the dashboard shows:
+- 5 directors (aisio, gilmario, jessica, josue, nice)
 - 2 builders (architect, artur)
-- 11 estudos (aristotle, badge, calculus, dev, eduardo, freela, google, john, justus, showcase, temer)
-- Status real: verde se o agente já registrou atividade, cinza se nunca foi usado.
+- 11 studies (aristotle, badge, calculus, dev, eduardo, freela, google, john, justus, showcase, temer)
+- Real status: green if the agent has logged activity, gray if never used.
 
-### Acesso Externo (Bloqueado)
-Atualmente as portas 8080 e 8765 estão bloqueadas no firewall de infraestrutura da OCI (Security List). O dashboard responde **localmente** na VM (`curl localhost:8080` → 200 OK) mas não de fora. Para liberar: **Console OCI > Networking > Security Lists > adicionar Ingress TCP 8080 e 8765**.
+### External Access (Blocked)
+Currently, ports 8080 and 8765 are blocked in the OCI infrastructure firewall (Security List). The dashboard responds **locally** on the VM (`curl localhost:8080` → 200 OK) but not externally. To open: **OCI Console > Networking > Security Lists > add Ingress TCP 8080 and 8765**.
 
-### Desativação da Hetzner (Morto)
-A antiga instância Hetzner (`167.233.30.115` - 2 vCPU, 3.7GB RAM) foi **totalmente desativada e descontinuada**. Todos os serviços systemd foram parados na Hetzner antes do reboot final, evitando conflitos de polling no Telegram. Os arquivos e segredos do ecossistema foram limpos da máquina antiga.
+### Hetzner Deactivation (Dead)
+The old Hetzner instance (`167.233.30.115` - 2 vCPU, 3.7GB RAM) was **completely deactivated and discontinued**. All systemd services were stopped on Hetzner before the final reboot, preventing Telegram polling conflicts. Ecosystem files and secrets were purged from the old machine.
 
-### Conexões Ativas (Composio)
+### Active Connections
 
-### Conexões Ativas 
-
-* **ClickUp:** O Daemon local foi movido para o systemd da VPS (`brachat-clickup.service`) e agora funciona nativamente.
-* **Telegram Bridges:** Refatorados. Não utilizam mais o gargalo do Ollama; enviam mensagem de standby se a API central falhar.
-* Composio em stand-by e Google Calendar.
+* **ClickUp:** The local Daemon was moved to the VPS systemd (`brachat-clickup.service`) and now runs natively.
+* **Telegram Bridges:** Refactored. No longer use the Ollama bottleneck; send a standby message if the central API fails.
+* Composio on standby and Google Calendar.
 
 ---
 
-## 9. REGRAS CRÍTICAS
+## 9. CRITICAL RULES
 
-| Regra | Descrição |
-|-------|-----------|
-| **Hierarquia LLM** | Orquestrador T°0, Diretores T°0-0.2, Estudos T°0.2-0.3 |
-| **MVI** | Arquivos <200 linhas, prompts <60 linhas |
-| **Step-by-step** | Toda tarefa com steps numerados |
-| **Approval gate** | >R$500 precisa de aprovação humana |
-| **Cross-domain** | PROIBIDO sem permissão explícita |
-| **CHECK/LOG** | Todo agente começa lendo e termina escrevendo |
-| **Budget honesto** | NUNCA inventar/estimar valores |
-| **Zero-trust** | Ferramentas externas só com permissão |
-| **Mem0 seletivo** | Só backup com flag `mem0: true` |
-| **Governança append-only** | Aísio nunca deleta do ledger |
+| Rule | Description |
+|------|-------------|
+| **LLM Hierarchy** | Orchestrator T°0, Directors T°0-0.2, Studies T°0.2-0.3 |
+| **MVI** | Files <200 lines, prompts <60 lines |
+| **Step-by-step** | Every task with numbered steps |
+| **Approval gate** | >R$500 needs human approval |
+| **Cross-domain** | FORBIDDEN without explicit permission |
+| **CHECK/LOG** | Every agent starts reading and ends writing |
+| **Honest budget** | NEVER invent/estimate values |
+| **Zero-trust** | External tools only with permission |
+| **Selective Mem0** | Only backup with `mem0: true` flag |
+| **Append-only governance**| Aísio never deletes from the ledger |
 
 ---
 
-## 10. MAPA DE CONEXÕES ENTRE AGENTES
+## 10. AGENT CONNECTION MAP
 
-```
+```text
 EZRA
-├── Lê: agents/state.json, writings_studies/OFICIAL_SCHEDULE.md, orchestrator_agent/schedule_progress.json
-├── Lê: todos os studies_agents/*/state.json (cache)
-├── Consulta: Aísio (para todo dispatch)
-└── Escreve: relatório pro usuário
+├── Reads: agents/state.json, writings_studies/OFICIAL_SCHEDULE.md, orchestrator_agent/schedule_progress.json
+├── Reads: all studies_agents/*/state.json (cache)
+├── Consults: Aísio (for every dispatch)
+└── Writes: report to user
 
 Aísio
-├── Lê: governance/*.md, frameworks/*.md
-├── Lê: .opencode/governance-ledger.jsonl (últimas 20)
-├── Valida: AGCP → QILIS → REGULATORY → DEVSECOPS → REGRAS
-├── Valida: frameworks/*.opa (LGPD, EU AI Act, NIST)
-└── Escreve: governance-ledger.jsonl (append-only)
+├── Reads: governance/*.md, frameworks/*.md
+├── Reads: .opencode/governance-ledger.jsonl (last 20)
+├── Validates: AGCP → QILIS → REGULATORY → DEVSECOPS → REGRAS
+├── Validates: frameworks/*.opa (GDPR, EU AI Act, NIST)
+└── Writes: governance-ledger.jsonl (append-only)
 
-Agentes de Estudo (cada um)
-├── Lê: próprio state.json (cache local)
-├── Lê: writings_studies/{area}/ (conhecimento prévio)
-├── Executa: tarefa do dia
-└── Escreve: próprio state.json (daily_log)
+Study Agents (each one)
+├── Reads: own state.json (local cache)
+├── Reads: writings_studies/{area}/ (prior knowledge)
+├── Executes: daily task
+└── Writes: own state.json (daily_log)
 
 Job Hunter / Freelancer
-├── Lê: próprio state.json
-├── Usa: web scraping / APIs externas
-├── Respeita: approval gates financeiros
-└── Escreve: próprio state.json
+├── Reads: own state.json
+├── Uses: web scraping / external APIs
+├── Respects: financial approval gates
+└── Writes: own state.json
 ```
 
 ---
 
-## 11. COMANDOS RÁPIDOS
+## 11. QUICK COMMANDS
 
-| Ação | Comando |
-|------|---------|
-| Iniciar sessão | `date` + ler caches + reportar |
-| Ver progresso de hoje | Ler `agents/studies_agents/*/state.json` |
-| Ver progresso do schedule | Ler `agents/orchestrator_agent/schedule_progress.json` |
-| Ver schedule completo | Ler `writings_studies/OFICIAL_SCHEDULE.md` |
-| Validar ação | `task aisio "validate dispatch [agent] for [action]"` |
-| Consultar skill | Grep `master-index.json` + load `SKILL.md` |
-| Ver ledger | Ler últimas 20 linhas de `.opencode/governance-ledger.jsonl` |
-| Ler guia de infraestrutura | `cloud/sites/walkthrough.md` |
+| Action | Command |
+|--------|---------|
+| Start session | `date` + read caches + report |
+| View today's progress | Read `agents/studies_agents/*/state.json` |
+| View schedule progress | Read `agents/orchestrator_agent/schedule_progress.json` |
+| View full schedule | Read `writings_studies/OFICIAL_SCHEDULE.md` |
+| Validate action | `task aisio "validate dispatch [agent] for [action]"` |
+| Consult skill | Grep `master-index.json` + load `SKILL.md` |
+| View ledger | Read last 20 lines of `.opencode/governance-ledger.jsonl` |
+| Read infra guide | `cloud/sites/walkthrough.md` |
 | Dashboard (local) | `curl http://147.15.18.252:8080` |
-| Status dos serviços | `ssh opc@147.15.18.252 'sudo systemctl status brachat-ezra brachat-nice brachat-dashboard brachat-malha'` |
+| Services status | `ssh opc@147.15.18.252 'sudo systemctl status brachat-ezra brachat-nice brachat-dashboard brachat-malha'` |
 
 ---
 
-*Documento gerado em 09/06/2026 — Brachát Ecosystem v2.0 — Atualizado em 10/06/2026*
+*Document generated on 06/09/2026 — Brachát Ecosystem v2.0 — Updated on 06/11/2026*
