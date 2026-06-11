@@ -1,18 +1,21 @@
 # TUTORIAL — Ecossistema BRACHÁT
 
 > Leia este documento **primeiro** para entender 100% do sistema: pastas, arquivos, agentes, regras e fluxos.
+>
+> **Depois** leia `cloud/sites/walkthrough.md` para o guia prático de infraestrutura (VPS, services, deploy, firewall).
 
 ---
 
 ## 1. ORDEM DE LEITURA RECOMENDADA
 
 1. `TUTORIAL.md` ← **você está aqui**
-2. `agents/director_agents/aisio/governance/REGRAS.md` — regras do ecossistema
-3. `agents/orchestrator_agent/orchestrator.md` — EZRA, o orquestrador
-4. `agents/metadata.json` — registro de todos os 20 agentes
-5. `agents/state.json` — perfil do usuário, rotina, cronograma
-6. `agents/shared/skills-cache/active-index.json` — index de skills (~4KB)
-7. `agents/director_agents/aisio/aisio.md` — Aísio, o gatekeeper
+2. `cloud/sites/walkthrough.md` — guia prático de infraestrutura em nuvem
+3. `agents/director_agents/aisio/governance/REGRAS.md` — regras do ecossistema
+4. `agents/orchestrator_agent/orchestrator.md` — EZRA, o orquestrador
+5. `agents/metadata.json` — registro de todos os 20 agentes
+6. `agents/state.json` — perfil do usuário, rotina, cronograma
+7. `agents/shared/skills-cache/active-index.json` — index de skills (~4KB)
+8. `agents/director_agents/aisio/aisio.md` — Aísio, o gatekeeper
 
 ---
 
@@ -152,7 +155,16 @@ brachat-main/                                   ← RAIZ
 │   │   ├── server.py
 │   │   └── index.html
 │   ├── scripts/clickup_daemon.py
+│   ├── scripts/clickup_daemon.py
 │   └── sites/                                  ← systemd services, bridges, deploy
+│       ├── walkthrough.md                      ← Guia prático de infraestrutura (leitura obrigatória)
+│       ├── deploy.sh                           ← Script de deploy automatizado
+│       ├── bridge-ezra.py                      ← Telegram bridge do EZRA (24/7)
+│       ├── bridge-nice.py                      ← Telegram bridge da NICE (24/7)
+│       ├── brachat-ezra.service                ← systemd: bridge EZRA
+│       ├── brachat-nice.service                ← systemd: bridge NICE
+│       ├── brachat-dashboard.service           ← systemd: HTTP (porta 8080)
+│       └── brachat-malha.service               ← systemd: WebSocket (porta 8765)
 │
 ├── integrations/                               ← INTEGRAÇÕES EXTERNAS
 │   ├── agenda_lu.json
@@ -404,14 +416,36 @@ Local: `agents/shared/skills-cache/`
 
 ### VPS (147.15.18.252) — Oracle Cloud Always Free (Nova Infraestrutura)
 
+Para o guia prático completo (deploy, firewall, manutenção), veja `cloud/sites/walkthrough.md`.
+
 - **Instância**: `VM.Standard.E2.1.Micro` (AMD, 1 vCPU, 1 GB RAM física, 50 GB SSD).
 - **Estabilidade**: Configuração de **4 GB de Swap permanente** (`/swapfile` alocado via `dd` de blocos físicos) para evitar qualquer gargalo de Out-Of-Memory (OOM). Total de 5 GB de memória virtual ativa.
-- **Segurança e Permissões**: Os serviços systemd (`brachat-ezra`, `brachat-nice`, `brachat-dashboard`) rodam sob o usuário do sistema `opc` em vez de `root` ou `nobody`, resolvendo erros históricos de permissão (como choque de escrita no estado `/tmp/nice-state.json`).
-- **Repositório do Servidor**: Hospedado em `/opt/brachat/repo` e sincronizado via chaves SSH autorizadas no GitHub.
-- **Serviços Ativos**:
-  * **Dashboard**: Web monitor na porta `8080` (`http://147.15.18.252:8080`).
-  * **Telegram Bridges**: Ezra (`bridge-ezra.py`) e Nice (`bridge-nice.py`) ativos na VM para persistência 24/7.
-  * **Ollama**: Suporte a IA local com modelo `llama3.2:1b` (rodando sob swap físico de forma lenta, porém segura).
+- **Segurança e Permissões**: Os serviços systemd rodam sob o usuário `opc` em vez de `root` ou `nobody`, resolvendo erros históricos de permissão.
+- **Repositório do Servidor**: `git clone` em `/opt/brachat/repo`. Arquivos em `/opt/brachat/` são **symlinks** para `repo/cloud/`.
+- **Serviços Ativos (systemd)**:
+  * **`brachat-ezra`**: Telegram bridge do EZRA (bot @Baruch_Everton_bot) — 24/7.
+  * **`brachat-nice`**: Telegram bridge da NICE (bot @luevertonbot) — 24/7.
+  * **`brachat-dashboard`**: HTTP server na porta `8080` — serve `index.html` + endpoint `/api/status`.
+  * **`brachat-malha`**: WebSocket server na porta `8765` — transmite estado real dos agentes a cada 1s.
+- **Firewall — Duas Camadas**:
+  * **Camada 1 (VM)**: `firewalld` com portas 8080/tcp e 8765/tcp abertas.
+  * **Camada 2 (OCI)**: Security List da VCN — **pendente liberar** as portas no Console OCI. Se o dashboard não responder externamente, este é o motivo provável.
+- **Dashboard — Como Funciona**:
+  * `index.html` abre WebSocket `ws://hostname:8765` e recebe JSON a cada 1s.
+  * O servidor WebSocket lê `agents/{director,builder,studies}_agents/*/state.json` do disco.
+  * Se um agente tem `daily_log` preenchido, o dashboard mostra ◉ verde. Se vazio, mostra ○ cinza.
+  * **Nada é fake** — o dashboard reflete exatamente o estado no filesystem.
+
+### Atualização: Dashboard com Dados Reais (10/06/2026)
+
+O servidor WebSocket (`server.py`) foi corrigido para ler do caminho real (`agents/` em vez de `assistant_agents/`). Agora o dashboard mostra:
+- 5 diretores (aisio, gilmario, jessica, josue, nice)
+- 2 builders (architect, artur)
+- 11 estudos (aristotle, badge, calculus, dev, eduardo, freela, google, john, justus, showcase, temer)
+- Status real: verde se o agente já registrou atividade, cinza se nunca foi usado.
+
+### Acesso Externo (Bloqueado)
+Atualmente as portas 8080 e 8765 estão bloqueadas no firewall de infraestrutura da OCI (Security List). O dashboard responde **localmente** na VM (`curl localhost:8080` → 200 OK) mas não de fora. Para liberar: **Console OCI > Networking > Security Lists > adicionar Ingress TCP 8080 e 8765**.
 
 ### Desativação da Hetzner (Morto)
 A antiga instância Hetzner (`167.233.30.115` - 2 vCPU, 3.7GB RAM) foi **totalmente desativada e descontinuada**. Todos os serviços systemd foram parados na Hetzner antes do reboot final, evitando conflitos de polling no Telegram. Os arquivos e segredos do ecossistema foram limpos da máquina antiga.
@@ -481,8 +515,10 @@ Job Hunter / Freelancer
 | Validar ação | `task aisio "validate dispatch [agent] for [action]"` |
 | Consultar skill | Grep `master-index.json` + load `SKILL.md` |
 | Ver ledger | Ler últimas 20 linhas de `.opencode/governance-ledger.jsonl` |
-| Dashboard | `curl http://147.15.18.252:8080` |
+| Ler guia de infraestrutura | `cloud/sites/walkthrough.md` |
+| Dashboard (local) | `curl http://147.15.18.252:8080` |
+| Status dos serviços | `ssh opc@147.15.18.252 'sudo systemctl status brachat-ezra brachat-nice brachat-dashboard brachat-malha'` |
 
 ---
 
-*Documento gerado em 09/06/2026 — Brachát Ecosystem v2.0*
+*Documento gerado em 09/06/2026 — Brachát Ecosystem v2.0 — Atualizado em 10/06/2026*

@@ -17,13 +17,11 @@ body{font-family:'Inter','system-ui',-apple-system,sans-serif;background:#f0f2f5
 .sys div{display:flex;gap:4px;align-items:center}
 .sys .l{color:#9ca3af}.sys .v{color:#111827;font-weight:600;font-variant-numeric:tabular-nums}
 
-/* org tree */
 .tree{display:flex;flex-direction:column;align-items:center;gap:0}
 .lvl{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;position:relative;padding:8px 0}
 .lvl+.lvl::before{content:'';display:block;position:absolute;top:-8px;left:50%;width:2px;height:8px;background:#d1d5db}
 .lbl{width:100%;text-align:center;font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;font-weight:600}
 
-/* cards */
 .card{background:#fff;border-radius:10px;padding:10px 14px;border:1px solid #e5e7eb;box-shadow:0 1px 2px rgba(0,0,0,.04);text-align:center;min-width:110px;cursor:default;position:relative;transition:all .15s}
 .card:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
 .card.inactive{opacity:.25;filter:grayscale(.9);pointer-events:none}
@@ -38,7 +36,6 @@ body{font-family:'Inter','system-ui',-apple-system,sans-serif;background:#f0f2f5
 .dot.busy{background:#f59e0b;box-shadow:0 0 4px rgba(245,158,11,.4);animation:pulse .6s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-/* level colors */
 .lvl-orch .card{border-color:#fbbf24;background:linear-gradient(135deg,#fffbeb,#fff)}
 .lvl-orch .card .nm{color:#d97706}
 .lvl-dir .card{border-color:#0e7490;background:linear-gradient(135deg,#ecfeff,#fff)}
@@ -48,7 +45,6 @@ body{font-family:'Inter','system-ui',-apple-system,sans-serif;background:#f0f2f5
 .lvl-study .card{border-color:#d1d5db;background:#fafafa}
 .lvl-study .card .nm{color:#4b5563}
 
-/* tooltip */
 .tt{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1f2937;color:#f9fafb;padding:6px 10px;border-radius:6px;font-size:10px;white-space:nowrap;z-index:10;pointer-events:none}
 .tt::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1f2937}
 .card:hover .tt{display:block}
@@ -58,7 +54,6 @@ body{font-family:'Inter','system-ui',-apple-system,sans-serif;background:#f0f2f5
 .legend .sw{width:12px;height:12px;border-radius:3px}
 .ft{text-align:center;font-size:10px;color:#9ca3af;margin-top:20px;padding-top:12px;border-top:1px solid #e5e7eb}
 
-/* connector lines between levels */
 .tree{position:relative}
 .conn{display:flex;justify-content:center;gap:4px;height:16px;position:relative}
 .conn-line{width:2px;height:12px;background:#d1d5db}
@@ -86,18 +81,11 @@ body{font-family:'Inter','system-ui',-apple-system,sans-serif;background:#f0f2f5
   </div>
 
   <div class="tree">
-    <!-- ORCHESTRATOR -->
     <div class="lvl lvl-orch" id="lvl-orch"><div class="lbl">orchestrator</div></div>
-
     <div class="conn" id="conn1"><div class="conn-line"></div></div>
-
-    <!-- DIRECTORS + BUILDERS -->
     <div class="lvl lvl-dir" id="lvl-dir"><div class="lbl">directors</div></div>
     <div class="lvl lvl-build" id="lvl-build"><div class="lbl">builders</div></div>
-
     <div class="conn" id="conn3"><div class="conn-line"></div></div>
-
-    <!-- STUDIES -->
     <div class="lvl lvl-study" id="lvl-study"><div class="lbl">studies</div></div>
   </div>
 
@@ -115,18 +103,15 @@ body{font-family:'Inter','system-ui',-apple-system,sans-serif;background:#f0f2f5
 const WS='ws://'+location.hostname+':8765';let ws=null,rt=0;
 function set(id,v){var e=document.getElementById(id);if(e)e.textContent=v||'—'}
 
-// determine real status from cache
-function realSt(c){
-  if(!c||typeof c!=='object')return 'off';
-  if(c.daily_log){
-    if(Array.isArray(c.daily_log)&&c.daily_log.length>0)return 'on';
-    if(typeof c.daily_log==='object'&&Object.keys(c.daily_log).length>0)return 'on';
-  }
-  if(c.history&&Array.isArray(c.history)&&c.history.length>0)return 'on';
-  if(c.current_phase&&c.current_phase!=='')return 'on';
-  if(c.current_day&&c.current_day>0)return 'on';
-  if(c.ultima_tarefa&&c.ultima_tarefa!==null)return 'on';
-  if(c.ultima_acao&&c.ultima_acao!==null)return 'on';
+function realSt(st){
+  if(!st||typeof st!=='object')return 'off';
+  if(st.daily_log&&typeof st.daily_log==='object'&&Object.keys(st.daily_log).length>0)return 'on';
+  if(st.current_phase&&st.current_phase!=='')return 'on';
+  if(st.current_day&&st.current_day>0)return 'on';
+  if(st.last_topic&&st.last_topic!=='')return 'on';
+  if(st.current_topic&&st.current_topic!=='')return 'on';
+  if(st.last_action&&st.last_action!==null)return 'on';
+  if(st.last_task&&st.last_task!==null)return 'on';
   return 'off';
 }
 
@@ -134,10 +119,37 @@ function card(nm,role,dotSt,phase,tip){
   var cls=dotSt==='off'?' card inactive':'';
   return '<div class="card'+cls+'"><div class="nm"><span class="dot '+dotSt+'"></span>'+nm+'</div>'+
     '<div class="role">'+role+'</div>'+
-    '<div class="status">'+(dotSt==='on'?'🟢 active':dotSt==='busy'?'🟡 processing':'⭘ inactive')+
+    '<div class="status">'+(dotSt==='on'?'active':dotSt==='busy'?'processing':'inactive')+
     (phase&&phase!=='—'?' · <span class="phase">'+phase+'</span>':'')+'</div>'+
     '<div class="tt">'+tip+'</div></div>';
 }
+
+function renderCategory(elemId, agents, mapFn){
+  var el=document.getElementById(elemId);
+  if(!el)return;
+  if(!agents||agents.length===0){
+    return;
+  }
+  var h='<div class="lbl">'+el.getAttribute('data-label')||''+'</div>';
+  for(var i=0;i<agents.length;i++){
+    var ag=agents[i], st=ag.state||{}, active=realSt(st);
+    var nm=ag.label||ag.name.charAt(0).toUpperCase()+ag.name.slice(1);
+    var ph=[st.current_phase,st.current_module?'M'+st.current_module:'',st.current_day?'D'+st.current_day:''].filter(Boolean).join(' ')||'—';
+    var role=ag.name||'';
+    var tip=role;
+    if(mapFn) mapFn(ag, nm, st);
+    h+=card(nm,role,active,ph,tip);
+  }
+  el.innerHTML=h;
+}
+
+var DIR_LABEL={
+  'aisio':{nm:'AÍSIO',role:'governance & compliance'},
+  'gilmario':{nm:'GILMÁRIO',role:'education & branding'},
+  'jessica':{nm:'JÉSSICA',role:'legal'},
+  'josue':{nm:'JOSUÉ',role:'executive & finance'},
+  'nice':{nm:'NICE',role:'home governance'},
+};
 
 function render(d){
   if(!d)return;
@@ -149,43 +161,44 @@ function render(d){
   var ez=d.bridges?.ezra||{},ni=d.bridges?.nice||{};
   var ezSt=ez.status==='processing'?'busy':(ez.status==='online'||ez.status==='idle'?'on':'off');
   var niSt=ni.status==='processing'?'busy':(ni.status==='online'||ni.status==='idle'?'on':'off');
-  var daily=d.daily||{},dirs=d.directors||{};
 
-  // ORCHESTRATOR
   document.getElementById('lvl-orch').innerHTML=
     '<div class="lbl">orchestrator</div>'+
     card('EZRA','orchestrator',ezSt,ez.phase||'—','Agent: '+(ez.active_agent||'—')+' | Msgs: '+(ez.last_msg?ez.last_msg.slice(0,30):'—'))+
     card('NICE','home governance bridge',niSt,ni.threshold||'—','Threshold: '+(ni.threshold||'—'));
 
-  // DIRECTORS
-  var dirN=['aisio','gilmario','jessica','josue','nice'];
-  var dirMap={'aisio':'AÍSIO','gilmario':'GILMÁRIO','jessica':'JÉSSICA','josue':'JOSUÉ','nice':'NICE'};
-  var dirRole={'aisio':'governance & compliance','gilmario':'education & branding','jessica':'legal','josue':'executive & finance','nice':'home governance'};
+  var ags=d.agents||{};
+
+  var dirs=ags.director||[];
   var dh='<div class="lbl">directors</div>';
-  for(var i=0;i<dirN.length;i++){
-    var dir=dirs[dirN[i]]||{},c=dir.cache||{},st=realSt(c);
-    var ph=c.current_phase||'—';
-    dh+=card(dirMap[dirN[i]],dirRole[dirN[i]],st,ph,dirRole[dirN[i]]);
+  for(var i=0;i<dirs.length;i++){
+    var ag=dirs[i], st=ag.state||{}, active=realSt(st);
+    var info=DIR_LABEL[ag.name]||{nm:ag.label,role:ag.name};
+    var ph=[st.current_phase,st.current_day?'D'+st.current_day:''].filter(Boolean).join(' ')||'—';
+    dh+=card(info.nm,info.role,active,ph,info.role);
   }
   document.getElementById('lvl-dir').innerHTML=dh;
 
-  // BUILDERS
-  var coderSt=ez.active_agent==='coder'?'busy':realSt(daily.coder?.cache);
-  var planSt=ez.active_agent==='planner'?'busy':realSt(daily.planner?.cache);
-  document.getElementById('lvl-build').innerHTML=
-    '<div class="lbl">builders</div>'+
-    card('PLANNER','architecture & planning',planSt,ez.phase||'—','Plans system architecture, contracts, workflows')+
-    card('CODER','implementation',coderSt,ez.phase||'—','Develops code per architecture');
+  var builders=ags.builder||[];
+  var bh='<div class="lbl">builders</div>';
+  for(var i=0;i<builders.length;i++){
+    var ag=builders[i], st=ag.state||{}, active=realSt(st);
+    var nm=ag.label;
+    var ph=[st.current_phase,st.current_day?'D'+st.current_day:''].filter(Boolean).join(' ')||'—';
+    var role=ag.name;
+    if(ez.active_agent===ag.name) active='busy';
+    bh+=card(nm,role,active,ph,role);
+  }
+  document.getElementById('lvl-build').innerHTML=bh;
 
-  // STUDIES
-  var studyN=['certificacoes','estudos','filosofia','freelancer','google-skills','ingles','job-hunter','ml-engineer','portfolio','torah'];
-  var studyNm={'certificacoes':'CERTIFICATION','estudos':'STUDIES','filosofia':'PHILOSOPHY','freelancer':'FREELANCER','google-skills':'GOOGLE SKILLS','ingles':'ENGLISH','job-hunter':'JOB HUNTER','ml-engineer':'ML ENGINEER','portfolio':'PORTFOLIO','torah':'TORAH'};
-  var studyRole={'certificacoes':'certifications','estudos':'main studies','filosofia':'philosophy','freelancer':'freelance','google-skills':'google skills','ingles':'english','job-hunter':'job search','ml-engineer':'machine learning','portfolio':'portfolio','torah':'torah'};
+  var studies=ags.studies||[];
   var sh='<div class="lbl">studies</div>';
-  for(var i=0;i<studyN.length;i++){
-    var ag=daily[studyN[i]]||{},c=ag.cache||{},st=realSt(c);
-    var ph=[c.current_phase,c.current_module?'M'+c.current_module:'',c.current_day?'D'+c.current_day:''].filter(Boolean).join(' ')||'—';
-    sh+=card(studyNm[studyN[i]],studyRole[studyN[i]],st,ph,studyRole[studyN[i]]);
+  for(var i=0;i<studies.length;i++){
+    var ag=studies[i], st=ag.state||{}, active=realSt(st);
+    var nm=ag.label;
+    var ph=[st.current_phase,st.current_module?'M'+st.current_module:'',st.current_day?'D'+st.current_day:''].filter(Boolean).join(' ')||'—';
+    var role=ag.name;
+    sh+=card(nm,role,active,ph,role);
   }
   document.getElementById('lvl-study').innerHTML=sh;
 }

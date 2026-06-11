@@ -6,15 +6,9 @@ import websockets
 
 CLIENTS = set()
 REPO = Path("/opt/brachat/repo")
+AGENTS = REPO / "agents"
 EZRA_FILE = Path("/opt/brachat/state/malha.json")
 NICE_FILE = Path("/opt/brachat/state/nice.json")
-
-DAILY = [
-    "certificacoes","coder","estudos","filosofia","freelancer",
-    "google-skills","ingles","job-hunter","ml-engineer",
-    "nice","planner","pmp","portfolio","python","torah",
-]
-DIRECTORS = ["aisio","gilmario","jessica","josue","nice"]
 
 def rj(p):
     try: return json.loads(p.read_text()) if p.exists() else {}
@@ -32,22 +26,32 @@ def read_system():
     load = run_cmd(["bash","-c","uptime | awk -F'load average:' '{print $2}' | xargs"])
     return {"cpu":cpu,"memory":mem,"disk":disk,"processes":procs,"load":load}
 
-def _read_agents(base, names):
-    res = {}
-    for name in names:
-        d = REPO / "assistant_agents" / base / name
-        cache = rj(d / "cache.json")
-        meta = rj(d / "metadata.json")
-        md = ""
-        if (d / "AGENT.md").exists():
-            for line in (d / "AGENT.md").read_text().split("\n"):
-                if line.startswith("# "):
-                    md = line.replace("# ","").strip(); break
-        res[name] = {"nome": meta.get("label") or md or name.capitalize(), "cache": cache}
-    return res
+def read_agent_states():
+    categories = {
+        "director": AGENTS / "director_agents",
+        "builder": AGENTS / "builder_agents",
+        "studies": AGENTS / "studies_agents",
+    }
+    result = {}
+    for cat, path in categories.items():
+        if not path.exists():
+            continue
+        agents = []
+        for d in sorted(path.iterdir()):
+            if not d.is_dir():
+                continue
+            state = rj(d / "state.json")
+            agents.append({
+                "name": d.name,
+                "label": d.name.capitalize(),
+                "state": state,
+            })
+        result[cat] = agents
+    return result
 
 def build():
     ez = rj(EZRA_FILE); ni = rj(NICE_FILE)
+    agents_data = read_agent_states()
     return {
         "bridges":{
             "ezra":{
@@ -61,8 +65,7 @@ def build():
                 "threshold":ni.get("threshold",""),"timestamp":ni.get("timestamp","")},
         },
         "system": read_system(),
-        "daily": _read_agents("daily", DAILY),
-        "directors": _read_agents("directors", DIRECTORS),
+        "agents": agents_data,
         "timestamp": time.strftime("%H:%M:%S"),
     }
 
