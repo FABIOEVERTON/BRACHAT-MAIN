@@ -25,9 +25,9 @@ if [ -z "$REMOTE_HOST" ]; then
 
     # Copia scripts
     mkdir -p /opt/brachat
-    cp bridge-ezra.py /opt/brachat/
-    cp bridge-nice.py /opt/brachat/
-    cp clickup-daemon.py /opt/brachat/ 2>/dev/null || true
+    cp bridge-ezra.py /opt/brachat/ 2>/dev/null || true
+    cp bridge-nice.py /opt/brachat/ 2>/dev/null || true
+    cp -r integrations /opt/brachat/ 2>/dev/null || true
     cp .env /opt/brachat/
 
     # Instala systemd services
@@ -35,7 +35,7 @@ if [ -z "$REMOTE_HOST" ]; then
     systemctl daemon-reload
     systemctl enable --now brachat-ezra
     systemctl enable --now brachat-nice
-    systemctl enable --now brachat-clickup 2>/dev/null || true
+    systemctl enable --now brachat-clickup
 
     echo "Pronto. Status:"
     systemctl status brachat-ezra --no-pager | head -5
@@ -44,6 +44,7 @@ else
     # Modo remoto
     echo "Enviando para $REMOTE_USER@$REMOTE_HOST..."
     rsync -avz --delete --exclude='.env' "$(dirname "$0")"/ "$REMOTE_USER@$REMOTE_HOST":~/brachat-cloud/
+    rsync -avz --delete "$(dirname "$0")"/../../integrations "$REMOTE_USER@$REMOTE_HOST":~/brachat-cloud/
     echo "Rodando deploy no VPS..."
     ssh "$REMOTE_USER@$REMOTE_HOST" "cd ~/brachat-cloud && bash deploy.sh"
 fi

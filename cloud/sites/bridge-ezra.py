@@ -17,10 +17,10 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 log = logging.getLogger("ezra")
 START = time.time()
 
-SCHED = [(7,0,"*","Saudacao"),(7,15,"job-hunter","Job scan"),(7,30,"ingles","Ingles"),
-    (8,0,"estudos","Estudo"),(8,30,"google-skills","Google Skills"),(9,0,"estudos","Deep work"),
-    (11,0,"python","Python"),(12,0,None,"Almoco"),(14,0,"estudos","Deep work"),
-    (17,0,"portfolio","Portfolio"),(18,0,None,"Livre"),(20,0,"filosofia","Tora"),
+SCHED = [(7,0,"*","Saudacao"),(7,15,"justus","Job scan"),(7,30,"john","Ingles"),
+    (8,0,"estudos","Estudo"),(8,30,"google","Google Skills"),(9,0,"estudos","Deep work"),
+    (11,0,"dev","Python"),(12,0,None,"Almoco"),(14,0,"estudos","Deep work"),
+    (17,0,"showcase","Portfolio"),(18,0,None,"Livre"),(20,0,"aristotle","Tora"),
     (21,0,None,"Review"),(22,30,None,"Dormir")]
 
 def rj(p):
@@ -85,16 +85,8 @@ def ask_zen(msgs):
     except Exception as e:
         log.warning(f"Zen falhou: {e}. Tentando Ollama local (llama3.2:1b)...")
         
-    # 2. Fallback local para o Ollama na VPS
-    ollama_url = "http://127.0.0.1:11434/v1/chat/completions"
-    b_local = json.dumps({"model":"llama3.2:1b","messages":msgs,"max_tokens":2048,"temperature":0.3}).encode()
-    req_local = urllib.request.Request(ollama_url, data=b_local, headers={"Content-Type":"application/json"})
-    try:
-        with urllib.request.urlopen(req_local, timeout=60) as r:
-            return json.loads(r.read())["choices"][0]["message"]["content"].strip()
-    except Exception as e_local:
-        log.error(f"Ollama local falhou: {e_local}")
-        return None
+    # 2. Fallback local
+    return "O sistema principal (OpenCode Zen) está indisponível e a VPS não possui recursos (RAM) para rodar a IA localmente. Tente novamente mais tarde."
 
 def tg(m, d=None):
     url = f"{TG}/{m}"

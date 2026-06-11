@@ -85,8 +85,14 @@ Toda a infraestrutura do ecossistema em nuvem foi migrada para a Oracle Cloud, g
 *   **Instância**: `VM.Standard.E2.1.Micro` (AMD, 1 vCPU, 1 GB RAM física, 50 GB de disco SSD).
 *   **Mecanismo de Estabilização de Memória (Swap)**:
     *   Para mitigar as limitações de 1 GB de RAM física da máquina Always Free e evitar falhas por Out-Of-Memory (OOM) ao rodar o Ollama ou instalações pesadas, configurou-se **4 GB de Swap permanente** alocado diretamente em disco no arquivo `/swapfile` (gerando um total de 5 GB de memória virtual ativa).
-*   **Segurança de Rede (Firewall)**:
-    *   As portas públicas foram liberadas no `firewalld` interno da VM para comunicação com o exterior:
-        *   **Porta 8080**: Servidor HTTP que serve o Dashboard Organograma do Brachát (`http://147.15.18.252:8080`).
-        *   **Porta 8765**: WebSocket de transmissão em tempo real de métricas e status dos agentes especialistas (`ws://147.15.18.252:8765`).
+*   **Segurança de Rede (Firewall — Duas Camadas)**:
+    *   **Camada 1 — Firewall do Sistema (VM)**: As portas foram liberadas no `firewalld` interno da VM via `firewall-cmd`:
+        *   **Porta 8080/tcp**: Servidor HTTP que serve o Dashboard Organograma (`http://147.15.18.252:8080`).
+        *   **Porta 8765/tcp**: WebSocket de transmissão em tempo real de métricas (`ws://147.15.18.252:8765`).
+    *   **Camada 2 — Firewall de Infraestrutura (OCI Security List)**: As portas **também precisam** ser liberadas no Console Oracle Cloud:
+        *   Acessar: **Console OCI > Networking > Virtual Cloud Networks > [VCN da instância] > Security Lists > [Security List padrão]**
+        *   Adicionar **2 regras Ingress** (Stateless: Não):
+            *   `0.0.0.0/0` TCP **8080** (Dashboard HTTP)
+            *   `0.0.0.0/0` TCP **8765** (WebSocket Malha)
+        *   As regras no firewalld da VM já estão aplicadas; se o dashboard não responder externamente, provavelmente é a security list do OCI que está bloqueando.
 *   **Status da Hetzner**: A antiga máquina no IP `167.233.30.115` foi completamente desativada. Os serviços foram finalizados e a VM foi desligada via comando `poweroff`. A exclusão física da conta de faturamento da Hetzner deve ser concluída manualmente pelo Fábio devido a requisitos de autenticação de segurança do console web.

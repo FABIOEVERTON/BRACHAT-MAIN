@@ -1,0 +1,118 @@
+FABIO BARBOSA EVERTON
+Brasília, DF — Brazil | +55 61 98407-6881
+fabioeverton1704@gmail.com | linkedin.com/in/fabio-everton-3b62b1129/
+github.com/FABIOEVERTON
+
+----------------------------------------------------------
+AI ENGINEER — FULL-STACK AI SYSTEMS
+----------------------------------------------------------
+
+AI Engineer with hands-on experience building production-grade LLM-powered
+systems, agentic workflows, and full-stack AI platforms. Proficient in Python,
+FastAPI, LangChain, and React. Strong track record of designing autonomous AI
+agents with immutable audit trails, prompt injection defense, and
+governance-by-design — from architecture through deployment.
+
+----------------------------------------------------------
+CORE TECHNICAL SKILLS
+----------------------------------------------------------
+
+Languages & Frameworks:
+  Python, SQL, JavaScript, React, FastAPI, LangChain, Node.js
+
+AI & LLM:
+  Claude API, OpenAI, Ollama, RAG (pgvector), agentscope,
+  prompt engineering, agentic workflows, multi-agent orchestration
+
+Infrastructure:
+  Docker, Git, CI/CD, PostgreSQL, Redis, GCP, OPA/Rego
+
+Practices:
+  Full-stack development, API design, distributed systems,
+  production AI deployment, governance-by-design
+
+----------------------------------------------------------
+PROFESSIONAL EXPERIENCE
+----------------------------------------------------------
+
+AI ENGINEER / FOUNDER — Fellow Governance (SaaS)
+2025 – Present
+
+  • Architected a multi-agent orchestration system with 22 specialized
+    LLM agents running deterministic workflows via LangChain
+  • Built full-stack AI Governance platform: Python/FastAPI backend,
+    PostgreSQL+pgvector for RAG, Redis for state management, Next.js 14
+    frontend
+  • Implemented immutable audit chain with SHA-256 hashing and
+    multi-tenant architecture with row-level security
+  • Deployed on Docker/GCP with automated CI/CD pipelines
+  • Engineered OPA/Rego policy-as-code engine that transforms regulatory
+    requirements into executable policies in under 300 seconds
+
+AUTONOMOUS AGENT DEVELOPER — Ezra Agent (Telegram Bot)
+2025 – Present
+
+  • Built stateless-per-turn autonomous Telegram agent with persistent
+    encrypted vault and sandboxed script execution
+  • Implemented OPA/Rego policy enforcement for real-time governance,
+    PII redaction, and prompt injection blocking
+  • Designed circuit breaker pattern with automatic model fallback
+    and token budget tracking
+  • Integrated Git-synced memory vault for persistent knowledge across
+    sessions
+  • Deployed 24/7 via launchd with immutable audit logging
+
+SENIOR PROJECT MANAGER — Turnkey Construction
+2013 – 2024
+
+  • Led end-to-end delivery of R$30M+ in corporate projects for premium
+    B2B clients, from requirements gathering through final handover
+  • Coordinated cross-functional teams (architecture, engineering, IT,
+    logistics) consistently delivering on time and within budget
+  • Built vendor management strategies that reduced delivery timelines
+    by 20% without quality impact
+  • Developed client onboarding and implementation processes adopted as
+    company-wide standard
+
+----------------------------------------------------------
+KEY PROJECTS
+----------------------------------------------------------
+
+Fellow Governance — AI Governance Platform
+  Multi-agent LLM system with OPA/Rego policy-as-code, immutable audit
+  trails, and RAG pipeline using pgvector.
+  → github.com/FABIOEVERTON/Fellow_Governance
+
+Ezra Agent — Autonomous Telegram Agent
+  Production agent with prompt injection defense, circuit breaker,
+  encrypted vault, and governance layer.
+  → github.com/FABIOEVERTON/Ezra_Agent
+
+----------------------------------------------------------
+EDUCATION
+----------------------------------------------------------
+
+Law School (8 semesters) — UniProcessus
+Technology Degree in Notarial and Registry Services — UniProcessus
+
+----------------------------------------------------------
+CERTIFICATIONS
+----------------------------------------------------------
+
+Building with the Claude API                        — Anthropic (Mai/2026)
+  Credential: txhnot8yv2ob
+AI Capabilities and Limitations                     — Anthropic (Mai/2026)
+  Credential: oxmavxc8p2rv
+Google Cloud Fundamentals: Core Infrastructure       — GCP Skills Boost (Mar/2026)
+  Skills: GCP, VPC, Compute Engine, Cloud SQL
+CIPP/BR                                             — IAPP (In Progress)
+AIGP                                                — IAPP (In Progress)
+AWS AI Practitioner                                 — Em estudo
+
+----------------------------------------------------------
+LANGUAGES
+----------------------------------------------------------
+
+Portuguese — Native
+English — Advanced (C1) — Daily technical reading, writing, and
+           AI tooling in English. C2-level analysis framework.
