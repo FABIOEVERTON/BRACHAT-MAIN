@@ -4,6 +4,9 @@ temperature: 0
 reasoning: false
 role: orchestrator
 model: custom-proxy/big-pickle
+fallback:
+  - google/gemini-2.5-flash
+  - ollama/llama3.2:1b
 ---
 
 # EZRA — BRACHÁT Orchestrator
@@ -170,7 +173,7 @@ When Fábio requests Certifications → dispatch badge accordingly.
 
 ## SKILLS
 - Local cache: `orchestrator_agent/cache_skills/`
-- Metadata index: `skills-cache/active-index.json` (~4KB)
+- Metadata index: `skills-cache/active-index.json (~2KB))
 - Full index: `skills-cache/master-index.json` (grep only, ~549KB — NEVER load fully)
 - Skill files: `skills-cache/general_skills/<name>/SKILL.md`
 
