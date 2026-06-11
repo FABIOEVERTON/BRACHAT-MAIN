@@ -1,25 +1,417 @@
-# TUTORIAL — BRACHÁT Ecosystem
+# TUTORIAL & SYSTEM CONTRACTS — BRACHÁT Ecosystem
 
-> ⚡ **AUTO-LOAD:** Read this document **first** to understand 100% of the system: folders, files, agents, rules, and workflows.
->
-> **Then** read `cloud/sites/walkthrough.md` for the practical infrastructure guide (VPS, services, deploy, firewall).
-
----
-
-## 1. RECOMMENDED READING ORDER
-
-1. `TUTORIAL.md` ← **you are here**
-2. `cloud/sites/walkthrough.md` — practical cloud infrastructure guide
-3. `agents/director_agents/aisio/governance/REGRAS.md` — ecosystem rules
-4. `agents/orchestrator_agent/orchestrator.md` — EZRA, the orchestrator
-5. `agents/metadata.json` — registry of all 20 agents
-6. `agents/state.json` — user profile, routine, schedule
-7. `agents/shared/skills-cache/active-index.json (~2KB))
-8. `agents/director_agents/aisio/aisio.md` — Aísio, the gatekeeper
+> ⚡ **AUTO-LOAD & SOURCE OF TRUTH:** This document contains 100% of the system rules, contracts, and architecture. All future audits MUST base their evaluation solely on this document.
+> 🔒 **MANDATORY ACTION:** Read this file FIRST before taking any other action. Do not re-index the entire project.
 
 ---
 
-## 2. OVERVIEW
+## 0. ABSOLUTE SYSTEM RULES (From GEMINI.md)
+
+- **OpenCode:** DIRECTLY CONNECTED to the agent.
+- **Ezra:** Central intelligence and system coordinator.
+- **Gilmario:** Agent responsible for editing Aisio's book (created on 05/29/2026).
+- **Global WhatsApp Business:** +55 61 99650-6881 (Chromium/Puppeteer).
+- **Aisio Contact:** +55 61 99116-3206.
+
+## Efficiency and LLM Rules (MANDATORY)
+- **Minimum Output:** ALWAYS respond with the lowest possible number of tokens (~67 tokens).
+- **Minimum Input:** Read/search only what is strictly necessary.
+- **Temperature:** `0.0` for any model. Deterministic and direct answers.
+- **Documents:** Any generated document MUST BE WRITTEN IN **ENGLISH**.
+- **Chat:** Respond in Brazilian Portuguese, straight to the point.
+
+## File Rules
+- **Subagents:** Only for justified parallelism.
+- **Reading:** Use `StartLine`/`EndLine`. Do not index `node_modules`, `dist`, or binaries. Prefer `grep_search`.
+- **Editing:** Use `multi_replace_file_content` for non-contiguous, `replace_file_content` for contiguous. NEVER rewrite entire files.
+- **References:** Use `@filename` when referencing files.
+
+## Memory and Context (Must REALLY work)
+- Save permanent facts (phones, decisions) to Mem0 immediately with `user_id: "fabio"`.
+- Use `CONVERSATION_SUMMARY.md` for temporary context.
+- Do not re-explain what has already been done.
+
+## Code Standards
+- Python / Node.js.
+- Clean code, no `console.log`.
+- Commits: `type: short description`.
+
+
+---
+
+## 1. ARCHITECTURE & OVERVIEW
+
+
+O BRACHÁT é um ecossistema de **agentes de IA** que trabalham juntos para te ajudar a estudar, caçar vagas, criar projetos e manter sua rotina. Cada agente tem um papel específico, e todos se conectam através de um **orquestrador central**.
+
+### Como funciona por cima
+
+**O Cérebro (Orquestrador)**  
+Quando você abre uma sessão, o **Orquestrador** entra em ação primeiro. Ele lê o relógio (`date`), consulta seu estado (`state.json`), descobre qual é o horário e a atividade da sua rotina, e **despacha o agente certo** para aquele momento. Ele não pensa nem executa tarefas — só gerencia quem faz o quê e quando.
+
+**Os 12 Agentes Diários**  
+Cada um cuida de uma área específica da sua vida:
+- **Job Hunter** — varre vagas de emprego
+- **Inglês** — prepara exercícios de vocabulário e leitura
+- **Estudos** — acompanha seu progresso no cronograma
+- **Portfólio** — cria drafts de posts e projetos
+- **Python** — material de Python Masterclass
+- **Google Skills** — cobra seus cursos
+- **Torá** — lição e reflexão
+- **Filosofia** — leitura e discussão
+- **PMP** — material de certificação
+- **ML Engineer** — estudos de machine learning
+- **Certificações** — acompanha certificações
+- **Freelancer** — encontra trabalhos freelas
+
+Eles se comunicam via `cache.json` — cada um salva seu progresso num arquivo, e o Orquestrador lê esses arquivos para saber o que já foi feito.
+
+**Os 5 Diretores**  
+São agentes especialistas que fiscalizam e orientam áreas maiores:
+- **Aísio** — Diretor de Governança. Vigia se os outros agentes estão seguindo as regras. É o único que pode bloquear ações não autorizadas.
+- **Nice** — Diretora de Marketing e Voz do Cliente. Cuida da sua presença online e comunicação.
+- **Gilmário** — Diretor Técnico. Supervisiona qualidade técnica dos projetos.
+- **Jessica** — Diretora de Design. Cuida da identidade visual e UX.
+- **Josué** — Diretor de Estratégia. Planejamento e visão de longo prazo.
+
+**Os Serviços de Fundo (Builder)**  
+O Builder contém os scripts que rodam 24h por dia: o **ClickUp Daemon** sincroniza suas tasks, o **Telegram Bridge** mantém você conectado via Telegram, e os **daemons** garantem que tudo fique ligado mesmo com o Mac fechado.
+
+**Como a Informação Flui**
+```
+Orquestrador → lê state.json + dispatch-schedule
+            → descobre horário
+            → ativa o agente do momento
+            → agente lê cache.json de outros agentes
+            → agente executa tarefa
+            → agente salva progresso no próprio cache.json
+            → Orquestrador consolida no fim do dia
+```
+
+---
+
+## 2. FUNÇÃO DAS PASTAS
+
+```
+brachat-main/                         ← RAIZ DO ECOSSISTEMA
+│
+├── ARCHITECTURE.md                   ← Este documento
+├── README.md                         ← Descrição geral do projeto
+├── TUTORIAL.md                       ← Passo a passo de como usar
+├── state.json                        ← Estado central de tudo (canônico)
+├── opencode.json                     ← Config do OpenCode (CLI de IA)
+├── .opencode/                        ← Config interna do OpenCode
+│   └── instructions/memory.md        ← Instrução carregada em toda sessão
+│
+├── assistant_agents/                 ← CÉREBRO DO SISTEMA — onde vivem os agentes
+│   │
+│   ├── state.json                    ← Perfil do usuário (Fábio), rotina, fases de estudo
+│   ├── REGRAS.md                     ← Regras que todos os agentes seguem
+│   ├── AUDITORIA.md                  ← Checklist de verificação do sistema
+│   ├── README.md + LICENSE           ← Documentação e licença
+│   │
+│   ├── .opencode/                    ← Config dos agentes dentro do OpenCode
+│   │   └── agent/
+│   │       ├── orquestrador.md       ← O cérebro: dispatch de agentes por horário
+│   │       └── dispatch-schedule.md  ← Tabela de horários: quem faz o quê e quando
+│   │
+│   ├── daily/                        ← AGENTES DIÁRIOS (um para cada matéria)
+│   │   ├── estudos/                  ← Rastreador de progresso do cronograma
+│   │   ├── ingles/                   ← Professor de inglês (C2 Framework)
+│   │   ├── python/                   ← Python Masterclass
+│   │   ├── torah/                    ← Lição da Torá
+│   │   ├── filosofia/                ← Filosofia e reflexão
+│   │   ├── certificacoes/            ← Certificações profissionais
+│   │   ├── google-skills/            ← Cursos Google
+│   │   ├── pmp/                      ← Certificação PMP
+│   │   ├── ml-engineer/             ← Machine Learning
+│   │   ├── portfolio/               ← Portfólio e projetos
+│   │   ├── job-hunter/              ← Caça a vagas de emprego
+│   │   └── freelancer/              ← Trabalhos freelancer
+│   │   │
+│   │   └── (cada pasta contém:)
+│   │       ├── AGENT.md             ← Personalidade e instruções do agente
+│   │       ├── cache.json           ← Progresso salvo do agente
+│   │       └── metadata.json        ← Metadados (categoria, tags)
+│   │
+│   ├── directors/                    ← DIRETORES (agentes especialistas)
+│   │   ├── aisio/                    ← Governança, compliance, auditoria
+│   │   ├── nice/                     ← Marketing, comunicação, voz do cliente
+│   │   ├── gilmario/                 ← Diretor técnico
+│   │   ├── jessica/                  ← Diretora de design
+│   │   └── josue/                    ← Estratégia e visão
+│   │
+│   ├── shared/                       ← BIBLIOTECA COMPARTILHADA
+│   │   ├── general_harness/         ← Harness — padrão de execução de agentes
+│   │   ├── general_prompts/         ← Templates de prompt reutilizáveis
+│   │   ├── general_memory-system/   ← Sistema de memória compartilhada
+│   │   ├── general_scripts/         ← Scripts utilitários
+│   │   ├── general_skills/          ← +500 skills prontas (biblioteca externa)
+│   │   ├── governance/              ← Frameworks de governança:
+│   │   │   ├── AGCP.md             ← Agile Governance Control Protocol
+│   │   │   ├── QILIS.md            ← Quality, Integrity, Legal, Information Security
+│   │   │   ├── DEVSECOPS.md        ← DevSecOps padrão
+│   │   │   └── REGULATORY.md       ← Compliance regulatório
+│   │   ├── notebooklm/             ← Base de conhecimento do NotebookLM
+│   │   ├── DB_obsidian/            ← Banco de dados do Obsidian
+│   │   └── build_notebooklm.py     ← Script que gera a base NotebookLM
+│   │
+│   ├── skills-cache/                ← ÍNDICE DE SKILLS
+│   │   ├── active-index.json (~2KB))
+│   │   ├── POLICY.md               ← Política de uso das skills
+│   │   └── master-index.json       ← Todas as skills disponíveis (grande, ~549KB)
+│   │
+│   ├── orquestrador/                ← Backup do orquestrador antigo
+│   │   └── AGENT.md.bak
+│   │
+│   └── .apis/.env                   ← Credenciais de API
+│
+├── branding/                         ← SUA MARCA PESSOAL
+│   ├── contacts.json                ← Contatos e número de WhatsApp
+│   ├── state.json                   ← Estado local da pasta
+│   ├── agenda_lu.json              ← Agenda da Nice
+│   ├── governance/blocks.json       ← Bloqueios de governança
+│   └── whatsapp/                    ← Código e fila do WhatsApp
+│       ├── send.js                  ← Envio de mensagens
+│       ├── queue.js + queue.json    ← Fila de mensagens
+│       ├── client.js                ← Cliente WhatsApp
+│       ├── server.js + start.js     ← Servidor WhatsApp
+│       └── package.json             ← Dependências Node.js
+│
+├── portfolio/                        ← SEUS PROJETOS E PUBLICAÇÕES
+│   ├── index.html                   ← Página inicial do portfólio
+│   ├── products/                    ← Produtos criados
+│   ├── state.json                   ← Estado local
+│   └── README.md
+│
+├── builder/                          ← FÁBRICA DE INFRAESTRUTURA
+│   ├── README.md                    ← Descrição geral
+│   ├── state.json                   ← Estado local
+│   ├── scripts/
+│   │   └── clickup_daemon.py        ← Daemon que sincroniza tasks com ClickUp
+│   ├── daemons/
+│   │   ├── com.brachat.opencode.plist  ← launchd: Telegram bridge EZRA
+│   │   └── com.brachat.nice.plist      ← launchd: Telegram bridge NICE
+│   └── agents/
+│       └── README.md                ← Instruções para criar agentes de produto
+│
+├── writings_studies/                 ← SEUS ESTUDOS E PRODUÇÕES ESCRITAS
+│   ├── official_schedule.md         ← Cronograma de estudos principal
+│   ├── state.json                   ← Estado local
+│   ├── README.md                    ← Descrição
+│   ├── 00_strategy_business/       ← Estratégia, negócios, transformação digital
+│   ├── ai-engineering/             ← Engenharia de IA
+│   ├── ai-governance/              ← Governança de IA
+│   ├── books/aisio_book/           ← Livro sobre Aísio
+│   ├── certifications/             ← Certificados (PDFs)
+│   ├── cloud-architecture/         ← Cloud, GCP, Kubernetes, Terraform
+│   ├── software-engineering/       ← Engenharia de software, padrões, testes
+│   ├── general_papers/             ← Artigos acadêmicos
+│   ├── judaism/                    ← Estudos judaicos
+│   └── law/                        ← Estudos jurídicos
+│
+├── auditing/                         ← AUDITORIAS PASSADAS
+│   ├── system_scaner_prompt.md     ← Prompt usado para escanear
+│   └── descoberta-2026-06-07.md    ← Resultados da última auditoria
+│
+└── auditoria/                        ← RELATÓRIOS DE AUDITORIA
+    └── rebuild-2026-06-07.md        ← Relatório do rebuild de 10 fases
+```
+
+---
+
+## 3. MAPA DE CONEXÕES
+
+### Quem se conecta com quem
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    ORQUESTRADOR                          │
+│  (assistant_agents/.opencode/agent/orquestrador.md)      │
+│                                                          │
+│  Lê no início:                                           │
+│  ├── state.json (root)                                   │
+│  ├── assistant_agents/state.json (perfil do usuário)     │
+│  ├── dispatch-schedule.md (tabela de horários)           │
+│  ├── writings_studies/official_schedule.md (cronograma)  │
+│  └── daily/*/cache.json (progresso de cada agente)      │
+│                                                          │
+│  Despacha:                                               │
+│  └── daily/*/AGENT.md → agente do horário               │
+└─────────────────────────────────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────────────────────────────────┐
+│               AGENTES DIÁRIOS                             │
+│  (assistant_agents/daily/*/)                              │
+│                                                          │
+│  Cada agente:                                            │
+│  ├── Lê próprio cache.json (estado anterior)            │
+│  ├── Lê cache.json de outros agentes (quando precisa)   │
+│  ├── Lê studies/ (para materiais de estudo)             │
+│  ├── Lê branding/ (para contatos)                       │
+│  └── Escreve no próprio cache.json (progresso)          │
+│                                                          │
+│  Agente ESTUDOS consolida todos os outros:               │
+│  └── daily/estudos/cache.json → tabela de progresso     │
+└─────────────────────────────────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────────────────────────────────┐
+│                  DIRETORES                                │
+│  (assistant_agents/directors/*/)                          │
+│                                                          │
+│  AÍSIO (governança):                                     │
+│  ├── Lê assistant_agents/ (frameworks, regras)           │
+│  ├── Lê governance-ledger.jsonl (histórico)              │
+│  ├── Lê REGRAS.md, AGCP.md, QILIS.md, DEVSECOPS.md      │
+│  ├── Pode BLOQUEAR ações cross-domain                   │
+│  └── Escreve em governance-ledger.jsonl (append-only)   │
+│                                                          │
+│  NICE (comunicação):                                     │
+│  ├── Lê branding/ (contatos, estado)                    │
+│  ├── Lê director/nice/ (metadados)                     │
+│  └── Conecta com Telegram bot @luevertonbot             │
+│                                                          │
+│  GILMÁRIO (técnico):                                     │
+│  └── Supervisiona qualidade de projetos builder/        │
+│                                                          │
+│  JESSICA (design):                                       │
+│  └── Cuida da identidade visual no portfólio/           │
+│                                                          │
+│  JOSUÉ (estratégia):                                     │
+│  └── Planejamento de longo prazo no writings_studies/   │
+└─────────────────────────────────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────────────────────────────────┐
+│                  BUILDER (Infraestrutura)                 │
+│  (builder/)                                               │
+│                                                          │
+│  Scripts:                                                │
+│  ├── clickup_daemon.py → Conecta no ClickUp via         │
+│  │   Composio SDK (cria/lê/atualiza/deleta tasks)       │
+│  │   └── Salva cache em builder/cache/clickup.json      │
+│  │                                                       │
+│  Daemons (launchd — rodam 24/7):                        │
+│  ├── com.brachat.opencode.plist                         │
+│  │   └── Bridge Telegram → OpenCode (bot EZRA)          │
+│  ├── com.brachat.nice.plist                             │
+│  │   └── Bridge Telegram → NICE (bot @luevertonbot)    │
+│  └── (futuro: com.brachat.clickup.plist)                │
+└─────────────────────────────────────────────────────────┘
+         │
+         ▼
+┌─────────────────────────────────────────────────────────┐
+│               RECURSOS EXTERNOS (Composio)               │
+│                                                          │
+│  Conexões ativas:                                        │
+│  ├── ClickUp → gerenciamento de tasks e pipeline        │
+│  ├── LinkedIn → posting e networking                    │
+│  ├── Telegram → bots EZRA + NICE (comunicação 24/7)    │
+│  │                                                       │
+│  Disponível para usar:                                   │
+│  ├── Gmail, Google Calendar, Google Drive, Google Meet  │
+│  ├── Figma, Trello, Cloudflare, Mem0                    │
+│  └── ClickUp, Telegram (já conectados)                  │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Conexões Detalhadas
+
+| Arquivo/Pasta | Lê de | Escreve em | Conecta com |
+|---|---|---|---|
+| `orquestrador.md` | `state.json`, `dispatch-schedule.md`, `official_schedule.md`, `daily/*/cache.json` | — (só despacha) | Todos os agentes diários |
+| `daily/*/AGENT.md` | `cache.json` local | `cache.json` local | Orquestrador, Estudos |
+| `daily/estudos/AGENT.md` | `daily/*/cache.json` | `writings_studies/YYYY-MM-DD-progress.md` | Todos os agentes de estudo |
+| `aisio/AGENT.md` | `REGRAS.md`, `shared/governance/`, `state.json` | `governance-ledger.jsonl` | Orquestrador (pode bloquear) |
+| `nice/AGENT.md` | `integrations/contacts.json`, `directors/nice/metadata.json` | `directors/nice/cache.json` | Telegram bot @luevertonbot |
+| `integrations/contacts.json` | — | — | Agentes que precisam de contatos |
+| `builder/clickup_daemon.py` | `CLICKUP_LIST_ID` (env) | `builder/cache/clickup.json` | ClickUp via Composio SDK |
+| `builder/com.brachat.opencode.plist` | — | — | launchd → Telegram → OpenCode |
+| `writings_studies/official_schedule.md` | — | — | Orquestrador (lê todo início de sessão) |
+| `assistant_agents/state.json` | — | — | Referência central de perfil e rotina |
+| `skills-cache/active-index.json` | `master-index.json` | — | Skills que os agentes podem usar |
+
+### Regras de Dependência
+
+1. **Cross-domain PROIBIDO** — um agente de estudo não pode mexer em vaga de emprego sem autorização de Aísio
+2. **Aísio pode bloquear qualquer dispatch** — se o Orquestrador tentar ativar um agente fora da regra, Aísio trava
+3. **Cache.json é a memória local** — cada agente só escreve no próprio cache; lê dos outros quando precisa
+4. **State.json é canônico** — o estado central em `assistant_agents/state.json` é a fonte da verdade sobre perfil e rotina
+5. **Governança é append-only** — Aísio escreve no ledger mas nunca deleta; tudo fica registrado
+6. **Builder roda independente** — os daemons launchd rodam 24/7 mesmo sem o OpenCode aberto
+7. **Mem0 backup seletivo** — só backup com flag `mem0: true` vai para o Mem0
+
+---
+
+*Documento gerado em 07/06/2026 — Brachát Ecosystem v1*
+
+
+---
+
+## 2. LOCAL MAC BUILDER (From agents/README.md)
+
+
+```text
+brachat-main/builder/
+├── README.md               <-- Este manual de produção do construtor
+├── GOVERNANCE_WORKFLOW.md   <-- Manual das 8 fases, AGCP e QUILIS
+├── clickup_daemon.py       <-- Daemon de 8 fases (Gemini + Claude + Groq)
+├── bot_telegram.py         <-- Bot local do Telegram
+├── active_project.json     <-- Estado de apontamento do projeto ativo
+├── agentes/                <-- Especificações de cada agente do time (Spec-Kit)
+│   ├── ezra.md
+
+│   ├── gilmario.md
+│   ├── researcher.md
+│   ├── architect.md
+│   ├── coder.md
+│   └── documenter.md
+├── memories/               <-- Arquivos JSON de contextos locais dos agentes
+├── logs/                   <-- Logs de stdout/stderr gerenciados pelo launchd
+├── hooks/                  <-- Git Pre-Commit Hooks rígidos de injeção automática
+├── lazy-gravity-suite/     <-- Ponte WebSocket + Bot Telegram de Controle Remoto
+└── governance_repos/       <-- Repositórios de cibersegurança e conformidade clonados
+    ├── awesome-ai-agent-governance
+    └── Anthropic-Cybersecurity-Skills
+```
+
+---
+
+## 🛡️ Governança de IA & Cibersegurança
+
+### A. Divisão de Partições (AGCP)
+* **Partição de Análise (Cognitiva):** A IA atua de forma sandboxed nas fases de pesquisa e especificação (`researcher.md` / `architect.md`), gerando propostas de modificações lógicas em texto.
+* **Partição de Efeito (Física):** O `clickup_daemon.py` e o `bot_telegram.py` executam comandos locais, testes e controlam as travas físicas de escrita do macOS.
+
+### B. Workspace Guard (Zero-Trust de Escrita)
+Os arquivos de código do Mac permanecem bloqueados como **Somente Leitura (`chmod 444`)** por padrão. A escrita só é liberada dinamicamente para **`chmod 644`** após a aprovação manual do CEO Fábio no Telegram (Fase 3 ➔ Fase 4).
+
+### C. Limite de Commit (Commit Limit)
+O Git Pre-Commit Hook local valida se as alterações de código correspondem estritamente ao escopo aprovado no `implementation_plan.md` e aborta o commit na hora se houver modificações intrusas.
+
+---
+
+## 🔌 Resiliência contra Quedas e Suspensão
+
+1. **Auto-Start macOS:** O Daemon, os Bots e a Ponte Lazy-Gravity estão integrados como **LaunchAgents do macOS**. Eles iniciam automaticamente com o boot do computador e se auto-recuperam em caso de crash.
+2. **Anti-Repouso:** O Mac está configurado via Amphetamine para **nunca dormir** ao fechar a tampa ou ao bloquear a tela, mantendo a esteira de robôs online 24h/dia (conectado à tomada).
+
+---
+
+## 🚀 Como Operar a Fábrica de Software
+
+Pelo chat do **EZRA** no Telegram:
+1. **Selecionar Projeto:** `/switch <caminho_do_projeto_no_mac>` (Ex: `/switch /Users/mac/brachat-main`).
+2. **Disparar Tarefa:** `/trabalhar <instrução de desenvolvimento>` (Ex: `/trabalhar criar rota de healthcheck`).
+3. **Aprovar Planos:** Interagir com o card criado no ClickUp e enviar aprovação no chat.
+
+
+---
+
+## 3. ORIGINAL TUTORIAL & WORKFLOWS
+
 
 BRACHAT is a personal **AI agent** ecosystem for **Fábio Everton**. Each agent has a unique role, and all are coordinated via **EZRA** (orchestrator). Aísio (gatekeeper) validates every action before execution.
 
@@ -537,3 +929,4 @@ Job Hunter / Freelancer
 ---
 
 *Document generated on 06/09/2026 — Brachát Ecosystem v2.0 — Updated on 06/11/2026*
+
