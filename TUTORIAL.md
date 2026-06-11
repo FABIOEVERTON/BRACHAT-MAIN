@@ -809,57 +809,30 @@ Location: `agents/shared/skills-cache/`
 
 ---
 
-## 8. 24/7 INFRASTRUCTURE
+## 8. 24/7 INFRASTRUCTURE & FALLBACK
 
-### Daemons (launchd on macOS)
+### Mac Daemons (launchd on macOS)
+The bridges and daemons run locally on your Mac using macOS launchd services.
 
-| Plist | Function |
-|-------|----------|
-| `com.brachat.opencode.plist` | EZRA Telegram bridge (bot @Baruch_Everton_bot) |
-| `com.brachat.nice.plist` | NICE Telegram bridge (bot @luevertonbot) |
+| Plist | Function | Run Script |
+|-------|----------|------------|
+| `com.brachat.opencode` | EZRA Telegram bridge (@Baruch_Everton_bot) | `agents/scripts/telegram-bridge.py` |
+| `com.brachat.nice` | NICE Telegram bridge (@luevertonbot) | `agents/scripts/nice-telegram-bridge.py` |
+| `com.brachat.clickup` | ClickUp task synchronization daemon | `integrations/clickup/clickup_daemon.py` |
 
-### VPS (147.15.18.252) — Oracle Cloud Always Free (New Infrastructure)
+### VPS (147.15.18.252) — Oracle Cloud Always Free (Ollama Host)
+To optimize RAM usage and prevent OOM issues on the 512MB RAM instance, all Python ecosystem daemons (dashboard, malha, clickup, telegram bridges) on the VPS were permanently disabled. The VPS is now configured as a dedicated fallback LLM host.
 
-For the complete practical guide (deploy, firewall, maintenance), see `cloud/sites/walkthrough.md`.
-
-- **Instance**: `VM.Standard.E2.1.Micro` (AMD, 1 vCPU, 2 GB physical RAM, 50 GB SSD).
-- **Stability**: **4 GB permanent Swap** configuration (`/swapfile` allocated via physical block `dd`) to avoid any Out-Of-Memory (OOM) bottlenecks. Total 6 GB active virtual memory.
-- **Security and Permissions**: systemd services run under the `opc` user instead of `root` or `nobody`, resolving historical permission errors.
-- **Server Repository**: `git clone` at `/opt/brachat/repo`. Files in `/opt/brachat/` are **symlinks** to `repo/cloud/`.
-- **Active Services (systemd)**:
-  * **`brachat-ezra`**: EZRA Telegram bridge (bot @Baruch_Everton_bot) — 24/7.
-  * **`brachat-nice`**: NICE Telegram bridge (bot @luevertonbot) — 24/7.
-  * **`brachat-dashboard`**: HTTP server on port `8080` — serves `index.html` + `/api/status` endpoint.
-   * **`brachat-malha`**: WebSocket server on port `8765` — transmits real agent state every 1s.
-   * **`brachat-clickup`**: ClickUp task polling daemon — monitors the Hermes_Agent list (ID 901714148420).
-- **Firewall — Two Layers**:
-  * **Layer 1 (VM)**: `firewalld` with ports 8080/tcp and 8765/tcp open.
-  * **Layer 2 (OCI)**: VCN Security List — **pending open** ports in OCI Console. If the dashboard doesn't respond externally, this is the likely reason.
-- **Dashboard — How It Works**:
-  * `index.html` opens WebSocket `ws://hostname:8765` and receives JSON every 1s.
-  * The WebSocket server reads `agents/{director,builder,studies}_agents/*/state.json` from disk.
-  * If an agent has a filled `daily_log`, the dashboard shows a green ◉. If empty, shows a gray ○.
-  * **Nothing is fake** — the dashboard reflects exactly the state on the filesystem.
-
-### Update: Dashboard with Real Data (06/10/2026)
-
-The WebSocket server (`server.py`) was fixed to read from the actual path (`agents/` instead of `assistant_agents/`). Now the dashboard shows:
-- 5 directors (aisio, gilmario, jessica, josue, nice)
-- 2 builders (architect, artur)
-- 11 studies (aristotle, badge, calculus, dev, eduardo, freela, google, john, justus, showcase, temer)
-- Real status: green if the agent has logged activity, gray if never used.
-
-### External Access (Open)
-Ports 8080 and 8765 are open in both the VM firewall (`firewalld`) and the OCI Security List. The dashboard responds externally — confirmed `HTTP 200` from outside the VPS.
+- **Instance**: `VM.Standard.E2.1.Micro` (AMD, 1 vCPU, 512 MB physical RAM, 50 GB SSD).
+- **Stability**: **4.5 GB permanent Swap** (`/swapfile`) providing virtual memory fallback.
+- **Active Service**: `ollama.service` listening on port `11434` (with port open in both local firewall and OCI Security List for Mac access).
+- **Model**: **`gemma2:2b`** (~1.6 GB) pulled to local Ollama registry. This small footprint model fits and executes efficiently.
+- **Ecosystem Bridges Fallback Flow**:
+  1. The Mac bridges poll Telegram.
+  2. If the primary cloud Zen API (`big-pickle`) is unavailable, the local scripts automatically route queries to `http://147.15.18.252:11434/api/chat` using the VPS fallback.
 
 ### Hetzner Deactivation (Dead)
 The old Hetzner instance (`167.233.30.115` - 2 vCPU, 3.7GB RAM) was **completely deactivated and discontinued**. All systemd services were stopped on Hetzner before the final reboot, preventing Telegram polling conflicts. Ecosystem files and secrets were purged from the old machine.
-
-### Active Connections
-
-* **ClickUp:** The local Daemon was moved to the VPS systemd (`brachat-clickup.service`) and now runs natively.
-* **Telegram Bridges:** Refactored. No longer use the Ollama bottleneck; send a standby message if the central API fails.
-* Composio on standby and Google Calendar.
 
 ---
 
@@ -922,9 +895,9 @@ Job Hunter / Freelancer
 | Validate action | `task aisio "validate dispatch [agent] for [action]"` |
 | Consult skill | Grep `master-index.json` + load `SKILL.md` |
 | View ledger | Read last 20 lines of `.opencode/governance-ledger.jsonl` |
-| Read infra guide | `cloud/sites/walkthrough.md` |
-| Dashboard (local) | `curl http://147.15.18.252:8080` |
-| Services status | `ssh opc@147.15.18.252 'sudo systemctl status brachat-ezra brachat-nice brachat-dashboard brachat-malha'` |
+| Ollama Status | `ssh opc@147.15.18.252 'ollama list'` |
+| Ollama Logs   | `ssh opc@147.15.18.252 'sudo journalctl -u ollama.service -n 50 --no-pager'` |
+| Mac Daemons   | `launchctl list \| grep brachat` |
 
 ---
 
