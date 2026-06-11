@@ -5,8 +5,7 @@ from pathlib import Path
 
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 ALLOWED_CHAT = os.environ.get("ALLOWED_CHAT_ID")
-ZEN_API_KEY = os.environ.get("ZEN_API_KEY")
-ZEN_MODEL = "big-pickle"
+ZEN_MODEL = "llama3.2:1b"
 POLL_INTERVAL = 1
 STATE_FILE = Path("/tmp/telegram-bridge-state.json")
 LOG_FILE = Path("/tmp/telegram-bridge.log")
@@ -61,36 +60,21 @@ def send(chat_id, text):
     if not text:
         return
     chunks = [text[i:i+4000] for i in range(0, len(text), 4000)]
-    for chunk in chunks:
-        tg("sendMessage", {"chat_id": chat_id, "text": chunk, "parse_mode": "Markdown"})
-
-def ask_opencode(msg, conv_id):
-    body = json.dumps({
-        "model": ZEN_MODEL,
-        "messages": [
-            {"role": "system", "content": get_system_prompt()},
-            {"role": "user", "content": msg}
-        ],
-        "max_tokens": 2048,
-        "temperature": 0,
-        "conversation_id": conv_id,
-        "continue": False
-    }).encode()
-    req = urllib.request.Request(
-        ZEN_API,
-        data=body,
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {ZEN_API_KEY}",
-            "User-Agent": "Mozilla/5.0"
-        }
-    )
+def ask_llama(sys_prompt, user_msg):
     try:
+        payload = json.dumps({
+            "model": "llama3.2:1b",
+            "messages": [
+                {"role": "system", "content": sys_prompt},
+                {"role": "user", "content": user_msg}
+            ],
+            "stream": False
+        }).encode()
+        req = urllib.request.Request("http://147.15.18.252:11434/api/chat", data=payload, headers={"Content-Type":"application/json"})
         with urllib.request.urlopen(req, timeout=120) as r:
-            resp = json.loads(r.read())
-            return resp["choices"][0]["message"]["content"].strip()
+            return json.loads(r.read())["message"]["content"].strip()
     except Exception as e:
-        log.error(f"Zen API: {e}")
+        log.error(f"Llama erro: {e}")
         return None
 
 def handle_msg(chat_id, text):
@@ -99,11 +83,11 @@ def handle_msg(chat_id, text):
     log.info(f"<< {text[:100]}")
     if text.startswith("/"):
         if text == "/start":
-            send(chat_id, "EZRA online via opencode serve. Envie sua mensagem.")
+            send(chat_id, "EZRA online via Llama local. Envie sua mensagem.")
         return
     tg("sendChatAction", {"chat_id": chat_id, "action": "typing"})
     conv_id = f"telegram-{chat_id}"
-    resp = ask_opencode(text, conv_id)
+    resp = ask_llama(get_system_prompt(), text)
     if resp:
         send(chat_id, resp)
         log.info(f">> {resp[:100]}")
@@ -116,7 +100,7 @@ def main():
     if STATE_FILE.exists():
         try: state = json.loads(STATE_FILE.read_text())
         except: pass
-    log.info(f"EZRA bridge (Zen API) started. Listening for {ALLOWED_CHAT}...")
+    log.info(f"EZRA bridge (Llama) started. Listening for {ALLOWED_CHAT}...")
     while True:
         try:
             updates = tg("getUpdates", {"offset": state.get("last_update_id", 0) + 1, "timeout": 10, "allowed_updates": ["message"]})

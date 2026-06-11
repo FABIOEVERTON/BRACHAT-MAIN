@@ -3,8 +3,7 @@ import os, sys, json, time, urllib.request, urllib.error, logging
 from pathlib import Path
 
 TELEGRAM_TOKEN = os.environ.get("NICE_TELEGRAM_TOKEN")
-ZEN_API_KEY = os.environ.get("ZEN_API_KEY")
-ZEN_MODEL = "big-pickle"
+ZEN_MODEL = "llama3.2:1b"
 POLL_INTERVAL = 1
 STATE_FILE = Path("/tmp/nice-telegram-bridge-state.json")
 CHAT_FILE = Path("/tmp/nice-telegram-chat.json")
@@ -83,30 +82,21 @@ def broadcast(text):
         return True
     return False
 
-def ask_zen(msg):
-    body = json.dumps({
-        "model": ZEN_MODEL,
-        "messages": [
-            {"role": "system", "content": get_system_prompt()},
-            {"role": "user", "content": msg}
-        ],
-        "max_tokens": 1024,
-        "temperature": 0.2
-    }).encode()
-    req = urllib.request.Request(
-        ZEN_API, data=body,
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {ZEN_API_KEY}",
-            "User-Agent": "Mozilla/5.0"
-        }
-    )
+def ask_llama(sys_prompt, user_msg):
     try:
-        with urllib.request.urlopen(req, timeout=30) as r:
-            resp = json.loads(r.read())
-            return resp["choices"][0]["message"]["content"].strip()
+        payload = json.dumps({
+            "model": "llama3.2:1b",
+            "messages": [
+                {"role": "system", "content": sys_prompt},
+                {"role": "user", "content": user_msg}
+            ],
+            "stream": False
+        }).encode()
+        req = urllib.request.Request("http://147.15.18.252:11434/api/chat", data=payload, headers={"Content-Type":"application/json"})
+        with urllib.request.urlopen(req, timeout=120) as r:
+            return json.loads(r.read())["message"]["content"].strip()
     except Exception as e:
-        log.error(f"ZEN: {e}")
+        log.error(f"Llama erro: {e}")
         return None
 
 WELCOME_MSG = (
@@ -132,7 +122,7 @@ def handle_msg(chat_id, text):
             send(chat_id, f"Seu chat ID: `{chat_id}`")
         return
     tg("sendChatAction", {"chat_id": chat_id, "action": "typing"})
-    resp = ask_zen(text)
+    resp = ask_llama(get_system_prompt(), text)
     if resp:
         formatted = f"\U0001f3e0 *Nice:*\n{resp}"
         send(chat_id, formatted)
