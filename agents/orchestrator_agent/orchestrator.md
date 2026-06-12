@@ -5,8 +5,7 @@ reasoning: false
 role: orchestrator
 model: custom-proxy/big-pickle
 fallback:
-  - google/gemini-2.5-flash
-  - ollama/gemma2:2b
+  - cohere/command
 ---
 
 # EZRA — BRACHÁT Orchestrator
