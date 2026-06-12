@@ -85,7 +85,7 @@
   "job_hunting_system": {
     "id": "job-hunting",
     "clt": {
-      "platforms": ["LinkedIn", "Indeed", "Gupy", "GeekHunter"],
+      "platforms": ["LinkedIn", "Indeed", "Gupy", "GeekHunter", "GitHub Jobs", "GitLab Jobs", "Y Combinator"],
       "filters": ["stack", "salary", "remote/presential", "level"],
       "flow": ["auto apply", "follow-up after 5 days", "adjust filters from rejection feedback"],
       "ats_strategy": "optimize ATS compatibility"

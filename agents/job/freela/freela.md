@@ -65,7 +65,7 @@ model: custom-proxy/big-pickle
 ## SKILLS
 - Relevant categories: `backend`, `frontend`, `cloud-infra`, `design-criativo` (Figma), `automacao`
 - Local cache: `studies_agents/freela/cache_skills/`
-- Metadata index: `skills-cache/active-index.json` (~4KB)
+- Metadata index: `skills-cache/active-index.json (~2KB))
 - Full index: `skills-cache/master-index.json` (grep only, ~549KB — NEVER load fully)
 - Skill files: `skills-cache/general_skills/<name>/SKILL.md`
 

@@ -1,8 +1,13 @@
 {
   "schedule_file": "writings_studies/OFICIAL_SCHEDULE.md",
-  "current_day": 1,
+  "current_day": 2,
   "current_month": 1,
-  "days_completed": [],
-  "last_updated": "2026-06-11T14:10:00-03:00",
+  "days_completed": [
+    {
+      "day": 1,
+      "completed_at": "2026-06-11T15:35:56.690606+00:00"
+    }
+  ],
+  "last_updated": "2026-06-11T15:35:56.690606+00:00",
   "note": "Day 0 = not started. Increment only when previous day achieves 100% DELIVERED across all checkpoints."
 }

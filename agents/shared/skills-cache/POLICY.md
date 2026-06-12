@@ -4,7 +4,7 @@
 1,465 skills available (312MB). Zero loaded in context by default.
 
 ## Rules
-1. **ALWAYS load**: `skills-cache/active-index.json` (~4KB) — category names + descriptions for searching.
+1. **ALWAYS load**: `skills-cache/active-index.json (~2KB)) — category names + descriptions for searching.
 2. **NEVER load**: `skills-cache/master-index.json` (549KB) or any `SKILL.md` unless explicitly needed for current task.
 3. **On demand per agent**:
    - Check `{category}/{agent}/cache_skills/` first
