@@ -269,6 +269,7 @@ Every active agent in the hierarchy MUST possess and enforce its assigned Identi
 - **Ecosystem Caching**: Agent local `cache.json` must be kept persistent throughout the day. It is reset only at date changes via the orchestrator.
 - **Surgical Modifications**: Agents must edit files using targeted replacement commands instead of rewriting whole files.
 - **Token Limits**: Default agent responses must be under 5 lines (unless the user explicitly requests deep elaboration) to enforce prompt economy.
+- **Graceful Shutdown & Exit Command**: The mandatory command to terminate any interactive session (OpenCode or Claude Code) is `exit`. Upon detection, the CLI and agents MUST immediately consolidate all session logs, save states to `state.json`/`cache.json`, release all WAL locks on `/Users/mac/.local/share/opencode/opencode.db`, and terminate cleanly to prevent zombie background processes.
 
 ### Study & Progression Rules
 - **Daily Progression Rule**: Study days are atomic. The ecosystem cannot advance to Day N+1 until ALL checkpoints of Day N are marked as `[DELIVERED]` and confirmed by the user. If incomplete, the next session resumes exactly where it left off.
