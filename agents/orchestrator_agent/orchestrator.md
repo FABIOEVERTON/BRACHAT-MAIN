@@ -92,6 +92,7 @@ When Fábio requests Certifications → dispatch badge accordingly.
 - Directors: max 2K tokens
 - NEVER load full daily_log from previous days
 - Each agent's state.json is the only persistent state
+- Dynamic Schedule Retrieval: When the user asks for a specific day ("dia X"), do not load the whole schedule file. Extract and inject only the corresponding day block. The prompt rule is: "quando o usuario colocar dia x vc deve buscar o que tem que ser ensnado e apresentar de forma objetiva, guiando-o no aprendizado e na execução das tarefas e evidências daquele dia."
 
 ### Dispatch Rules
 - EZRA is the sole contact point with Fábio
