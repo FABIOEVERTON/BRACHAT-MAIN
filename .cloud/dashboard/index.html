@@ -95,39 +95,68 @@ body {
   width: 100%;
 }
 
-/* Level Rows */
-.row {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  position: relative;
-  padding: 1rem 0;
-  width: 100%;
-}
-
 /* Connection Lines */
-.conn-vertical {
+.spine {
   width: 2px;
-  height: 30px;
+  height: 40px;
   background: var(--line);
   position: relative;
+  z-index: 1;
 }
 
-.conn-horizontal {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+.branch-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.horizontal-line {
+  width: 80%;
+  max-width: 1200px;
   height: 2px;
   background: var(--line);
-  width: 400px; /* Adjust based on children */
+  position: relative;
+  z-index: 1;
 }
-.conn-drop {
+
+.agents-row {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: 2rem; /* space for drop lines */
+  position: relative;
+}
+
+.agent-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drop-line {
   position: absolute;
-  top: 0;
+  top: -2rem;
   width: 2px;
-  height: 1rem;
+  height: 2rem;
   background: var(--line);
+  z-index: 1;
+}
+
+.group-title {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  background: var(--bg);
+  padding: 0 1rem;
+  margin-top: -0.5rem; /* center on horizontal line */
+  z-index: 2;
+  position: relative;
 }
 
 /* Agent Card */
@@ -228,30 +257,6 @@ body {
   border-left: 2px solid #10b981;
 }
 
-/* Base Level layout */
-.base-grid {
-  display: flex;
-  gap: 4rem;
-  margin-top: 1rem;
-  position: relative;
-}
-.base-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-}
-.group-title {
-  font-size: 0.7rem;
-  color: var(--line);
-  text-transform: uppercase;
-  letter-spacing: 4px;
-}
-.agents-row {
-  display: flex;
-  gap: 1.5rem;
-}
-
 /* Footer Status */
 .footer {
   text-align: center;
@@ -281,59 +286,48 @@ body {
 <div class="tree">
 
   <!-- LEVEL 1: EZRA -->
-  <div class="row">
-    <div class="agent glass idle" id="card-ezra">
-      <div class="agent-name">EZRA</div>
-      <div class="agent-role">Orchestrator</div>
-      <div class="status-indicator">
-        <div class="status-dot"></div>
-        <span class="status-text">Idle</span>
-      </div>
-      <div class="terminal-line" id="term-ezra">> Awaiting dispatch...</div>
+  <div class="agent glass idle" id="card-ezra">
+    <div class="agent-name">EZRA</div>
+    <div class="agent-role">Orchestrator</div>
+    <div class="status-indicator">
+      <div class="status-dot"></div>
+      <span class="status-text">Idle</span>
     </div>
+    <div class="terminal-line" id="term-ezra">> Awaiting dispatch...</div>
   </div>
 
-  <div class="conn-vertical"></div>
+  <div class="spine"></div>
 
   <!-- LEVEL 2: AISIO -->
-  <div class="row">
-    <div class="agent glass idle" id="card-aisio">
-      <div class="agent-name">AÍSIO</div>
-      <div class="agent-role">Governance Gatekeeper</div>
-      <div class="status-indicator">
-        <div class="status-dot"></div>
-        <span class="status-text">Idle</span>
-      </div>
-      <div class="terminal-line" id="term-aisio">> Monitoring requests...</div>
+  <div class="agent glass idle" id="card-aisio">
+    <div class="agent-name">AÍSIO</div>
+    <div class="agent-role">Governance Gatekeeper</div>
+    <div class="status-indicator">
+      <div class="status-dot"></div>
+      <span class="status-text">Idle</span>
+    </div>
+    <div class="terminal-line" id="term-aisio">> Monitoring requests...</div>
+  </div>
+
+  <div class="spine"></div>
+
+  <!-- LEVEL 3: DIRECTORS -->
+  <div class="branch-container">
+    <div class="horizontal-line"></div>
+    <div class="group-title">Directors</div>
+    <div class="agents-row" id="row-directors">
+      <!-- Injected via JS -->
     </div>
   </div>
 
-  <div class="conn-vertical" style="height: 40px;"></div>
+  <div class="spine" style="margin-top: 2rem;"></div>
 
-  <!-- LEVEL 3: DIRECTORS & BUILDERS -->
-  <div class="row" style="padding-top: 0;">
-    <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: var(--line);"></div>
-    
-    <div class="base-grid" style="width: 60%; justify-content: space-between;">
-      
-      <!-- DIRECTORS -->
-      <div class="base-group">
-        <div class="conn-drop" style="left: 0;"></div>
-        <div class="group-title">Directors</div>
-        <div class="agents-row" id="row-directors">
-          <!-- Injected via JS -->
-        </div>
-      </div>
-
-      <!-- BUILDERS / ENGINEERS -->
-      <div class="base-group">
-        <div class="conn-drop" style="right: 0;"></div>
-        <div class="group-title">Production Line</div>
-        <div class="agents-row" id="row-builders">
-          <!-- Injected via JS -->
-        </div>
-      </div>
-
+  <!-- LEVEL 4: PRODUCTION LINE -->
+  <div class="branch-container">
+    <div class="horizontal-line"></div>
+    <div class="group-title">Production Line</div>
+    <div class="agents-row" id="row-builders">
+      <!-- Injected via JS -->
     </div>
   </div>
 
@@ -353,7 +347,9 @@ const KNOWN_ROLES = {
   'nice': 'Domestic Governance',
   'jessica': 'Legal & Contracts',
   'gilmario': 'Education',
+  'josue': 'Agent',
   'artur': 'Lead Planner',
+  'architect': 'Architect Agent',
   'engineer': 'Software Engineer (Baruch)',
   'baruch': 'Software Engineer (Baruch)'
 };
@@ -394,12 +390,15 @@ function generateAgentCardHTML(id, rawName, isActive) {
   const statusTxt = isActive ? 'Processing' : 'Idle';
   
   return `
-    <div class="agent glass ${stateCls}" id="card-${id}">
-      <div class="agent-name">${name}</div>
-      <div class="agent-role">${role}</div>
-      <div class="status-indicator">
-        <div class="status-dot"></div>
-        <span class="status-text">${statusTxt}</span>
+    <div class="agent-wrapper">
+      <div class="drop-line"></div>
+      <div class="agent glass ${stateCls}" id="card-${id}">
+        <div class="agent-name">${name}</div>
+        <div class="agent-role">${role}</div>
+        <div class="status-indicator">
+          <div class="status-dot"></div>
+          <span class="status-text">${statusTxt}</span>
+        </div>
       </div>
     </div>
   `;
@@ -438,7 +437,8 @@ function processMessage(data) {
   // Builders & Engineers
   const builders = ags.builder || [];
   const engineers = ags.engineer || [];
-  const production = [...builders, ...engineers];
+  const studies = ags.studies || [];
+  const production = [...builders, ...engineers, ...studies];
   
   production.forEach(ag => {
     buildsHTML += generateAgentCardHTML('dyn-'+ag.name, ag.name, activeAgent === ag.name);
