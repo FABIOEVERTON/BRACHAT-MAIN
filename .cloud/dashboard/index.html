@@ -344,7 +344,8 @@ body {
 </div>
 
 <script>
-const WS_URL = 'ws://' + location.hostname + ':8765';
+const host = location.hostname || '127.0.0.1';
+const WS_URL = 'ws://' + host + ':8765';
 let ws = null;
 let retryDelay = 1000;
 

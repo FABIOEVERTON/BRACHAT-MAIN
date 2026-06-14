@@ -5,10 +5,15 @@ from pathlib import Path
 import websockets
 
 CLIENTS = set()
-REPO = Path("/opt/brachat/repo")
+if Path("/opt/brachat/repo").exists():
+    REPO = Path("/opt/brachat/repo")
+    EZRA_FILE = Path("/opt/brachat/state/malha.json")
+    NICE_FILE = Path("/opt/brachat/state/nice.json")
+else:
+    REPO = Path(__file__).resolve().parent.parent.parent
+    EZRA_FILE = REPO / ".cloud/state/malha.json"
+    NICE_FILE = REPO / ".cloud/state/nice.json"
 AGENTS = REPO / "agents"
-EZRA_FILE = Path("/opt/brachat/state/malha.json")
-NICE_FILE = Path("/opt/brachat/state/nice.json")
 
 def rj(p):
     try: return json.loads(p.read_text()) if p.exists() else {}
