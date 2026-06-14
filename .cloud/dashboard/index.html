@@ -353,6 +353,17 @@ body {
     </div>
   </div>
 
+  <div class="spine" style="margin-top: 2rem;"></div>
+
+  <!-- LEVEL 7: BARUCH'S WORKERS (PROJECTS) -->
+  <div class="branch-container">
+    <div class="horizontal-line"></div>
+    <div class="group-title">Baruch's Projects</div>
+    <div class="agents-row" id="row-projects">
+      <!-- Injected via JS -->
+    </div>
+  </div>
+
 </div>
 
 <div class="footer">
@@ -476,11 +487,19 @@ function processMessage(data) {
   engineers.forEach(ag => {
     portHTML += generateAgentCardHTML('dyn-'+ag.name, ag.name, activeAgent === ag.name);
   });
+  
+  // Baruch's Projects (Static Placeholders)
+  const projects = ['project_1', 'project_2', 'project_3', 'project_4'];
+  let projectsHTML = '';
+  projects.forEach(ag => {
+    projectsHTML += generateAgentCardHTML('dyn-'+ag, ag, false);
+  });
 
   document.getElementById('row-directors').innerHTML = dirsHTML || '<span style="color:#6b7280; font-size:10px;">No directors loaded</span>';
   document.getElementById('row-builders').innerHTML = buildsHTML || '<span style="color:#6b7280; font-size:10px;">No production loaded</span>';
   document.getElementById('row-mentors').innerHTML = mentorsHTML || '<span style="color:#6b7280; font-size:10px;">No mentors loaded</span>';
   document.getElementById('row-portfolio').innerHTML = portHTML || '<span style="color:#6b7280; font-size:10px;">No portfolio loaded</span>';
+  document.getElementById('row-projects').innerHTML = projectsHTML;
 }
 
 function connect() {
