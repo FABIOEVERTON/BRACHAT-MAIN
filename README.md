@@ -48,7 +48,7 @@ graph LR
 O sistema foi desenhado para economizar tokens mantendo eficiência máxima. 
 Em vez de depender de extensas varreduras de LLM, o cérebro usa `state.json` para memória de máquina de baixo custo, enquanto os agentes (como o engenheiro **Baruch**) geram nativamente o `DevLog.md` usando a biblioteca `obsidian-skills`.
 
-![Representação Visual da Teia Neural do Obsidian gerada pelo Baruch e Ezra](docs/assets/obsidian_graph_mockup.png)
+![Representação Visual da Teia Neural do Obsidian gerada pelo Baruch e Ezra](docs/assets/real_obsidian_graph.png)
 
 > Essa teia neural interliga cada ticket recebido, cada código feito pelo engenheiro e o aval do orquestrador usando Wikilinks nativos.
 
