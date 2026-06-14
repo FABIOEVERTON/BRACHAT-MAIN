@@ -485,6 +485,7 @@ function processMessage(data) {
   const engineers = ags.engineer || [];
   let portHTML = '';
   engineers.forEach(ag => {
+    if (ag.name === 'one_imersion_oracle') return;
     portHTML += generateAgentCardHTML('dyn-'+ag.name, ag.name, activeAgent === ag.name);
   });
   
