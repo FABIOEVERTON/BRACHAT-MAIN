@@ -24,12 +24,23 @@ def run_cmd(cmd):
     except: return ""
 
 def read_system():
-    cpu = run_cmd(["bash","-c","top -bn1 | head -5 | grep 'Cpu(s)' | awk '{print $2}'"])
-    mem = run_cmd(["bash","-c","free -h | grep Mem | awk '{print $3\"/\"$2}'"])
-    disk = run_cmd(["bash","-c","df -h / | tail -1 | awk '{print $3\"/\"$2}'"])
-    procs = run_cmd(["bash","-c","ps aux | wc -l"])
-    load = run_cmd(["bash","-c","uptime | awk -F'load average:' '{print $2}' | xargs"])
-    return {"cpu":cpu,"memory":mem,"disk":disk,"processes":procs,"load":load}
+    try:
+        import platform
+        if platform.system() == "Darwin":
+            cpu = run_cmd(["bash","-c","top -l 1 | grep -E '^CPU' | awk '{print $3}' | sed 's/%//'"])
+            mem = run_cmd(["bash","-c","vm_stat | grep 'Pages active' | awk '{print $3}'"]) # simplified
+            disk = run_cmd(["bash","-c","df -h / | tail -1 | awk '{print $3\"/\"$2}'"])
+            procs = run_cmd(["bash","-c","ps aux | wc -l"])
+            load = run_cmd(["bash","-c","uptime | awk -F'load averages:' '{print $2}' | xargs"])
+        else:
+            cpu = run_cmd(["bash","-c","top -bn1 | head -5 | grep 'Cpu(s)' | awk '{print $2}'"])
+            mem = run_cmd(["bash","-c","free -h | grep Mem | awk '{print $3\"/\"$2}'"])
+            disk = run_cmd(["bash","-c","df -h / | tail -1 | awk '{print $3\"/\"$2}'"])
+            procs = run_cmd(["bash","-c","ps aux | wc -l"])
+            load = run_cmd(["bash","-c","uptime | awk -F'load average:' '{print $2}' | xargs"])
+        return {"cpu":cpu,"memory":mem,"disk":disk,"processes":procs,"load":load}
+    except:
+        return {"cpu":"--","memory":"--","disk":"--","processes":"--","load":"--"}
 
 def read_agent_states():
     categories = {
