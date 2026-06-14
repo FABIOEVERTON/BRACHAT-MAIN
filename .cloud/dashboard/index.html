@@ -458,7 +458,7 @@ function processMessage(data) {
   
   // Production Line (Builders)
   const builders = ags.builder || [];
-  let buildsHTML = '';
+  buildsHTML = '';
   builders.forEach(ag => {
     buildsHTML += generateAgentCardHTML('dyn-'+ag.name, ag.name, activeAgent === ag.name);
   });
