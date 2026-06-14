@@ -331,6 +331,28 @@ body {
     </div>
   </div>
 
+  <div class="spine" style="margin-top: 2rem;"></div>
+
+  <!-- LEVEL 5: MENTORS -->
+  <div class="branch-container">
+    <div class="horizontal-line"></div>
+    <div class="group-title">Mentors</div>
+    <div class="agents-row" id="row-mentors">
+      <!-- Injected via JS -->
+    </div>
+  </div>
+
+  <div class="spine" style="margin-top: 2rem;"></div>
+
+  <!-- LEVEL 6: PORTFOLIO TEAM -->
+  <div class="branch-container">
+    <div class="horizontal-line"></div>
+    <div class="group-title">Portfolio Builders</div>
+    <div class="agents-row" id="row-portfolio">
+      <!-- Injected via JS -->
+    </div>
+  </div>
+
 </div>
 
 <div class="footer">
@@ -434,18 +456,31 @@ function processMessage(data) {
     dirsHTML += generateAgentCardHTML('dyn-'+ag.name, ag.name, activeAgent === ag.name);
   });
   
-  // Builders & Engineers
+  // Production Line (Builders)
   const builders = ags.builder || [];
-  const engineers = ags.engineer || [];
-  const studies = ags.studies || [];
-  const production = [...builders, ...engineers, ...studies];
-  
-  production.forEach(ag => {
+  let buildsHTML = '';
+  builders.forEach(ag => {
     buildsHTML += generateAgentCardHTML('dyn-'+ag.name, ag.name, activeAgent === ag.name);
+  });
+  
+  // Mentors
+  const studies = ags.studies || [];
+  let mentorsHTML = '';
+  studies.forEach(ag => {
+    mentorsHTML += generateAgentCardHTML('dyn-'+ag.name, ag.name, activeAgent === ag.name);
+  });
+  
+  // Portfolio Team
+  const engineers = ags.engineer || [];
+  let portHTML = '';
+  engineers.forEach(ag => {
+    portHTML += generateAgentCardHTML('dyn-'+ag.name, ag.name, activeAgent === ag.name);
   });
 
   document.getElementById('row-directors').innerHTML = dirsHTML || '<span style="color:#6b7280; font-size:10px;">No directors loaded</span>';
   document.getElementById('row-builders').innerHTML = buildsHTML || '<span style="color:#6b7280; font-size:10px;">No production loaded</span>';
+  document.getElementById('row-mentors').innerHTML = mentorsHTML || '<span style="color:#6b7280; font-size:10px;">No mentors loaded</span>';
+  document.getElementById('row-portfolio').innerHTML = portHTML || '<span style="color:#6b7280; font-size:10px;">No portfolio loaded</span>';
 }
 
 function connect() {
