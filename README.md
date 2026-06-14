@@ -14,31 +14,42 @@
 The system architecture relies on strict approval and execution pipelines. Nothing happens without the governance gatekeeper's explicit approval.
 
 ```mermaid
-graph LR
-    User([Fabio - CEO]) -- Telegram/CLI --> EZRA{EZRA Orchestrator}
-    EZRA -- Reads Local State --> State[(state.json)]
-    
-    EZRA -- Dispatch Request --> AISIO[Dr. Aisio <br> Gatekeeper]
-    AISIO -- Blocks --> User
-    
-    AISIO -- Approves (AGCP) --> Directors
-    AISIO -- Approves (AGCP) --> Builders
-    
-    subgraph Directors ["🏰 Directors"]
-        NICE[Dr. Nice <br> Domestic]
-        JESSICA[Dr. Jessica <br> Legal]
-    end
+flowchart TD
+    classDef level fill:#111827,stroke:#374151,stroke-width:2px,color:#f9fafb
+    classDef glow fill:#111827,stroke:#10b981,stroke-width:2px,color:#f9fafb
+    classDef ezra fill:#111827,stroke:#f59e0b,stroke-width:2px,color:#f9fafb
+    classDef aisio fill:#111827,stroke:#0ea5e9,stroke-width:2px,color:#f9fafb
 
-    subgraph Production ["🏭 Production Line"]
-        ARTUR[Artur <br> Planner]
-        BARUCH[Baruch <br> Code Engineer]
-    end
+    EZRA[EZRA <br> Orchestrator]:::ezra --> AISIO[AÍSIO <br> Gatekeeper]:::aisio
     
-    Directors --> Exec{Execution}
-    Builders --> Exec
+    AISIO --> DIR_GRP((Directors)):::level
     
-    Exec -- Commits Code/Action --> Github[Repository / Portfolio]
-    Exec -- Human Memory --> Obsidian[(Obsidian Vault)]
+    DIR_GRP --- NICE[Nice <br> Domestic]:::level
+    DIR_GRP --- JESSICA[Jessica <br> Legal]:::level
+    DIR_GRP --- GILMARIO[Gilmario <br> Education]:::level
+    DIR_GRP --- JOSUE[Josue <br> Comercial]:::level
+
+    DIR_GRP --> PROD_GRP((Production Line)):::level
+    
+    PROD_GRP --- ARCH[Architect]:::level
+    PROD_GRP --- ARTUR[Artur <br> Planner]:::level
+
+    PROD_GRP --> MENTOR_GRP((Mentors)):::level
+    
+    MENTOR_GRP --- ARISTOTLE[Aristotle]:::level
+    MENTOR_GRP --- JOHN[John]:::level
+    MENTOR_GRP --- EDUARDO[Eduardo]:::level
+
+    MENTOR_GRP --> PORT_GRP((Portfolio Builders)):::level
+    
+    PORT_GRP --- BARUCH[Baruch <br> Software Engineer]:::glow
+    
+    BARUCH --> PROJ_GRP((Baruch's Projects)):::level
+    
+    PROJ_GRP --- P1[Project 1]:::level
+    PROJ_GRP --- P2[Project 2]:::level
+    PROJ_GRP --- P3[Project 3]:::level
+    PROJ_GRP --- P4[Project 4]:::level
 ```
 
 ---
@@ -72,11 +83,7 @@ brachat-main/
 
 ## 🎛️ Dashboard & Infrastructure
 
-While the agents work invisibly behind the scenes (running hidden scripts in `.cloud/`), you can monitor them in real-time through the VPS server or the web dashboard, which continuously reads the memory reports.
-
-![Cloud Dashboard showing the real-time status of agents](docs/assets/dashboard_mockup.png)
-
-> *Dashboard operating on port 8080 reporting the Ezra, Aísio, and Baruch daemons in real-time.*
+While the agents work invisibly behind the scenes (running hidden scripts in `.cloud/`), the entire 7-level architecture above is actively monitored in real-time. The ecosystem translates the `state.json` data streams into a Dark Mode live web dashboard via WebSockets.
 
 ---
 
