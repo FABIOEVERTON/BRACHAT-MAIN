@@ -10,6 +10,12 @@ source: community
 date_added: "2026-05-30"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-github-actions-advanced
 # GitHub Actions Advanced Skill
 
 Expert guidance for designing, writing, debugging, and securing **production-grade** GitHub Actions workflows.

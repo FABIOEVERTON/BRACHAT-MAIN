@@ -7,6 +7,12 @@ version: 1.0.1
 license: MIT
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-fixing-metadata
 ## Workflow
 
 1. Identify pages with missing or incorrect metadata (titles, descriptions, canonical, OG tags)

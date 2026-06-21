@@ -8,6 +8,12 @@ source: personal
 date_added: "2026-02-27"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-20-andruia-niche-intelligence
 ## When to Use
 Use this skill once the project's niche or industry has been identified. It is essential for injecting domain-specific intelligence, regulatory requirements, and industry-standard UX patterns into the project.
 

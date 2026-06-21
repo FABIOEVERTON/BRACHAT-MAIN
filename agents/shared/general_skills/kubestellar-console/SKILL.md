@@ -19,6 +19,12 @@ plugin:
     docs: "https://github.com/kubestellar/console#quick-start"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-kubestellar-console
 # KubeStellar Console
 
 ## Overview

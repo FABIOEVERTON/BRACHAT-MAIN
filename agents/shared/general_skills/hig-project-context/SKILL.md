@@ -6,6 +6,12 @@ source: community
 date_added: '2026-02-27'
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-hig-project-context
 # Apple HIG: Project Context
 
 Create and maintain `.claude/apple-design-context.md` so other HIG skills can skip redundant questions.

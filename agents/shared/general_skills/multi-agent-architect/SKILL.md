@@ -15,6 +15,12 @@ metadata:
   license_source: "https://github.com/pravin-python/antigravity-awesome-skills/blob/main/LICENSE"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-multi-agent-architect
 
 # Multi-Agent Architect & Updater Skill
 

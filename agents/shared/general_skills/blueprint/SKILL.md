@@ -7,6 +7,12 @@ source: community
 date_added: "2026-03-10"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-blueprint
 # Blueprint — Construction Plan Generator
 
 Turn a one-line objective into a step-by-step plan any coding agent can execute cold.

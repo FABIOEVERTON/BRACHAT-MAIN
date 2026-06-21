@@ -5,6 +5,12 @@ description: Publish and manage research papers on Hugging Face Hub. Supports cr
 risk: unknown
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-hugging-face-paper-publisher
 # Overview
 
 ## When to Use

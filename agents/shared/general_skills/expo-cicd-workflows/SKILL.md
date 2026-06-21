@@ -8,6 +8,12 @@ version: 1.0.0
 license: MIT License
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-expo-cicd-workflows
 # EAS Workflows Skill
 
 Help developers write and edit EAS CI/CD workflow YAML files.

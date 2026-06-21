@@ -8,6 +8,12 @@ author: community
 tags: [subagents, orchestration, quota, parallel, multi-agent]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-subagent-orchestrator
 # Subagent Orchestrator
 
 A quota-aware, parallel subagent coordination skill for Antigravity 2.0. Turns one big task into a set of isolated, efficient agent missions — without burning your weekly quota.

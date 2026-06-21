@@ -15,6 +15,12 @@ plugin:
     codex: blocked
     claude: blocked
 ---
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-news-sentiment-engine
 # News Sentiment Engine (Free)
 
 Collect and analyze AI/tech news from multiple sources with Claude-powered sentiment analysis. Open source lite version.

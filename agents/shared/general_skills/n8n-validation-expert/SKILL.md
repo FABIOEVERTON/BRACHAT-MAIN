@@ -5,6 +5,12 @@ risk: unknown
 source: community
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-n8n-validation-expert
 # n8n Validation Expert
 
 Expert guide for interpreting and fixing n8n validation errors.

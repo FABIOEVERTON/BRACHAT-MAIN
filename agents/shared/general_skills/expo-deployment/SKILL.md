@@ -6,6 +6,12 @@ source: "https://github.com/expo/skills/tree/main/plugins/expo-deployment"
 date_added: "2026-02-27"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-expo-deployment
 # Expo Deployment
 
 ## Overview

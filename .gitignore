@@ -30,6 +30,8 @@ auth.lock
 
 # API KEYS / LOCAL CONFIGS
 apis.env
+*.env.json
+**/*.env.json
 
 # ============================================================
 # CACHE
@@ -105,8 +107,8 @@ Thumbs.db
 # ============================================================
 
 .agents/
-agents/brain-state.json
-**/brain-state.json
+agents/state.json
+**/state.json
 
 
 # ============================================================

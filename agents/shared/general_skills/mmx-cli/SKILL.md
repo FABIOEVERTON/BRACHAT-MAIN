@@ -6,6 +6,12 @@ source: "https://github.com/MiniMax-AI/cli"
 date_added: "2026-04-14"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-mmx-cli
 # MiniMax CLI — Agent Skill Guide
 
 Use `mmx` to generate text, images, video, speech, music, and perform web search via the MiniMax AI platform.

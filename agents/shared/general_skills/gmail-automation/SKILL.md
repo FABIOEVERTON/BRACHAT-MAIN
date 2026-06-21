@@ -9,6 +9,12 @@ metadata:
   version: "1.0"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-gmail-automation
 # Gmail
 
 Lightweight Gmail integration with standalone OAuth authentication. No MCP server required.

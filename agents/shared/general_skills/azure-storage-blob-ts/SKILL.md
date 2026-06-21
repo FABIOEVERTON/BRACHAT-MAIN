@@ -6,6 +6,12 @@ source: community
 date_added: '2026-02-27'
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-azure-storage-blob-ts
 # @azure/storage-blob (TypeScript/JavaScript)
 
 SDK for Azure Blob Storage operations — upload, download, list, and manage blobs and containers.

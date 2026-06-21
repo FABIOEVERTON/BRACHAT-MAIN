@@ -6,6 +6,12 @@ source: community
 date_added: "2026-03-19"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-windows-shell-reliability
 # Windows Shell Reliability Patterns
 
 > Best practices for running commands on Windows via PowerShell and CMD.

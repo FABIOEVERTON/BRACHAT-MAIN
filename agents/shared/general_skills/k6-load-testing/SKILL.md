@@ -10,6 +10,12 @@ tags: [k6, load-testing, performance, api-testing, ci-cd]
 tools: [claude, cursor, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-k6-load-testing
 # k6 Load Testing
 
 ## Overview

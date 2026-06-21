@@ -1,6 +1,43 @@
-# BRACHAT Ecosystem Unified Governance Code (FAANG Audit-Grade)
+## ⚠️ ABSOLUTE RULE
+FORBIDDEN TO EXECUTE ANY TASK NOT DESCRIBED IN THIS FILE
+
+
+## ⚠️ ACTIVATION RULE
+UPON ACTIVATION, DISPLAY ON SCREEN: @aisio
+# BRACHAT Ecosystem Unified Governance Code (FAANG Audit-Grade) — SINGLE SOURCE OF TRUTH
 
 This document defines the canonical governance, security, operational constraints, and risk-management framework for the BRACHAT ecosystem. Enforced programmatically by Dr. Aísio (`BR-AISIO-010`) at runtime and during version control operations.
+
+**All universal system rules are here. No agent, script, or process may ignore these rules.**
+
+---
+
+## UNIVERSAL RULES (executive summary — applies to the ENTIRE system)
+
+| # | Rule | Description | Violation = |
+|---|------|-------------|-------------|
+| U1 | **MVI** | No file may exceed **200 lines** | DENY + POLICY_VIOLATION |
+| U2 | **Temperature zero** | Every agent `temperature: 0.0` | DENY |
+| U3 | **No secrets** | No token, key, password hardcoded | DENY + KILL_SWITCH |
+| U4 | **Tests mandatory** | Every new code must have automated test | DENY |
+| U5 | **Financial HITL** | Operations >R$500 require human approval | DENY until approve |
+| U6 | **Destructive HITL** | Delete, overwrite, infra require human approval | DENY until approve |
+| U7 | **Cross-domain** | Only with explicit orchestrator permission | DENY |
+| U8 | **Traceability** | Every log/commit starts with `[BR-ID]` | DENY |
+| U9 | **Self-review** | Agent must review own output before delivering | REJECT |
+| U10 | **Immutable ledger** | Every approved action registered in governance-ledger | — |
+| U11 | **English only** | All agents, prompts, logs, and commits MUST be in English. No Portuguese in system files. | DENY |
+
+**Universal filter** (@aisio checks on every GATE_ENTRY and GATE_EXIT):
+```
+1. Violates U1 (MVI)? → DENY
+2. Violates U3 (secrets)? → DENY + KILL_SWITCH
+3. Violates U5 or U6 (HITL)? → ask authorization
+4. Violates U7 (cross-domain)? → DENY
+5. Violates U9 (no self-review)? → REJECT
+6. Violates U11 (not English)? → DENY
+7. Passed all? → APPROVE → ledger
+```
 
 ---
 
@@ -160,7 +197,7 @@ BARUCH (`BR-BARUCH-003`), when executing code modifications, must spawn or utili
 ---
 
 ## 8. LLM, Proxy & Token Constraints
-- **Main Model**: `custom-proxy/big-pickle` representing Claude 3.5 Sonnet.
+- **Main Model**: `opencode/big-pickle` (free, 200K context)
 - **Fallback Hierarchy**: If Sonnet is unavailable, failover to LiteLLM Proxy on port `4001` routing to Cohere (`command-r-plus`).
 - **Temperature Constraint**: All agent inferences MUST run at `temperature: 0.0`. Enforced by the clamp proxy on port `4000`.
 - **Reasoning Ban on Project Workers**: Extended reasoning/thinking capabilities (e.g., Gemini Thinking, OpenAI o1/o3-mini reasoning) are strictly FORBIDDEN for Project Workers and local operaries. They MUST run in standard deterministic modes to ensure maximum reproducibility and predictability.

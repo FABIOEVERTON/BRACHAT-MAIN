@@ -6,6 +6,12 @@ source: community
 date_added: "2026-02-27"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-software-architecture
 # Software Architecture Development Skill
 
 This skill provides guidance for quality focused software development and architecture. It is based on Clean Architecture and Domain Driven Design principles.

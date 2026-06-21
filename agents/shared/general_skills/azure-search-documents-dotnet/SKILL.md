@@ -6,6 +6,12 @@ source: community
 date_added: '2026-02-27'
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-azure-search-documents-dotnet
 # Azure.Search.Documents (.NET)
 
 Build search applications with full-text, vector, semantic, and hybrid search capabilities.

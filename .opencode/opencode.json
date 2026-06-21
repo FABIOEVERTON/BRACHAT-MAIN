@@ -1,0 +1,35 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["agents/orchestrator_agents/ezra/orchestrator.md"],
+  
+
+  "model": "opencode/big-pickle",
+
+  "provider": {
+    "opencode": {
+      "options": {
+        "apiKey": "sk-MCVx8NIYNugA7CMVKa5uKJ7hykbm4amHMYgzpm2qJz6kc47dvl5TgA3aErfU3LR2"
+      },
+      "models": {
+        "big-pickle": {
+          "name": "Big Pickle (Zen Free)",
+          "family": "glm",
+          "limit": { "context": 200000, "output": 128000 },
+          "cost": { "input": 0, "output": 0 }
+        }
+      }
+    },
+    "opencode-go": {
+      "options": {
+        "apiKey": "sk-PvPdJ5exoOTJfxZqqkR1pBeJHQXQd3nmrPbgI5NMtfbNonkRaNk2iXvMS36GpORL"
+      },
+      "models": {
+        "kimi-k2.6": {
+          "name": "Kimi K2.6 (GO Plan)",
+          "family": "kimi",
+          "limit": { "context": 128000, "output": 16384 }
+        }
+      }
+    }
+  }
+}

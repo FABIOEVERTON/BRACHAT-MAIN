@@ -6,6 +6,12 @@ source: community
 date_added: '2026-02-27'
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-azure-keyvault-secrets-rust
 # Azure Key Vault Secrets SDK for Rust
 
 Client library for Azure Key Vault Secrets — secure storage for passwords, API keys, and other secrets.

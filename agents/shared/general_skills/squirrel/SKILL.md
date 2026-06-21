@@ -14,6 +14,12 @@ tags: [development, testing, planning, code-review, documentation, ci-cd]
 tools: [claude, cursor, codex, antigravity, gemini, windsurf, opencode, copilot]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-squirrel
 # Squirrel — Full-Cycle Software Development Skill
 
 ## Overview

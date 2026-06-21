@@ -11,6 +11,12 @@ author: Leonxlnx
 tags: [frontend, redesign, design-audit, ui]
 tools: [claude, cursor, codex, antigravity]
 ---
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-redesign-existing-projects
 # Redesign Skill
 
 ## When to Use

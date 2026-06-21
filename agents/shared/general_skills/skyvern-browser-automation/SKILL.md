@@ -14,6 +14,12 @@ license: "AGPL-3.0"
 license_source: "https://github.com/Skyvern-AI/skyvern/blob/main/LICENSE"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-skyvern-browser-automation
 # Skyvern Browser Automation -- CLI Judgment Procedure
 
 Skyvern uses AI to navigate and interact with websites. Every command below is a runnable `skyvern <command>` invocation.

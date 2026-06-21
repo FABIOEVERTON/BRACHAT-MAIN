@@ -11,6 +11,12 @@ author: Leonxlnx
 tags: [frontend, visual-design, motion, ui]
 tools: [claude, cursor, codex, antigravity]
 ---
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-high-end-visual-design
 # Agent Skill: Principal UI/UX Architect & Motion Choreographer (Awwwards-Tier)
 
 ## When to Use

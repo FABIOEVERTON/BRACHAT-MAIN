@@ -12,6 +12,12 @@ tags: [faf, ai-context, project-management, mcp, iana]
 tools: [claude, cursor, gemini, windsurf]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-faf-expert
 # FAF Expert - Advanced AI Context Architecture
 
 **Master the IANA-registered format that makes AI understand your projects.**

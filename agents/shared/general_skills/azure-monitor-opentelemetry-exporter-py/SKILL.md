@@ -6,6 +6,12 @@ source: community
 date_added: '2026-02-27'
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-azure-monitor-opentelemetry-exporter-py
 # Azure Monitor OpenTelemetry Exporter for Python
 
 Low-level exporter for sending OpenTelemetry traces, metrics, and logs to Application Insights.

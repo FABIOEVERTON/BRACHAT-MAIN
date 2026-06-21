@@ -10,6 +10,12 @@ metadata:
   version: "1.0"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-conductor-setup
 Set up this Rails project for Conductor, the Mac app for parallel coding agents.
 
 ## When to Use

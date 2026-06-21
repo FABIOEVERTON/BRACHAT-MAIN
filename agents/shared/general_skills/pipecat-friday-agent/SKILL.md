@@ -9,6 +9,12 @@ tags: [pipecat, voice, gemini, openai, python]
 tools: [pipecat]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-pipecat-friday-agent
 # Pipecat Friday Agent
 
 ## Overview

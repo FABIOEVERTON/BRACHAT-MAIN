@@ -6,6 +6,12 @@ source: community
 date_added: "2026-03-23"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-xvary-stock-research
 # XVARY Stock Research Skill
 
 Use this skill to produce institutional-depth stock analysis in Claude Code using public EDGAR + market data.

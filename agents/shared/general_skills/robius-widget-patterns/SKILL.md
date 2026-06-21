@@ -9,6 +9,12 @@ risk: unknown
 source: community
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-robius-widget-patterns
 # Robius Widget Patterns Skill
 
 Best practices for designing reusable Makepad widgets based on Robrix and Moly codebase patterns.

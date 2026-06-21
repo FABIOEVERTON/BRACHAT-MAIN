@@ -8,6 +8,9 @@ tags: "[aws, security, audit, compliance, kiro-cli, security-assessment]"
 date_added: "2026-02-27"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
 # AWS Security Audit
 
 Perform comprehensive security assessments of AWS environments to identify vulnerabilities and misconfigurations.

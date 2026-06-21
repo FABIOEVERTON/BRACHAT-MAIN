@@ -9,6 +9,12 @@ metadata:
   triggers: pdf conversion, convert pdf, pdf to markdown, pdf to html, pdf to text, pdf to json, pdf to docx, OCR pdf, slide deck pdf, medical pdf, scanned pdf
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-pdf-conversion-router
 # PDF Conversion Router
 
 Route every PDF conversion through a short analysis step before choosing tools or CLI flags.

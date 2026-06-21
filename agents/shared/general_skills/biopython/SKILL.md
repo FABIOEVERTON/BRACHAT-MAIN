@@ -8,6 +8,12 @@ risk: unknown
 source: "https://github.com/biopython/biopython"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-biopython
 # Biopython: Computational Molecular Biology in Python
 
 ## Overview

@@ -6,6 +6,12 @@ source: "https://github.com/dmno-dev/varlock"
 version: 1.0.0
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-varlock
 # Varlock Security Skill
 
 Secure-by-default environment variable management for Claude Code sessions.

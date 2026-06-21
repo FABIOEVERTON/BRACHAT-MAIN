@@ -5,6 +5,12 @@ description: Run local evaluations for Hugging Face Hub models with inspect-ai o
 risk: unknown
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-hugging-face-community-evals
 # Overview
 
 ## When to Use

@@ -14,6 +14,12 @@ license: "MIT"
 license_source: "https://github.com/mycelos-ai/bumblebee-skill/blob/main/LICENSE"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-bumblebee
 # Bumblebee Security Scan
 
 Bumblebee (https://github.com/perplexityai/bumblebee) is a read-only inventory collector that surfaces package, extension, and developer-tool metadata on developer endpoints. It answers a focused supply-chain question: when an advisory names a package or version, do any matches exist on this machine right now?

@@ -6,6 +6,12 @@ source: "https://github.com/kepano/obsidian-skills"
 date_added: "2026-03-21"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-obsidian-bases
 # Obsidian Bases Skill
 
 ## When to Use

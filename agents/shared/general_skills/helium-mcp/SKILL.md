@@ -11,6 +11,12 @@ tags: [mcp, news, media-bias, stocks, options, finance, research]
 tools: [claude, cursor, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-helium-mcp
 # Helium MCP
 
 ## Overview

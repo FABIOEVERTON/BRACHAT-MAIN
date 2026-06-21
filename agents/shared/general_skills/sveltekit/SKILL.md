@@ -10,6 +10,12 @@ tags: [svelte, sveltekit, fullstack, ssr, ssg, typescript]
 tools: [claude, cursor, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-sveltekit
 # SvelteKit Full-Stack Development
 
 ## Overview

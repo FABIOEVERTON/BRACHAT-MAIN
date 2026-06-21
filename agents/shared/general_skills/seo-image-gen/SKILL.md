@@ -15,6 +15,12 @@ allowed-tools:
   - Write
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-seo-image-gen
 # SEO Image Gen: AI Image Generation for SEO Assets (Extension)
 
 Generate production-ready images for SEO use cases using Gemini's image generation

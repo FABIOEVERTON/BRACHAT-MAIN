@@ -6,6 +6,12 @@ source: community
 date_added: '2026-02-27'
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-azure-mgmt-arizeaiobservabilityeval-dotnet
 # Azure.ResourceManager.ArizeAIObservabilityEval
 
 .NET SDK for managing Arize AI Observability and Evaluation resources on Azure.

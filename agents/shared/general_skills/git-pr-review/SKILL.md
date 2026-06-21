@@ -8,6 +8,12 @@ date_added: "2026-05-03"
 author: community
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-git-pr-review
 ## Objective
 
 Create a clean, objective pull request description by analyzing commit history between base and current branch.

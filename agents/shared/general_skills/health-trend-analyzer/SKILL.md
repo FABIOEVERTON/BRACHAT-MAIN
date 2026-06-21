@@ -6,6 +6,12 @@ risk: unknown
 source: community
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-health-trend-analyzer
 # 健康趋势分析器
 
 分析一段时间内健康数据的趋势和模式，识别变化、相关性，并提供数据驱动的健康洞察。

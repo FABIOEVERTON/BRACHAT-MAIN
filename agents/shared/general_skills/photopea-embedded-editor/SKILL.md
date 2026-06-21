@@ -10,6 +10,12 @@ license_source: "https://github.com/yikuansun/PhotopeaAPI/blob/master/LICENSE"
 date_added: 2026-05-20
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-photopea-embedded-editor
 # Photopea Embedded Editor Skill
 ## Using photopea.js (yikuansun/PhotopeaAPI) in Websites & Apps
 

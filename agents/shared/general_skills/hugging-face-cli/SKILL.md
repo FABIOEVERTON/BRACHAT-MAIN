@@ -5,6 +5,12 @@ description: "Use the Hugging Face Hub CLI (`hf`) to download, upload, and manag
 risk: unknown
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-hugging-face-cli
 Install by downloading the installer script first, reviewing it, and then running it locally. Example:
 `curl -LsSf https://hf.co/cli/install.sh -o /tmp/hf-install.sh && less /tmp/hf-install.sh && bash /tmp/hf-install.sh`
 

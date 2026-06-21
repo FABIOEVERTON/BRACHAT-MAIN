@@ -11,6 +11,12 @@ tags: [unity, game-development, ai-generation, asset-pipeline, scene-design, mus
 tools: [claude, cursor, gemini, codex, antigravity]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-unity-ai-game-creator
 # Unity AI Game Creator
 
 ## Overview

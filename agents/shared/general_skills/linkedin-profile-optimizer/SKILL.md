@@ -11,6 +11,12 @@ tags: [linkedin, branding, career, growth, personal-brand]
 tools: [claude, cursor, gemini, antigravity]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-linkedin-profile-optimizer
 # LinkedIn Profile Optimizer & Authority Builder
 
 ## Overview

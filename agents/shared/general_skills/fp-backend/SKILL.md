@@ -16,6 +16,12 @@ tags:
   - reader-task-either
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-fp-backend
 # fp-ts Backend Patterns
 
 Functional programming patterns for building type-safe, testable backend services using fp-ts.

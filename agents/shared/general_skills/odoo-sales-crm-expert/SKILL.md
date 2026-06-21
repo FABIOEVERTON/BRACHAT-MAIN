@@ -5,6 +5,12 @@ risk: safe
 source: "self"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-odoo-sales-crm-expert
 # Odoo Sales & CRM Expert
 
 ## Overview

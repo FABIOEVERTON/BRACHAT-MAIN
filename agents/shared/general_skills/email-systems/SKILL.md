@@ -8,6 +8,12 @@ source: vibeship-spawner-skills (Apache 2.0)
 date_added: 2026-02-27
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-email-systems
 # Email Systems
 
 Email has the highest ROI of any marketing channel. $36 for every $1 spent.

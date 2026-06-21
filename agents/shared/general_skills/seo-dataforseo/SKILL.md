@@ -15,6 +15,12 @@ allowed-tools:
   - Write
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-seo-dataforseo
 # DataForSEO: Live SEO Data (Extension)
 
 Live search data via the DataForSEO MCP server. Provides real-time SERP results,

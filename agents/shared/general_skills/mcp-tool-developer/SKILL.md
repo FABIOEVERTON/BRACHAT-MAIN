@@ -12,6 +12,12 @@ tags: [mcp, ai-agent, tool-development, typescript, python, llm, model-context-p
 tools: [claude, cursor, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-mcp-tool-developer
 # MCP Tool Developer
 
 ## Overview

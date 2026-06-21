@@ -8,6 +8,12 @@ tags: [multi-tenancy, saas, row-level-security, postgresql, tenant-isolation]
 tools: [claude, cursor, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-saas-multi-tenant
 # SaaS Multi-Tenant Architecture
 
 ## When to Use This Skill

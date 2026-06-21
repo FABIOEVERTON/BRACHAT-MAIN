@@ -10,6 +10,12 @@ tags: [matching, psychology, compatibility, networking, collaboration]
 tools: [claude, cursor, codex, gemini, windsurf]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-viboscope
 # Viboscope
 
 ## Overview

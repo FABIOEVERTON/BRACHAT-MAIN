@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.brachat.mem0heartbeat</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/bash</string>
+        <string>/Users/mac/brachat-main/.cloud/scripts/mem0-heartbeat.sh</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>1800</integer>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/Users/mac/brachat-main/cloud/logs/mem0_heartbeat.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/mac/brachat-main/cloud/logs/mem0_heartbeat_error.log</string>
+</dict>
+</plist>

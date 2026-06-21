@@ -11,6 +11,12 @@ tags: [mcp, jobs, ai-jobs, ml-jobs, recruiting, job-search, career]
 tools: [claude, cursor, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-ai-dev-jobs-mcp
 # AI Dev Jobs MCP
 
 ## Overview

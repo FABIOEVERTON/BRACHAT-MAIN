@@ -8,6 +8,12 @@ source_type: community
 date_added: "2026-05-27"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-decision-navigator
 # Decision Navigator
 
 Help users who feel stuck or overwhelmed by guiding them through a structured branching exploration

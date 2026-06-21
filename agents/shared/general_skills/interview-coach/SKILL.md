@@ -10,6 +10,12 @@ tags: [interview, job-search, coaching, career, storybank, negotiation]
 tools: [claude]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-interview-coach
 # Interview Coach
 
 ## Overview

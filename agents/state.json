@@ -1,264 +1,177 @@
 {
-  "version": 1,
-  "updated": "2026-06-05T17:33:00-03:00",
-  "user": {
-    "name": "Fábio Everton",
-    "preferred_name": "Fábio",
-    "greeting": "Shalom",
-    "email": "fabioeverton1704@gmail.com",
-    "phone": "(61) 99874-3226",
-    "cpf": "007.158.901-58",
-    "cnpj": "15.420.944/0001-95",
-    "address": "SMPW Quadra 17 Conjunto 14, 3 - Park Way, Brasília - DF, 71741-714",
-    "role": "CEO BRACHÁT ecosystem"
-  },
-  "professional_profile": {
-    "background": "16+ years in construction, EPC execution, infrastructure delivery, project operations, governance, compliance, stakeholder management",
-    "expansion": ["AI", "automation", "digital operations", "AI-enabled workflows"],
-    "current_objective_primary": "AI Operations, Automation, AI Agents, Technical Project Management, Digital Transformation",
-    "current_objective_secondary": "Freelance income generation",
-    "mantra": "Here is what I deliver — I don't 'look for a job'",
-    "principle": "No use just studying. You have to execute, show, and be seen.",
-    "positioning": "Professional who learns fastest, delivers visible value, and is found by recruiters"
-  },
-  "big_pickle_ecosystem": {
-    "main_brain": "openagent_big_pickle (via OpenCode Go)",
-    "memory": "state.json (single canonical file)",
-    "persistent_memory_backend": "state.json (single canonical file, mem0 deleted)",
-    "connectivity": "composio_mcp (LinkedIn + ClickUp + Telegram connected)",
-    "communication": {
-      "primary": "telegram (EZRA bot @Baruch_Everton_bot, bridge via Hetzner VPS 24/7)",
-      "nice_bridge": "telegram (NICE bot @luevertonbot, chat 8722951907 Luciana Everton, bridge via Hetzner VPS 24/7)",
-      "voice": "voice_app (HTTPS endpoints ports 3005, 3443, 3006 via localhost.run)",
-      "notification_hierarchy": {
-        "brazil_latam": ["WhatsApp", "Email"],
-        "international": ["LinkedIn", "Email"],
-        "engagement_insights": {
-          "WhatsApp": "highest engagement",
-          "Email": "formal communication",
-          "LinkedIn": "B2B networking"
-        }
-      }
-    },
-    "launchd_services": {
-      "com.brachat.clickup": "ClickUp sync"
-    },
-    "hetzner_services": {
-      "brachat-ezra": "Telegram bridge (EZRA) — polls Telegram API, systemd keep alive 24/7 on Hetzner VPS.",
-      "brachat-nice": "Telegram bridge (NICE) — bot @luevertonbot, systemd keep alive 24/7 on Hetzner VPS."
-    },
-    "local_llm": "ollama_windows (qwen2.5-coder on Windows VM @ 192.168.18.11)",
-    "fallback_api": "zen_api_key (4 free models configured in opencode.jsonc)",
-    "first_connection_password": "V4bcXsPhz5neFlhbpfOL"
-  },
-  "daily_routine": {
-    "id": "daily-routine",
-    "schedule": [
-      { "time": "07:00", "activity": "Wake up", "assistant_action": "Good morning with date, focus of the day, weather" },
-      { "time": "07:15", "activity": "Morning scan + Job hunting", "assistant_action": "Search jobs, applications, follow-up. Check emails from freelance/job platforms (fabioeverton1704@gmail.com, jae.engenharia@gmail.com, igorbrachat@gmail.com) for replies from applications, proposals, or platform notifications." },
-      { "time": "07:30", "activity": "ENGLISH (Phase 3)", "assistant_action": "News in English + vocabulary (C2 Framework)" },
-      { "time": "08:00", "activity": "MAIN STUDY (unified schedule)", "assistant_action": "Session of the day per writings_studies/OFICIAL_SCHEDULE.md" },
-      { "time": "08:30", "activity": "GOOGLE SKILLS (Phase 4.2)", "assistant_action": "Google Skill course of the day or continue schedule if completed" },
-      { "time": "09:00", "activity": "Deep work + schedule hands-on", "assistant_action": "Practical exercises, hands-on, projects from current phase" },
-      { "time": "11:00", "activity": "Python Masterclass (Phase 2)", "assistant_action": "Python Masterclass 160h — Current block from OFICIAL_SCHEDULE.md" },
-      { "time": "14:00", "activity": "Freelancer", "assistant_action": "Search freelancing, proposals, projects, Workana/99Freelas" },
-      { "time": "17:00", "activity": "Portfolio", "assistant_action": "Practical project that becomes LinkedIn post" },
-      { "time": "20:00", "activity": "Politics + Philosophy", "assistant_action": "Daily reading and guided reflection" },
-      { "time": "21:00", "activity": "Nightly review", "assistant_action": "Review what was done, lessons, adjustments" },
-      { "time": "22:30", "activity": "Sleep", "assistant_action": "Good night, daily summary saved to memory" }
-    ]
-  },
-  "study_schedule": {
-    "id": "unified-schedule",
-    "reference": "writings_studies/OFICIAL_SCHEDULE.md",
-    "phases": [
-      { "phase": "Fase 0", "name": "Fundamentals for Public Tender", "modules": "0.1-0.10", "status": "next" },
-      { "phase": "Fase 1", "name": "IT for Public Sector", "modules": "1.1-1.7", "status": "pending" },
-      { "phase": "Fase 2", "name": "Python Masterclass (160h)", "modules": "Block 1-4", "status": "pending" },
-      { "phase": "Fase 3", "name": "Technical English", "modules": "daily continuous", "status": "active" },
-      { "phase": "Fase 4", "name": "Certifications and Executive Education", "modules": "4.1-4.7", "status": "pending" },
-      { "phase": "Fase 5", "name": "Advanced Governance and Compliance", "modules": "5.1-5.5", "status": "pending" }
+  "last_session": {
+    "date": "2026-06-19",
+    "summary": "Justus full procedure: 15 apps sent via Gmail. cache.json updated with daily_log. Summary report emailed.",
+    "blockers": [
+      "Mem0 MCP offline (key trocada)",
+      "Playwright+Chromium não instalado na VM (necessário para Josué)",
+      "Resume S3 attachment timeout via Gmail API (usou tmpfiles link)"
     ],
-    "daily_obligations": ["Politics (20min)", "Philosophy (15min)", "Job Hunting (scan + applications)", "English (30min)", "Google Skills (15min)", "PMP (15min)"],
-    "note": "All subjects unified in OFICIAL_SCHEDULE.md. Progress saved in orchestrator_agent/schedule_progress.json. Advances day only when all checkpoints from the previous day are DELIVERED (≥80%)."
-  },
-  "job_hunting_system": {
-    "id": "job-hunting",
-    "clt": {
-      "platforms": ["LinkedIn", "Indeed", "Gupy", "GeekHunter", "GitHub Jobs", "GitLab Jobs", "Y Combinator"],
-      "filters": ["stack", "salary", "remote/presential", "level"],
-      "flow": ["auto apply", "follow-up after 5 days", "adjust filters from rejection feedback"],
-      "ats_strategy": "optimize ATS compatibility"
-    },
-    "freelance": {
-      "platforms": ["Workana", "99Freelas", "Freelancer.com", "Fiverr"],
-      "flow": ["find job", "match >= 70%", "generate personalized proposal", "send", "track reply"],
-      "differentiator": "AI generates custom proposal per job"
-    },
-    "crm": {
-      "tool": "ClickUp",
-      "stages": ["discovery", "application", "interview", "result"],
-      "integration": "Composio MCP + ClickUp tasks"
-    },
-    "additional_platforms": ["Jobright", "Fiverr", "Legiit", "Jobbers", "company career portals", "ATS platforms"],
-    "metrics_tracked": ["interview rates", "response rates", "conversion metrics"]
-  },
-  "portfolio_vivo": {
-    "id": "portfolio-vivo",
-    "goal": "Show clear evolution over 90 days, living portfolio not static resume",
-    "content_strategy": "Each certificate = LinkedIn post; each project = LinkedIn article; agent drafts, user reviews",
-    "artifacts": [
-      { "area": "Backend", "deliverable": "Complete API with docs, tests, deployment", "channel": "LinkedIn article" },
-      { "area": "Frontend", "deliverable": "App with UX, accessibility, performance", "channel": "Portfolio website" },
-      { "area": "Cloud", "deliverable": "GitHub project with Terraform and CI/CD", "channel": "LinkedIn + GitHub" },
-      { "area": "Data", "deliverable": "ETL pipeline and dashboard", "channel": "Technical post + GitHub" },
-      { "area": "AI/ML", "deliverable": "Trained model on real problem", "channel": "LinkedIn + HuggingFace" }
+    "decisions": [
+      "Justus executado: 15 apps enviadas para empresas tech AI automation"
+    ],
+    "next_steps": [
+      "Verificar respostas de candidaturas no Gmail amanhã",
+      "Retomar estudos Mês 1 Dia 2"
     ]
   },
-  "linkedin_engine": {
-    "id": "linkedin-engine",
-    "status": "connected via Composio MCP",
-    "capabilities": [
-      "Generate weekly technical posts",
-      "Auto-connect with recruiters of target companies",
-      "Profile optimization (headline, about, skills)",
-      "Track weekly post views"
-    ]
-  },
-  "agents_to_create": [
+  "session_count": 4,
+  "sessions": [
     {
-      "id": "agente-rotina",
-      "name": "Daily Routine System",
-      "description": "Daily assistant prompt with message templates and scheduler",
-      "dependencies": ["telegram", "mem0"]
-    },
-    {
-      "id": "agente-job-hunter",
-      "name": "Automatic Job Scanner",
-      "description": "Job source aggregator with application template and ClickUp pipeline",
-      "dependencies": ["composio", "clickup", "webfetch"]
-    },
-    {
-      "id": "agente-estudos",
-      "name": "Study Schedule",
-      "description": "Rotating weekly schedule with curated material and simulations",
-      "dependencies": ["mem0"]
-    },
-    {
-      "id": "agente-portfolio",
-      "name": "Portfolio Engine",
-      "description": "Demonstrable project generator with LinkedIn post templates",
-      "dependencies": ["composio", "linkedin"]
-    }
-  ],
-  "implementation_phases": [
-    {
-      "phase": 1,
-      "name": "Daily Routine Agent + Functional Telegram",
-      "priority": "immediate",
-      "start_date": "2026-06-04",
-      "description": "Foundation of the system — EZRA bot online 24/7 via launchd bridge"
-    },
-    {
-      "phase": 2,
-      "name": "Job Hunter + ClickUp Pipeline",
-      "priority": "high",
-      "description": "Rapid results with applications submitted within days"
-    },
-    {
-      "phase": 3,
-      "name": "Integrated Study Schedule",
-      "priority": "medium",
-      "description": "Curated and consistent study content"
-    },
-    {
-      "phase": 4,
-      "name": "Portfolio + LinkedIn Engine",
-      "priority": "medium",
-      "description": "Generate posts and projects"
-    },
-    {
-      "phase": 5,
-      "name": "Refinement + Feedback Loop",
-      "priority": "ongoing",
-      "description": "Adjustments based on real usage, continues indefinitely"
-    }
-  ],
-  "folder_structure": {
-    "root": "/Users/mac/brachat-main",
-    "central_state": "brachat-main/state.json",
-    "integrations": "integrations/ — WhatsApp bot, APIs, Instagram, external connections",
-    "portfolio": "portfolio/ — Created projects, publications and productions",
-    "writings_studies": "writings_studies/ — Written productions",
-    "cloud": "cloud/ — Scripts, daemons and infrastructure agents",
-    "builder_agents": "portfolio/builder_agents/ — Creation agents and tools"
-  },
-  "memory_files": {
-    "canonical_state": "/Users/mac/.opencode/state.json",
-    "central_state": "/Users/mac/brachat-main/state.json",
-    "folder_states": [
-      "/Users/mac/brachat-main/integrations/state.json",
-      "/Users/mac/brachat-main/portfolio/state.json",
-      "/Users/mac/brachat-main/portfolio/builder_agents/state.json",
-      "/Users/mac/brachat-main/writings_studies/state.json",
-      "/Users/mac/brachat-main/cloud/state.json"
-    ]
-  },
-  "session_log": [
-    {
-      "session": "2026-06-04_afternoon",
-      "timestamp": "2026-06-04T15:35:00-03:00",
-      "decisions": [
-        "Schedule.md rewritten: Day 1 to Day 252 (original dates removed, content preserved)",
-        "Python Masterclass 160h saved in Studies/professional_trail/python-masterclass.md",
-        "All 6 subjects are DAILY (not per weekday). weekly_rotation DEPRECATED.",
-        "FIXED: Agent demands ALL subjects (not just Google Skills) and teaches when requested",
-        "Google Skills: agent only demands, does not access the platform",
-        "English + Torah: prompts already loaded. Philosophy: waiting for user script",
-        "Everything starts operating on 05/06/2026 (tomorrow)",
-        "NotebookLM TORAH_STUDIES pending: auth not configured (Google credentials problematic). Prompt 0_PROMPT already exists",
-        "Philosophy: script awaiting user submission. Prompt pending",
-        "Proton Mail Bridge aborted (paid plan required)"
-      ],
-      "files_created": [
-        "/Users/mac/brachat-main/Studies/professional_trail/python-masterclass.md"
-      ],
-      "files_modified": [
-        "/Users/mac/brachat-main/Studies/professional_trail/schedule.md"
+      "date": "2026-06-14",
+      "duration": "~4h",
+      "type": "full_audit_and_fixes",
+      "key_actions": [
+        "Audit 7 phases complete (Discovery, Validation, Security, Docs, Contracts, Executive Report)",
+        "VM at 146.56.97.202 down, found new IP at 147.15.0.196",
+        "Bridges Ezra/Nice/ClickUp fixed (403 → correct endpoint + key)",
+        "WhatsApp removed (launchd plist + directory)",
+        ".env.json added to .gitignore, removed from git tracking",
+        "memory.md updated to match real structure",
+        "agents/state.json created and populated",
+        "startup_state.json checkpoint updated"
       ]
     }
   ],
-  "accountability_rules": {
-    "agent_cobra_all_subjects": true,
-    "agent_teaches_on_request": true,
-    "google_skills": {
-      "agent_demands": true,
-      "agent_does_not_access_platform": true,
-      "user_provides_proof": "print/link/printscreen",
-      "frequency": "2x/week (minimum) or daily if possible"
+  "infrastructure": {
+    "mac_local": {
+      "proxy_9999": "operational",
+      "opencode_serve_8080": "operational",
+      "mem0_mcp_server": "operational",
+      "clampproxy_4000": "operational",
+      "litellm_4001": "operational",
+      "whatsapp_bot": "removed",
+      "jobhunter": "stopped",
+      "mem0_heartbeat": "stopped"
     },
-    "ingles": {
-      "prompt_loaded": true,
-      "standard": "C2 Intelligence Briefing framework for all written analyses"
-    },
-    "politica": {
-      "prompt_loaded": false,
-      "notebooklm_pending": null
-    },
-    "filosofia": {
-      "prompt_pending": "user has not sent the script yet"
-    },
-    "operational_start": "2026-06-05",
-    "note": "Agent demands ALL subjects daily. Teaches when requested. Google Skills: demand only, no platform access."
+    "vm_oracle": {
+      "ip": "147.15.0.196",
+      "hostname": "brachat-vnic",
+      "ssh_key": "integrations/apis/ssh-key-2026-06-11.key",
+      "brachat_ezra": "active",
+      "brachat_nice": "active",
+      "brachat_clickup": "active",
+      "notes": "IP changed from 146.56.97.202. Bridges using /zen/v1/ + kimi-k2.6"
+    }
   },
-  "strategic_principles": [
-    "automate repetitive work",
-    "preserve human review",
-    "optimize ATS compatibility",
-    "prioritize personalization",
-    "use AI for leverage",
-    "focus on conversion metrics",
-    "build reusable systems",
-    "prioritize value over hours sold"
-  ]
+  "session_2026-06-15": {
+    "date": "2026-06-15",
+    "summary": "Sessão completa: certificações AWS/AIGP/OCI/Oracle na agenda (14-16h); compliance test (DEV→GILMARIO→JOHN) executado; Mem0 key trocada; .env centralizado em integrations/apis/.env.json; Parashat bridge criado na VM (auto-detecção Shabat + cronograma 2026); Josué bridge criado (Telegram + Playwright stealth + OLX + Pix); opencode.jsonc limpo (só big-pickle + kimi-k2.6); LLM fallback implementado nos 3 bridges (EZRA, NICE, Parashat)."
+  },
+  "session_2026-06-15b": {
+    "date": "2026-06-15",
+    "summary": "Josué bridge reescrito com Playwright stealth + OLX automation + Pix. systemd brachat-josue.service ativo. Josué agent definition atualizada (vendas, não mais operations). Notebook: EZRA faz despacho de certificações (14h), DEVs/JOHN executam badges. Pendências: Playwright+Chromium instalado na VM (para Parashat e Josué), Mem0 MCP offline (precisa restart sessão), Josué bridge com Playwright stealth funcional.",
+    "agents_created": ["bridge-josue.py (VM)", "brachat-josue.service (VM)"],
+    "configs_updated": ["bridges: 3 bridges com fallback big-pickle -> kimi-k2.6"],
+    "blockers": ["Mem0 MCP offline (key trocada, precisa restart)"]
+  },
+  "session_2026-06-15c": {
+    "date": "2026-06-15",
+    "summary": "Redesenho completo do fluxo Josué: Fábio posta na OLX manualmente, passa link+fotos+preço pra Josué, que SÓ sai vendendo quando tem TUDO. Josué promove o link OLX + fotos + texto irresisivel. Comprador clica no link e fecha na OLX. Bridge reescrito sem Playwright/OLX posting. systemd restartado. OLX API documentada (precisa client_id+client_secret pra integrar Chat).",
+    "blockers": ["Mem0 MCP offline (key m0-RqgW5G... precisa restart da sessão)"],
+    "decisions": [
+      "Josué NUNCA posta na OLX — só divulga link + fotos do que Fábio já postou",
+      "OLX pelo browser_tool vs API: API precisa registrar app na OLX primeiro",
+      "Browser_tool login falhou (Cloudflare + possivel senha incorreta)"
+    ]
+  },
+  "session_2026-06-16": {
+    "date": "2026-06-16",
+    "type": "startup_checks",
+    "summary": "14 checks completas. VM Oracle 3/3 ativa (ezra, nice, clickup). E-mails: sem novidades de candidaturas (1 email promocional). Financeiro: saldo R$ 0. Schedule: Mês 1 Dia 2 (Direito Constitucional) pendente. Blockers ativos: Mem0 MCP offline, jobhunter/mem0-heartbeat parados, Playwright+Chromium não instalado na VM.",
+    "blockers": [
+      "Mem0 MCP offline (key trocada, precisa restart da sessão)",
+      "jobhunter parado no Mac",
+      "mem0-heartbeat parado no Mac",
+      "Playwright+Chromium não instalado na VM (necessário para Josué)"
+    ]
+  },
+  "session_2026-06-16b": {
+    "date": "2026-06-16",
+    "type": "corpus_extraction_and_bridge_fix",
+    "summary": "NotebookLM TORAH_STUDIES carregado (37 fontes), confirmado sem opção de download. Google Drive sem PDFs. Baixados 9 fontes-chave da internet (Tanakh, Maimônides, Ibn Ezra, Gesenius, Dead Sea Scrolls, Codex Sinaiticus, Spinoza, Mendelssohn, Organon). Saadia Gaon e Aristóteles (imagem/indisponível). Extraído corpus unificado de 11.8M chars. SCP para VM. Bridge-parashat.py modificado para usar corpus local em vez de NotebookLM/Playwright. Fallback kimi-k2.6 endpoint /go/v1/ retorna 404 (endpoint desconhecido, precisa documentação). Playwright não é mais necessário para Parashat (apenas para Josué).",
+    "blockers": [
+      "kimi-k2.6 endpoint /go/v1/ retorna 404 (sem docs do provider opencode-go)",
+      "Saadia Gaon PDF é image-based (sem texto extraível)",
+      "Aristóteles Ética+Metafísica não encontrados como PDF texto extraível em português",
+      "Playwright+Chromium não instalado na VM (necessário para Josué)"
+    ],
+    "decisions": [
+      "Corpus local substitui NotebookLM → elimina dependência de Playwright no Parashat",
+      "Corpus extraído como texto unificado (keyword-matching RAG simples no bridge)",
+      "Manter big-pickle via ZEN como modelo primário (kimi-k2.6 quebrado, usar fallback apenas)",
+      "Baixar Saadia Gaon de fonte alternativa com OCR quando disponível"
+    ]
+  },
+  "session_2026-06-16c": {
+    "date": "2026-06-16",
+    "type": "corpus_expansion_aristotle",
+    "summary": "Aristóteles Os Pensadores extraído (924K chars). Corpus: 12.7M chars. kimi-k2.6 endpoint corrigido: /zen/go/v1/ (era /go/v1/ — 404). Bridge-parashat e bridge-josue consertados na VM. Endpoint testado e funcionando (HTTP 200). Saadia Gaon continua blocker (image-based/access-restricted).",
+    "blockers": [
+      "Saadia Gaon sem fonte texto-extraível (IA access-restricted, Yale edition image-based)",
+      "Playwright+Chromium não instalado na VM (necessário para Josué)",
+      "Mem0 MCP offline (key trocada, precisa restart sessão)"
+    ],
+    "new_sources": [
+      "Aristóteles - Metafísica (I+II), Ética a Nicômaco, Poética (Os Pensadores, Abril 1984) - 924K chars, texto português"
+    ],
+    "fixes": [
+      "kimi-k2.6 endpoint /go/v1/ → /zen/go/v1/ (modelos.dev documenta: api: https://opencode.ai/zen/go/v1)"
+    ]
+  },
+  "session_2026-06-16d": {
+    "date": "2026-06-16",
+    "type": "rag_fix_corpus_search",
+    "summary": "RAG do bridge Parashat consertado: query_local_corpus agora parseia referência da Torá (ex: 'Nm 19:1 a 22:1') em vez de depender só de keyword matching. Adicionado build_book_index que mapeia capítulo→seção no corpus JPS (181 seções Torah). find_sections_by_torah_ref retorna texto relevante (14K chars) com red heifer, Miriam, Meribah, bronze serpent. Before: keyword 'Chukát' não matchava nada no JPS → bot dizia 'sem material'. After: referência 'Nm 19:1 a 22:1' → 14K chars de conteúdo. Testado e deployado na VM.",
+    "blockers": [
+      "Saadia Gaon sem fonte texto-extraível",
+      "Playwright+Chromium não instalado na VM",
+      "Mem0 MCP offline (key trocada, precisa restart sessão)"
+    ],
+    "fixes": [
+      "query_local_corpus reescrito com parse de referência Torá",
+      "build_book_index: mapeia capítulo→seção no corpus JPS",
+      "find_sections_by_torah_ref: retorna seções entre start_ch e end_ch",
+      "Per-section limit aumentado de 3000→7000 para capturar Miriam/backup content"
+    ]
+  },
+  "session_2026-06-17": {
+    "date": "2026-06-17",
+    "type": "startup_checks_plus_justus",
+    "summary": "14 checks completas. VM Oracle 3/3 ativa. E-mails: sem respostas de candidaturas. Justus cache: ultima scan 2026-06-13 (15 apps). Pendente quota de hoje. User solicitou execucao do Justus full procedure.",
+    "blockers": [
+      "Mem0 MCP offline (key trocada, precisa restart sessao)",
+      "jobhunter parado no Mac",
+      "Playwright+Chromium nao instalado na VM (necessario para Josue)"
+    ]
+  },
+  "session_2026-06-18": {
+    "date": "2026-06-18",
+    "type": "startup_checks_plus_justus",
+    "summary": "14 checks completas. VM Oracle 3/3 ativa. E-mails: sem respostas de candidaturas (apenas newsletters). Justus cache: ultima scan 2026-06-17 (15 apps). Pendente quota de hoje (0/15). User solicitou execucao do Justus full procedure.",
+    "blockers": [
+      "Mem0 MCP offline (key trocada, precisa restart sessao)",
+      "jobhunter parado no Mac",
+      "Playwright+Chromium nao instalado na VM (necessario para Josue)"
+    ],
+    "decisions": [
+      "Executar Justus full procedure para quota de 15 aplicacoes hoje"
+    ]
+  },
+  "session_2026-06-19": {
+    "date": "2026-06-19",
+    "type": "startup_checks_plus_justus_execution",
+    "summary": "14 checks completas. VM Oracle 3/3 ativa (ezra, nice, clickup). E-mails: sem respostas de candidaturas - apenas newsletters/job alerts. Justus: 15 apps enviadas para Delivery Associates, Pyyne, Intellectsoft, Diverse Lynx, Xebia, TechOhana, Humach, Softcom Systems, Tech Kooks, Braintrust, Cook Systems, Dahl Consulting, AmeriSave, EJ Technology Consultants, Software Technology Inc. cache.json atualizado. Summary email enviado.",
+    "blockers": [
+      "Mem0 MCP offline (key trocada, precisa restart sessao)",
+      "jobhunter parado no Mac",
+      "Playwright+Chromium nao instalado na VM (necessario para Josue)",
+      "Resume S3 attachment timeout via Gmail API (usou tmpfiles link)"
+    ],
+    "decisions": [
+      "Executar Justus full procedure para quota de 15 aplicacoes hoje",
+      "Resume enviado como tmpfiles link no corpo do email devido timeout do S3 attachment"
+    ]
+  },
+  "updated_at": "2026-06-19T07:20:00-03:00"
 }

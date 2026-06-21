@@ -11,6 +11,12 @@ tags: [mcp, search, ai-discovery, api-discovery, mcp-verification, agent-tools]
 tools: [claude, cursor, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-not-human-search-mcp
 # Not Human Search MCP
 
 ## Overview

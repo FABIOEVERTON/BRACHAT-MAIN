@@ -7,6 +7,12 @@ version: 1.0.0
 tags: [fp-ts, option, nullable, maybe, quick-reference]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-fp-option-ref
 # Option Quick Reference
 
 Option = value that might not exist. `Some(value)` or `None`.

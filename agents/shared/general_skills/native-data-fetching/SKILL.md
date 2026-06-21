@@ -7,6 +7,12 @@ version: 1.0.0
 license: MIT
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-native-data-fetching
 # Expo Networking
 
 **You MUST use this skill for ANY networking work including API requests, data fetching, caching, or network debugging.**

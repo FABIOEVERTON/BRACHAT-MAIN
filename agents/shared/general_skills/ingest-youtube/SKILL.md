@@ -16,6 +16,12 @@ plugin:
     docs: "SKILL.md"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-ingest-youtube
 # ingest-youtube — YouTube-to-vault connector
 
 Pulls YouTube transcripts into a markdown vault as queryable typed-memory entries that downstream skills (knowledge graph extraction, voice-fingerprint training, content repurposing, action-item extraction) can act on.

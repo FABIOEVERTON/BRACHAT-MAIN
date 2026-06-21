@@ -1,2 +1,0 @@
-obsidian-cli
-notebooklm-py[browser]

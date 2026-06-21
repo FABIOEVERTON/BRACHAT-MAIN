@@ -15,6 +15,12 @@ allowed-tools:
   - Write
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-seo-programmatic
 # Programmatic SEO Analysis & Planning
 
 Build and audit SEO pages generated at scale from structured data sources.

@@ -10,6 +10,12 @@ author: tellmefrankie
 tags: [options, sentiment-analysis, trading, polygon, market-analysis]
 tools: [websearch]
 ---
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-options-flow-analyzer
 # Options Flow Analyzer
 
 Analyze options chain data with real vs lottery call separation — the key insight that prevents P/C ratio misinterpretation. Uses Polygon.io API.

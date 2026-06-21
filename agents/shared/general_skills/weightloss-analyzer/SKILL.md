@@ -5,6 +5,12 @@ risk: safe
 source: community
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-weightloss-analyzer
 # 减肥分析技能
 
 分析减肥数据，计算代谢率，追踪能量缺口，管理减肥阶段。

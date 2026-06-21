@@ -12,6 +12,12 @@ tags: [wechat, chinese-market, content-strategy, marketing, 公众号, 微信]
 tools: [claude, cursor, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-wechat-official-account-strategist
 # WeChat Official Account Strategist
 
 ## Overview

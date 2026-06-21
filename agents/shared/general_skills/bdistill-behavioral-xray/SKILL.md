@@ -10,6 +10,12 @@ tags: [ai, testing, behavioral-analysis, model-evaluation, red-team, compliance,
 tools: [claude, cursor, codex, copilot]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-bdistill-behavioral-xray
 # Behavioral X-Ray
 
 Systematically probe an AI model's behavioral patterns and generate a visual report. The AI agent probes *itself* — no API key or external setup needed.

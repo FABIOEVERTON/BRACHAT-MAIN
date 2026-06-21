@@ -11,6 +11,12 @@ tags: [python, powerpoint, python-pptx, presentations, slide-decks]
 tools: [claude, cursor, gemini, codex]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-python-pptx-generator
 # Python PPTX Generator
 
 ## Overview

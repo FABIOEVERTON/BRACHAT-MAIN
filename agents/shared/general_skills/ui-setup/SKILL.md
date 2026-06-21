@@ -12,6 +12,12 @@ tags: [ui, design-system, setup, frontend, styleseed]
 tools: [claude, cursor, codex, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-ui-setup
 # UI Setup
 
 ## Overview

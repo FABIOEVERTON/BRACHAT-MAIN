@@ -12,6 +12,12 @@ tags: [ui, tokens, design-system, theming, styleseed]
 tools: [claude, cursor, codex, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-ui-tokens
 # UI Tokens
 
 ## Overview

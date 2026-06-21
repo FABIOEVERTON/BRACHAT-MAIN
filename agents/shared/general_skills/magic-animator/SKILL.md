@@ -6,6 +6,12 @@ source: community
 date_added: "2026-03-07"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-magic-animator
 # Magic Animator Skill
 
 [Magic Animator](https://magicanimator.com/) enables designers to add life to static designs in seconds using AI-driven motion, transforming flat UX into premium, dynamic experiences.

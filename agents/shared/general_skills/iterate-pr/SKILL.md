@@ -5,6 +5,12 @@ risk: critical
 source: community
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-iterate-pr
 # Iterate on PR Until CI Passes
 
 Continuously iterate on the current branch until all CI checks pass and review feedback is addressed.

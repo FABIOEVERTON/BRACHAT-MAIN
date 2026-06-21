@@ -5,6 +5,12 @@ risk: unknown
 source: "https://github.com/ksgisang/awt-skill"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-awt-e2e-testing
 # AWT — AI-Powered E2E Testing (Beta)
 
 > `npx skills add ksgisang/awt-skill --skill awt -g`

@@ -10,6 +10,12 @@ tags: [reliability, tool-use, error-handling, retries, recovery, agent-infrastru
 tools: [claude, cursor, codex, gemini, copilot, windsurf, antigravity]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-tool-use-guardian
 # Tool Use Guardian
 
 ## Overview

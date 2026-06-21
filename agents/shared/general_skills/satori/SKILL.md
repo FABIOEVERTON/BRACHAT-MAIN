@@ -12,6 +12,12 @@ tags: [mental-health, psychology, wisdom, philosophy, ifs, stoicism, jungian, co
 tools: [claude]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-satori
 # Satori
 
 ## Overview

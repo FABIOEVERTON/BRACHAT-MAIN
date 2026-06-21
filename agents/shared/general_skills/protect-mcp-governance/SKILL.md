@@ -8,6 +8,12 @@ source_type: official
 date_added: "2026-04-05"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-protect-mcp-governance
 # MCP Agent Governance with protect-mcp
 
 ## Overview

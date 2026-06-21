@@ -6,6 +6,12 @@ source: "https://github.com/CloudAI-X/threejs-skills"
 date_added: "2026-02-27"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-threejs-skills
 # Three.js Skills
 
 Systematically create high-quality 3D scenes and interactive experiences using Three.js best practices.

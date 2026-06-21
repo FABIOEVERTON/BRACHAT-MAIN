@@ -6,6 +6,12 @@ source: community
 date_added: "2026-04-01"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-seo-aeo-internal-linking
 # SEO-AEO Internal Linking
 
 ## Overview

@@ -12,6 +12,12 @@ tags: [faf, automation, project-setup, ai-context, productivity]
 tools: [claude, cursor, gemini, windsurf, any-ai]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-faf-wizard
 # FAF Wizard - One-Click AI Intelligence
 
 **The pit crew for your projects.** Point it at any codebase and get scored, AI-ready context in 60 seconds.

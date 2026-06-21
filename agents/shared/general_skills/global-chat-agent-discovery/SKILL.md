@@ -12,6 +12,12 @@ tags: [mcp, ai-agents, agent-discovery, agents-txt, a2a, developer-tools]
 tools: [claude, cursor, gemini, codex]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-global-chat-agent-discovery
 # Global Chat Agent Discovery
 
 ## Overview

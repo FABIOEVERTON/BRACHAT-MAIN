@@ -6,6 +6,12 @@ source: https://github.com/alirezarezvani/claude-skills
 date_added: "2026-03-07"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-senior-frontend
 # Senior Frontend
 
 Frontend development patterns, performance optimization, and automation tools for React/Next.js applications.

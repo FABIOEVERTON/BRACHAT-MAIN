@@ -6,6 +6,12 @@ source: "https://github.com/sanjay3290/ai-skills/tree/main/skills/imagen"
 date_added: "2026-02-27"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-imagen
 # Imagen - AI Image Generation Skill
 
 ## Overview

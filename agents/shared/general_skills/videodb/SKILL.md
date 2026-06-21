@@ -10,6 +10,12 @@ allowed-tools: Read Grep Glob Bash(python:*)
 argument-hint: "[task description]"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-videodb
 # VideoDB Skill
 
 **Perception + memory + actions for video, live streams, and desktop sessions.**

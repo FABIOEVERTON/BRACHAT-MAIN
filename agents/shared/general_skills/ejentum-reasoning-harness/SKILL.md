@@ -18,6 +18,12 @@ plugin:
     docs: "https://github.com/ejentum/ejentum-mcp#installation"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-ejentum-reasoning-harness
 # Ejentum Reasoning Harness
 
 The Ejentum Reasoning Harness is a library of 679 cognitive operations engineered in natural language, organized across four harnesses (`reasoning`, `code`, `anti-deception`, `memory`) and exposed as MCP tools the agent can call when the task matches their trigger conditions. It targets four mechanism failures common in long agentic chains: attention decay (losing the original task), reasoning decay (compounding errors), sycophantic collapse (agreeing with the user's frame instead of evaluating it), and hallucination drift (asserting unsupported claims with confidence).

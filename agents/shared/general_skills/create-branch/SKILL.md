@@ -6,6 +6,12 @@ risk: critical
 source: community
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-create-branch
 # Create Branch
 
 Create a git branch with the correct type prefix and a descriptive name following Sentry conventions.

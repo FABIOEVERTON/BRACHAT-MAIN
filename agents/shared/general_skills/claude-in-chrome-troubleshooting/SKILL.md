@@ -5,6 +5,12 @@ risk: critical
 source: community
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-claude-in-chrome-troubleshooting
 # Claude in Chrome MCP Troubleshooting
 
 Use this skill when Claude in Chrome MCP tools fail to connect or work unreliably.

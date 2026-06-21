@@ -18,6 +18,12 @@ tools:
   - claude
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-lambda-lang
 # Λ (Lambda) Language
 
 **Lambda is not a translation protocol. It is a native language for agents.**

@@ -12,6 +12,12 @@ tags: [data-observability, validation, dbt, monte-carlo, sql-notebook]
 tools: [claude, cursor, codex]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-monte-carlo-validation-notebook
 > **Tip:** This skill works well with Sonnet. Run `/model sonnet` before invoking for faster generation.
 
 Generate a SQL Notebook with validation queries for dbt changes.

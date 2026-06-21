@@ -6,6 +6,12 @@ source: "AppDeploy (MIT)"
 date_added: "2026-02-27"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-appdeploy
 # AppDeploy Skill
 
 Deploy web apps to AppDeploy via HTTP API.

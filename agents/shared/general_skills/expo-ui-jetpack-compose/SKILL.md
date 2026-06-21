@@ -5,6 +5,12 @@ risk: unknown
 source: community
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-expo-ui-jetpack-compose
 ---
 name: expo-ui-jetpack-compose
 description: `@expo/ui/jetpack-compose` package lets you use Jetpack Compose Views and modifiers in your app.

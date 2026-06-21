@@ -12,6 +12,12 @@ tags: [multi-agent, orchestration, task-routing, quality-gates, anti-duplication
 tools: [claude, cursor, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-multi-agent-task-orchestrator
 # Multi-Agent Task Orchestrator
 
 ## Overview

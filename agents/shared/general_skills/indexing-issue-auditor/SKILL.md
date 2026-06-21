@@ -11,6 +11,12 @@ tags: [seo, architecture, indexing, crawler, sitemap]
 tools: [claude, cursor, gemini, antigravity]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-indexing-issue-auditor
 # Indexing Issue Auditor & Technical SEO Architect
 
 ## Overview

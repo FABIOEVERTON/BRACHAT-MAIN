@@ -7,6 +7,12 @@ source: original
 date_added: "2026-03-11"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-keyword-extractor
 # Keyword Extractor
 
 Extracts **max 50 relevant keywords** from text and formats them in a strict machine-ready structure.

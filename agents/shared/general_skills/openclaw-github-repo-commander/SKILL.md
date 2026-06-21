@@ -9,6 +9,12 @@ author: wd041216-bit
 tags: [github, git, repository, audit, cleanup, workflow, devtools, automation, code-review, security]
 tools: [claude, cursor]
 ---
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-openclaw-github-repo-commander
 # OpenClaw GitHub Repo Commander
 
 ## Overview

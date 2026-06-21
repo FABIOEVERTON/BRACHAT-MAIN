@@ -7,6 +7,12 @@ source: community
 date_added: "2026-03-05"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-bug-hunter
 # Bug Hunter
 
 Systematically hunt down and fix bugs using proven debugging techniques. No guessing—follow the evidence.

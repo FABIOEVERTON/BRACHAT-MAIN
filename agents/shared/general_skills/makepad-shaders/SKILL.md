@@ -9,6 +9,12 @@ risk: unknown
 source: community
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-makepad-shaders
 # Makepad Shaders Skill
 
 > **Version:** makepad-widgets (dev branch) | **Last Updated:** 2026-01-19

@@ -6,6 +6,12 @@ source: "https://github.com/sstklen/infinite-gratitude"
 date_added: "2026-02-27"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-infinite-gratitude
 # Infinite Gratitude
 
 > **Source**: [sstklen/infinite-gratitude](https://github.com/sstklen/infinite-gratitude)

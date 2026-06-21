@@ -6,6 +6,12 @@ source: vibeship-spawner-skills (Apache 2.0)
 date_added: 2026-03-06
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-devcontainer-setup
 # Devcontainer Setup Skill
 
 Creates a pre-configured devcontainer with Claude Code and language-specific tooling.

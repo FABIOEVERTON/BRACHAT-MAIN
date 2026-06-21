@@ -8,6 +8,12 @@ user-invokable: true
 argument-hint: "[command] [url]"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-seo
 # SEO: Universal SEO Analysis Skill
 
 Comprehensive SEO analysis across all industries (SaaS, local services,

@@ -7,6 +7,12 @@ source: community
 date_added: "2026-03-05"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-api-endpoint-builder
 # API Endpoint Builder
 
 Build complete, production-ready REST API endpoints with proper validation, error handling, authentication, and documentation.

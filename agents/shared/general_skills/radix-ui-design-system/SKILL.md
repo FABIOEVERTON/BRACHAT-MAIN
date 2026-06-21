@@ -6,6 +6,12 @@ source: self
 date_added: "2026-02-27"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-radix-ui-design-system
 # Radix UI Design System
 
 Build production-ready, accessible design systems using Radix UI primitives with full customization control and zero style opinions.

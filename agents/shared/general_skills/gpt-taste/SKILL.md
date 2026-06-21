@@ -11,6 +11,12 @@ author: Leonxlnx
 tags: [frontend, design, gsap, motion]
 tools: [claude, cursor, codex, antigravity]
 ---
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-gpt-taste
 # CORE DIRECTIVE: AWWWARDS-LEVEL DESIGN ENGINEERING
 
 ## When to Use

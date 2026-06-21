@@ -4,6 +4,12 @@ description: 分析口腔健康数据、识别口腔问题模式、评估口腔�
 risk: safe
 source: community
 ---
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-oral-health-analyzer
 name: oral-health-analyzer
 
 # 口腔健康分析技能

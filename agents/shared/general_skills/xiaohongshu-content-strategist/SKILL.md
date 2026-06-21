@@ -12,6 +12,12 @@ tags: [xiaohongshu, chinese-market, content-strategy, social-media, marketing, �
 tools: [claude, cursor, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-xiaohongshu-content-strategist
 # Xiaohongshu Content Strategist
 
 ## Overview

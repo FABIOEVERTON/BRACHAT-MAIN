@@ -11,6 +11,12 @@ tags: [elicitation, clarifying-questions, ambiguity, multi-round, prompt-enginee
 tools: [antigravity]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-rich-elicitation
 # Rich Elicitation Skill
 
 ## Overview

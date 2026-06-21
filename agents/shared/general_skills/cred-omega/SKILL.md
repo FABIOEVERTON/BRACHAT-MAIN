@@ -19,6 +19,12 @@ tools:
 - codex-cli
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-cred-omega
 # CRED-OMEGA: Security Engine for All API Keys (Enterprise)
 
 ## Overview

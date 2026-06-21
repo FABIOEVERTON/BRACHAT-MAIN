@@ -14,6 +14,12 @@ tags:
 - ai-native
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-akf-trust-metadata
 # AKF — The AI Native File Format
 
 Every photo has EXIF. Every song has ID3. AKF is the native metadata format for AI-generated content.

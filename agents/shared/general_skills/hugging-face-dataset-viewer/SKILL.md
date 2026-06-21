@@ -5,6 +5,12 @@ description: Query Hugging Face datasets through the Dataset Viewer API for spli
 risk: unknown
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-hugging-face-dataset-viewer
 # Hugging Face Dataset Viewer
 
 ## When to Use

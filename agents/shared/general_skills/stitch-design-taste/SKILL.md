@@ -11,6 +11,12 @@ author: Leonxlnx
 tags: [stitch, design-system, frontend, ui]
 tools: [claude, cursor, codex, antigravity]
 ---
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-stitch-design-taste
 # Stitch Design Taste — Semantic Design System Skill
 
 ## When to Use

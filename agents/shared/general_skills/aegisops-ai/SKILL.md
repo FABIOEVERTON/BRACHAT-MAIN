@@ -7,6 +7,12 @@ author: Champbreed
 date_added: "2026-03-24"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-aegisops-ai
 # /aegisops-ai — Autonomous Governance Orchestrator
 
 AegisOps-AI is a professional-grade "Living Pipeline" 

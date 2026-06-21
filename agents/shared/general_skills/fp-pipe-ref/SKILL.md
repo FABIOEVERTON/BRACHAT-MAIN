@@ -7,6 +7,12 @@ version: 1.0.0
 tags: [fp-ts, pipe, flow, composition, quick-reference]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-fp-pipe-ref
 # pipe & flow Quick Reference
 
 ## pipe - Transform a Value

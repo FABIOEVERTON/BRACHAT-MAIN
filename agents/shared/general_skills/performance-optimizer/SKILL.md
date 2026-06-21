@@ -7,6 +7,12 @@ source: community
 date_added: "2026-03-05"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-performance-optimizer
 # Performance Optimizer
 
 Find and fix performance bottlenecks. Measure, optimize, verify. Make it fast.

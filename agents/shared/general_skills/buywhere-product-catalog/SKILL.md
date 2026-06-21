@@ -14,6 +14,12 @@ tags: [buywhere, ecommerce, shopping, mcp, api, product-catalog]
 tools: [claude, cursor, codex, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-buywhere-product-catalog
 # BuyWhere Product Catalog
 
 ## Overview

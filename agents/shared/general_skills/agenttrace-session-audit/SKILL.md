@@ -14,6 +14,12 @@ license: "MIT"
 license_source: "https://github.com/luoyuctl/agenttrace/blob/master/LICENSE"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-agenttrace-session-audit
 # agenttrace Session Audit
 
 ## Overview

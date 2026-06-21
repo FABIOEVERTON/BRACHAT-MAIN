@@ -6,6 +6,12 @@ source: community
 date_added: '2026-03-03'
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-lightning-factory-explainer
 ## Use this skill when
 
 - Explaining Bitcoin Lightning channel factories and scalable onboarding

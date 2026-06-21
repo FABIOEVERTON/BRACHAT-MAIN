@@ -8,6 +8,12 @@ tags: [sankhya, dashboard, jsp, html, sql, best-practices]
 date_added: "2026-03-10"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-sankhya-dashboard-html-jsp-custom-best-pratices
 # sankhya-dashboard-html-jsp-custom-best-pratices
 
 ## Purpose

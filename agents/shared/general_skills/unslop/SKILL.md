@@ -14,6 +14,12 @@ license: "MIT"
 license_source: "https://github.com/MohamedAbdallah-14/unslop/blob/main/LICENSE"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-unslop
 # unslop — Strip AI Writing Patterns via CLI
 
 ## Overview

@@ -12,6 +12,12 @@ tags: [ui, accessibility, wcag, audit, styleseed]
 tools: [claude, cursor, codex, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-ui-a11y
 # UI Accessibility Audit
 
 ## Overview

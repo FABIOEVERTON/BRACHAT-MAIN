@@ -9,6 +9,12 @@ source: community
 date_added: "2026-03-07"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-daily
 ## When to Use
 - You are building a real-time voice or multimodal AI application that uses Daily or Pipecat-style transports.
 - You need guidance on low-latency audio, video, text, and AI service orchestration in one pipeline.

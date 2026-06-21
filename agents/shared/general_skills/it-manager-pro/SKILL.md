@@ -17,6 +17,12 @@ triggers:
   - "it framework selection"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-it-manager-pro
 # IT Manager Pro (Elite Leadership Advisor)
 
 ## Purpose

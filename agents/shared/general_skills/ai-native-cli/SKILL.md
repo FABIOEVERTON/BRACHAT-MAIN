@@ -6,6 +6,12 @@ source: https://github.com/ChaosRealmsAI/agent-cli-spec
 date_added: "2026-03-15"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-ai-native-cli
 # Agent-Friendly CLI Spec v0.1
 
 When building or modifying CLI tools, follow these rules to make them safe and

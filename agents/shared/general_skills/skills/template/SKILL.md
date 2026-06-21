@@ -4,6 +4,9 @@ alias: template
 path: template
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
 
 │---NAME: Template Skill
 ├── TYPE: [Declarative | Executable] ⚙️

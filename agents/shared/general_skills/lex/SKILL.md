@@ -10,6 +10,12 @@ tags: [legal, context, cross-jurisdictional, compliance, scaffolding]
 tools: [claude, cursor, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-lex
 # LEX: Legal-Entity-X-ref
 
 ## Overview

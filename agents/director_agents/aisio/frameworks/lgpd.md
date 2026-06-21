@@ -1,70 +1,73 @@
-# Lei Geral de Proteção de Dados (LGPD) — Lei 13.709/2018
+## ⚠️ ABSOLUTE RULE
+FORBIDDEN TO EXECUTE ANY TASK NOT DESCRIBED IN THIS FILE
 
-## Escopo
-Aplica-se a qualquer operação de tratamento de dados pessoais realizada por pessoa natural ou jurídica, de direito público ou privado, que:
-- Ocorra em território nacional
-- Tenha objetivo de oferta de bens/serviços a indivíduos no Brasil
-- Envolva dados coletados no Brasil
+# General Data Protection Law (LGPD) — Law 13.709/2018
 
-## Conceitos Fundamentais
-- **Dado pessoal**: informação que identifica ou torna identificável uma pessoa (nome, CPF, e-mail, IP, geolocalização)
-- **Dado sensível**: origem racial, convicção religiosa, dados de saúde, dados biométricos, orientação sexual, filiação sindical
-- **Titular**: pessoa natural a quem se referem os dados
-- **Controlador**: quem decide sobre o tratamento
-- **Operador**: quem processa dados por conta do controlador
-- **DPO/Encarregado**: canal de comunicação entre controlador, titulares e ANPD
+## Scope
+Applies to any processing operation of personal data (dados pessoais) carried out by a natural or legal person, under public or private law, that:
+- Occurs in national territory
+- Aims to offer goods/services to individuals in Brazil
+- Involves data collected in Brazil
 
-## 10 Bases Legais (art. 7º)
-1. Consentimento do titular
-2. Cumprimento de obrigação legal/regulatória
-3. Execução de políticas públicas
-4. Pesquisa por órgãos de pesquisa
-5. Execução de contrato
-6. Exercício regular de direitos
-7. Proteção da vida
-8. Tutela da saúde
-9. Interesse legítimo
-10. Proteção ao crédito
+## Fundamental Concepts
+- **Dado pessoal (Personal Data)**: information that identifies or makes identifiable a natural person (name, CPF, email, IP, geolocation)
+- **Dado sensível (Sensitive Data)**: racial origin, religious belief, health data, biometric data, sexual orientation, union membership
+- **Titular (Data Subject)**: natural person to whom the data refers
+- **Controlador (Controller)**: who decides on the processing
+- **Operador (Operator)**: who processes data on behalf of the controller
+- **DPO/Encarregado (DPO/Data Protection Officer)**: communication channel between controller, data subjects and ANPD
 
-## Direitos dos Titulares (art. 18)
-1. Confirmação de tratamento
-2. Acesso aos dados
-3. Correção
-4. Anonimização, bloqueio ou eliminação
-5. Portabilidade
-6. Eliminação (dados com consentimento)
-7. Informação sobre compartilhamento
-8. Informação sobre não consentimento
-9. Revogação do consentimento
+## 10 Legal Bases (art. 7)
+1. Consent of the data subject (consentimento do titular)
+2. Compliance with legal/regulatory obligation
+3. Execution of public policies
+4. Research by research entities
+5. Contract execution
+6. Regular exercise of rights
+7. Protection of life
+8. Health protection (tutela da saúde)
+9. Legitimate interest (interesse legítimo)
+10. Credit protection
 
-Prazo de resposta: **15 dias**
+## Data Subject Rights (art. 18)
+1. Confirmation of processing
+2. Access to data
+3. Correction
+4. Anonymization, blocking or deletion
+5. Portability
+6. Deletion (data processed by consent)
+7. Information about sharing
+8. Information about non-consent
+9. Revocation of consent
 
-## Sanções (ANPD)
-- Advertência
-- Multa simples: até 2% do faturamento, limitada a R$ 50 milhões
-- Multa diária
-- Publicização da infração
-- Bloqueio dos dados
-- Eliminação dos dados
-- Suspensão da atividade de tratamento (até 6 meses)
+Response deadline: **15 days**
 
-## Medidas de Segurança
-**Técnicas**: criptografia, RBAC, firewall, backup, antivírus, gestão de vulnerabilidades
-**Administrativas**: política de segurança, treinamentos, gestão de acesso, plano de resposta a incidentes, auditoria
+## Sanctions (ANPD)
+- Warning
+- Simple fine: up to 2% of revenue, capped at R$ 50 million
+- Daily fine
+- Public disclosure of the violation
+- Blocking of data
+- Deletion of data
+- Suspension of processing activity (up to 6 months)
 
-## Obrigações Principais
-- Nomear DPO
-- Mapear dados (ROPA)
-- Realizar DPIA quando necessário
-- Manter registros de tratamento
-- Comunicar incidentes à ANPD e titulares (prazo razoável — ANPD recomenda 2 dias úteis)
-- Obter consentimento para cookies não essenciais
-- Adequar contratos com operadores
+## Security Measures
+**Technical**: encryption, RBAC, firewall, backup, antivirus, vulnerability management
+**Administrative**: security policy, training, access management, incident response plan, audit
 
-## Transferência Internacional (art. 33)
-- Países com nível adequado (reconhecido pela ANPD)
-- Cláusulas contratuais padrão
-- Normas corporativas globais
-- Consentimento específico
-- Necessidade contratual
-- Cooperação jurídica internacional
+## Main Obligations
+- Appoint a DPO
+- Map data (ROPA)
+- Perform DPIA when necessary
+- Maintain processing records
+- Report incidents to ANPD and data subjects (reasonable time — ANPD recommends 2 business days)
+- Obtain consent for non-essential cookies
+- Adapt contracts with operators
+
+## International Transfer (art. 33)
+- Countries with adequate level of protection (recognized by ANPD)
+- Standard contractual clauses
+- Global corporate standards
+- Specific consent
+- Contractual necessity
+- International legal cooperation

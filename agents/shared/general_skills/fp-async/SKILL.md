@@ -16,6 +16,12 @@ tags:
   - fetch
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-fp-async
 # Practical Async Patterns with fp-ts
 
 Stop writing nested try/catch blocks. Stop losing error context. Start building clean async pipelines that handle errors properly.

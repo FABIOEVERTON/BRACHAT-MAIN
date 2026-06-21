@@ -6,6 +6,12 @@ risk: unknown
 source: community
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-nutrition-analyzer
 # 营养分析器技能
 
 分析饮食和营养数据，识别营养模式，评估营养状况，并提供个性化营养改善建议。

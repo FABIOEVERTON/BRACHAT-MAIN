@@ -18,6 +18,9 @@ plugin:
     claude: blocked
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
 # TextMe
 
 ## Overview

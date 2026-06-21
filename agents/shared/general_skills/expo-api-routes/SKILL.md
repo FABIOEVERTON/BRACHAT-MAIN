@@ -7,6 +7,12 @@ version: 1.0.0
 license: MIT
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-expo-api-routes
 ## When to Use API Routes
 
 Use API routes when you need:

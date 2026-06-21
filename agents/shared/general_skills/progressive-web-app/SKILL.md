@@ -8,6 +8,12 @@ tags: [pwa, web-dev, service-worker, frontend, offline, caching]
 tools: [gemini, cursor, claude]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-progressive-web-app
 # Progressive Web Apps (PWAs)
 
 ## Overview

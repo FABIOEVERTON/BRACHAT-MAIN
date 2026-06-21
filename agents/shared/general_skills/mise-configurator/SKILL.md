@@ -10,6 +10,12 @@ author: community
 tags: [mise, devops, ci-cd, toolchain, runtimes, automation]
 tools: [claude, cursor, gemini]
 ---
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-mise-configurator
 # Mise Configurator
 
 ## Overview

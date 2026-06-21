@@ -7,6 +7,12 @@ version: 1.0.0
 tags: [fp-ts, taskeither, async, promise, error-handling, quick-reference]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-fp-taskeither-ref
 # TaskEither Quick Reference
 
 TaskEither = async operation that can fail. Like `Promise<Either<E, A>>`.

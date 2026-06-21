@@ -11,6 +11,12 @@ source: community
 date_added: "2026-05-30"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-container-security-hardening
 # Container Security Hardening Skill
 
 A production-focused guide for building, scanning, and running containers securely — from Dockerfile authoring through runtime enforcement and supply chain integrity.

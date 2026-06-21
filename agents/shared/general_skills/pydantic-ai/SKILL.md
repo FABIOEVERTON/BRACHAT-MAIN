@@ -10,6 +10,12 @@ tags: [pydantic-ai, ai-agents, llm, openai, anthropic, gemini, tool-use, structu
 tools: [claude, cursor, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-pydantic-ai
 # PydanticAI — Typed AI Agents in Python
 
 ## Overview

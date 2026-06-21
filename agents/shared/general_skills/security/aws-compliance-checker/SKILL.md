@@ -8,6 +8,9 @@ tags: "[aws, compliance, audit, cis, pci-dss, hipaa, kiro-cli]"
 date_added: "2026-02-27"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
 # AWS Compliance Checker
 
 Automated compliance validation against industry standards including CIS AWS Foundations, PCI-DSS, HIPAA, and SOC 2.

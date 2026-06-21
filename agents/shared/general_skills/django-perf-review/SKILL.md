@@ -7,6 +7,12 @@ risk: unknown
 source: community
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-django-perf-review
 # Django Performance Review
 
 Review Django code for **validated** performance issues. Research the codebase to confirm issues before reporting. Report only what you can prove.

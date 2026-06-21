@@ -6,6 +6,12 @@ source: "Dimillian/Skills (MIT)"
 date_added: "2026-03-25"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-swiftui-view-refactor
 # SwiftUI View Refactor
 
 ## Overview

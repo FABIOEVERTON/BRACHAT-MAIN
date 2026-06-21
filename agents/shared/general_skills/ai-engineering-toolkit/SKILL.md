@@ -10,6 +10,12 @@ tags: [prompt-engineering, rag, security, evaluation, ai-engineering, llm]
 tools: [claude, cursor, gemini, copilot]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-ai-engineering-toolkit
 # AI Engineering Toolkit
 
 ## Overview

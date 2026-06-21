@@ -14,6 +14,12 @@ license: "Apache-2.0"
 license_source: "https://github.com/Intelligent-Internet/II-Commons-Skills/blob/main/LICENSE"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-ii-commons
 # II-Commons
 
 ## Overview

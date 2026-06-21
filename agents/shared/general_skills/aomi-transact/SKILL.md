@@ -18,6 +18,12 @@ tags:
   - intent
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-aomi-transact
 # Aomi Transact
 
 > **Authorized use only.** This skill signs and broadcasts on-chain transactions on the user's behalf. The user must explicitly request each signing step. The skill will not run `aomi tx sign` without an explicit user request and a corresponding `tx-N` queued by `aomi tx list`.

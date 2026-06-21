@@ -14,6 +14,12 @@ license: "MIT-0"
 license_source: "https://clawhub.ai/jiawei248/daily-gift"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-daily-gift
 # Daily Gift
 
 ## Overview

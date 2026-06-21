@@ -15,6 +15,12 @@ tools: [claude, cursor, gemini]
 # license_source: "https://github.com/owner/repo/blob/main/LICENSE"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-recursive-context-pruning-token-budgeting
 # Recursive Context Pruning & Token Budgeting
 
 ## Overview

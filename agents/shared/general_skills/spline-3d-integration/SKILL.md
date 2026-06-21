@@ -6,6 +6,12 @@ source: community
 date_added: "2026-03-07"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-spline-3d-integration
 # Spline 3D Integration Skill
 
 Master guide for embedding interactive 3D scenes from [Spline.design](https://spline.design) into web projects.

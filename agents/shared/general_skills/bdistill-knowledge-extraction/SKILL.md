@@ -10,6 +10,12 @@ tags: [ai, knowledge-extraction, domain-specific, data-moat, mcp, reference-data
 tools: [claude, cursor, codex, copilot]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-bdistill-knowledge-extraction
 # Knowledge Extraction
 
 Extract structured, quality-scored domain knowledge from any AI model — in-session from closed models (no API key) or locally from open-source models via Ollama.

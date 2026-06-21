@@ -11,6 +11,12 @@ author: Leonxlnx
 tags: [output, code-generation, quality]
 tools: [claude, cursor, codex, antigravity]
 ---
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-full-output-enforcement
 # Full-Output Enforcement
 
 ## When to Use

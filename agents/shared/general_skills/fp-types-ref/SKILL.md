@@ -7,6 +7,12 @@ version: 1.0.0
 tags: [fp-ts, typescript, quick-reference, option, either, task]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-fp-types-ref
 # fp-ts Quick Reference
 
 ## When to Use

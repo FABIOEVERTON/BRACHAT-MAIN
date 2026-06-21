@@ -12,6 +12,12 @@ tags: [vscode, extension, ide, typescript, marketplace]
 tools: [claude, cursor, copilot, codex, gemini]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-vscode-extension-guide-en
 # VS Code Extension Guide (English)
 
 ## Overview

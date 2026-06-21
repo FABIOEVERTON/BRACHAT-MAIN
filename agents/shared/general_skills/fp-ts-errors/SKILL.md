@@ -6,6 +6,12 @@ source: "https://github.com/whatiskadudoing/fp-ts-skills"
 date_added: "2026-02-27"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-fp-ts-errors
 # Practical Error Handling with fp-ts
 
 This skill teaches you how to handle errors without try/catch spaghetti. No academic jargon - just practical patterns for real problems.

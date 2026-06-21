@@ -10,6 +10,12 @@ tags: [playwright, java, e2e-testing, junit5, page-object-model, allure, seleniu
 tools: [claude, cursor,antigravity]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-playwright-java
 # Playwright Java – Advanced Test Automation
 
 ## Overview

@@ -9,6 +9,12 @@ date_added: "2026-03-23"
 license: MIT
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-moyu
 # Moyu
 
 > The best code is code you didn't write. The best PR is the smallest PR.

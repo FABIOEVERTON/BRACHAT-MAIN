@@ -11,6 +11,12 @@ tags: react, tailwind, design-system, ui, components, vibe-coding, rayden, rayna
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-rayden-code
 # Rayden Code Skill
 
 ## Overview

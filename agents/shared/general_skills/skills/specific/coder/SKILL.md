@@ -3,6 +3,9 @@ id: skill.specific.coder.v1
 alias: coder
 path: specific.coder
 ---
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
 ```text
 📦 SKILL: ENTERPRISE CHECKLIST-DRIVEN CODE GENERATOR
 

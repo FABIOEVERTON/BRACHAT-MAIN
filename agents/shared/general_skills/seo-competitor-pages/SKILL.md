@@ -18,6 +18,12 @@ allowed-tools:
   - WebFetch
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-seo-competitor-pages
 # Competitor Comparison & Alternatives Pages
 
 Create high-converting comparison and alternatives pages that target

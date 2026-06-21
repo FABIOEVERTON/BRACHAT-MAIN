@@ -10,6 +10,12 @@ tags: ["nextjs", "react", "tailwind", "landing-page", "marketing", "seo", "cro"]
 tools: ["claude", "cursor", "gemini"]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-landing-page-generator
 # Landing Page Generator
 
 Generate high-converting landing pages from a product description. Output complete Next.js/React components with multiple section variants, proven copy frameworks, SEO optimization, and performance-first patterns. Not lorem ipsum — actual copy that converts.

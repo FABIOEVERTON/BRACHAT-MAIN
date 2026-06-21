@@ -12,6 +12,12 @@ tools: [claude, cursor, gemini]
 version: 1.0.3
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-wordpress-centric-high-seo-optimized-blogwriting-skill
 # WordPress Centric High SEO Optimized Blog Writing Skill
 
 ## Overview

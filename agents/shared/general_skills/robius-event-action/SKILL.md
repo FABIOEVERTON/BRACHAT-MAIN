@@ -9,6 +9,12 @@ risk: unknown
 source: community
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-robius-event-action
 # Robius Event and Action Patterns Skill
 
 Best practices for event handling and action patterns in Makepad applications based on Robrix and Moly codebases.

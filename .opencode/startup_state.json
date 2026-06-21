@@ -1,6 +1,8 @@
 {
-  "last_check": null,
-  "checks_done_today": false,
-  "last_check_date": null,
-  "version": 1
+  "last_check": "2026-06-19T07:00:39-03:00",
+  "checks_done_today": true,
+  "last_check_date": "2026-06-19",
+  "version": 1,
+  "vm_ip": "147.15.0.196",
+  "vm_key": "integrations/apis/ssh-key-2026-06-11.key"
 }

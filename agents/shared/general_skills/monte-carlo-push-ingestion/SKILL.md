@@ -12,6 +12,12 @@ tags: [data-observability, ingestion, monte-carlo, pycarlo, metadata]
 tools: [claude, cursor, codex]
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-monte-carlo-push-ingestion
 # Monte Carlo Push Ingestion
 
 You are an agent that helps customers collect metadata, lineage, and query logs from their

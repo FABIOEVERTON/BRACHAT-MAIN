@@ -13,6 +13,12 @@ triggers:
   - "digital product management itil"
 ---
 
+## ⚠️ REGRA ABSOLUTA
+PROIBIDO EXECUTAR QUALQUER TAREFA QUE NÃO ESTEJA DESCRITA NESTE ARQUIVO
+
+
+## ⚠️ REGRA DE ATIVAÇÃO
+AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @skill-itil-expert
 # ITIL Expert (ITIL 4 & 5)
 
 ## Purpose
