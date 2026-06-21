@@ -1,45 +1,39 @@
 # Brachat — Portfolio
 
-AI agent system with multi-model orchestration, persistent memory, and a library of +1400 specialized skills.
+**Built by AI Agent Orchestration** — Every project here was planned, executed, and delivered by the [Brachat Ecosystem](https://github.com/FABIOEVERTON/BRACHAT-MAIN) multi-agent system.
 
-## Architecture
+> Portfolio of productions and projects produced through **AI agent orchestration** — Ezra (orchestrator), Artur (planner), Baruch (engineer), and specialized agents working in deterministic pipeline with dual governance gate (Aísio).
+
+---
+
+## Projects
+
+| Project | Type | Agents Involved | Description |
+|---------|------|----------------|-------------|
+| [ONE Oracle / Imersion Agent](./one_oracle/imersion_agent/) | n8n AI Agent | `opencode` + `Ezra` | HR Buddy — Virtual HR assistant built during Oracle Next Education (ONE) 2026 Imersion. Telegram + Cohere + RAG + MySQL. |
+
+---
+
+## How projects are made
+
+1. **Fábio** requests → **Ezra** (orchestrator) validates via GATE_ENTRY (Aísio)
+2. **Artur** writes spec → **Baruch** (Claude Code CLI) executes with Worker + QA
+3. **QA** tests → **GATE_EXIT** (Aísio validates) → **Ezra** delivers
+4. Output lands in `portfolio/` with `cache.json` tracking
+
+See full architecture at [Brachat Main README](https://github.com/FABIOEVERTON/BRACHAT-MAIN).
+
+---
+
+## Structure
 
 ```
-┌──────────────────────────────────────────────────┐
-│                    BRACHÁT                       │
-│            (Orchestrator + Product)              │
-├──────────────────────────────────────────────────┤
-│   ┌──────────────┐         ┌──────────────────┐  │
-│   │  Qwen 2.5    │  ←fallback→  │  Big-Pickle    │  │
-│   │  (Windows)   │         │  (OpenCode Zen)  │  │
-│   └──────────────┘         └──────────────────┘  │
-├──────────────────────────────────────────────────┤
-│   Skills Library: 1475 specialized skills        │
-│   Memory System: Persistent JSON with cache      │
-│   Telegram: Connected via EZRA Gateway           │
-└──────────────────────────────────────────────────┘
-```
-
-## Components
-
-| Component | Description |
-|-----------|-------------|
-| `ezra/` | EZRA orchestrator config |
-| `opencode-config/` | OpenCode config with big-pickle (free) model |
-| `memory-system/` | Persistent memory system in JSON |
-| `skills/` | Catalog of 1475 AI skills |
-| `one_oracle/imersion_agent/` | AI Agent built during **Oracle Next Education (ONE) 2026** — HR Buddy (n8n, Cohere, Telegram, RAG, MySQL) |
-
-## Stack
-
-- **Models**: Qwen 2.5 Coder 7B (Ollama), Big-Pickle (OpenCode Zen)
-- **Orchestrator**: EZRA v1.0
-- **Infra**: macOS, Python 3.14, Ollama (Windows)
-- **Integrations**: Telegram, OpenCode Zen API
-
-## Usage
-
-```bash
-# OpenCode CLI
-opencode run
+portfolio/
+├── README.md              ← This file — project index
+├── engineer/              ← Baruch (Claude Code) config
+├── _bridge/               ← Dispatch scripts to engineering agents
+├── tasks/                 ← Project specifications (by Artur)
+└── one_oracle/            ← Oracle ONE 2026 projects
+    ├── README.md          ← ONE program overview
+    └── imersion_agent/    ← HR Buddy AI Agent (n8n)
 ```
