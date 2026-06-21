@@ -1,42 +1,43 @@
 # Brachat — Portfolio
 
-Sistema de agente de IA com orquestração multi-modelo, memória persistente e biblioteca de +1400 skills especializados.
+AI agent system with multi-model orchestration, persistent memory, and a library of +1400 specialized skills.
 
-## Arquitetura
+## Architecture
 
 ```
 ┌──────────────────────────────────────────────────┐
 │                    BRACHÁT                       │
-│            (Orquestrador + Produto)              │
+│            (Orchestrator + Product)              │
 ├──────────────────────────────────────────────────┤
 │   ┌──────────────┐         ┌──────────────────┐  │
 │   │  Qwen 2.5    │  ←fallback→  │  Big-Pickle    │  │
 │   │  (Windows)   │         │  (OpenCode Zen)  │  │
 │   └──────────────┘         └──────────────────┘  │
 ├──────────────────────────────────────────────────┤
-│   Skills Library: 1475 skills especializados     │
-│   Memory System: JSON persistente com cache      │
-│   Telegram: Conectado via EZRA Gateway           │
+│   Skills Library: 1475 specialized skills        │
+│   Memory System: Persistent JSON with cache      │
+│   Telegram: Connected via EZRA Gateway           │
 └──────────────────────────────────────────────────┘
 ```
 
-## Componentes
+## Components
 
-| Componente | Descrição |
-|------------|-----------|
+| Component | Description |
+|-----------|-------------|
 | `ezra/` | EZRA orchestrator config |
-| `opencode-config/` | Config OpenCode com modelo big-pickle (free) |
-| `memory-system/` | Sistema de memória persistente em JSON |
-| `skills/` | Catálogo de 1475 skills para IA |
+| `opencode-config/` | OpenCode config with big-pickle (free) model |
+| `memory-system/` | Persistent memory system in JSON |
+| `skills/` | Catalog of 1475 AI skills |
+| `one_oracle/imersion_agent/` | AI Agent built during **Oracle Next Education (ONE) 2026** — HR Buddy (n8n, Cohere, Telegram, RAG, MySQL) |
 
 ## Stack
 
-- **Modelos**: Qwen 2.5 Coder 7B (Ollama), Big-Pickle (OpenCode Zen)
-- **Orquestrador**: EZRA v1.0
+- **Models**: Qwen 2.5 Coder 7B (Ollama), Big-Pickle (OpenCode Zen)
+- **Orchestrator**: EZRA v1.0
 - **Infra**: macOS, Python 3.14, Ollama (Windows)
-- **Integrações**: Telegram, OpenCode Zen API
+- **Integrations**: Telegram, OpenCode Zen API
 
-## Como usar
+## Usage
 
 ```bash
 # OpenCode CLI

@@ -1,0 +1,25 @@
+{
+  "agent": "Produção_aula_3",
+  "type": "n8n_workflow",
+  "source": "paid_n8n_cloud",
+  "source_url": "https://fabio-everton1704.app.n8n.cloud/workflow/UmZvu5m9PSo5o2U1",
+  "workflow_id_paid": "UmZvu5m9PSo5o2U1",
+  "workflow_id_local": "K1D6CwPeqp0QdBuD",
+  "exported_at": "2026-06-20T19:55:00-03:00",
+  "imported_at": "2026-06-20T19:55:00-03:00",
+  "import_method": "n8n CLI (npx n8n import:workflow)",
+  "status": "imported_credentials_pending",
+  "nodes_count": 7,
+  "nodes": [
+    { "name": "Telegram Trigger", "type": "n8n-nodes-base.telegramTrigger", "status": "needs_credential" },
+    { "name": "AI Agent", "type": "@n8n/n8n-nodes-langchain.agent", "status": "ok" },
+    { "name": "Simple Memory", "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow", "status": "ok" },
+    { "name": "Cohere Chat Model", "type": "@n8n/n8n-nodes-langchain.lmChatCohere", "status": "needs_credential" },
+    { "name": "Embeddings Cohere", "type": "@n8n/n8n-nodes-langchain.embeddingsCohere", "status": "needs_credential" },
+    { "name": "Simple Vector Store", "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory", "status": "disabled" },
+    { "name": "Send a text message", "type": "n8n-nodes-base.telegram", "status": "needs_credential" }
+  ],
+  "pending_credentials": ["cohereApi", "telegramApi"],
+  "next_step": "Criar credenciais Cohere + Telegram no n8n local e conectar aos nos",
+  "notes": "Integrante do ONE Cursos Tech. Aula 3 - HR Buddy da ChocolaTech. Vector Store desativado no export original."
+}
