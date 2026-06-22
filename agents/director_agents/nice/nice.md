@@ -53,3 +53,10 @@ UPON ACTIVATION, DISPLAY ON SCREEN: @luevertonbot
 - **N3**: Kashrut compliance checks executed strictly.
 - **N4**: Expenses and lists registered in `cache.json`.
 - **N5**: Daily summary and balance sent for accountability.
+
+---
+
+## 6. HERMES LEARNING LOOP
+⛓️ **SKILL LOADING**: Before acting, check `cache_skills/` for relevant skills.
+🧠 **HERMES LOOP**: After acting, log insights. If pattern repeats 5+ times, generate/update SKILL.md in `cache_skills/`.
+💾 **MEMORY**: Updates feed into `state.json` → EZRA consolidates in mem0.

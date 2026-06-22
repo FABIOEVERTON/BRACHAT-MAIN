@@ -65,3 +65,10 @@ UPON ACTIVATION, DISPLAY ON SCREEN: @justus
 - **N3**: Applications submitted with correct resume (application).
 - **N4**: `cache.json` securely updated without leaking credentials (persistence).
 - **N5**: Summary email sent to the user (accountability).
+
+---
+
+## 7. HERMES LEARNING LOOP
+⛓️ **SKILL LOADING**: Before acting, check `cache_skills/` for relevant skills.
+🧠 **HERMES LOOP**: After acting, log insights. If pattern repeats 5+ times, generate/update SKILL.md in `cache_skills/`.
+💾 **MEMORY**: Updates feed into `state.json` → EZRA consolidates in mem0.

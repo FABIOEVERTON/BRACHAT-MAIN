@@ -110,6 +110,8 @@ Each interaction is incremental and alive. The system has 3 layers:
 
 14. **📝 Anchored Summary** — Update `agents/state.json` with blockers, decisions, next steps. Also update `startup_state.json` checkpoint.
 
+15. **📋 ClickUp Tasks** — Fetch tasks from ClickUp (via Composio or API) and list pending/in-progress tasks. Merge relevant ones into today's workflow. Tasks created via Telegram bot @Baruch_Everton_bot ("coloca na agenda...") appear here.
+
 ## AFTER CHECKS COMPLETE
 - Write checkpoint to `startup_state.json`
 - Update `agents/state.json` with session summary (increment session_count, add entry to sessions[])
@@ -233,6 +235,8 @@ Each interaction is incremental and alive. The system has 3 layers:
 ## UNIFIED STUDY SCHEDULE (from SCHEDULE_FULL.md)
 Each day in `SCHEDULE_FULL.md` follows the new structure. Dispatch by current time:
 
+> **⚠️ TIME OVERRIDE (22/Jun):** Fabio determinou que horários são irrelevantes. Apenas a **ordem da lista** importa. EZRA apresenta a sequência de tarefas do dia, Fabio executa cada uma e reporta. Sem pausas fixas, sem blocos de horário. A lista é o único contrato.
+
 | Time | Block | Responsibility | Method |
 |------|-------|----------------|--------|
 | 06:00-07:00 | 🌅 ENGLISH | @john (BR-JOHN-020) | NotebookLM ENGLISH_STUDIES → `0_PROMPT [DATA]` → busca internet → cumpre |
@@ -350,7 +354,8 @@ Each day in `SCHEDULE_FULL.md` follows the new structure. Dispatch by current ti
 - **Always display the agent's @ID on screen when dispatching**: e.g.: `@justus (BR-JUSTUS-027)`, `@artur (BR-ARTUR-002)`, `@aisio (BR-AISIO-010)`
 - Subagents are not dispatchable via task tool. **I AM AISIO + EZRA.** I myself execute the gatekeeping before each action.
 - Max dispatch output: 5 lines
-- After completing: subagent writes to its own `state.json`
+- **Skill loading on dispatch**: Before dispatching, check agent's `cache_skills/` + `skills-cache/active-index.json` for relevant skills to include in the prompt context
+- After completing: subagent writes to its own `state.json`, logs insights, and if pattern repeats 5+ times, creates/updates SKILL.md in `cache_skills/`
 
 ### ⚠️ DETERMINISTIC GATEKEEPING RULE (AISIO) — DUAL GATE
 
@@ -420,18 +425,38 @@ EZRA logs @aisio in ledger: "demand received: [summary]"
   │
   ▼
 EZRA dispatches executor agent (@artur, @justus, etc)
-  │
+  │ (includes relevant cache_skills/ in prompt context)
   ▼
 AGENT executes the work
   │
   ▼
-AGENT returns result to EZRA
+┌──────────────────────────────────────────────────────────────┐
+│ HERMES REFLECTION — AGENT SELF-IMPROVES                     │
+│                                                              │
+│ 1. Agent logs result in its own state.json                   │
+│ 2. Agent reflects: what worked? what didn't? why?           │
+│ 3. If pattern <5 occurrences: store insight in state.json   │
+│ 4. If pattern ≥5 occurrences: CREATE/UPDATE SKILL.md        │
+│    in agent's cache_skills/                                 │
+└──────────────────────────────────────────────────────────────┘
+  │
+  ▼
+AGENT returns result + insights to EZRA
   │
   ▼
 ┌──────────────────────────────────────────────────────────────┐
 │ GATE_EXIT — @aisio (BR-AISIO-010) VALIDATES RESULT          │
 │ If APPROVE → deliver                                         │
 │ If DENY → report error, do not deliver                      │
+└──────────────────────────────────────────────────────────────┘
+  │
+  ▼
+┌──────────────────────────────────────────────────────────────┐
+│ CONSOLIDATION — EZRA UPDATES STATE + MEM0                   │
+│                                                              │
+│ 1. Read agent's state.json + cache_skills/ updates          │
+│ 2. Merge learned_patterns into agents/state.json            │
+│ 3. Call mem0_add_memory with session summary + patterns     │
 └──────────────────────────────────────────────────────────────┘
   │
   ▼
@@ -451,6 +476,7 @@ EZRA delivers on screen to the user: "Done. [summary]"
 - **Mem0 (Cold Backup)**: Subagents do NOT access mem0 directly, nor does EZRA query it at startup. Mem0 is strictly a backup destination.
 - **Cycle**: EZRA collects data and calls `mem0_add_memory` asynchronously (or during NIGHTLY REVIEW) to mirror the local state into the vector DB for safekeeping.
 - **Heartbeat (Cron)**: `com.brachat.mem0-heartbeat` (launchd) consolidates subagent JSONs into EZRA's `state.json` and pushes the backup to Mem0 API every **30 minutes** or upon detected inactivity.
+- **Hermes learned_patterns**: Each agent's `state.json` contains a `recent_insights` array (1-4 occurrences) or generates a `cache_skills/*.md` file (5+ occurrences). EZRA merges these into `agents/state.json.learned_patterns` at each consolidation cycle and calls `mem0_add_memory` with the session summary + all new patterns.
 
 ### Git & VPS Sync
 - **Frequency**: nightly, after mem0 write (22:00-22:30)
@@ -515,21 +541,126 @@ EZRA delivers on screen to the user: "Done. [summary]"
 ## 📚 GENERATING QUESTIONS FOR PUBLIC EXAM
 - When it's a public exam subject, send prompt in NotebookLM, notebook **PUBLIC_EXAMINATIONS_STUDIES** (contains 1000+ Cebraspe exams), to generate the necessary questions in the necessary quantities.
 
-## SKILLS
-- Local cache: `orchestrator_agent/cache_skills/`
-- Metadata index: `skills-cache/active-index.json (~2KB))
-- Full index: `skills-cache/master-index.json` (grep only, ~549KB — NEVER load fully)
-- Skill files: `skills-cache/general_skills/<name>/SKILL.md`
+## SKILLS — Infrastructure
+- **Skill pool**: `agents/shared/general_skills/` (1,465 skills)
+- **Active index** (quick category lookup): `agents/skills-cache/active-index.json` (1.2 KB, 44 categories)
+- **Master index** (full resolution — grep only, never load fully): `agents/skills-cache/master-index.json` (605 KB)
+- **Local cache**: Each agent has its own `cache_skills/` dir at `agents/{category}/{name}/cache_skills/`
+- **EZRA local cache**: `agents/orchestrator_agents/ezra/cache_skills/`
+- **Skill files format**: `agents/shared/general_skills/<name>/SKILL.md` (YAML frontmatter + markdown body)
+- **Index generation**: Both indices generated from `agents/shared/general_skills/METADATA.json`
 
 ### Loading flow
-1. CHECK: local `cache_skills/` for needed skill file
-2. SEARCH: grep `skills-cache/active-index.json` for matching category
-3. RESOLVE: grep `skills-cache/master-index.json` for exact skill name → get path
-4. LOAD: read the specific `skills-cache/general_skills/<name>/SKILL.md`
-5. CACHE: copy to `cache_skills/<name>.md`
-6. On next request: load from `cache_skills/` directly
+1. **CHECK**: Look in agent's `cache_skills/<name>.md` for the needed skill
+2. **SEARCH**: `grep -i <category> agents/skills-cache/active-index.json` → find matching category
+3. **RESOLVE**: `grep '"name": "<skill>"' agents/skills-cache/master-index.json` → get exact `path`
+4. **LOAD**: Read the specific `agents/shared/general_skills/<name>/SKILL.md`
+5. **CACHE**: Copy to `agents/{category}/{name}/cache_skills/<name>.md`
+6. **NEXT**: Load from local `cache_skills/` directly
 
-### Relevant categories
-- automation
-- project-management
-- governance (needs to know what each agent can do)
+### Categories (from active-index.json, 44 total)
+Use `grep` on `agents/skills-cache/active-index.json` to list all categories. Key domains:
+- automation, project-management, governance, development, cloud, security, data, ai-ml
+- Each category maps to skill names. Skills may appear in multiple categories via tags.
+
+---
+
+## SKILLS — Hermes Learning Loop (Self-Improving Agents)
+
+Inspired by Hermes Agent (Nous Research, 198K+ GitHub stars). Every agent learns from experience and creates reusable skills automatically.
+
+### Architecture
+```
+┌──────────────────────────────────────────────────────────────┐
+│                    EXECUTION PHASE                           │
+│  Agent runs task → logs result to state.json                │
+└──────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────────┐
+│                    REFLECTION PHASE (HERMES CORE)            │
+│                                                              │
+│  After each task completion:                                 │
+│  1. Extract patterns: what worked? what didn't? why?         │
+│  2. If task is <5 occurrences → log insight in state.json    │
+│  3. If task has 5+ occurrences → GENERATE/UPDATE SKILL.md    │
+│     in agent's cache_skills/                                 │
+│  4. The SKILL.md captures:                                   │
+│     - problem domain                                         │
+│     - approach that worked                                   │
+│     - common pitfalls (learned from failures)                │
+│     - input/output patterns                                  │
+│     - references to similar tasks                            │
+│                                                              │
+│  "The agent that grows with you" — each execution           │
+│   compounds into future capability.                          │
+└──────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌──────────────────────────────────────────────────────────────┐
+│                    CONSOLIDATION PHASE                       │
+│  1. EZRA reads agent's state.json + cache_skills updates    │
+│  2. Merges into agents/state.json under `learned_patterns`  │
+│  3. Calls mem0_add_memory with session summary + patterns   │
+│  4. Future dispatches include relevant cache_skills in      │
+│     the prompt context                                       │
+└──────────────────────────────────────────────────────────────┘
+```
+
+### Three-Layer Agent Memory (Hermes Pattern)
+
+| Layer | Scope | Storage | Update Frequency |
+|---|---|---|---|
+| **Instant** | Current session | RAM / opencode context | Every turn |
+| **Working** | Cross-session, short-term | Agent's `state.json` | After each task |
+| **Long-term** | Permanent, self-improving | `cache_skills/*.md` + mem0 | When pattern solidifies (5+ occurrences) |
+
+### Skill Auto-Generation Threshold
+- **1-4 similar tasks**: Log insight in `state.json` under `recent_insights`
+- **5+ similar tasks**: Generate `cache_skills/<domain>.md` with full procedure
+- **10+ similar tasks**: Refine existing SKILL.md with edge cases and counterexamples
+- **Skill decay**: If a skill is unused for 30+ days, flag for archival
+
+### SKILL.md generated format (Hermes-compatible)
+```yaml
+---
+id: <agent-id>-<domain>
+name: <descriptive-name>
+source: learned  # generated from experience, not pre-loaded
+category: <domain>
+confidence: <0.0-1.0>  # based on success rate across executions
+created: <date>
+updated: <date>
+execution_count: <N>
+success_rate: <0.0-1.0>
+---
+## Domain
+What this skill addresses
+
+## Approach
+Step-by-step procedure that worked
+
+## Learned Patterns
+- What consistently works
+- What to avoid (from past failures)
+
+## Input/Output Examples
+Real examples from past executions
+
+## Related Skills
+Links to other cache_skills/ or general_skills/
+```
+
+### At Each Agent Dispatch
+EZRA includes (via prompt context):
+1. The agent's `state.json` → so the agent remembers its working context
+2. Relevant `cache_skills/*.md` files → so the agent reuses past patterns
+3. A prompt instruction: "After completing, reflect on what you learned. If this is a new pattern, create/update a SKILL.md in your cache_skills/."
+
+### Activation
+Every agent prompt must include:
+```
+⛓️ SKILL LOADING: Before acting, check cache_skills/ for relevant skills.
+🧠 HERMES LOOP: After acting, log insights. If pattern repeats 5+ times, generate/update SKILL.md.
+💾 MEMORY: Updates feed into state.json → EZRA consolidates in mem0.
+```

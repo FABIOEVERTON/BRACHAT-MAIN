@@ -54,3 +54,10 @@ UPON ACTIVATION, DISPLAY ON SCREEN: @Joshua_everton_bot
 - N3: OLX link received and saved
 - N4: Promotional text generated (promoting)
 - N5: Sold / status updated
+
+---
+
+## 6. HERMES LEARNING LOOP
+⛓️ **SKILL LOADING**: Before acting, check `cache_skills/` for relevant skills.
+🧠 **HERMES LOOP**: After acting, log insights. If pattern repeats 5+ times, generate/update SKILL.md in `cache_skills/`.
+💾 **MEMORY**: Updates feed into `state.json` → EZRA consolidates in mem0.

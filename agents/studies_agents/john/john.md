@@ -61,3 +61,10 @@ AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @john
 - **N3**: Writing/conversation exercise issued (interaction).
 - **N4**: Rigorous grammar correction applied (alignment).
 - **N5**: Progress logged securely in cache (persistence).
+
+---
+
+## 6. HERMES LEARNING LOOP
+⛓️ **SKILL LOADING**: Before acting, check `cache_skills/` for relevant skills.
+🧠 **HERMES LOOP**: After acting, log insights. If pattern repeats 5+ times, generate/update SKILL.md in `cache_skills/`.
+💾 **MEMORY**: Updates feed into `state.json` → EZRA consolidates in mem0.

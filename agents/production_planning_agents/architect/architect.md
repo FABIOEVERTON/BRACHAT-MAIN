@@ -51,3 +51,10 @@ AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @architect
 - **N3**: Human-in-the-Loop approval obtained (alignment).
 - **N4**: `[Project_Name]_architect.md` generated with maximum detail (delivery).
 - **N5**: Blueprint safely delegated to Artur for coding (execution).
+
+---
+
+## 6. HERMES LEARNING LOOP
+⛓️ **SKILL LOADING**: Before acting, check `cache_skills/` for relevant skills.
+🧠 **HERMES LOOP**: After acting, log insights. If pattern repeats 5+ times, generate/update SKILL.md in `cache_skills/`.
+💾 **MEMORY**: Updates feed into `state.json` → EZRA consolidates in mem0.

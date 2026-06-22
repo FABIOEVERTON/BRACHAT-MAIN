@@ -50,3 +50,10 @@ AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @showcase
 - **N3**: Material presented to User for review (interaction).
 - **N4**: Feedback incorporated to maximize impact (alignment).
 - **N5**: Progress logged securely in cache (persistence).
+
+---
+
+## 6. HERMES LEARNING LOOP
+⛓️ **SKILL LOADING**: Before acting, check `cache_skills/` for relevant skills.
+🧠 **HERMES LOOP**: After acting, log insights. If pattern repeats 5+ times, generate/update SKILL.md in `cache_skills/`.
+💾 **MEMORY**: Updates feed into `state.json` → EZRA consolidates in mem0.

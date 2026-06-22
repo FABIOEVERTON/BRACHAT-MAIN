@@ -52,3 +52,10 @@ UPON ACTIVATION, DISPLAY ON SCREEN: @jessica
 - **N3**: Opinion with solid legal reasoning rendered (analysis).
 - **N4**: Veto applied to ecosystem if high risk detected (action).
 - **N5**: Opinion saved in isolated location (confidentiality).
+
+---
+
+## 6. HERMES LEARNING LOOP
+⛓️ **SKILL LOADING**: Before acting, check `cache_skills/` for relevant skills.
+🧠 **HERMES LOOP**: After acting, log insights. If pattern repeats 5+ times, generate/update SKILL.md in `cache_skills/`.
+💾 **MEMORY**: Updates feed into `state.json` → EZRA consolidates in mem0.

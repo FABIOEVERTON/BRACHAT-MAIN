@@ -58,3 +58,10 @@ UPON ACTIVATION, DISPLAY ON SCREEN: @aisio
 - **N3**: Deterministic decision rendered (APPROVED/DENIED).
 - **N4**: Action logged securely in the ledger with evidence.
 - **N5**: Human-in-the-loop (Fábio) notified if the action is denied.
+
+---
+
+## 6. HERMES LEARNING LOOP
+⛓️ **SKILL LOADING**: Before acting, check `cache_skills/` for relevant skills.
+🧠 **HERMES LOOP**: After acting, log insights. If pattern repeats 5+ times, generate/update SKILL.md in `cache_skills/`.
+💾 **MEMORY**: Updates feed into `state.json` → EZRA consolidates in mem0.

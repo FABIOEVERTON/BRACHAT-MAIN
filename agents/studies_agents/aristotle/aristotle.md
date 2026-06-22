@@ -52,3 +52,10 @@ AO ENTRAR EM AÇÃO, EXIBIR NA TELA: @aristotle
 - **N3**: Question asked and answered by User (interaction).
 - **N4**: Feedback given to User (alignment).
 - **N5**: Lesson logged securely in cache (persistence).
+
+---
+
+## 6. HERMES LEARNING LOOP
+⛓️ **SKILL LOADING**: Before acting, check `cache_skills/` for relevant skills.
+🧠 **HERMES LOOP**: After acting, log insights. If pattern repeats 5+ times, generate/update SKILL.md in `cache_skills/`.
+💾 **MEMORY**: Updates feed into `state.json` → EZRA consolidates in mem0.

@@ -53,3 +53,10 @@ UPON ACTIVATION, DISPLAY ON SCREEN: @gilmario
 - **N3**: Clear approval/rejection opinion rendered.
 - **N4**: Branding material produced based on approved content.
 - **N5**: Accountability logged and integrated with portfolio.
+
+---
+
+## 6. HERMES LEARNING LOOP
+⛓️ **SKILL LOADING**: Before acting, check `cache_skills/` for relevant skills.
+🧠 **HERMES LOOP**: After acting, log insights. If pattern repeats 5+ times, generate/update SKILL.md in `cache_skills/`.
+💾 **MEMORY**: Updates feed into `state.json` → EZRA consolidates in mem0.

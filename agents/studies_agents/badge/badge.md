@@ -67,3 +67,10 @@ Nota: Os cadernos com 0 fontes foram criados em 20/06/2026 e precisam ser alimen
 - **N3**: Exam-style question administered (interaction).
 - **N4**: Detailed rationale provided (alignment).
 - **N5**: Progress logged securely in cache (persistence).
+
+---
+
+## 6. HERMES LEARNING LOOP
+⛓️ **SKILL LOADING**: Before acting, check `cache_skills/` for relevant skills.
+🧠 **HERMES LOOP**: After acting, log insights. If pattern repeats 5+ times, generate/update SKILL.md in `cache_skills/`.
+💾 **MEMORY**: Updates feed into `state.json` → EZRA consolidates in mem0.

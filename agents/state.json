@@ -1,21 +1,28 @@
 {
   "last_session": {
-    "date": "2026-06-19",
-    "summary": "Justus full procedure: 15 apps sent via Gmail. cache.json updated with daily_log. Summary report emailed.",
+    "date": "2026-06-22",
+    "summary": "Startup checks completos (14+1). VM Oracle 3/3 ativa (ezra, nice, clickup). E-mails: nenhum novo desde Jun 19 — 2 emails desde então: Toloka paid project (SPAM, Figure AI), Fiverr account flagged. Sem respostas de candidaturas. ClickUp: Hermes_Agent (3 tasks placeholder), AGENDA (1 task: Parashat bot restore), TRELLO (12 tasks schedule). Cursos Tech starts today (Mês 1, Dia 1). Schedule_progress: current_day=0, next_study_day=2026-06-22.",
     "blockers": [
-      "Mem0 MCP offline (key trocada)",
       "Playwright+Chromium não instalado na VM (necessário para Josué)",
-      "Resume S3 attachment timeout via Gmail API (usou tmpfiles link)"
+      "Mem0 MCP offline (key trocada, precisa restart sessão)",
+      "Fiverr account flagged (conta de freela bloqueada)",
+      "Delivery failures: hello@triviumgroup.com (permanente), careers@getnet.com.br (inexistente), hello@viktor.ai (inexistente)"
     ],
     "decisions": [
-      "Justus executado: 15 apps enviadas para empresas tech AI automation"
+      "Toloka paid project (SPAM) — worth investigating if legitimate opportunity",
+      "Today is Cursos Tech start (22/Jun) — Mês 1 Dia 1 do cronograma ONE",
+      "Email monitoring: no job replies since last session. Next even-day stats report due on 22/Jun (today is even)."
     ],
     "next_steps": [
-      "Verificar respostas de candidaturas no Gmail amanhã",
-      "Retomar estudos Mês 1 Dia 2"
+      "07:00-07:45: EMAIL MONITOR (even-day stats report due today)",
+      "07:45-08:00: Planning do dia",
+      "08:00-12:00: Cursos Tech (teoria) — n8n, LangChain, RAG, OCI, LLMs, Agentes",
+      "13:00-17:00: Cursos Tech (prática) — hands-on, projetos",
+      "18:00-22:00: Concurso TCU (@temer dispatch)",
+      "Verificar Parashat bot outage (task em AGENDA)"
     ]
   },
-  "session_count": 4,
+  "session_count": 6,
   "sessions": [
     {
       "date": "2026-06-14",
@@ -30,6 +37,18 @@
         "memory.md updated to match real structure",
         "agents/state.json created and populated",
         "startup_state.json checkpoint updated"
+      ]
+    },
+    {
+      "date": "2026-06-22",
+      "duration": "startup",
+      "type": "startup_checks",
+      "key_actions": [
+        "14 startup checks + ClickUp check completed",
+        "VM Oracle 3/3 active (ezra, nice, clickup)",
+        "Emails: no new job replies since Jun 19",
+        "ClickUp: 16 tasks across 3 lists (all to do)",
+        "Cursos Tech phase starts today"
       ]
     }
   ],
@@ -173,5 +192,16 @@
       "Resume enviado como tmpfiles link no corpo do email devido timeout do S3 attachment"
     ]
   },
-  "updated_at": "2026-06-19T07:20:00-03:00"
+  "learned_patterns": {
+    "skills_policy_activated": "2026-06-22",
+    "total_skills_available": 1465,
+    "active_categories": 44,
+    "agents_with_hermes_loop": [
+      "aisio", "gilmario", "jessica", "josue", "nice",
+      "architect", "artur", "freela", "justus",
+      "john", "temer", "badge", "dev", "calculus", "aristotle", "showcase"
+    ],
+    "recent_insights": []
+  },
+  "updated_at": "2026-06-22T16:30:00-03:00"
 }
