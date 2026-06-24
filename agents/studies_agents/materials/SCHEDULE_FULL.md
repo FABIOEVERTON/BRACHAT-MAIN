@@ -2,7 +2,25 @@
 
 > **Início:** Dom 21/Jun/2026 | **Término previsto:** ~28/Nov/2026 (23 semanas)
 > **Dias de estudo:** Seg-Sáb (6x/semana) | **Descanso:** Domingo
-> **Total:** ~138 dias de estudo
+> **Total:** ~138 dias de estudo (+ 2 meses pós-ONE para certs avançadas)
+
+---
+
+## 🎯 CERTIFICAÇÕES ALVO — TRILHA PROFISSIONAL RARO
+
+| # | Ordem | Certificação | Código | Custo | Deadline | Status |
+|---|-------|-------------|--------|-------|----------|---------|
+| 1 | 🥇 | OCI Foundations Associate | `1Z0-1085-26` | **Grátis** | **Jul/2026** | 🔵 Em curso |
+| 2 | 🥈 | OCI AI Foundations Associate | `1Z0-1122-25` | **Grátis** | **Ago/2026** | 🔵 Em curso |
+| 3 | 🥉 | OCI Architect Associate | `1Z0-1072-26` | ~$245 | **Set/2026** | ⏳ Previsto |
+| 4 | 4️⃣ | OCI Architect Professional | `1Z0-997-25` | ~$245 | **Nov/2026** | ⏳ Previsto |
+| 5 | 5️⃣ | OCI Generative AI Professional | `1Z0-1127-25` | ~$245 | **Nov/2026** | ⏳ Previsto |
+| 6 | 6️⃣ | OCI Multicloud Architect Professional | `1Z0-1151-25` | ~$245 | **Nov/2026** | ⏳ Previsto |
+| 7 | 7️⃣ | Oracle Database@AWS Architect Professional | `1Z0-1146` | ~$245 | **Jan/2027** | 🔴 Pós-ONE |
+| 8 | 8️⃣ | OCI Security Professional | `1Z0-1104-25` | ~$245 | **Fev/2027** | 🔴 Pós-ONE |
+
+> **Custo total estimado:** ~$1.715 (6 exames pagos + 2 gratuitos)
+> **Resultado:** Profissional com cobertura completa OCI + IA + Multicloud (AWS/Azure/GCP) + Segurança
 
 ---
 
@@ -35,7 +53,7 @@
                   Hands-on, projetos, laboratórios, exercícios de alto impacto
 
 🌙 18:00-22:00 — CONCURSO PÚBLICO TCU (@temer → NotebookLM PUBLIC_EXAMINATIONS)
-                  Temer abre caderno, busca materiais, executa ações determinadas
+                  Temer abre caderno, fazo prompt para o notebooklm buscar materiais, fica ouvindo e quando os materiais chegarem clica em importar e manda o notebooklm terminar de executar o prompt com a auls executa ações determinadas
                   3h conteúdo novo + 1h revisão espaçada
 ```
 
@@ -56,16 +74,20 @@
 
 ## RODÍZIO DE CERTIFICAÇÕES
 
-**6 certificações em ciclo semanal fixo (1 por dia):**
+**6 certificações em ciclo semanal fixo (1 por dia) + 2 blocos mensais:**
 
-| Dia | Certificação | Prova |
-|---|---|---|
-| Seg | OCI Foundations Associate | 1Z0-1085-25 |
-| Ter | OCI AI Foundations Associate | 1Z0-1122-25 |
-| Qua | OCI Generative AI Professional | 1Z0-1127-25 |
-| Qui | OCI Architect Professional | 1Z0-997-25 |
-| Sex | OCI Multicloud Architect Professional | 1Z0-1151-25 |
-| Sáb | AIGP | IAPP AIGP |
+| Dia | Certificação | Código | Fase |
+|---|---|---|---|
+| Seg | OCI Foundations Associate | `1Z0-1085-26` | Até Jul/2026 |
+| Ter | OCI AI Foundations Associate | `1Z0-1122-25` | Até Ago/2026 |
+| Qua | OCI Generative AI Professional | `1Z0-1127-25` | Contínuo |
+| Qui | OCI Architect Professional | `1Z0-997-25` | Contínuo |
+| Sex | OCI Multicloud Architect Professional | `1Z0-1151-25` | Contínuo |
+| Sáb | AIGP | IAPP AIGP | Contínuo |
+| **Men** | **Oracle Database@AWS Architect Pro** | **`1Z0-1146`** | **Pós-ONE (Dez/26)** |
+| **Men** | **OCI Security Professional** | **`1Z0-1104-25`** | **Pós-ONE (Jan/27)** |
+
+> **Nota #3 — Architect Associate (`1Z0-1072-26`):** Não entra no rodízio diário pois seus tópicos são cobertos pelo Architect Pro (Qui). A **prova deve ser feita em Set/2026** (Sem 12-13) como etapa intermediária antes do Professional.
 
 **Horário:** 1h dentro do bloco ONE/Cert (teoria ou prática). Conteúdo evolui semanalmente.
 
@@ -2099,34 +2121,95 @@ Certificação: **AIGP — Prova real ou simulada final (≥85%)**
 
 **🎊 ENCERRAMENTO DO CICLO ONE**
 
-**Checklist final:**
+**Checklist final (ONE):**
 - [ ] Oracle ONE completo (Cursos Tech + Certificação + Hackathon)
-- [ ] OCI Foundations Associate ✅
-- [ ] OCI AI Foundations Associate ✅
-- [ ] OCI Generative AI Professional ✅
-- [ ] OCI Architect Professional ✅
-- [ ] OCI Multicloud Architect Professional ✅
+- [ ] 1️⃣ OCI Foundations Associate `1Z0-1085-26` ✅
+- [ ] 2️⃣ OCI AI Foundations Associate `1Z0-1122-25` ✅
+- [ ] 3️⃣ OCI Architect Associate `1Z0-1072-26` ✅
+- [ ] 4️⃣ OCI Architect Professional `1Z0-997-25` ✅
+- [ ] 5️⃣ OCI Generative AI Professional `1Z0-1127-25` ✅
+- [ ] 6️⃣ OCI Multicloud Architect Professional `1Z0-1151-25` ✅
 - [ ] AIGP ✅
 - [ ] Concurso TCU — material fundamental completo (11 ciclos de estudo)
 - [ ] Inglês — vocabulário jurídico/técnico consolidado
 
-**Próximo passo:** Aguardar edital TCU. Se sair antes do previsto, intensificar revisão final. Se não sair, reciclar cronograma.
+**Pendentes pós-ONE:**
+- [ ] 7️⃣ Oracle Database@AWS Architect Professional `1Z0-1146` → Jan/2027
+- [ ] 8️⃣ OCI Security Professional `1Z0-1104-25` → Fev/2027
 
 ---
 
-## APÊNDICE: MAPA DE CERTIFICAÇÕES (DATAS PROVAS)
+## MÊS 7 (DEZ/2026) — ORACLE DATABASE@AWS ARCHITECT PROFESSIONAL
 
-| Certificação | Prova sugerida (semana) |
-|---|---|
-| OCI Foundations Associate | Semana 4-6 (julho) |
-| OCI AI Foundations Associate | Semana 15 (29/set, via ONE) |
-| OCI Generative AI Professional | Semana 22 (novembro) |
-| OCI Architect Professional | Semana 22 (novembro) |
-| OCI Multicloud Architect Professional | Semana 22 (novembro) |
-| AIGP | Semana 22 (novembro) |
+> **Código:** `1Z0-1146` | **Custo:** ~$245 | **Deadline:** 31/Jan/2027
+> **Duração do estudo:** 4 semanas (Dez/2026)
 
-> **Nota:** As provas das OCI certificações têm custo de $245 cada (exceto Foundations e AI Foundations gratuitas). AIGP ~$550. Total: ~$1.285.
+### O que estudar
+
+| Semana | Foco |
+|--------|------|
+| **Sem 1 (1-6/Dez)** | Oracle Database@AWS — visão geral, arquitetura, onboarding |
+| **Sem 2 (8-13/Dez)** | Networking AWS↔OCI — VPN, Direct Connect, latência, segurança |
+| **Sem 3 (15-20/Dez)** | Operações — backup, DR, patching, licenciamento |
+| **Sem 4 (22-27/Dez)** | Simulados + revisão de gaps |
+
+**Estrutura diária (Dez/2026):**
+```
+☀️ 08:00-12:00 — Estudo Database@AWS (teoria)
+🌤️ 13:00-17:00 — Laboratório (AWS Console + OCI)
+🌙 18:00-22:00 — Concurso TCU (manter ritmo)
+```
+
+**🎯 Prova:** Agendar para a última semana de Janeiro/2027.
 
 ---
 
-*Documento gerado em 20/06/2026. Próxima atualização: apôs conclusão de cada mês.*
+## MÊS 8 (JAN-FEV/2027) — OCI SECURITY PROFESSIONAL
+
+> **Código:** `1Z0-1104-25` | **Custo:** ~$245 | **Deadline:** 28/Fev/2027
+> **Duração do estudo:** 4 semanas (Jan/2027) + prova em Fev/2027
+
+### O que estudar
+
+| Semana | Foco |
+|--------|------|
+| **Sem 1 (5-10/Jan)** | IAM Security — policies, MFA, Vault, KMS |
+| **Sem 2 (12-17/Jan)** | Network Security — WAF, NSG, Bastion, Firewall |
+| **Sem 3 (19-24/Jan)** | Compliance — Cloud Guard, Security Zones, Vulnerability Scanning |
+| **Sem 4 (26-31/Jan)** | Simulados + revisão |
+
+**🎯 Prova:** Agendar para a primeira quinzena de Fevereiro/2027.
+
+---
+
+**🏆 CHECKLIST FINAL — PROFISSIONAL RARO COMPLETO:**
+- [ ] 1️⃣ OCI Foundations Associate → Jul/2026
+- [ ] 2️⃣ OCI AI Foundations Associate → Ago/2026
+- [ ] 3️⃣ OCI Architect Associate → Set/2026
+- [ ] 4️⃣ OCI Architect Professional → Nov/2026
+- [ ] 5️⃣ OCI Generative AI Professional → Nov/2026
+- [ ] 6️⃣ OCI Multicloud Architect Professional → Nov/2026
+- [ ] 7️⃣ Oracle Database@AWS Architect Professional → Jan/2027
+- [ ] 8️⃣ OCI Security Professional → Fev/2027
+
+---
+
+## APÊNDICE: MAPA COMPLETO DE CERTIFICAÇÕES (DATAS PROVAS)
+
+| # | Certificação | Código | Deadline | Custo |
+|---|-------------|--------|----------|-------|
+| 1 | OCI Foundations Associate | `1Z0-1085-26` | **Jul/2026** | Grátis |
+| 2 | OCI AI Foundations Associate | `1Z0-1122-25` | **Ago/2026** | Grátis |
+| 3 | OCI Architect Associate | `1Z0-1072-26` | **Set/2026** | ~$245 |
+| 4 | OCI Architect Professional | `1Z0-997-25` | **Nov/2026** | ~$245 |
+| 5 | OCI Generative AI Professional | `1Z0-1127-25` | **Nov/2026** | ~$245 |
+| 6 | OCI Multicloud Architect Professional | `1Z0-1151-25` | **Nov/2026** | ~$245 |
+| 7 | Oracle Database@AWS Architect Professional | `1Z0-1146` | **Jan/2027** | ~$245 |
+| 8 | OCI Security Professional | `1Z0-1104-25` | **Fev/2027** | ~$245 |
+
+> **Custo total:** ~$1.715 (6 × $245 + 2 gratuitas)
+> **Duração total da trilha:** Jun/2026 → Fev/2027 (~9 meses)
+
+---
+
+*Documento gerado em 20/06/2026. Atualizado em 23/06/2026. Próxima atualização: após conclusão de cada mês.*

@@ -37,24 +37,23 @@ UPON ACTIVATION, DISPLAY ON SCREEN: @justus
 - **Target Assets**: 
   - Resume: `/Users/mac/brachat-main/agents/job/branding_assets/Fabio_Everton_Resume.pdf`
   - Target Email: `jae.engenharia@gmail.com`
+- **24h Rule**: Só enviar candidatura para vagas publicadas nas últimas 24 horas. Verificar data de publicação no post original. Se não tiver data explícita, assumir como "não confirmado" e pular.
 
 ## 4. OPERATIONAL PROCEDURE
-1. **CHECK**: Read `cache.json` to verify if the 15/day quota is met. Stop if reached.
-2. **SKILL CACHE**: Retrieve web searching and browser automation skills from `shared/general_skills/` and copy to `cache_skills/`.
-3. **RECEIVE HANDOFF FROM OPENCODE (07:45)**:
-   - Opencode will identify job responses, new offers, and delivery failures in the email monitor (07:00-07:45)
-   - Execute the applications opencode identified
-   - For delivery failures: use opencode's investigation result to re-apply correctly
-4. **PLATFORM SCAN**: Search LinkedIn, Gupy, Catho, GeekHunter, Y Combinator, remotejobsbr, GitLab, Indeed for posts ≤24h. Use Composio integrations where available.
-5. **FILTER & SELECT**: Focus on AI/automation/agents. Deduplicate against `cache.json`. Select top 15.
-6. **EXECUTE**: For each job, navigate, fill form, upload resume, and submit. If registration required, use stored secure credentials.
-7. **LOG**: Register URL, status, and timestamp in `cache.json`.
-8. **REPORT**: Send an email summary to `jae.engenharia@gmail.com` indicating applications sent today.
+1. **ENVIAR 15**: Read `cache.json` to verify quota. Scan Web Search + Indeed + Remotive + GetOnBoard + Himalayas + sites diretos. Focus AI/automation/agents. **Apenas vagas publicadas nas últimas 24h** (verificar data de publicação). Deduplicate against `cache.json`. Send 15 new applications via email (jae.engenharia@gmail.com).
+2. **VARRER EMAILS POR OFERTAS**: Scan INBOX + SPAM + TRASH de **ambas as contas** (fabioeverton1704@gmail.com + jae.engenharia@gmail.com) filtrando por palavras-chave: "job", "vaga", "opportunity", "hiring", "recrut", "work", "remote", "AI", "engineer", "developer". Identificar todo email que seja uma oferta de trabalho nova (nao resposta a candidatura propria). **Ignorar ofertas sem data de publicacao ou mais velhas que 24h**. Logar em `cache.json` como `offer_found`.
+3. **CHECAR RESPOSTAS**: Mesma varredura, mas focando em replies a candidaturas enviadas (entrevistas, rejeicoes, andamento). Logar em `cache.json` com `response_status`.
+4. **CHECAR DELIVERY FAILURES**: Identificar bounces (emails que voltaram). Investigar motivo (address not found, mailbox full, etc). Logar em `cache.json` com bounce_details. Se possivel, buscar email alternativo (ex: hello@ → jobs@, careers@ → hr@).
+5. **APLICAR PARA OFERTAS POR EMAIL**: Para cada oferta de trabalho nova identificada no passo 2, verificar data de publicacao. **So aplicar se publicada nas ultimas 24h**. Enviar curriculo com email personalizado.
+6. **REENVIAR BOUNCES**: Para cada delivery failure ainda nao reenviado (checkar cache.json bounce_log), corrigir endereco e reenviar. Marcar como re-sent em cache.json.
+7. **REPORTAR RESPOSTAS POSITIVAS**: Informar ao usuario quais respostas positivas recebemos (entrevistas, avancos).
+8. **LOG**: Register URL, status, and timestamp in `cache.json`.
+9. **REPORT**: Send an email summary to `jae.engenharia@gmail.com` indicating what was done today.
 
 ## 5. SENT BOX MONITORING & STATS
-- **Sent tracking**: opencode checks sent box daily. Responses logged in `cache.json` with `response_status: pending | replied | rejected | interview | bounced`
-- **Bounce handling**: For each delivery failure, opencode investigates. Justus re-applies with corrected info.
-- **Stats (every 2 days, even days)**: opencode generates report with:
+- **Sent tracking**: Check both accounts daily (fabioeverton1704 + jae.engenharia). Responses logged in `cache.json` with `response_status: pending | replied | rejected | interview | bounced`
+- **Bounce handling**: For each delivery failure, investigate reason and re-apply with corrected info.
+- **Stats (every 2 days, even days)**: Generate report with:
   - Total sent, total responses (rejections, interviews, pending)
   - Conversion rate, bounce rate
   - Gaps identified → resume improvement recommendations

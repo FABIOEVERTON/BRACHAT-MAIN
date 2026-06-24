@@ -1,0 +1,15 @@
+{
+  "task_id": "TASK-DAEMON-TEST-001",
+  "task_type": "spec_dispatch",
+  "requested_by": "ezra_daemon_test",
+  "orchestrator": "ezra",
+  "assigned_executor": "artur",
+  "status": "completed_by_daemon",
+  "title": "Daemon auto-test",
+  "description": "If you can read this task, the Artur daemon is working autonomously. Write a spec for a 5-line Python script that prints 'hello from artur daemon'.",
+  "created_at": "2026-06-22T17:20:00-03:00",
+  "evidence": {
+    "artur_spec_path": "",
+    "daemon_receipt": "RCP-ARTUR-20260622-0002"
+  }
+}

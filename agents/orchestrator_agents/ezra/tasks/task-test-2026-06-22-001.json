@@ -1,0 +1,21 @@
+{
+  "task_id": "TASK-TEST-2026-06-22-001",
+  "task_type": "code_generation",
+  "requested_by": "fabio",
+  "orchestrator": "ezra",
+  "assigned_architect": "artur",
+  "assigned_executor": "baruch",
+  "status": "completed",
+  "title": "vm_disk_probe_test",
+  "description": "Create a simple Python script that reads disk usage and saves to .txt",
+  "created_at": "2026-06-22T16:30:00-03:00",
+  "updated_at": "2026-06-22T16:30:00-03:00",
+  "flow": [
+    "ezra_classify -> artur_spec -> baruch_build -> aisio_verify -> ezra_report"
+  ],
+  "evidence": {
+    "artur_spec_path": "portfolio/tasks/vm_disk_probe_test.md",
+    "baruch_project_path": "portfolio/vm_disk_probe_test/",
+    "aisio_verdict": "APPROVED"
+  }
+}

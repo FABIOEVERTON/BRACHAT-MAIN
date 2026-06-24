@@ -1,0 +1,2 @@
+{"ts":"2026-06-22T16:33:00-03:00","agent":"aisio","type":"gate_validation","action":"Audit TASK-TEST-2026-06-22-001","status":"success","task_id":"TASK-TEST-2026-06-22-001","rules_tested":5,"rules_passed":5,"verdict":"APPROVED"}
+{"ts":"2026-06-24T08:30:00-03:00","agent":"ezra","type":"session","action":"Fix mem0 persistence","status":"success","task_id":"MEM0-PERSIST-20260624","rules_tested":3,"rules_passed":3,"verdict":"APPROVED","details":"Fixed heartbeat script+launchd+MCP config"}

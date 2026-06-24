@@ -1,0 +1,14 @@
+{
+  "date": "2026-06-23",
+  "type": "daily_close",
+  "timestamp": "2026-06-23T18:03:42.393915-03:00",
+  "agent": "ezra",
+  "cycle": 188,
+  "schedule_day": 2,
+  "schedule_month": 1,
+  "days_completed": [
+    1
+  ],
+  "receipts_today": [],
+  "note": "Daily close. Push this to mem0 when Ezra is in session."
+}

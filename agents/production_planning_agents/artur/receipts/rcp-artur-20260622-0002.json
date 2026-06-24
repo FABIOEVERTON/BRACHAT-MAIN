@@ -1,0 +1,20 @@
+{
+  "receipt_id": "RCP-ARTUR-20260622-0002",
+  "agent_id": "BR-ARTUR-002",
+  "agent_name": "artur",
+  "type": "spec_dispatch",
+  "timestamp": "2026-06-22T17:19:52.123922-03:00",
+  "action": {
+    "description": "Processed TASK-DAEMON-TEST-001: I have created a specification for the task in the file `portfolio/tasks/daemon_auto_test.json` with",
+    "target": "daemon_auto"
+  },
+  "outcome": {
+    "status": "success",
+    "summary": "Processed TASK-DAEMON-TEST-001: I have created a specification for the task in the file `portfolio/tasks/daemon_auto_test.json` with"
+  },
+  "evidence": {
+    "files_created": [],
+    "files_modified": [],
+    "output": ""
+  }
+}

@@ -1,28 +1,24 @@
 {
   "last_session": {
-    "date": "2026-06-22",
-    "summary": "Startup checks completos (14+1). VM Oracle 3/3 ativa (ezra, nice, clickup). E-mails: nenhum novo desde Jun 19 — 2 emails desde então: Toloka paid project (SPAM, Figure AI), Fiverr account flagged. Sem respostas de candidaturas. ClickUp: Hermes_Agent (3 tasks placeholder), AGENDA (1 task: Parashat bot restore), TRELLO (12 tasks schedule). Cursos Tech starts today (Mês 1, Dia 1). Schedule_progress: current_day=0, next_study_day=2026-06-22.",
+    "date": "2026-06-24",
+    "summary": "Startup checks + Mem0 fix + Justus full cycle (15 apps, 2 responses, 10 bounces) + email clustering (93 emails, 6 k-means clusters) + bounce analysis (11 failures, 1 resent).",
     "blockers": [
-      "Playwright+Chromium não instalado na VM (necessário para Josué)",
-      "Mem0 MCP offline (key trocada, precisa restart sessão)",
-      "Fiverr account flagged (conta de freela bloqueada)",
-      "Delivery failures: hello@triviumgroup.com (permanente), careers@getnet.com.br (inexistente), hello@viktor.ai (inexistente)"
+      "Mem0 cloud API aceita POST mas nunca persiste (quota/account issue)",
+      "Fiverr account flagged",
+      "Delivery failures pendentes: 10 empresas sem reenvio",
+      "Saadia Gaon sem texto extraivel",
+      "jae.engenharia@gmail.com inacessivel via Gmail API (403 domain delegation)"
     ],
     "decisions": [
-      "Toloka paid project (SPAM) — worth investigating if legitimate opportunity",
-      "Today is Cursos Tech start (22/Jun) — Mês 1 Dia 1 do cronograma ONE",
-      "Email monitoring: no job replies since last session. Next even-day stats report due on 22/Jun (today is even)."
+      "24h rule ativada no pipeline Justus: so aplicar para vagas publicadas nas ultimas 24h",
+      "Bounce analysis logado em state.json para reenvio no proximo ciclo",
+      "Regra 24h documentada em justus.md + context_memory.json"
     ],
     "next_steps": [
-      "07:00-07:45: EMAIL MONITOR (even-day stats report due today)",
-      "07:45-08:00: Planning do dia",
-      "08:00-12:00: Cursos Tech (teoria) — n8n, LangChain, RAG, OCI, LLMs, Agentes",
-      "13:00-17:00: Cursos Tech (prática) — hands-on, projetos",
-      "18:00-22:00: Concurso TCU (@temer dispatch)",
-      "Verificar Parashat bot outage (task em AGENDA)"
+      "Definir prioridades com Fabio — continuar clustering, reenviar bounces, ou schedule ONE?"
     ]
   },
-  "session_count": 6,
+  "session_count": 8,
   "sessions": [
     {
       "date": "2026-06-14",
@@ -49,6 +45,43 @@
         "Emails: no new job replies since Jun 19",
         "ClickUp: 16 tasks across 3 lists (all to do)",
         "Cursos Tech phase starts today"
+      ]
+    },
+    {
+      "date": "2026-06-23",
+      "duration": "startup",
+      "type": "startup_checks",
+      "key_actions": [
+        "10 startup checks completed",
+        "VM Oracle 3/3 active (ezra, nice, clickup)",
+        "Emails: no new job replies (1 SPAM, 2 personal/junk)",
+        "ClickUp: 16 tasks across 3 lists (all to do)",
+        "Schedule: Mes 1 Dia 2"
+      ]
+    },
+    {
+      "date": "2026-06-24",
+      "duration": "startup",
+      "type": "startup_checks",
+      "key_actions": [
+        "10 startup checks completed",
+        "VM Oracle 3/3 active (ezra, nice, clickup)",
+        "Gmail: 8 INBOX msgs (1 Oracle OTP, 1 Langan job alert), 3 SPAM",
+        "ClickUp: 16 tasks across 3 lists (all to do)",
+        "Schedule: Mes 1 Dia 2"
+      ]
+    },
+    {
+      "date": "2026-06-24",
+      "duration": "extended",
+      "type": "mem0_fix_and_full_clustering",
+      "key_actions": [
+        "Mem0 persistence fixed: heartbeat script + launchd + MCP config",
+        "Justus pipeline updated: offer scanning separated from response checking",
+        "Justus dispatched: 15 apps sent, 2 recruiter responses (Sagan, Pyyne), 10 bounces, stats report",
+        "Email clustering (k-means, 6 clusters): 93 unique emails from both accounts",
+        "11 delivery failures identified, 1 resent (Viktor), 10 pending",
+        "24h rule added to Justus pipeline: only apply to jobs posted in last 24 hours"
       ]
     }
   ],
@@ -201,7 +234,23 @@
       "architect", "artur", "freela", "justus",
       "john", "temer", "badge", "dev", "calculus", "aristotle", "showcase"
     ],
-    "recent_insights": []
+    "hermes_test_e2e": {
+      "date": "2026-06-22",
+      "result": "success",
+      "mem0_status": "online",
+      "skill_loaded": "n8n-workflow-patterns",
+      "skill_applied": "webhook-processing pattern → lesson plan for Hello World workflow",
+      "cache_skills_status": "empty (needs pre-caching)"
+    },
+    "recent_insights": [
+      {
+        "date": "2026-06-22",
+        "agent": "ezra",
+        "domain": "hermes-loop-execution",
+        "insight": "Primeiro teste E2E do Hermes Learning Loop executado com sucesso. Ciclo completo: skill load → use → reflect → log → consolidate → mem0. cache_skills/ vazio — skills carregadas on-demand. Mem0 online. Insight registrado como ocorrência #1 (<5, sem SKILL.md gerado ainda).",
+        "occurrence": 1
+      }
+    ]
   },
-  "updated_at": "2026-06-22T16:30:00-03:00"
+  "updated_at": "2026-06-24T08:29:00-03:00"
 }

@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-06-24T15:36:42.502350-03:00",
+  "cycle": 62,
+  "loop_interval_sec": 300,
+  "agent": "ezra",
+  "id": "BR-EZRA-001",
+  "schedule_day": 2,
+  "schedule_month": 1,
+  "days_completed": [
+    1
+  ],
+  "new_worklog_entries": 0,
+  "findings": [
+    "Cert mismatch: expected track 0, today is Wednesday/OCI Generative AI Professional"
+  ],
+  "hermes_status": "",
+  "context_updated_at": "2026-06-24",
+  "blockers": [
+    "Playwright+Chromium nao instalado na VM (Josue)",
+    "Fiverr flagged",
+    "Delivery failures: Trivium, Getnet, Viktor",
+    "Saadia Gaon sem texto extraivel"
+  ],
+  "daily_close": null
+}

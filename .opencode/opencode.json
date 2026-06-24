@@ -4,6 +4,7 @@
   
 
   "model": "opencode/big-pickle",
+  "small_model": "nvidia/nemotron-3-ultra",
 
   "provider": {
     "opencode": {
@@ -28,6 +29,77 @@
           "name": "Kimi K2.6 (GO Plan)",
           "family": "kimi",
           "limit": { "context": 128000, "output": 16384 }
+        }
+      }
+    },
+    "nvidia": {
+      "options": {
+        "apiKey": "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",
+        "baseUrl": "https://integrate.api.nvidia.com/v1"
+      },
+      "models": {
+        "nemotron-3-ultra": {
+          "id": "nvidia/nemotron-3-ultra-550b-a55b",
+          "name": "Nemotron 3 Ultra 550B",
+          "family": "nemotron",
+          "limit": { "context": 131072, "output": 65536 },
+          "cost": { "input": 0, "output": 0 }
+        },
+        "nemotron-3-super": {
+          "id": "nvidia/nemotron-3-super-120b-a12b",
+          "name": "Nemotron 3 Super 120B",
+          "family": "nemotron",
+          "limit": { "context": 131072, "output": 65536 },
+          "cost": { "input": 0, "output": 0 }
+        },
+        "nemotron-3-nano": {
+          "id": "nvidia/nemotron-3-nano-30b-a3b",
+          "name": "Nemotron 3 Nano 30B",
+          "family": "nemotron",
+          "limit": { "context": 131072, "output": 65536 },
+          "cost": { "input": 0, "output": 0 }
+        },
+        "deepseek-v4-flash": {
+          "id": "deepseek-ai/deepseek-v4-flash",
+          "name": "DeepSeek V4 Flash",
+          "family": "deepseek",
+          "limit": { "context": 131072, "output": 65536 },
+          "cost": { "input": 0, "output": 0 }
+        },
+        "deepseek-v4-pro": {
+          "id": "deepseek-ai/deepseek-v4-pro",
+          "name": "DeepSeek V4 Pro",
+          "family": "deepseek",
+          "limit": { "context": 131072, "output": 65536 },
+          "cost": { "input": 0, "output": 0 }
+        },
+        "mistral-large-3": {
+          "id": "mistralai/mistral-large-3-675b-instruct-2512",
+          "name": "Mistral Large 3 675B",
+          "family": "mistral",
+          "limit": { "context": 131072, "output": 32768 },
+          "cost": { "input": 0, "output": 0 }
+        },
+        "glm-5.1": {
+          "id": "z-ai/glm-5.1",
+          "name": "GLM-5.1 (Zhipu)",
+          "family": "glm",
+          "limit": { "context": 131072, "output": 65536 },
+          "cost": { "input": 0, "output": 0 }
+        },
+        "kimi-k2.6": {
+          "id": "moonshotai/kimi-k2.6",
+          "name": "Kimi K2.6 (Moonshot)",
+          "family": "kimi",
+          "limit": { "context": 131072, "output": 32768 },
+          "cost": { "input": 0, "output": 0 }
+        },
+        "nemotron-super-49b": {
+          "id": "nvidia/llama-3.3-nemotron-super-49b-v1",
+          "name": "Nemotron Super 49B v1",
+          "family": "nemotron",
+          "limit": { "context": 131072, "output": 32768 },
+          "cost": { "input": 0, "output": 0 }
         }
       }
     }

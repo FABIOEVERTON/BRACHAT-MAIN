@@ -66,10 +66,10 @@
       "state_dep": [],
       "schedule": "18:00, daily"
     },
-    "google": {
-      "id": "google", "layer": "managers",
-      "display": "Mr. Google",
-      "path": "studies_agents/google/google.md",
+    "certifications": {
+      "id": "certifications", "layer": "managers",
+      "display": "Certifications Agent",
+      "path": "studies_agents/certifications/certifications.md",
       "state_dep": [],
       "schedule": "08:30, daily"
     },

@@ -16,7 +16,7 @@ This document defines the canonical governance, security, operational constraint
 
 | # | Rule | Description | Violation = |
 |---|------|-------------|-------------|
-| U1 | **MVI** | No file may exceed **200 lines** | DENY + POLICY_VIOLATION |
+| U1 | **MVI** | No file may exceed **200 lines** (exception: this governance.md is the SSOT of all rules and exempt from MVI) | DENY + POLICY_VIOLATION |
 | U2 | **Temperature zero** | Every agent `temperature: 0.0` | DENY |
 | U3 | **No secrets** | No token, key, password hardcoded | DENY + KILL_SWITCH |
 | U4 | **Tests mandatory** | Every new code must have automated test | DENY |
@@ -131,8 +131,8 @@ Aligned with the **EU AI Act**, **NIST AI RMF**, **LGPD**, and **PL 2338/2023**,
 ## 5. Local Skills Loading & Execution Protocol
 Agents must not execute arbitrary code or functions. All operational capabilities are abstracted as **Skills**. The resolution path is strictly controlled:
 1. **Local Cache Check**: Read `cache_skills/` in the agent's folder for immediate load.
-2. **Metadata Search**: Scan `skills-cache/active-index.json` (~2KB) to locate the skill category.
-3. **Master Resolve**: Query `skills-cache/master-index.json` (via grep) to retrieve the exact path of `general_skills/<name>/SKILL.md`.
+2. **Metadata Search**: Scan `agents/skills-cache/active-index.json` (~2KB) to locate the skill category.
+3. **Master Resolve**: Query `agents/skills-cache/master-index.json` (via grep) to retrieve the exact path of `agents/shared/general_skills/<name>/SKILL.md`.
 4. **Hydrate & Cache**: Copy the resolved skill to the agent's local `cache_skills/` directory for subsequent executions.
 
 ---
@@ -303,7 +303,6 @@ Every active agent in the hierarchy MUST possess and enforce its assigned Identi
 
 ### Core Execution Rules
 - **Dashboard Health Check**: On startup, agents must open `http://147.15.18.252:8080` and confirm HTTP 200 before executing any productive or educational actions.
-- **Ecosystem Caching**: Agent local `cache.json` must be kept persistent throughout the day. It is reset only at date changes via the orchestrator.
 - **Surgical Modifications**: Agents must edit files using targeted replacement commands instead of rewriting whole files.
 - **Token Limits**: Default agent responses must be under 5 lines (unless the user explicitly requests deep elaboration) to enforce prompt economy.
 - **Graceful Shutdown & Exit Command**: The mandatory command to terminate any interactive session (OpenCode or Claude Code) is `exit`. Upon detection, the CLI and agents MUST immediately consolidate all session logs, save states to `state.json`/`cache.json`, release all WAL locks on `/Users/mac/.local/share/opencode/opencode.db`, and terminate cleanly to prevent zombie background processes.
@@ -314,9 +313,27 @@ Every active agent in the hierarchy MUST possess and enforce its assigned Identi
 - **Portuguese Study Source**: Exercises must alternate excerpts from the 3 NotebookLM books (Sertillanges, Kahneman, Dee Brown).
 - **Python Independent Checkpoint**: Python studies (daily, 11:00-12:00) run independently from other progression blocks.
 
-### Mem0 Backup Protocols
-- **Strategic Backup (Selective)**: Triggers only when the `mem0: true` flag is raised in cache records (e.g., certification milestones, legal opinions, strategic user decisions).
-- **Operational Heartbeat**: Triggered every 30 minutes via the `com.brachat.mem0-heartbeat` launchd daemon. Consolidates all agent states and updates the API to enable immediate hydration on session startup.
+### Agent Cache & Memory Consolidation Architecture
+
+Every agent in the ecosystem MUST maintain a local `cache.json` in its own directory. The cache lifecycle follows a strict 3-layer consolidation flow:
+
+**Layer 1 — Agent-local `cache.json` (per-agent episodic memory)**
+- Every agent (directors, studies, builders, job) MUST have its own `cache.json` at `agents/{category}/{name}/cache.json`
+- Contains: `daily_log`, `last_active`, current task state, and agent-specific tracking data
+- Written incrementally by the agent during execution
+- Reset only by EZRA at date change — never by the agent itself
+
+**Layer 2 — EZRA unified state (`agents/state.json`)**
+- EZRA reads all agent `cache.json` files and consolidates them into `agents/state.json`
+- `state.json` is the canonical cross-session state: contains last session summary, decisions, blockers, infrastructure status, schedule progress
+- Updated incrementally at each relevant decision/blocker, saved at session end
+
+**Layer 3 — Mem0 (central vector backup)**
+- EZRA pushes the consolidated `state.json` summary to Mem0 via `mem0_add_memory`
+- Mem0 is strictly a cold backup destination — NOT queried at startup (too slow)
+- Two triggers:
+  - **Operational Heartbeat**: every 30 minutes via `com.brachat.mem0-heartbeat` launchd daemon — reads all agent `cache.json` + EZRA `state.json` → uploads to Mem0
+  - **End-of-session**: EZRA calls `mem0_add_memory` with the session summary before exiting
 
 ---
 

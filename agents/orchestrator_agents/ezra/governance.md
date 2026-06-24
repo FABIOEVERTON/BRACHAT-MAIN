@@ -100,8 +100,8 @@ Aligned with the **EU AI Act**, **NIST AI RMF**, **LGPD**, and **PL 2338/2023**,
 ## 5. Local Skills Loading & Execution Protocol
 Agents must not execute arbitrary code or functions. All operational capabilities are abstracted as **Skills**. The resolution path is strictly controlled:
 1. **Local Cache Check**: Read `cache_skills/` in the agent's folder for immediate load.
-2. **Metadata Search**: Scan `skills-cache/active-index.json` (~2KB) to locate the skill category.
-3. **Master Resolve**: Query `skills-cache/master-index.json` (via grep) to retrieve the exact path of `general_skills/<name>/SKILL.md`.
+2. **Metadata Search**: Scan `agents/skills-cache/active-index.json` (~2KB) to locate the skill category.
+3. **Master Resolve**: Query `agents/skills-cache/master-index.json` (via grep) to retrieve the exact path of `agents/shared/general_skills/<name>/SKILL.md`.
 4. **Hydrate & Cache**: Copy the resolved skill to the agent's local `cache_skills/` directory for subsequent executions.
 
 ---

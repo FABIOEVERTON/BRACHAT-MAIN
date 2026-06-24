@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "agent_id": "BR-JUSTUS-027",
+  "agent_name": "justus",
+  "learned_skills": [],
+  "insights": [],
+  "hermes_loop": {
+    "status": "active",
+    "activated_at": "2026-06-22T16:23:30.858255",
+    "cycle_steps": [
+      "1. search_memories",
+      "2. load_general_skill",
+      "3. apply_skill",
+      "4. log_insight",
+      "5. consolidate",
+      "6. mem0_add_memory"
+    ],
+    "skill_resolution_path": [
+      "1. Local Cache: cache_skills/",
+      "2. active-index.json",
+      "3. master-index.json (grep)",
+      "4. Hydrate to cache_skills/"
+    ]
+  },
+  "updated_at": "2026-06-22"
+}

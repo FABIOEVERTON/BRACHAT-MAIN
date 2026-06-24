@@ -1,0 +1,816 @@
+{
+  "version": 1,
+  "consolidated_at": "2026-06-24T15:26:42.187576",
+  "source": "BR-EZRA-001 consolidate_all.py",
+  "agents": {
+    "orchestrator": {
+      "name": "orchestrator",
+      "path": "/Users/mac/brachat-main/agents/orchestrator_agents/ezra",
+      "state": {
+        "version": 1,
+        "last_session": "2026-06-08T22:32:43-03:00",
+        "orchestrator": {
+          "name": "ezra",
+          "role": "orchestrator",
+          "status": "audit_mode",
+          "current_subagent": null,
+          "active_since": "2026-06-08T22:32:43-03:00"
+        },
+        "system": {
+          "total_subagents": 20,
+          "builders": [
+            "planner",
+            "coder"
+          ],
+          "studies": [
+            "ingles",
+            "python",
+            "estudos",
+            "politica",
+            "filosofia",
+            "pmp",
+            "google-skills",
+            "freelancer",
+            "job-hunter",
+            "portfolio",
+            "ml-engineer",
+            "certificacoes"
+          ],
+          "directors": [
+            "aisio",
+            "gilmario",
+            "jessica",
+            "josue",
+            "nice"
+          ],
+          "dashboard": "http://147.15.18.252:8080",
+          "last_dashboard_check": "200 OK"
+        },
+        "telegram": {
+          "ezra": {
+            "bot": "@Baruch_Everton_bot",
+            "status": "active"
+          },
+          "nice": {
+            "bot": "@luevertonbot",
+            "status": "active"
+          }
+        },
+        "skills_infra": {
+          "status": "activated",
+          "activated_at": "2026-06-22T16:30:00-03:00",
+          "active_index": "agents/skills-cache/active-index.json",
+          "master_index": "agents/skills-cache/master-index.json",
+          "skill_pool": "agents/shared/general_skills/",
+          "total_skills": 1465,
+          "categories": 44,
+          "agents_with_cache_skills": 20,
+          "hermes_agents": 16,
+          "hermes_loop": "active",
+          "mem0_consolidation": "active"
+        },
+        "hermes": {
+          "last_test": "2026-06-22T16:36:00-03:00",
+          "test_result": "end_to_end_cycle_complete",
+          "cycle_steps": [
+            "1. search_memories - OK (mem0 online, returned results)",
+            "2. load_general_skill - OK (n8n-workflow-patterns loaded from pool)",
+            "3. apply_skill - OK (pattern used for lesson planning)",
+            "4. log_insight - OK (written to state.json recent_insights)",
+            "5. consolidate - OK (agents/state.json learned_patterns updated)",
+            "6. mem0_add_memory - OK (consolidation pushed to mem0)"
+          ],
+          "blockers_found": [
+            "cache_skills/ estava vazio \u2014 skills precisam ser carregadas on-demand do pool"
+          ],
+          "mem0_status": "online",
+          "last_pipeline_run": "2026-06-22T16:11:55.421362",
+          "last_step": "consolidate_all",
+          "pipeline_log": [
+            {
+              "step": "skill_factory",
+              "status": "completed",
+              "details": "USAGE: skill_factory.py <name> <title> <task_summary_file> <procedure_file>\n  Creates a SKILL.md fro",
+              "timestamp": "2026-06-22T15:58:52.335655"
+            },
+            {
+              "step": "gepa_evolver",
+              "status": "completed",
+              "details": "GENERATION 1: best fitness=7, id=v1\n  prefix: Be concise and direct.\n\nhermes-agent-self-evolution pi",
+              "timestamp": "2026-06-22T15:58:52.487657"
+            },
+            {
+              "step": "darwinian_evolver",
+              "status": "completed",
+              "details": "DARWINIAN GEN 1: pop=7 rate=0.35\n  d1-f7c5ffd8 [dispatch] fitness=0.30 attempts=0\n  d1-4bd9751d [gat",
+              "timestamp": "2026-06-22T15:58:52.643748"
+            },
+            {
+              "step": "background_review",
+              "status": "completed",
+              "details": "REVIEW #1 COMPLETE\n  FINDING: Hermes blockers: cache_skills/ estava vazio \u2014 skills precisam ser carr",
+              "timestamp": "2026-06-22T15:58:52.774928"
+            },
+            {
+              "step": "skill_factory",
+              "status": "completed",
+              "details": "USAGE: skill_factory.py <name> <title> <task_summary_file> <procedure_file>\n  Creates a SKILL.md fro",
+              "timestamp": "2026-06-22T16:11:54.866220"
+            },
+            {
+              "step": "gepa_evolver",
+              "status": "completed",
+              "details": "GENERATION 2: best fitness=7, id=v1\n  prefix: Be concise and direct.\n\nhermes-agent-self-evolution pi",
+              "timestamp": "2026-06-22T16:11:55.016140"
+            },
+            {
+              "step": "darwinian_evolver",
+              "status": "completed",
+              "details": "DARWINIAN GEN 2: pop=8 rate=0.40\n  d2-147dddb7 [dispatch] fitness=0.30 attempts=0\n  d2-865c19ec [dis",
+              "timestamp": "2026-06-22T16:11:55.150819"
+            },
+            {
+              "step": "background_review",
+              "status": "completed",
+              "details": "REVIEW #2 COMPLETE\n  FINDING: Hermes blockers: cache_skills/ estava vazio \u2014 skills precisam ser carr",
+              "timestamp": "2026-06-22T16:11:55.274474"
+            },
+            {
+              "step": "consolidate_all",
+              "status": "completed",
+              "details": "[BR-EZRA-001] Consolidating all agents...\n  unified_skills.json: 7.2KB, 5 cached, 1 learned, 2 insig",
+              "timestamp": "2026-06-22T16:11:55.421391"
+            }
+          ]
+        },
+        "recent_insights": [
+          {
+            "date": "2026-06-22",
+            "domain": "hermes-loop-execution",
+            "insight": "Primeiro teste E2E do Hermes Learning Loop executado com sucesso. Skill carregada do general_skills pool, usada para planejamento de aula. cache_skills/ vazio indica necessidade de pre-caching das skills mais usadas. Mem0 online e respondendo. Ciclo completo: skill load \u2192 use \u2192 reflect \u2192 log \u2192 consolidate \u2192 mem0.",
+            "occurrence": 1,
+            "pattern_confidence": 0.8
+          }
+        ],
+        "agent_id": "BR-EZRA-001",
+        "name": "ezra",
+        "role": "orchestrator",
+        "status": "idle",
+        "sessions": [],
+        "updated_at": "2026-06-22T16:23:30.833912"
+      },
+      "cache": {
+        "agent_id": "BR-EZRA-001",
+        "name": "ezra",
+        "type": "orchestrator_memory",
+        "daily_log": {
+          "2026-06-22": {
+            "memory_restructure": "Criado context_memory.json (persona, U1-U11, 20 agentes, startup, dispatch, rules) e skills_memory.json (learned skills, insights, Hermes loop). orchestrator.md slimmed de 96 -> 47 linhas."
+          }
+        },
+        "last_active": "2026-06-22T17:00:00-03:00",
+        "result_cache": {
+          "memory_files_created": [
+            "context_memory.json",
+            "skills_memory.json"
+          ],
+          "orchestrator_md_before": 96,
+          "orchestrator_md_after": 47
+        }
+      }
+    },
+    "aisio": {
+      "name": "aisio",
+      "path": "/Users/mac/brachat-main/agents/director_agents/aisio",
+      "state": {
+        "agent_id": "BR-AISIO-010",
+        "name": "aisio",
+        "role": "governance_director",
+        "last_session": "2026-06-22T16:33:00-03:00",
+        "session_count": 2,
+        "sessions": [
+          "TASK-TEST-2026-06-22-001"
+        ],
+        "recent_insights": [
+          "TASK-TEST-2026-06-22-001: APPROVED. All 5 rules passed."
+        ],
+        "status": "completed",
+        "updated_at": "2026-06-22T16:33:00-03:00"
+      },
+      "cache": {
+        "daily_log": {},
+        "ultimo_tema": ""
+      }
+    },
+    "gilmario": {
+      "name": "gilmario",
+      "path": "/Users/mac/brachat-main/agents/director_agents/gilmario",
+      "state": {
+        "agent_id": "BR-GILMAR-011",
+        "name": "gilmario",
+        "role": "branding_director",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.837823"
+      },
+      "cache": {
+        "pending_materials": [],
+        "daily_log": {
+          "2026-06-15": {
+            "task": "branding slogan for compliance test hash",
+            "requested_by": "EZRA (BR-EZRA-001)",
+            "slogan_file": "results/slogan_hash.txt",
+            "slogan": "Integridade que se calcula \u2014 confian\u00e7a que se prova.",
+            "target_hash": "fa2633342f5494595aada488e052d54219757db1493664e06cbf56e03d5ba9f1",
+            "status": "completed"
+          }
+        }
+      }
+    },
+    "jessica": {
+      "name": "jessica",
+      "path": "/Users/mac/brachat-main/agents/director_agents/jessica",
+      "state": {
+        "agent_id": "BR-JESSIC-012",
+        "name": "jessica",
+        "role": "legal_director",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.839205"
+      },
+      "cache": {
+        "pending_demands": [],
+        "daily_log": {}
+      }
+    },
+    "josue": {
+      "name": "josue",
+      "path": "/Users/mac/brachat-main/agents/director_agents/josue",
+      "state": {
+        "agent_id": "BR-JOSUE-013",
+        "name": "josue",
+        "role": "commercial_director",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.840936"
+      },
+      "cache": {
+        "daily_log": {}
+      }
+    },
+    "nice": {
+      "name": "nice",
+      "path": "/Users/mac/brachat-main/agents/director_agents/nice",
+      "state": {
+        "agent_id": "BR-NICE-014",
+        "name": "nice",
+        "role": "domestic_director",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.842714"
+      },
+      "cache": {
+        "last_tasks": [],
+        "daily_log": {}
+      }
+    },
+    "architect": {
+      "name": "architect",
+      "path": "/Users/mac/brachat-main/agents/production_planning_agents/architect",
+      "state": {
+        "agent_id": "BR-ARCHIT-004",
+        "name": "architect",
+        "role": "builder_planner",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.846771"
+      },
+      "cache": {
+        "previous_plan": "",
+        "daily_log": {}
+      }
+    },
+    "artur": {
+      "name": "artur",
+      "path": "/Users/mac/brachat-main/agents/production_planning_agents/artur",
+      "state": {
+        "agent_id": "BR-ARTUR-002",
+        "name": "artur",
+        "role": "builder_director",
+        "last_session": "2026-06-22T16:31:00-03:00",
+        "session_count": 1,
+        "sessions": [
+          "TASK-TEST-2026-06-22-001"
+        ],
+        "recent_insights": [
+          "Spec dispatched for vm_disk_probe_test"
+        ],
+        "status": "completed",
+        "updated_at": "2026-06-22T16:31:00-03:00"
+      },
+      "cache": {
+        "current_task": "",
+        "project": "",
+        "daily_log": {}
+      }
+    },
+    "aristotle": {
+      "name": "aristotle",
+      "path": "/Users/mac/brachat-main/agents/studies_agents/aristotle",
+      "state": {
+        "agent_id": "BR-ARISTO-023",
+        "name": "aristotle",
+        "role": "philosophy_studies",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.851814"
+      },
+      "cache": {
+        "current_topic": "",
+        "daily_log": {}
+      }
+    },
+    "badge": {
+      "name": "badge",
+      "path": "/Users/mac/brachat-main/agents/studies_agents/badge",
+      "state": {
+        "agent_id": "BR-BADGE-030",
+        "name": "badge",
+        "role": "certifications_studies",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.850675"
+      },
+      "cache": {
+        "tracks": [
+          "OCI Foundations Associate",
+          "OCI AI Foundations Associate",
+          "OCI Generative AI Professional",
+          "OCI Architect Professional",
+          "OCI Multicloud Architect Professional",
+          "AIGP"
+        ],
+        "current_track_index": 0,
+        "daily_log": {},
+        "progress": {
+          "OCI Foundations Associate": {
+            "status": "not_started",
+            "topics_covered": []
+          },
+          "OCI AI Foundations Associate": {
+            "status": "not_started",
+            "topics_covered": []
+          },
+          "OCI Generative AI Professional": {
+            "status": "not_started",
+            "topics_covered": []
+          },
+          "OCI Architect Professional": {
+            "status": "not_started",
+            "topics_covered": []
+          },
+          "OCI Multicloud Architect Professional": {
+            "status": "not_started",
+            "topics_covered": []
+          },
+          "AIGP": {
+            "status": "not_started",
+            "topics_covered": []
+          }
+        }
+      }
+    },
+    "calculus": {
+      "name": "calculus",
+      "path": "/Users/mac/brachat-main/agents/studies_agents/calculus",
+      "state": {
+        "agent_id": "BR-CALCUL-029",
+        "name": "calculus",
+        "role": "ml_engineer_studies",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.854721"
+      },
+      "cache": {
+        "current_topic": "",
+        "daily_log": {}
+      }
+    },
+    "certifications": {
+      "name": "certifications",
+      "path": "/Users/mac/brachat-main/agents/studies_agents/certifications",
+      "state": {
+        "agent_id": "BR-GOOGLE-025",
+        "name": "certifications",
+        "role": "oci_skills",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.857753"
+      },
+      "cache": {
+        "current_topic": "",
+        "daily_log": {}
+      }
+    },
+    "dev": {
+      "name": "dev",
+      "path": "/Users/mac/brachat-main/agents/studies_agents/dev",
+      "state": {
+        "agent_id": "BR-DEV-021",
+        "name": "dev",
+        "role": "python_studies",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.853192"
+      },
+      "cache": {
+        "current_topic": "SHA-256 hash compliance test",
+        "daily_log": {
+          "2026-06-15": {
+            "task": "hash_sha256.py for compliance test",
+            "secret_word_requested_from": "EZRA (BR-EZRA-001)",
+            "status": "completed"
+          }
+        }
+      }
+    },
+    "eduardo": {
+      "name": "eduardo",
+      "path": "/Users/mac/brachat-main/agents/studies_agents/eduardo",
+      "cache": {
+        "current_topic": "",
+        "daily_log": {}
+      }
+    },
+    "john": {
+      "name": "john",
+      "path": "/Users/mac/brachat-main/agents/studies_agents/john",
+      "state": {
+        "agent_id": "BR-JOHN-020",
+        "name": "john",
+        "role": "english_studies",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.848674"
+      },
+      "cache": {
+        "current_topic": "Greetings & Introductions formais \u2014 governance/compliance vocabulary",
+        "daily_log": {
+          "2026-06-22": {
+            "task": "0_PROMPT para 22/06/2026 executado no NotebookLM ENGLISH_STUDIES",
+            "topic": "Greetings & Introductions formais \u2014 10 C2 vocabulary words (governance, compliance, audit, oversight, fiduciary, stakeholder, accountability, transparency, integrity, procurement)",
+            "requested_by": "EZRA (BR-EZRA-001)",
+            "status": "generating",
+            "note": "NotebookLM processando. Material pronto quando finalizar."
+          }
+        }
+      }
+    },
+    "materials": {
+      "name": "materials",
+      "path": "/Users/mac/brachat-main/agents/studies_agents/materials"
+    },
+    "parashat": {
+      "name": "parashat",
+      "path": "/Users/mac/brachat-main/agents/studies_agents/parashat",
+      "state": {
+        "agent_id": "BR-PARASHA-032",
+        "name": "parashat",
+        "role": "torah_studies",
+        "note": "Standalone VM. Outside EZRA scope. Do not dispatch.",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T17:00:00-03:00"
+      },
+      "cache": {
+        "agent_id": "BR-PARASHA-032",
+        "name": "parashat",
+        "type": "torah_memory",
+        "note": "Standalone VM. Outside EZRA scope.",
+        "daily_log": {},
+        "last_active": null,
+        "result_cache": {}
+      }
+    },
+    "portuguese": {
+      "name": "portuguese",
+      "path": "/Users/mac/brachat-main/agents/studies_agents/portuguese",
+      "cache": {
+        "current_topic": "",
+        "daily_log": {}
+      }
+    },
+    "showcase": {
+      "name": "showcase",
+      "path": "/Users/mac/brachat-main/agents/studies_agents/showcase",
+      "state": {
+        "agent_id": "BR-SHOWCA-028",
+        "name": "showcase",
+        "role": "portfolio_studies",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.856016"
+      },
+      "cache": {
+        "current_topic": "",
+        "daily_log": {}
+      }
+    },
+    "temer": {
+      "name": "temer",
+      "path": "/Users/mac/brachat-main/agents/studies_agents/temer",
+      "state": {
+        "agent_id": "BR-TEMER-022",
+        "name": "temer",
+        "role": "public_exam_studies",
+        "notebook": "PUBLIC_EXAMINATIONS_STUDIES",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.849766"
+      },
+      "cache": {
+        "current_topic": "",
+        "daily_log": {}
+      }
+    },
+    "branding_assets": {
+      "name": "branding_assets",
+      "path": "/Users/mac/brachat-main/agents/job/branding_assets"
+    },
+    "freela": {
+      "name": "freela",
+      "path": "/Users/mac/brachat-main/agents/job/freela",
+      "state": {
+        "agent_id": "BR-FREELA-026",
+        "name": "freela",
+        "role": "freelancer_studies",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.860769"
+      },
+      "cache": {
+        "last_scan": "",
+        "projects_seen": [],
+        "daily_log": {}
+      }
+    },
+    "justus": {
+      "name": "justus",
+      "path": "/Users/mac/brachat-main/agents/job/justus",
+      "state": {
+        "agent_id": "BR-JUSTUS-027",
+        "name": "justus",
+        "role": "job_hunter",
+        "last_session": "2026-06-24T14:30:00-03:00",
+        "session_count": 3,
+        "sessions": [
+          {
+            "id": "does",
+            "date": "2026-06-23",
+            "applications_sent": 15,
+            "bounces_re_sent": 1,
+            "responses_found": 0
+          },
+          {
+            "id": "ses_1068563e6ffelnDGKyuBEV7tGN",
+            "date": "2026-06-24",
+            "applications_sent": 15,
+            "offers_found": 0,
+            "responses_found": 2,
+            "bounces_found": 10,
+            "bounces_re_sent": 10,
+            "stats_report_sent": true
+          }
+        ],
+        "recent_insights": [
+          "Most job platforms require portal-based applications (CAPTCHA/login blocked)",
+          "Direct email applications still effective but finding verified contacts is time-consuming",
+          "Viktor AI bounce resolved with jobs@viktor.ai corrected email",
+          "Trivium and Getnet bounces permanent - no alternative email found",
+          "Step 6 (REENVIAR BOUNCES) executed: 10 pending bounces resent via alternative emails with resume link"
+        ],
+        "bounce_analysis": {
+          "last_checked": "2026-06-24",
+          "total_bounces": 11,
+          "resent": [
+            "viktor_ai",
+            {
+              "company": "automatenexus",
+              "original": "careers@automatenexus.com",
+              "corrected": "hello@automatenexus.com",
+              "date_resent": "2026-06-24"
+            },
+            {
+              "company": "sni_consulting",
+              "original": "careers@sniconsulting.net",
+              "corrected": "jobs@sniconsulting.net",
+              "date_resent": "2026-06-24"
+            },
+            {
+              "company": "halliburton",
+              "original": "careers@halliburton.com",
+              "corrected": "jobs@halliburton.com",
+              "date_resent": "2026-06-24"
+            },
+            {
+              "company": "sonar_mental_health",
+              "original": "careers@sonarmentalhealth.com",
+              "corrected": "hello@sonarmentalhealth.com",
+              "date_resent": "2026-06-24"
+            },
+            {
+              "company": "alqurainai",
+              "original": "careers@alqurainai.com",
+              "corrected": "info@alqurainai.com",
+              "date_resent": "2026-06-24"
+            },
+            {
+              "company": "quintoandar",
+              "original": "talent@quintoandar.com.br",
+              "corrected": "careers@quintoandar.com.br",
+              "date_resent": "2026-06-24"
+            },
+            {
+              "company": "little_engine",
+              "original": "hello@littleengine.com",
+              "corrected": "careers@littleengine.com",
+              "date_resent": "2026-06-24"
+            },
+            {
+              "company": "tether",
+              "original": "careers@tether.io",
+              "corrected": "hello@tether.io",
+              "date_resent": "2026-06-24"
+            },
+            {
+              "company": "transform_labs",
+              "original": "careers@transformlabs.com",
+              "corrected": "hello@transformlabs.com",
+              "date_resent": "2026-06-24"
+            },
+            {
+              "company": "seagull_scientific",
+              "original": "careers@seagullscientific.com",
+              "corrected": "hello@seagullscientific.com",
+              "date_resent": "2026-06-24"
+            }
+          ],
+          "pending_resend": [],
+          "permanent_bounces": [
+            "trivium",
+            "getnet"
+          ]
+        },
+        "status": "completed",
+        "updated_at": "2026-06-24T14:30:00-03:00"
+      }
+    },
+    "baruch": {
+      "name": "baruch",
+      "path": "/Users/mac/brachat-main/portfolio/engineer",
+      "state": {
+        "agent_id": "BR-BARUCH-003",
+        "name": "baruch",
+        "role": "lead_software_engineer",
+        "workspace": "portfolio/",
+        "last_session": "2026-06-22T16:32:00-03:00",
+        "session_count": 1,
+        "sessions": [
+          "TASK-TEST-2026-06-22-001"
+        ],
+        "recent_insights": [
+          "Built vm_disk_probe_test - tests pass"
+        ],
+        "status": "completed",
+        "updated_at": "2026-06-22T16:32:00-03:00"
+      },
+      "cache": {
+        "agent_id": "BR-BARUCH-003",
+        "name": "baruch",
+        "type": "engineer_memory",
+        "workspace": "portfolio/",
+        "daily_log": {},
+        "last_active": null,
+        "result_cache": {}
+      }
+    },
+    "imersion_agent": {
+      "name": "imersion_agent",
+      "path": "/Users/mac/brachat-main/portfolio/one_oracle/imersion_agent",
+      "state": {
+        "agent_id": "BR-OP-IMERSION-001",
+        "name": "imersion_agent",
+        "role": "one_oracle_imersion",
+        "last_session": null,
+        "session_count": 0,
+        "sessions": [],
+        "recent_insights": [],
+        "status": "idle",
+        "updated_at": "2026-06-22T16:23:30.864298"
+      },
+      "cache": {
+        "agent": "Produ\u00e7\u00e3o_aula_3",
+        "type": "n8n_workflow",
+        "source": "paid_n8n_cloud",
+        "source_url": "https://fabio-everton1704.app.n8n.cloud/workflow/UmZvu5m9PSo5o2U1",
+        "workflow_id_paid": "UmZvu5m9PSo5o2U1",
+        "workflow_id_local": "K1D6CwPeqp0QdBuD",
+        "exported_at": "2026-06-20T19:55:00-03:00",
+        "imported_at": "2026-06-20T19:55:00-03:00",
+        "import_method": "n8n CLI (npx n8n import:workflow)",
+        "status": "imported_credentials_pending",
+        "nodes_count": 7,
+        "nodes": [
+          {
+            "name": "Telegram Trigger",
+            "type": "n8n-nodes-base.telegramTrigger",
+            "status": "needs_credential"
+          },
+          {
+            "name": "AI Agent",
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "status": "ok"
+          },
+          {
+            "name": "Simple Memory",
+            "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+            "status": "ok"
+          },
+          {
+            "name": "Cohere Chat Model",
+            "type": "@n8n/n8n-nodes-langchain.lmChatCohere",
+            "status": "needs_credential"
+          },
+          {
+            "name": "Embeddings Cohere",
+            "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
+            "status": "needs_credential"
+          },
+          {
+            "name": "Simple Vector Store",
+            "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+            "status": "disabled"
+          },
+          {
+            "name": "Send a text message",
+            "type": "n8n-nodes-base.telegram",
+            "status": "needs_credential"
+          }
+        ],
+        "pending_credentials": [
+          "cohereApi",
+          "telegramApi"
+        ],
+        "next_step": "Criar credenciais Cohere + Telegram no n8n local e conectar aos nos",
+        "notes": "Integrante do ONE Cursos Tech. Aula 3 - HR Buddy da ChocolaTech. Vector Store desativado no export original."
+      }
+    }
+  },
+  "total_agents_with_state": 21,
+  "total_agents_with_cache": 22
+}

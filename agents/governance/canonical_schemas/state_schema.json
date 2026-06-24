@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema#",
+  "title": "BRACHAT Agent State Schema",
+  "description": "Canonical state.json schema for every agent in the ecosystem. Enforced by Aisio.",
+  "type": "object",
+  "required": ["agent_id", "name", "role", "status", "last_session", "session_count", "updated_at"],
+  "properties": {
+    "agent_id": {
+      "type": "string",
+      "pattern": "^BR-[A-Z]+-[0-9]{3}$",
+      "description": "Unique agent ID per index.json"
+    },
+    "name": { "type": "string", "description": "Agent name matching index.json" },
+    "role": { "type": "string", "description": "Core role (orchestrator, governance, builder, tutor, etc.)" },
+    "status": {
+      "type": "string",
+      "enum": ["idle", "active", "blocked", "error", "completed"],
+      "default": "idle"
+    },
+    "last_session": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO timestamp of last session end"
+    },
+    "session_count": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
+    },
+    "sessions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "type": { "type": "string" },
+          "summary": { "type": "string", "maxLength": 500 },
+          "receipts": {
+            "type": "array",
+            "items": { "type": "string", "description": "Receipt file paths produced in this session" }
+          }
+        },
+        "required": ["date", "summary"]
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Current blockers preventing progress"
+    },
+    "recent_insights": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "domain": { "type": "string" },
+          "insight": { "type": "string", "maxLength": 500 },
+          "occurrence": { "type": "integer", "minimum": 1 }
+        },
+        "required": ["date", "domain", "insight"]
+      }
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+// BRACHAT Worklog Schema (worklog.jsonl)
+// One JSON object per line. Append-only. Each agent has its own worklog.
+// Filename: agents/{category}/{name}/worklog.jsonl
+//
+// Fields:
+// {"ts":"ISO_TIMESTAMP","agent":"AGENT_NAME","type":"RECEIPT_TYPE","action":"SHORT_DESC","status":"success|failure|blocked","receipt":"PATH_TO_RECEIPT","duration_sec":N,"error":"OPTIONAL"}
+//
+// Example:
+// {"ts":"2026-06-22T16:00:00-03:00","agent":"ezra","type":"session","action":"Startup checks completed","status":"success","receipt":"agents/orchestrator_agents/ezra/receipts/rcp-ezra-20260622-0001.json","duration_sec":120}
+// {"ts":"2026-06-22T16:05:00-03:00","agent":"aisio","type":"gate_validation","action":"Validated email dispatch","status":"success","receipt":"agents/director_agents/aisio/receipts/rcp-aisio-20260622-0001.json","duration_sec":5}

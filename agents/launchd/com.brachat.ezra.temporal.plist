@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.brachat.ezra.temporal</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/mac/brachat-main/agents/orchestrator_agents/ezra/temporal_loop.py</string>
+    </array>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>EZRA_LOOP_INTERVAL</key>
+        <string>300</string>
+        <key>EZRA_HERMES_CYCLE</key>
+        <string>2</string>
+    </dict>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/Users/mac/brachat-main/agents/launchd/ezra-temporal.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/mac/brachat-main/agents/launchd/ezra-temporal.err</string>
+    <key>WorkingDirectory</key>
+    <string>/Users/mac/brachat-main</string>
+</dict>
+</plist>

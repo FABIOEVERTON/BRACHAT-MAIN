@@ -1,10 +1,10 @@
 {
   "schedule_file": "agents/studies_agents/materials/SCHEDULE_FULL.md",
-  "current_day": 0,
+  "current_day": 2,
   "current_month": 1,
-  "days_completed": [],
-  "last_updated": "2026-06-20T18:00:00-03:00",
-  "next_study_day": "2026-06-22",
+  "days_completed": [1],
+  "last_updated": "2026-06-23T10:15:00-03:00",
+  "next_study_day": "2026-06-23",
   "one_phase": "Cursos Tech",
   "concurso_cycle": 0,
   "certification_tracks": [
@@ -16,5 +16,7 @@
     "AIGP"
   ],
   "certification_track_index": 0,
-  "note": "Cronograma completo SCHEDULE_FULL.md. Day 0 = not started. Inicio 22/Jun/2026. ONE phases: Cursos Tech (semanas 1-9), Certificacao ONE (semanas 10-16), Hackathon (semanas 17-22), Wrap (semana 23). Certificacoes rodizio semanal fixo (Seg=Foundations, Ter=AI Foundations, Qua=GenAI Pro, Qui=Architect Pro, Sex=Multicloud Pro, Sab=AIGP). Domingo descanso. Email monitoring job responses comeca 22/Jun (segunda-feira, conforme solicitado)."
+  "note": "Cronograma completo SCHEDULE_FULL.md. Day 0 = not started. Inicio 22/Jun/2026. ONE phases: Cursos Tech (semanas 1-9), Certificacao ONE (semanas 10-16), Hackathon (semanas 17-22), Wrap (semana 23). Certificacoes rodizio semanal fixo (Seg=Foundations, Ter=AI Foundations, Qua=GenAI Pro, Qui=Architect Pro, Sex=Multicloud Pro, Sab=AIGP). Domingo descanso. Email monitoring job responses comeca 22/Jun (segunda-feira, conforme solicitado).",
+  "mode": "task_list_only",
+  "mode_note": "Fabio overrode time enforcement 22/Jun. Only task order matters, not clock time. EZRA presents sequential list, Fabio executes each and reports back."
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.brachat.agent.artur</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/mac/brachat-main/agents/agent_daemon.py</string>
+        <string>--agent</string>
+        <string>artur</string>
+        <string>--interval</string>
+        <string>120</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/Users/mac/brachat-main/agents/launchd/agent-artur.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/mac/brachat-main/agents/launchd/agent-artur.err</string>
+    <key>WorkingDirectory</key>
+    <string>/Users/mac/brachat-main</string>
+</dict>
+</plist>
