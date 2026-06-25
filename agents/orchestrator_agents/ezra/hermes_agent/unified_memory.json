@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "consolidated_at": "2026-06-24T15:26:42.187576",
+  "consolidated_at": "2026-06-25T16:32:17.322453",
   "source": "BR-EZRA-001 consolidate_all.py",
   "agents": {
     "orchestrator": {
@@ -8,7 +8,7 @@
       "path": "/Users/mac/brachat-main/agents/orchestrator_agents/ezra",
       "state": {
         "version": 1,
-        "last_session": "2026-06-08T22:32:43-03:00",
+        "last_session": "2026-06-25T10:02:00-03:00",
         "orchestrator": {
           "name": "ezra",
           "role": "orchestrator",
@@ -156,8 +156,14 @@
         "name": "ezra",
         "role": "orchestrator",
         "status": "idle",
-        "sessions": [],
-        "updated_at": "2026-06-22T16:23:30.833912"
+        "sessions": [
+          {
+            "date": "2026-06-24",
+            "type": "session",
+            "summary": "end of session"
+          }
+        ],
+        "updated_at": "2026-06-24T16:49:38.926474-03:00"
       },
       "cache": {
         "agent_id": "BR-EZRA-001",
@@ -510,7 +516,7 @@
         "agent_id": "BR-PARASHA-032",
         "name": "parashat",
         "role": "torah_studies",
-        "note": "Standalone VM. Outside EZRA scope. Do not dispatch.",
+        "note": "VM-based Torah agent. Ezra gerencia SSH, deploy e monitoramento.",
         "last_session": null,
         "session_count": 0,
         "sessions": [],
@@ -522,7 +528,7 @@
         "agent_id": "BR-PARASHA-032",
         "name": "parashat",
         "type": "torah_memory",
-        "note": "Standalone VM. Outside EZRA scope.",
+        "note": "VM-based. Ezra gerencia SSH, deploy e monitoramento.",
         "daily_log": {},
         "last_active": null,
         "result_cache": {}

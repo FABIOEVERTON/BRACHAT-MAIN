@@ -1,0 +1,6 @@
+Disk Usage Report
+Total: 228.3 GiB
+Used:  217.1 GiB
+Free:  11.1 GiB
+Usage: 95%
+

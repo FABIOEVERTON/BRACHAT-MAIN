@@ -1,256 +1,32 @@
 {
-  "last_session": {
-    "date": "2026-06-24",
-    "summary": "Startup checks + Mem0 fix + Justus full cycle (15 apps, 2 responses, 10 bounces) + email clustering (93 emails, 6 k-means clusters) + bounce analysis (11 failures, 1 resent).",
-    "blockers": [
-      "Mem0 cloud API aceita POST mas nunca persiste (quota/account issue)",
-      "Fiverr account flagged",
-      "Delivery failures pendentes: 10 empresas sem reenvio",
-      "Saadia Gaon sem texto extraivel",
-      "jae.engenharia@gmail.com inacessivel via Gmail API (403 domain delegation)"
-    ],
-    "decisions": [
-      "24h rule ativada no pipeline Justus: so aplicar para vagas publicadas nas ultimas 24h",
-      "Bounce analysis logado em state.json para reenvio no proximo ciclo",
-      "Regra 24h documentada em justus.md + context_memory.json"
-    ],
-    "next_steps": [
-      "Definir prioridades com Fabio — continuar clustering, reenviar bounces, ou schedule ONE?"
-    ]
-  },
-  "session_count": 8,
-  "sessions": [
-    {
-      "date": "2026-06-14",
-      "duration": "~4h",
-      "type": "full_audit_and_fixes",
-      "key_actions": [
-        "Audit 7 phases complete (Discovery, Validation, Security, Docs, Contracts, Executive Report)",
-        "VM at 146.56.97.202 down, found new IP at 147.15.0.196",
-        "Bridges Ezra/Nice/ClickUp fixed (403 → correct endpoint + key)",
-        "WhatsApp removed (launchd plist + directory)",
-        ".env.json added to .gitignore, removed from git tracking",
-        "memory.md updated to match real structure",
-        "agents/state.json created and populated",
-        "startup_state.json checkpoint updated"
-      ]
-    },
-    {
-      "date": "2026-06-22",
-      "duration": "startup",
-      "type": "startup_checks",
-      "key_actions": [
-        "14 startup checks + ClickUp check completed",
-        "VM Oracle 3/3 active (ezra, nice, clickup)",
-        "Emails: no new job replies since Jun 19",
-        "ClickUp: 16 tasks across 3 lists (all to do)",
-        "Cursos Tech phase starts today"
-      ]
-    },
-    {
-      "date": "2026-06-23",
-      "duration": "startup",
-      "type": "startup_checks",
-      "key_actions": [
-        "10 startup checks completed",
-        "VM Oracle 3/3 active (ezra, nice, clickup)",
-        "Emails: no new job replies (1 SPAM, 2 personal/junk)",
-        "ClickUp: 16 tasks across 3 lists (all to do)",
-        "Schedule: Mes 1 Dia 2"
-      ]
-    },
-    {
+  "global": {
+    "session_count": 11,
+    "total_sessions": 11,
+    "last_session": {
       "date": "2026-06-24",
-      "duration": "startup",
-      "type": "startup_checks",
-      "key_actions": [
-        "10 startup checks completed",
-        "VM Oracle 3/3 active (ezra, nice, clickup)",
-        "Gmail: 8 INBOX msgs (1 Oracle OTP, 1 Langan job alert), 3 SPAM",
-        "ClickUp: 16 tasks across 3 lists (all to do)",
-        "Schedule: Mes 1 Dia 2"
-      ]
-    },
-    {
-      "date": "2026-06-24",
-      "duration": "extended",
-      "type": "mem0_fix_and_full_clustering",
-      "key_actions": [
-        "Mem0 persistence fixed: heartbeat script + launchd + MCP config",
-        "Justus pipeline updated: offer scanning separated from response checking",
-        "Justus dispatched: 15 apps sent, 2 recruiter responses (Sagan, Pyyne), 10 bounces, stats report",
-        "Email clustering (k-means, 6 clusters): 93 unique emails from both accounts",
-        "11 delivery failures identified, 1 resent (Viktor), 10 pending",
-        "24h rule added to Justus pipeline: only apply to jobs posted in last 24 hours"
+      "duration": "evening",
+      "summary": "ALQURAIN challenge completed; oracle daily study routine saved",
+      "blockers": [
+        "Governance L2 rejected: context_memory.json >200 lines"
+      ],
+      "decisions": [
+        "Cover image: GitHub profile screenshot (github.com/FABIOEVERTON)",
+        "Service published as 'Contact for pricing' with 5 tags",
+        "Description in Portuguese, sales-focused"
+      ],
+      "next_steps": [
+        "Create Guru profile (guru.com)",
+        "Create Freelancer profile (freelancer.com)",
+        "Fix context_memory.json line count",
+        "Optional: add portfolio projects with case studies"
       ]
     }
-  ],
-  "infrastructure": {
-    "mac_local": {
-      "proxy_9999": "operational",
-      "opencode_serve_8080": "operational",
-      "mem0_mcp_server": "operational",
-      "clampproxy_4000": "operational",
-      "litellm_4001": "operational",
-      "whatsapp_bot": "removed",
-      "jobhunter": "stopped",
-      "mem0_heartbeat": "stopped"
-    },
-    "vm_oracle": {
-      "ip": "147.15.0.196",
-      "hostname": "brachat-vnic",
-      "ssh_key": "integrations/apis/ssh-key-2026-06-11.key",
-      "brachat_ezra": "active",
-      "brachat_nice": "active",
-      "brachat_clickup": "active",
-      "notes": "IP changed from 146.56.97.202. Bridges using /zen/v1/ + kimi-k2.6"
+  },
+  "agents": {
+    "ezra": {
+      "session_count": 3,
+      "last_session": "2026-06-24",
+      "state": "active"
     }
-  },
-  "session_2026-06-15": {
-    "date": "2026-06-15",
-    "summary": "Sessão completa: certificações AWS/AIGP/OCI/Oracle na agenda (14-16h); compliance test (DEV→GILMARIO→JOHN) executado; Mem0 key trocada; .env centralizado em integrations/apis/.env.json; Parashat bridge criado na VM (auto-detecção Shabat + cronograma 2026); Josué bridge criado (Telegram + Playwright stealth + OLX + Pix); opencode.jsonc limpo (só big-pickle + kimi-k2.6); LLM fallback implementado nos 3 bridges (EZRA, NICE, Parashat)."
-  },
-  "session_2026-06-15b": {
-    "date": "2026-06-15",
-    "summary": "Josué bridge reescrito com Playwright stealth + OLX automation + Pix. systemd brachat-josue.service ativo. Josué agent definition atualizada (vendas, não mais operations). Notebook: EZRA faz despacho de certificações (14h), DEVs/JOHN executam badges. Pendências: Playwright+Chromium instalado na VM (para Parashat e Josué), Mem0 MCP offline (precisa restart sessão), Josué bridge com Playwright stealth funcional.",
-    "agents_created": ["bridge-josue.py (VM)", "brachat-josue.service (VM)"],
-    "configs_updated": ["bridges: 3 bridges com fallback big-pickle -> kimi-k2.6"],
-    "blockers": ["Mem0 MCP offline (key trocada, precisa restart)"]
-  },
-  "session_2026-06-15c": {
-    "date": "2026-06-15",
-    "summary": "Redesenho completo do fluxo Josué: Fábio posta na OLX manualmente, passa link+fotos+preço pra Josué, que SÓ sai vendendo quando tem TUDO. Josué promove o link OLX + fotos + texto irresisivel. Comprador clica no link e fecha na OLX. Bridge reescrito sem Playwright/OLX posting. systemd restartado. OLX API documentada (precisa client_id+client_secret pra integrar Chat).",
-    "blockers": ["Mem0 MCP offline (key m0-RqgW5G... precisa restart da sessão)"],
-    "decisions": [
-      "Josué NUNCA posta na OLX — só divulga link + fotos do que Fábio já postou",
-      "OLX pelo browser_tool vs API: API precisa registrar app na OLX primeiro",
-      "Browser_tool login falhou (Cloudflare + possivel senha incorreta)"
-    ]
-  },
-  "session_2026-06-16": {
-    "date": "2026-06-16",
-    "type": "startup_checks",
-    "summary": "14 checks completas. VM Oracle 3/3 ativa (ezra, nice, clickup). E-mails: sem novidades de candidaturas (1 email promocional). Financeiro: saldo R$ 0. Schedule: Mês 1 Dia 2 (Direito Constitucional) pendente. Blockers ativos: Mem0 MCP offline, jobhunter/mem0-heartbeat parados, Playwright+Chromium não instalado na VM.",
-    "blockers": [
-      "Mem0 MCP offline (key trocada, precisa restart da sessão)",
-      "jobhunter parado no Mac",
-      "mem0-heartbeat parado no Mac",
-      "Playwright+Chromium não instalado na VM (necessário para Josué)"
-    ]
-  },
-  "session_2026-06-16b": {
-    "date": "2026-06-16",
-    "type": "corpus_extraction_and_bridge_fix",
-    "summary": "NotebookLM TORAH_STUDIES carregado (37 fontes), confirmado sem opção de download. Google Drive sem PDFs. Baixados 9 fontes-chave da internet (Tanakh, Maimônides, Ibn Ezra, Gesenius, Dead Sea Scrolls, Codex Sinaiticus, Spinoza, Mendelssohn, Organon). Saadia Gaon e Aristóteles (imagem/indisponível). Extraído corpus unificado de 11.8M chars. SCP para VM. Bridge-parashat.py modificado para usar corpus local em vez de NotebookLM/Playwright. Fallback kimi-k2.6 endpoint /go/v1/ retorna 404 (endpoint desconhecido, precisa documentação). Playwright não é mais necessário para Parashat (apenas para Josué).",
-    "blockers": [
-      "kimi-k2.6 endpoint /go/v1/ retorna 404 (sem docs do provider opencode-go)",
-      "Saadia Gaon PDF é image-based (sem texto extraível)",
-      "Aristóteles Ética+Metafísica não encontrados como PDF texto extraível em português",
-      "Playwright+Chromium não instalado na VM (necessário para Josué)"
-    ],
-    "decisions": [
-      "Corpus local substitui NotebookLM → elimina dependência de Playwright no Parashat",
-      "Corpus extraído como texto unificado (keyword-matching RAG simples no bridge)",
-      "Manter big-pickle via ZEN como modelo primário (kimi-k2.6 quebrado, usar fallback apenas)",
-      "Baixar Saadia Gaon de fonte alternativa com OCR quando disponível"
-    ]
-  },
-  "session_2026-06-16c": {
-    "date": "2026-06-16",
-    "type": "corpus_expansion_aristotle",
-    "summary": "Aristóteles Os Pensadores extraído (924K chars). Corpus: 12.7M chars. kimi-k2.6 endpoint corrigido: /zen/go/v1/ (era /go/v1/ — 404). Bridge-parashat e bridge-josue consertados na VM. Endpoint testado e funcionando (HTTP 200). Saadia Gaon continua blocker (image-based/access-restricted).",
-    "blockers": [
-      "Saadia Gaon sem fonte texto-extraível (IA access-restricted, Yale edition image-based)",
-      "Playwright+Chromium não instalado na VM (necessário para Josué)",
-      "Mem0 MCP offline (key trocada, precisa restart sessão)"
-    ],
-    "new_sources": [
-      "Aristóteles - Metafísica (I+II), Ética a Nicômaco, Poética (Os Pensadores, Abril 1984) - 924K chars, texto português"
-    ],
-    "fixes": [
-      "kimi-k2.6 endpoint /go/v1/ → /zen/go/v1/ (modelos.dev documenta: api: https://opencode.ai/zen/go/v1)"
-    ]
-  },
-  "session_2026-06-16d": {
-    "date": "2026-06-16",
-    "type": "rag_fix_corpus_search",
-    "summary": "RAG do bridge Parashat consertado: query_local_corpus agora parseia referência da Torá (ex: 'Nm 19:1 a 22:1') em vez de depender só de keyword matching. Adicionado build_book_index que mapeia capítulo→seção no corpus JPS (181 seções Torah). find_sections_by_torah_ref retorna texto relevante (14K chars) com red heifer, Miriam, Meribah, bronze serpent. Before: keyword 'Chukát' não matchava nada no JPS → bot dizia 'sem material'. After: referência 'Nm 19:1 a 22:1' → 14K chars de conteúdo. Testado e deployado na VM.",
-    "blockers": [
-      "Saadia Gaon sem fonte texto-extraível",
-      "Playwright+Chromium não instalado na VM",
-      "Mem0 MCP offline (key trocada, precisa restart sessão)"
-    ],
-    "fixes": [
-      "query_local_corpus reescrito com parse de referência Torá",
-      "build_book_index: mapeia capítulo→seção no corpus JPS",
-      "find_sections_by_torah_ref: retorna seções entre start_ch e end_ch",
-      "Per-section limit aumentado de 3000→7000 para capturar Miriam/backup content"
-    ]
-  },
-  "session_2026-06-17": {
-    "date": "2026-06-17",
-    "type": "startup_checks_plus_justus",
-    "summary": "14 checks completas. VM Oracle 3/3 ativa. E-mails: sem respostas de candidaturas. Justus cache: ultima scan 2026-06-13 (15 apps). Pendente quota de hoje. User solicitou execucao do Justus full procedure.",
-    "blockers": [
-      "Mem0 MCP offline (key trocada, precisa restart sessao)",
-      "jobhunter parado no Mac",
-      "Playwright+Chromium nao instalado na VM (necessario para Josue)"
-    ]
-  },
-  "session_2026-06-18": {
-    "date": "2026-06-18",
-    "type": "startup_checks_plus_justus",
-    "summary": "14 checks completas. VM Oracle 3/3 ativa. E-mails: sem respostas de candidaturas (apenas newsletters). Justus cache: ultima scan 2026-06-17 (15 apps). Pendente quota de hoje (0/15). User solicitou execucao do Justus full procedure.",
-    "blockers": [
-      "Mem0 MCP offline (key trocada, precisa restart sessao)",
-      "jobhunter parado no Mac",
-      "Playwright+Chromium nao instalado na VM (necessario para Josue)"
-    ],
-    "decisions": [
-      "Executar Justus full procedure para quota de 15 aplicacoes hoje"
-    ]
-  },
-  "session_2026-06-19": {
-    "date": "2026-06-19",
-    "type": "startup_checks_plus_justus_execution",
-    "summary": "14 checks completas. VM Oracle 3/3 ativa (ezra, nice, clickup). E-mails: sem respostas de candidaturas - apenas newsletters/job alerts. Justus: 15 apps enviadas para Delivery Associates, Pyyne, Intellectsoft, Diverse Lynx, Xebia, TechOhana, Humach, Softcom Systems, Tech Kooks, Braintrust, Cook Systems, Dahl Consulting, AmeriSave, EJ Technology Consultants, Software Technology Inc. cache.json atualizado. Summary email enviado.",
-    "blockers": [
-      "Mem0 MCP offline (key trocada, precisa restart sessao)",
-      "jobhunter parado no Mac",
-      "Playwright+Chromium nao instalado na VM (necessario para Josue)",
-      "Resume S3 attachment timeout via Gmail API (usou tmpfiles link)"
-    ],
-    "decisions": [
-      "Executar Justus full procedure para quota de 15 aplicacoes hoje",
-      "Resume enviado como tmpfiles link no corpo do email devido timeout do S3 attachment"
-    ]
-  },
-  "learned_patterns": {
-    "skills_policy_activated": "2026-06-22",
-    "total_skills_available": 1465,
-    "active_categories": 44,
-    "agents_with_hermes_loop": [
-      "aisio", "gilmario", "jessica", "josue", "nice",
-      "architect", "artur", "freela", "justus",
-      "john", "temer", "badge", "dev", "calculus", "aristotle", "showcase"
-    ],
-    "hermes_test_e2e": {
-      "date": "2026-06-22",
-      "result": "success",
-      "mem0_status": "online",
-      "skill_loaded": "n8n-workflow-patterns",
-      "skill_applied": "webhook-processing pattern → lesson plan for Hello World workflow",
-      "cache_skills_status": "empty (needs pre-caching)"
-    },
-    "recent_insights": [
-      {
-        "date": "2026-06-22",
-        "agent": "ezra",
-        "domain": "hermes-loop-execution",
-        "insight": "Primeiro teste E2E do Hermes Learning Loop executado com sucesso. Ciclo completo: skill load → use → reflect → log → consolidate → mem0. cache_skills/ vazio — skills carregadas on-demand. Mem0 online. Insight registrado como ocorrência #1 (<5, sem SKILL.md gerado ainda).",
-        "occurrence": 1
-      }
-    ]
-  },
-  "updated_at": "2026-06-24T08:29:00-03:00"
+  }
 }

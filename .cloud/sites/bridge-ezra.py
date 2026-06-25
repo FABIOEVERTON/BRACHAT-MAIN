@@ -10,6 +10,7 @@ CK = os.environ.get("CLICKUP_TOKEN","")
 REPO = Path("/opt/brachat/repo")
 ST = Path("/tmp/ezra-state.json")
 MALHA = Path("/opt/brachat/state/malha.json")
+PENDING = Path("/tmp/ezra-pending-task.json")  # fila de "coloca na agenda..."
 TG = f"https://api.telegram.org/bot{TK}"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -97,6 +98,114 @@ def send(c, t):
     if t:
         for ch in [t[i:i+4000] for i in range(0,len(t),4000)]: tg("sendMessage",{"chat_id":c,"text":ch,"parse_mode":"Markdown"})
 
+def get_voice_path(fid):
+    try:
+        r=tg("getFile",{"file_id":fid})
+        if r and r.get("ok"):
+            return f"https://api.telegram.org/file/bot{TK}/{r['result']['file_path']}"
+    except: return None
+
+def transcribe(fp):
+    import tempfile, shutil
+    tmp=tempfile.mktemp(suffix=".ogg")
+    wav=tempfile.mktemp(suffix=".wav")
+    try:
+        urllib.request.urlretrieve(fp, tmp)
+        subprocess.run(["ffmpeg","-y","-i",tmp,"-ar","16000","-ac","1","-f","wav",wav], capture_output=True, timeout=30)
+        wh=shutil.which("whisper")
+        if wh:
+            out=tempfile.mkdtemp()
+            r=subprocess.run([wh,"--model","base","--output_dir",out,"--output_format","txt",wav], capture_output=True, text=True, timeout=120)
+            txtf=Path(out)/f"{Path(wav).stem}.txt"
+            txt=txtf.read_text().strip() if txtf.exists() else ""
+            shutil.rmtree(out, ignore_errors=True)
+            if txt: return txt
+        try:
+            from whisper import transcribe as wt
+            r=wt(wav, model="base")
+            if r and r.get("text"): return r["text"].strip()
+        except: pass
+        return "(voz nao transcrita)"
+    except Exception as e:
+        log.error(f"transcribe: {e}")
+        return "(erro ao transcrever audio)"
+    finally:
+        for p in [tmp, wav]:
+            try: Path(p).unlink(missing_ok=True)
+            except: pass
+
+def agenda_flow(cid, text):
+    """Fluxo 'coloca na agenda': pending → ask date → create task."""
+    pending = json.loads(PENDING.read_text()) if PENDING.exists() else None
+    import re
+
+    # Check if user is responding with a date to a pending task
+    if pending:
+        date_patterns = [
+            r"\b(hoje|amanha|depois de amanhã|segunda|terça|quarta|quinta|sexta|sábado|domingo)\b",
+            r"\b\d{1,2}[/-]\d{1,2}\b", r"\b\d{1,2}h\b", r"\b\d{1,2}:\d{2}\b"
+        ]
+        has_date = any(re.search(p, text, re.IGNORECASE) for p in date_patterns)
+        if has_date or text.lower() in ["sim", "ok", "pode ser", "cria"]:
+            due_date = None
+            due_time = None
+            time_match = re.search(r"(\d{1,2})[h:](\d{2})?", text)
+            if time_match:
+                h, m = int(time_match.group(1)), int(time_match.group(2) or 0)
+                due_time = f"{h:02d}:{m:02d}"
+            date_match = re.search(r"(\d{1,2})[/-](\d{1,2})", text)
+            if date_match:
+                from datetime import date
+                d, mo = int(date_match.group(1)), int(date_match.group(2))
+                due_date = date(2026, mo, d).isoformat()
+            day_names = {"hoje":0,"amanha":1,"depois de amanha":2,"depois de amanhã":2}
+            for name, offset in day_names.items():
+                if name in text.lower():
+                    from datetime import date, timedelta
+                    due_date = (date.today() + timedelta(days=offset)).isoformat()
+                    break
+
+            task_name = pending.get("name", "Sem nome")
+            payload = {"name": task_name}
+            if due_date:
+                import datetime
+                dt_str = f"{due_date}T{due_time or '09:00'}:00"
+                dt = datetime.datetime.fromisoformat(dt_str)
+                payload["due_date"] = int(dt.timestamp() * 1000)
+            try:
+                req = urllib.request.Request(
+                    f"https://api.clickup.com/api/v2/list/{os.environ.get('CLICKUP_LIST_ID','901714234972')}/task",
+                    data=json.dumps(payload).encode(),
+                    headers={"Authorization": CK, "Content-Type": "application/json"},
+                    method="POST"
+                )
+                with urllib.request.urlopen(req, timeout=15):
+                    log.info(f"Task created from agenda: {task_name}")
+                due_str = f" para {due_date} {due_time or '09:00'}" if due_date else ""
+                send(cid, f"✅ Tarefa '{task_name}' criada{due_str} no ClickUp!")
+            except Exception as e:
+                log.error(f"ClickUp task error: {e}")
+                send(cid, f"❌ Erro ao criar tarefa: {e}")
+            PENDING.unlink(missing_ok=True)
+            return True
+
+    # Check if current message is a new agenda request
+    agenda_patterns = [
+        r"coloca na agenda", r"coloca na minha agenda", r"cria tarefa",
+        r"adiciona na agenda", r"cria na agenda", r"marca na agenda",
+        r"agenda pra mim", r"coloca na lista", r"lembrete"
+    ]
+    is_agenda = any(re.search(p, text, re.IGNORECASE) for p in agenda_patterns)
+    if is_agenda:
+        task_match = re.search(r"(?:agenda|tarefa|lista|lembrete)\s*(?:pra|de|:)?\s*(.+?)$", text, re.IGNORECASE)
+        task_name = task_match.group(1).strip().rstrip(".!?") if task_match else text
+        PENDING.write_text(json.dumps({"name": task_name, "chat_id": cid}))
+        send(cid, f"📝 Anotei: *{task_name}*\nPra que dia e horário? (ex: amanhã 10h, ou 15/07 14:30)")
+        return True
+
+    return False
+
+
 def on_msg(cid, text):
     if not text: return
     log.info(f"<< {text[:100]}"); pub_state(status="processing",last_msg=text[:200])
@@ -111,6 +220,8 @@ def on_msg(cid, text):
                 with urllib.request.urlopen(req, timeout=10) as r: ts = json.loads(r.read()).get("tasks",[])
                 send(cid,"\n".join([f"  • {t['name']} ({t['status']['status']})" for t in ts[:10]]) or "Nenhuma tarefa ativa.")
             except Exception as e: send(cid,f"Erro: {e}")
+        pub_state(status="idle"); return
+    if CK and agenda_flow(cid, text):
         pub_state(status="idle"); return
     tg("sendChatAction",{"chat_id":cid,"action":"typing"})
     git_pull(); ctx=build_context(text)
@@ -150,8 +261,25 @@ def main():
             if u and u.get("ok") and u.get("result"):
                 for up in u["result"]:
                     st["last_update_id"] = up["update_id"]
-                    if "message" in up and str(up["message"].get("chat",{}).get("id","")) == CID and "text" in up["message"]:
-                        on_msg(CID, up["message"]["text"].strip())
+                    if "message" in up:
+                        m=up["message"]
+                        cid=str(m.get("chat",{}).get("id",""))
+                        if cid!=CID: continue
+                        if "text" in m:
+                            on_msg(CID, m["text"].strip())
+                        elif "voice" in m:
+                            fid=m["voice"]["file_id"]
+                            send(CID,"Transcrevendo audio...")
+                            tg("sendChatAction",{"chat_id":CID,"action":"typing"})
+                            url=get_voice_path(fid)
+                            if url:
+                                txt=transcribe(url)
+                                log.info(f"voz >> {txt[:100]}")
+                                on_msg(CID,txt)
+                            else:
+                                send(CID,"Erro ao baixar audio.")
+                        elif "audio" in m:
+                            send(CID,"Audio nao suportado, envie mensagem de texto.")
             ST.write_text(json.dumps(st)); time.sleep(1)
         except KeyboardInterrupt: break
         except Exception as e: log.error(f"loop: {e}"); time.sleep(5)

@@ -284,67 +284,84 @@ def tg(method, data=None):
         return None
 
 def send(chat_id, text):
-    if not text: return
+    if not text: return True
     for chunk in [text[i:i+4000] for i in range(0, len(text), 4000)]:
-        tg("sendMessage", {"chat_id": chat_id, "text": chunk, "parse_mode": "Markdown"})
+        resp = tg("sendMessage", {"chat_id": chat_id, "text": chunk, "parse_mode": "Markdown"})
+        if resp is None:
+            resp = tg("sendMessage", {"chat_id": chat_id, "text": chunk})
+        if resp is None or not resp.get("ok"):
+            return False
+    return True
 
 def send_daily_study(chat_id):
-    """Send the day's Parashah study to the given chat."""
-    parashat, dt_key = get_week_parashat()
-    if not parashat:
-        log.warning("No parashat found for this week")
-        return
-    hoje = date.today()
-    wd = hoje.weekday()  # 0=Mon, 6=Sun
+    """Send the day's Parashah study to the given chat. Retries until success."""
+    while True:
+        try:
+            parashat, dt_key = get_week_parashat()
+            if not parashat:
+                log.warning("No parashat found for this week")
+                time.sleep(300)
+                continue
+            hoje = date.today()
+            wd = hoje.weekday()  # 0=Mon, 6=Sun
 
-    # Fix weekday: in Python Mon=0, Sun=6; convert to Sun=0
-    wd_sun = (wd + 1) % 7  # Sun=0, Mon=1, ..., Sat=6
+            # Fix weekday: in Python Mon=0, Sun=6; convert to Sun=0
+            wd_sun = (wd + 1) % 7  # Sun=0, Mon=1, ..., Sat=6
 
-    p_name, p_trad, p_torah, p_haft, p_brit = parashat
+            p_name, p_trad, p_torah, p_haft, p_brit = parashat
 
-    # Shabat (Saturday = 6 in Sun-based)
-    if wd_sun == 6:
-        msg = (
-            f"*Shabat Shalom!* 🕎\n\n"
-            f"Parashá da semana: *{p_name}* ({p_trad})\n"
-            f"📖 Torah: {p_torah}\n"
-            f"📜 Haftará: {p_haft}\n"
-            f"📜 B'rit Chadashá: {p_brit}\n\n"
-            f"Que este Shabat seja de descanso e estudo da Palavra!"
-        )
-        send(chat_id, msg)
-        return
+            # Shabat (Saturday = 6 in Sun-based)
+            if wd_sun == 6:
+                msg = (
+                    f"*Shabat Shalom!* 🕎\n\n"
+                    f"Parashá da semana: *{p_name}* ({p_trad})\n"
+                    f"📖 Torah: {p_torah}\n"
+                    f"📜 Haftará: {p_haft}\n"
+                    f"📜 B'rit Chadashá: {p_brit}\n\n"
+                    f"Que este Shabat seja de descanso e estudo da Palavra!"
+                )
+                if send(chat_id, msg):
+                    return True
+                log.warning("Send failed, retrying in 60s")
+                time.sleep(60)
+                continue
 
-    # Friday (Sexta = 5 in Sun-based) — skip / rest day
-    if wd_sun == 5:
-        log.info("Friday — rest day, no daily study")
-        return
+            # Friday (Sexta = 5 in Sun-based) — skip / rest day
+            if wd_sun == 5:
+                log.info("Friday — rest day, no daily study")
+                return True
 
-    # Sunday-Thursday study
-    if wd_sun not in ALIYAH_SCHEDULE:
-        return
+            # Sunday-Thursday study
+            if wd_sun not in ALIYAH_SCHEDULE:
+                return True
 
-    title, study_topic = ALIYAH_SCHEDULE[wd_sun]
-    dia_name = DOW[wd]
+            title, study_topic = ALIYAH_SCHEDULE[wd_sun]
+            dia_name = DOW[wd]
 
-    context = f"Parasha: {p_name} ({p_trad})\nTorah: {p_torah}\nEstudo de {DOW[wd]}: {study_topic}"
+            context = f"Parasha: {p_name} ({p_trad})\nTorah: {p_torah}\nEstudo de {DOW[wd]}: {study_topic}"
 
-    # Consulta corpus local
-    local_corpus = query_local_corpus(f"{p_name} {study_topic} {p_torah}")
+            # Consulta corpus local
+            local_corpus = query_local_corpus(f"{p_name} {study_topic} {p_torah}")
 
-    sysp_content = SYSP + f"\n\n{context}"
-    if local_corpus:
-        sysp_content += f"\n\n[FONTE LOCAL — TORAH_CORPUS]\n{local_corpus[:4000]}\n[/FONTE]\n\nUse EXCLUSIVAMENTE a fonte acima. Se nao tiver info, avise."
+            sysp_content = SYSP + f"\n\n{context}"
+            if local_corpus:
+                sysp_content += f"\n\n[FONTE LOCAL — TORAH_CORPUS]\n{local_corpus[:4000]}\n[/FONTE]\n\nUse EXCLUSIVAMENTE a fonte acima. Se nao tiver info, avise."
 
-    msgs = [
-        {"role": "system", "content": sysp_content + "\n\nGere um estudo conciso baseado na fonte. Máximo 3000 caracteres."},
-        {"role": "user", "content": f"Estudo de {dia_name} — {p_name}: {title}"},
-    ]
+            msgs = [
+                {"role": "system", "content": sysp_content + "\n\nGere um estudo conciso baseado na fonte. Máximo 3000 caracteres."},
+                {"role": "user", "content": f"Estudo de {dia_name} — {p_name}: {title}"},
+            ]
 
-    response = ask_llm(msgs)
-    header = f"*{p_name}* — {title}\n_{p_torah}_\n\n"
-    fonte = "📖 *Fonte: Corpus Local TORAH_CORPUS*" if local_corpus else "⚠️ *Sem fonte do corpus — resposta baseada no prompt genérico*"
-    send(chat_id, header + response + "\n\n" + fonte)
+            response = ask_llm(msgs)
+            header = f"*{p_name}* — {title}\n_{p_torah}_\n\n"
+            fonte = "📖 *Fonte: Corpus Local TORAH_CORPUS*" if local_corpus else "⚠️ *Sem fonte do corpus — resposta baseada no prompt genérico*"
+            if send(chat_id, header + response + "\n\n" + fonte):
+                return True
+            log.warning("Send failed, retrying in 60s")
+            time.sleep(60)
+        except Exception as e:
+            log.error(f"send_daily_study error: {e}")
+            time.sleep(60)
 
 def load_last_sent():
     if LAST_SENT_FILE.exists():
@@ -371,9 +388,9 @@ def daily_study_scheduler():
                         wd_sun = (date.today().weekday() + 1) % 7
                         if wd_sun <= 4 or wd_sun == 6:
                             log.info(f"Sending daily study to {cid} ({DOW[date.today().weekday()]})")
-                            send_daily_study(cid)
-                            last_sent[str(cid)] = today_str
-                            save_last_sent(last_sent)
+                            if send_daily_study(cid):
+                                last_sent[str(cid)] = today_str
+                                save_last_sent(last_sent)
                 time.sleep(300)  # wait 5min to avoid re-send in same window
             else:
                 time.sleep(60)  # check every minute otherwise

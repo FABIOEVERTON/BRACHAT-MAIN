@@ -79,6 +79,42 @@ def send(chat_id, text):
     for ch in [text[i:i+4000] for i in range(0, len(text), 4000)]:
         tg("sendMessage", {"chat_id": chat_id, "text": ch, "parse_mode": "Markdown"})
 
+def get_voice_path(fid):
+    try:
+        r=tg("getFile",{"file_id":fid})
+        if r and r.get("ok"):
+            return f"https://api.telegram.org/file/bot{TK}/{r['result']['file_path']}"
+    except: return None
+
+def transcribe(fp):
+    import tempfile, shutil, subprocess
+    tmp=tempfile.mktemp(suffix=".ogg")
+    wav=tempfile.mktemp(suffix=".wav")
+    try:
+        urllib.request.urlretrieve(fp, tmp)
+        subprocess.run(["ffmpeg","-y","-i",tmp,"-ar","16000","-ac","1","-f","wav",wav], capture_output=True, timeout=30)
+        wh=shutil.which("whisper")
+        if wh:
+            out=tempfile.mkdtemp()
+            r=subprocess.run([wh,"--model","base","--output_dir",out,"--output_format","txt",wav], capture_output=True, text=True, timeout=120)
+            txtf=Path(out)/f"{Path(wav).stem}.txt"
+            txt=txtf.read_text().strip() if txtf.exists() else ""
+            shutil.rmtree(out, ignore_errors=True)
+            if txt: return txt
+        try:
+            from whisper import transcribe as wt
+            r=wt(wav, model="base")
+            if r and r.get("text"): return r["text"].strip()
+        except: pass
+        return "(voz nao transcrita)"
+    except Exception as e:
+        log.error(f"transcribe: {e}")
+        return "(erro ao transcrever audio)"
+    finally:
+        for p in [tmp, wav]:
+            try: Path(p).unlink(missing_ok=True)
+            except: pass
+
 def send_photos(chat_id, paths, caption=""):
     if not paths: return
     files = []
@@ -354,12 +390,26 @@ def poll():
                     txt = msg.get("text", "")
                     photos = msg.get("photo", [])
                     cap = msg.get("caption", "")
+                    voice = msg.get("voice")
+                    audio = msg.get("audio")
                     if photos:
                         log.info(f"[{cid}] 📸 {cap[:60] or 'foto'} ({len(photos)} tamanhos)")
                         threading.Thread(target=on_photo, args=(cid, photos, cap)).start()
                     elif txt:
                         log.info(f"[{cid}] {txt[:80]}")
                         threading.Thread(target=on_msg, args=(cid, txt)).start()
+                    elif voice:
+                        fid=voice["file_id"]
+                        send(cid,"Transcrevendo audio...")
+                        url=get_voice_path(fid)
+                        if url:
+                            txt=transcribe(url)
+                            log.info(f"[{cid}] voz >> {txt[:80]}")
+                            threading.Thread(target=on_msg, args=(cid, txt)).start()
+                        else:
+                            send(cid,"Erro ao baixar audio.")
+                    elif audio:
+                        send(cid,"Audio nao suportado, envie mensagem de texto.")
         except Exception as e:
             log.error(f"Poll: {e}")
             time.sleep(5)

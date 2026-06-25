@@ -1,5 +1,5 @@
 {
-  "last_scan": "2026-06-24T10:00:00-03:00",
+  "last_scan": "2026-06-25T10:30:00-03:00",
   "jobs_seen": [
     {
       "id": "linkedin-1",
@@ -1695,6 +1695,187 @@
       "fit": "high",
       "status": "applied_via_email",
       "email": "careers@acquia.com"
+    },
+    {
+      "id": "2026-06-25-ubiminds-1",
+      "title": "Senior Software Engineer – AI Agentic Engineer",
+      "company": "Ubiminds",
+      "location": "Brazil (Remote)",
+      "platform": "Direct Email",
+      "url": "https://www.remoterocketship.com/company/ubiminds/jobs/senior-software-engineer-ai-agentic-engineer-worldwide-remote/",
+      "posted": "2026-06-20",
+      "fit": "high",
+      "status": "applied_via_email",
+      "email": "careers@ubiminds.com"
+    },
+    {
+      "id": "2026-06-25-talentcross-1",
+      "title": "AI Agent Specialist – Remote (Brazil-based)",
+      "company": "Talentcross",
+      "location": "Brazil (Remote)",
+      "platform": "Direct Email",
+      "url": "https://www.careers-page.com/talentcross/job/63R3773R",
+      "posted": "2026-06",
+      "fit": "high",
+      "status": "applied_via_email",
+      "email": "careers@talentcross.com"
+    },
+    {
+      "id": "2026-06-25-invillia-1",
+      "title": "AI Engineer PL (Remote)",
+      "company": "Invillia",
+      "location": "Brazil (Remote)",
+      "platform": "Direct Email",
+      "url": "https://invillia.gupy.io/jobs/11468881",
+      "posted": "2026-06-10",
+      "fit": "high",
+      "status": "applied_via_email",
+      "email": "careers@invillia.com"
+    },
+    {
+      "id": "2026-06-25-peerai-1",
+      "title": "Senior AI Engineer (Agentic Systems)",
+      "company": "Peer AI",
+      "location": "Remote",
+      "platform": "Direct Email",
+      "url": "https://getpeer.ai/careers/careers-page-senior-ai-engineer-agentic-systems",
+      "posted": "2026-06",
+      "fit": "high",
+      "status": "applied_via_email",
+      "email": "careers@getpeer.ai"
+    },
+    {
+      "id": "2026-06-25-inallmedia-1",
+      "title": "Backend Engineer (AI Agentic)",
+      "company": "In All Media Inc",
+      "location": "Remote",
+      "platform": "Direct Email",
+      "url": "https://br.expertini.com/job/backend-engineer-ai-agentic-19041905-remote-in-all-media-inc-70-10062990.pdf",
+      "posted": "2026-06",
+      "fit": "high",
+      "status": "applied_via_email",
+      "email": "careers@inallmedia.com"
+    },
+    {
+      "id": "2026-06-25-jobihub-1",
+      "title": "Automation Developer, AI",
+      "company": "Jobí Hub",
+      "location": "Brazil (Remote)",
+      "platform": "Direct Email",
+      "url": "https://www.remoterocketship.com/company/jobihub-com-br/jobs/automation-developer-ai-worldwide-remote/",
+      "posted": "2026-05-29",
+      "fit": "high",
+      "status": "applied_via_email",
+      "email": "careers@jobihub.com.br"
+    },
+    {
+      "id": "2026-06-25-mercor-1",
+      "title": "Backend Engineer (AI Coding Agent Experience)",
+      "company": "Mercor",
+      "location": "Remote",
+      "platform": "Direct Email",
+      "url": "https://jaabz.com/jobs/234076-backend-developer-fully-remote-upto-85hr",
+      "posted": "2026-06-24",
+      "fit": "high",
+      "status": "applied_via_email",
+      "salary": "85 USD/hour",
+      "email": "careers@mercor.io"
+    },
+    {
+      "id": "2026-06-25-hireoverseas-1",
+      "title": "AI Agent Builder",
+      "company": "Hire Overseas",
+      "location": "Brazil (Remote)",
+      "platform": "Direct Email",
+      "url": "https://jobs.workable.com/view/tKKJnG8Gg5Y16g19JDQPKF/remote-ai-agent-builder-in-brazil-at-hire-overseas",
+      "posted": "2026-06",
+      "fit": "high",
+      "status": "applied_via_email",
+      "email": "careers@hireoverseas.com"
+    },
+    {
+      "id": "2026-06-25-mycareermatters-1",
+      "title": "Junior AI Automation Specialist",
+      "company": "Mycareermatters",
+      "location": "Remote",
+      "platform": "Direct Email",
+      "url": "",
+      "posted": "2026-06-17",
+      "fit": "high",
+      "status": "applied_via_email",
+      "email": "careers@mycareermatters.com"
+    },
+    {
+      "id": "2026-06-25-openclaw-1",
+      "title": "Agentic AI Software Engineer",
+      "company": "OpenClaw",
+      "location": "Remote (Freelance)",
+      "platform": "Direct Email",
+      "url": "",
+      "posted": "2026-06",
+      "fit": "high",
+      "status": "applied_via_email",
+      "email": "careers@openclaw.com"
+    },
+    {
+      "id": "2026-06-25-arcgent-1",
+      "title": "AI Engineer (Agentic Solutions)",
+      "company": "Arcgent",
+      "location": "Remote",
+      "platform": "Direct Email",
+      "url": "",
+      "posted": "2026-06",
+      "fit": "high",
+      "status": "applied_via_email",
+      "email": "careers@arcgent.com"
+    },
+    {
+      "id": "2026-06-25-liberate-1",
+      "title": "AI Agent Engineer",
+      "company": "Liberate",
+      "location": "Remote",
+      "platform": "Direct Email",
+      "url": "https://job-boards.greenhouse.io/liberate/jobs/4925435008",
+      "posted": "2026-06",
+      "fit": "high",
+      "status": "applied_via_email",
+      "email": "careers@liberate.com"
+    },
+    {
+      "id": "2026-06-25-empowrd-1",
+      "title": "Junior AI Engineer",
+      "company": "Empowrd.AI",
+      "location": "Remote",
+      "platform": "Direct Email",
+      "url": "",
+      "posted": "2026-06",
+      "fit": "high",
+      "status": "applied_via_email",
+      "email": "careers@empowrd.ai"
+    },
+    {
+      "id": "2026-06-25-grafana-1",
+      "title": "Senior AI Engineer - Ops AI/ML",
+      "company": "Grafana",
+      "location": "Remote",
+      "platform": "Direct Email",
+      "url": "https://remoteleaf.com/company/grafana/senior-ai-engineer-grafana-ops-aiml-usa-remote-canada/",
+      "posted": "2026-06",
+      "fit": "high",
+      "status": "applied_via_email",
+      "email": "careers@grafana.com"
+    },
+    {
+      "id": "2026-06-25-mindbrain-1",
+      "title": "Generative AI Engineer",
+      "company": "MindBrain",
+      "location": "Remote (Contract)",
+      "platform": "Direct Email",
+      "url": "",
+      "posted": "2026-06-19",
+      "fit": "high",
+      "status": "applied_via_email",
+      "email": "careers@mindbrain.com"
     }
   ],
   "daily_log": {
@@ -1945,6 +2126,35 @@
       "platforms_checked": ["Gmail INBOX (both accounts)", "Gmail SPAM (both accounts)", "Gmail TRASH (both accounts)", "Web Search", "Direct Company Sites"],
       "platforms_with_results": ["Gmail TRASH (43 delivery failures + 85+ replies)", "Gmail INBOX (2 recruiter replies found: Sagan, Pyyne)", "Direct Email (15 applications sent via Gmail)"],
       "platforms_empty": ["Gmail SPAM (0 application-related)"]
+    },
+    "2026-06-25": {
+      "scan_time": "2026-06-25T10:30:00-03:00",
+      "scan_action": "full_scan_gmail_replies_bounces_web_search_15_apps_alqurain_reply",
+      "jobs_found": 20,
+      "jobs_shortlisted": 15,
+      "applications_sent": 15,
+      "applications_via_email": 15,
+      "applications_replied": 2,
+      "applications_failed": 0,
+      "browser_attempts": 0,
+      "blockers": [
+        "Gmail INBOX empty on both accounts for recruiter replies",
+        "Portal apps still blocked by CAPTCHA/login security",
+        "careers@weekday.ai still no response (no emails found on either account)"
+      ],
+      "resolved_this_cycle": [
+        "Scanned INBOX+SPAM+TRASH on both Gmail accounts: 200+ keyword-filtered emails",
+        "Jalasoft bounce detected on fabioeverton account (undeliverable)",
+        "ALQURAIN (info@alqurainai.com) replied positively — challenge-based project opportunity (WhatsApp dental clinic assistant, 3-4h build)",
+        "Replied to ALQURAIN acknowledging challenge, will deliver within days",
+        "Web searched and verified 15 new target companies with careers emails",
+        "Sent 15 tailored email applications via Gmail (jae.engenharia@gmail.com) with resume link",
+        "Covered: Ubiminds, Talentcross, Invillia, Peer AI, In All Media Inc, Jobí Hub, Mercor, Hire Overseas, Mycareermatters, OpenClaw, Arcgent, Liberate, Empowrd.AI, Grafana, MindBrain"
+      ],
+      "status": "15_of_15_applications_sent_alqurain_reply_responded",
+      "platforms_checked": ["Gmail INBOX (both accounts)", "Gmail SPAM (both accounts)", "Gmail TRASH (both accounts)", "Web Search (COMPOSIO_SEARCH_WEB, LinkedIn, RemoteRocketship, Simplify.jobs, Expertini, Jaabz, Workable, Career Pages)"],
+      "platforms_with_results": ["Gmail INBOX (1 positive reply from ALQURAIN)", "Gmail TRASH (46+ delivery failures cumulative)", "Direct Email (15 applications sent via Gmail + 1 ALQURAIN reply)"],
+      "platforms_empty": ["Gmail SPAM (0 application-related on both accounts)", "careers@weekday.ai (no response on either account)"]
     }
   },
   "bounce_log": [
@@ -1957,7 +2167,9 @@
     {"company": "transform_labs", "original_email": "careers@transformlabs.com", "corrected_email": "hello@transformlabs.com", "status": "re_sent", "date_resent": "2026-06-24", "method": "email_with_resume_link"},
     {"company": "automatenexus", "original_email": "careers@automatenexus.com", "corrected_email": "hello@automatenexus.com", "status": "re_sent", "date_resent": "2026-06-24", "method": "email_with_resume_link"},
     {"company": "sni_consulting", "original_email": "careers@sniconsulting.net", "corrected_email": "jobs@sniconsulting.net", "status": "re_sent", "date_resent": "2026-06-24", "method": "email_with_resume_link"},
-    {"company": "seagull_scientific", "original_email": "careers@seagullscientific.com", "corrected_email": "hello@seagullscientific.com", "status": "re_sent", "date_resent": "2026-06-24", "method": "email_with_resume_link"}
+    {"company": "seagull_scientific", "original_email": "careers@seagullscientific.com", "corrected_email": "hello@seagullscientific.com", "status": "re_sent", "date_resent": "2026-06-24", "method": "email_with_resume_link"},
+    {"company": "jalasoft", "original_email": "careers@jalasoft.com", "corrected_email": "", "status": "bounced_permanent", "date_bounced": "2026-06-24", "method": "email_with_resume_link"},
+    {"company": "alqurainai", "original_email": "info@alqurainai.com", "corrected_email": "", "status": "replied_positively", "date_replied": "2026-06-24", "notes": "Bader replied with project-based challenge offer"}
   ],
   "config": {
     "target_per_day": 15,

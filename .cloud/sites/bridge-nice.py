@@ -68,6 +68,45 @@ def send(c, t):
     for ch in [t[i:i+4000] for i in range(0,len(t),4000)]:
         tg("sendMessage",{"chat_id":c,"text":ch,"parse_mode":"Markdown"})
 
+def get_voice_path(fid):
+    try:
+        r=tg("getFile",{"file_id":fid})
+        if r and r.get("ok"):
+            fp=r["result"]["file_path"]
+            return f"https://api.telegram.org/file/bot{TK}/{fp}"
+    except: return None
+
+def transcribe(fp):
+    import subprocess, tempfile, shutil
+    tmp=tempfile.mktemp(suffix=".ogg")
+    wav=tempfile.mktemp(suffix=".wav")
+    try:
+        urllib.request.urlretrieve(fp, tmp)
+        subprocess.run(["ffmpeg","-y","-i",tmp,"-ar","16000","-ac","1","-f","wav",wav],
+                       capture_output=True, timeout=30)
+        wh=shutil.which("whisper")
+        if wh:
+            out=tempfile.mkdtemp()
+            r=subprocess.run([wh,"--model","base","--output_dir",out,"--output_format","txt",wav],
+                             capture_output=True, text=True, timeout=120)
+            txtf=Path(out)/f"{Path(wav).stem}.txt"
+            txt=txtf.read_text().strip() if txtf.exists() else ""
+            shutil.rmtree(out, ignore_errors=True)
+            if txt: return txt
+        try:
+            from whisper import transcribe as wt
+            r=wt(wav, model="base")
+            if r and r.get("text"): return r["text"].strip()
+        except: pass
+        return "(voz nao transcrita)"
+    except Exception as e:
+        log.error(f"transcribe: {e}")
+        return "(erro ao transcrever audio)"
+    finally:
+        for p in [tmp, wav]:
+            try: Path(p).unlink(missing_ok=True)
+            except: pass
+
 def on_msg(cid, text):
     if not text: return
     log.info(f"<< {text[:100]}")
@@ -170,8 +209,23 @@ def main():
                     st["last_update_id"]=up["update_id"]
                     if "message" in up:
                         m=up["message"]
-                        if str(m.get("chat",{}).get("id",""))==CID and "text" in m:
+                        cid=str(m.get("chat",{}).get("id",""))
+                        if cid!=CID: continue
+                        if "text" in m:
                             on_msg(CID,m["text"].strip())
+                        elif "voice" in m:
+                            fid=m["voice"]["file_id"]
+                            send(CID,"Transcrevendo audio...")
+                            tg("sendChatAction",{"chat_id":CID,"action":"typing"})
+                            url=get_voice_path(fid)
+                            if url:
+                                txt=transcribe(url)
+                                log.info(f"voz >> {txt[:100]}")
+                                on_msg(CID,txt)
+                            else:
+                                send(CID,"Erro ao baixar audio.")
+                        elif "audio" in m:
+                            send(CID,"Audio nao suportado, envie mensagem de texto.")
             ST.write_text(json.dumps(st))
             time.sleep(1)
         except KeyboardInterrupt: log.info("Shutdown."); break

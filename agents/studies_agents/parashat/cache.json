@@ -2,7 +2,7 @@
   "agent_id": "BR-PARASHA-032",
   "name": "parashat",
   "type": "torah_memory",
-  "note": "Standalone VM. Outside EZRA scope.",
+  "note": "VM-based. Ezra gerencia SSH, deploy e monitoramento.",
   "daily_log": {},
   "last_active": null,
   "result_cache": {}
