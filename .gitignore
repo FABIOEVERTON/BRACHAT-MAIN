@@ -22,6 +22,9 @@ portifolio/*/*/node_modules/
 # OpenCode config
 !opencode.json
 
+# Root README
+!README.md
+
 # ============================================================
 # ESSENTIAL: Keep .gitignore itself
 # ============================================================
