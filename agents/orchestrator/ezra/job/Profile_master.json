@@ -1,0 +1,76 @@
+{
+  "name": "Fabio Everton",
+  "email": "fabio.everton@email.com",
+  "linkedin": "linkedin.com/in/fabioeverton",
+  "github": "github.com/fabioeverton",
+  "location": "Brazil",
+  "languages": {
+    "portuguese": "Native",
+    "english": "Professional Fluency",
+    "spanish": "Professional Working"
+  },
+  "summary": "Senior Technology Leader with 10+ years driving AI/ML-powered solutions, end-to-end MVP development, and multi-SaaS integration. Expert in architecting scalable cloud platforms (AWS/OCI), automating workflows with n8n & Make.com.",
+  "target_roles": {
+    "primary": [
+      "AI Solutions Architect",
+      "Cloud Architect (OCI)",
+      "AI Workflow Automation Specialist"
+    ],
+    "secondary": [
+      "Technical Program Manager",
+      "Director of Operations",
+      "Executive Assistant Remote"
+    ]
+  },
+  "skills": {
+    "technical": [
+      "AI/ML Integration", "LLM Orchestration", "RAG", "LangChain",
+      "Python", "FastAPI", "React", "Node.js",
+      "n8n", "Make.com", "Workflow Automation",
+      "AWS", "OCI", "Cloud Architecture",
+      "Docker", "PostgreSQL", "pgvector"
+    ],
+    "soft": [
+      "Solutions Architecture", "MVP Development",
+      "Project Management", "Cross-functional Leadership",
+      "Client Relations", "Strategic Planning"
+    ],
+    "certifications": [
+      {"name": "OCI AI Foundations", "status": "in_progress"},
+      {"name": "AWS Solutions Architect", "status": "completed"},
+      {"name": "Terraform Associate", "status": "in_progress"}
+    ]
+  },
+  "experience": [
+    {
+      "role": "Senior Solutions Architect",
+      "company": "Independent Consultant",
+      "period": "2020 – Present",
+      "highlights": [
+        "AI marketing automation platform MVP with multi-SaaS integration",
+        "40% cost reduction via n8n automation pipelines",
+        "Multi-agent LLM orchestration with <500ms latency",
+        "R$30M+ managed portfolio, 95% retention, 60+ B2B clients",
+        "AWS migration: 99.9% uptime, 30% cost reduction"
+      ]
+    },
+    {
+      "role": "Technical Program Manager",
+      "company": "B2B Technology Solutions",
+      "period": "2015 – 2020",
+      "highlights": [
+        "15+ concurrent workstreams, 92% on-time delivery",
+        "10M+ daily events pipeline, <100ms latency",
+        "Executive planning across 3 continents"
+      ]
+    }
+  ],
+  "education": "B.S. Computer Science – Universidade Federal do Brasil",
+  "blockers": [
+    "Playwright+Chromium não instalado na VM",
+    "Fiverr flagged",
+    "Job Bank Canada: 1 aplicação enviada"
+  ],
+  "profile_master_version": "1.0",
+  "created_at": "2026-07-13"
+}

@@ -1,146 +1,28 @@
 # ============================================================
-# PYTHON
+# IGNORE EVERYTHING BY DEFAULT
 # ============================================================
-
-venv/
-.venv/
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
+*
 
 # ============================================================
-# KNOWLEDGE BASES / STUDIES
+# UN-IGNORE: Only these are committed
 # ============================================================
 
-**/aisio_book/
-**/my_studies/
+# Agents directory
+!agents/
+!agents/**
+
+# Portfolio directory
+!portifolio/
+!portifolio/**
+portifolio/*/venv/
+portifolio/*/*/venv/
+portifolio/*/node_modules/
+portifolio/*/*/node_modules/
+
+# OpenCode config
+!opencode.json
 
 # ============================================================
-# SECRETS & CONFIGURATION
+# ESSENTIAL: Keep .gitignore itself
 # ============================================================
-
-.env
-*.env
-
-auth.json
-auth.lock
-**/.secrets/
-
-
-# API KEYS / LOCAL CONFIGS
-apis.env
-*.env.json
-**/*.env.json
-
-# ============================================================
-# CACHE
-# ============================================================
-
-.cache/
-.npm-cache/
-.claude/
-.notebooklm/
-
-models_dev_cache.json
-
-audio_cache/
-image_cache/
-
-# ============================================================
-# LOGS
-# ============================================================
-
-logs/
-*.log
-
-# ============================================================
-# NODE
-# ============================================================
-
-node_modules/
-
-# Se quiser reprodutibilidade, REMOVA esta linha
-package-lock.json
-
-# ============================================================
-# SQLITE / RUNTIME DATABASES
-# ============================================================
-
-state.db
-state.db-shm
-state.db-wal
-
-*.db-shm
-*.db-wal
-
-# ============================================================
-# WHATSAPP / BROWSER SESSIONS
-# ============================================================
-
-wa_session/
-sessions/
-pairing/
-
-# ============================================================
-# CLAUDE / AGENT RUNTIME
-# ============================================================
-
-sandboxes/
-
-# ============================================================
-# BINARIES
-# ============================================================
-
-**/bin/uv
-**/bin/uvx
-**/bin/tirith
-
-# ============================================================
-# SYSTEM FILES
-# ============================================================
-
-.DS_Store
-Thumbs.db
-# ============================================================
-# AGENT SKILLS
-# ============================================================
-
-.agents/
-agents/state.json
-**/state.json
-
-
-# ============================================================
-# MEMORY CACHE
-# ============================================================
-
-.mem0/
-
-# ============================================================
-# CLOUD DEPLOY
-# ============================================================
-
-builder/cloud/.env
-
-# ============================================================
-# RUNTIME FILES (generated)
-# ============================================================
-
-/tmp/
-.brachat-state.json
-telegram-*-state.json
-nice-telegram-*-state.json
-
-.playwright-mcp/
-
-# WebJS sessions
-.wwebjs_auth/
-.wwebjs_cache/
-
-# Playwright artifacts
-.playwright-mcp/
-
-# Legacy (restructured into agents/)
-assistant_agents/
-Branding/
+!.gitignore

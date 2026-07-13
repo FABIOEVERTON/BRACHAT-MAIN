@@ -1,6 +1,0 @@
-fa2633342f5494595aada488e052d54219757db1493664e06cbf56e03d5ba9f1
-
-Slogan BRACHÁT:
-"Integridade que se calcula — confiança que se prova."
-
-[BR-GILMAR-011] Slogan em português para o hash SHA-256 do compliance test. Conecta o hash (cálculo de integridade) com a proposta de auditoria e confiança do ecossistema BRACHÁT.

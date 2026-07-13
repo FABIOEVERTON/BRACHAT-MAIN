@@ -1,2 +1,0 @@
-{"ts":"2026-06-22T16:31:00-03:00","agent":"artur","type":"spec_dispatch","action":"Wrote spec for vm_disk_probe_test","status":"success","receipt":"agents/production_planning_agents/artur/receipts/rcp-artur-20260622-0001.json","duration_sec":60,"error":null}
-{"ts": "2026-06-22T17:19:52.125461-03:00", "agent": "artur", "type": "spec_dispatch", "action": "Auto-processed TASK-DAEMON-TEST-001", "status": "success", "receipt": "/Users/mac/brachat-main/agents/production_planning_agents/artur/receipts/rcp-artur-20260622-0002.json", "duration_sec": 4, "error": null}
