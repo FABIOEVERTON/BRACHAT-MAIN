@@ -1,0 +1,24 @@
+# Segredos — nunca na imagem
+**/secrets.env
+docker/secrets.env
+**/.env
+**/credentials/**
+
+# Dependências
+**/node_modules
+**/.venv
+**/__pycache__
+**/*.pyc
+
+# Estado local
+.opencode/state.json
+.opencode/governance-ledger.jsonl
+.opencode/logs
+.mem0
+.n8n
+.playwright-mcp
+.DS_Store
+
+# Git
+.git
+.github

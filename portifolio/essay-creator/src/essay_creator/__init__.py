@@ -1,4 +1,4 @@
-from .state import EssayState, reduce_messages
+from .state import EssayState, reduce_messages, PlanOutput, ResearchOutput, CritiqueOutput
 from .agents import (
     planner_node,
     researcher_node,
@@ -7,10 +7,14 @@ from .agents import (
     critic_node,
 )
 from .workflow import build_workflow, run_essay, get_snapshot, human_override
+from .cli import app as cli_app
 
 __all__ = [
     "EssayState",
     "reduce_messages",
+    "PlanOutput",
+    "ResearchOutput",
+    "CritiqueOutput",
     "planner_node",
     "researcher_node",
     "writer_node",
@@ -20,4 +24,5 @@ __all__ = [
     "run_essay",
     "get_snapshot",
     "human_override",
+    "cli_app",
 ]

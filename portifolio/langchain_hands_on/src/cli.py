@@ -2,13 +2,12 @@
 
 from pathlib import Path
 from typing import Optional
+import json
 
 import typer
 from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
-
-from src.orchestrator import Orchestrator
 
 app = typer.Typer(
     name="research-analyst",
@@ -21,7 +20,8 @@ console = Console()
 @app.command()
 def research(
     query: str = typer.Argument(..., help="Research query or topic"),
-    output: Optional[str] = typer.Option(None, "--output", "-o", help="Output directory"),
+    thread_id: Optional[str] = typer.Option(None, "--thread-id", "-t", help="Thread ID for checkpointing"),
+    db_path: str = typer.Option("output/checkpoints.db", "--db", help="SQLite checkpoint DB path"),
     verbose: bool = typer.Option(False, "--verbose", "-v", help="Show detailed progress"),
     no_export: bool = typer.Option(False, "--no-export", help="Don't export report to file"),
 ) -> None:
@@ -29,29 +29,83 @@ def research(
 
     Examples:
         python -m src.cli research "Comparar OCI vs AWS para workloads de IA"
-        python -m src.cli research "Tendências de AI em 2026" --verbose
-        python -m src.cli research "Blockchain em supply chain" -o ./my-output
+        python -m src.cli research "Tendências de AI em 2026" --thread-id run-001
     """
-    console.print(Panel(f"[bold]Query:[/bold] {query}", title="🔍 Iniciando Pesquisa", border_style="blue"))
+    from src.workflow import run_research
+
+    console.print(Panel(f"[bold]Query:[/bold] {query}", title="Iniciando Pesquisa", border_style="blue"))
 
     try:
-        orchestrator = Orchestrator(verbose=verbose)
-        result = orchestrator.run(query, export=not no_export)
+        final_state, memory, graph, config = run_research(
+            query=query, thread_id=thread_id, db_path=db_path
+        )
 
-        # Print summary
-        orchestrator.print_summary(result)
+        console.print(f"\n[bold green]Done![/bold green]")
+        console.print(f"[bold]Thread:[/bold] {final_state.get('thread_id', 'N/A')}")
+        console.print(f"[bold]Confidence:[/bold] {final_state.get('confidence_score', 0):.1%}")
+        console.print(f"[bold]Phase:[/bold] {final_state.get('current_phase', 'done')}")
 
-        # Print executive summary
-        console.print("\n[bold]Executive Summary:[/bold]")
-        console.print(Markdown(result.report.executive_summary))
+        report_title = final_state.get("report_title", "")
+        report_body = final_state.get("report_body", "")
+        if report_title:
+            console.print(f"\n[bold]Report:[/bold] {report_title}")
+        if report_body and verbose:
+            console.print(Markdown(report_body))
 
-        # Print full report if verbose
-        if verbose:
-            console.print("\n[bold]Full Report:[/bold]")
-            console.print(Markdown(result.report.analysis))
+        msgs = final_state.get("messages", [])
+        if msgs:
+            console.print("\n[bold]Pipeline log:[/bold]")
+            for m in msgs:
+                console.print(f"  {m}")
 
     except Exception as e:
         console.print(f"[bold red]Error:[/bold red] {e}")
+        raise typer.Exit(1)
+
+
+@app.command()
+def snapshot(
+    thread_id: str = typer.Argument(..., help="Thread ID to inspect"),
+    db_path: str = typer.Option("output/checkpoints.db", "--db", help="SQLite checkpoint DB path"),
+) -> None:
+    """Show the checkpoint snapshot for a thread."""
+    from src.workflow import build_research_workflow, get_snapshot
+
+    graph, memory = build_research_workflow(db_path)
+    config = {"configurable": {"thread_id": thread_id}}
+
+    try:
+        snap = get_snapshot(graph, config)
+        console.print_json(json.dumps(snap, indent=2, default=str))
+    except Exception as e:
+        console.print(f"[yellow]No checkpoint found for thread '{thread_id}': {e}[/yellow]")
+
+
+@app.command()
+def resume(
+    thread_id: str = typer.Argument(..., help="Thread ID to resume from"),
+    db_path: str = typer.Option("output/checkpoints.db", "--db", help="SQLite checkpoint DB path"),
+    updates: Optional[str] = typer.Option(None, "--updates", "-u", help="JSON updates to inject into state"),
+) -> None:
+    """Resume a paused workflow (e.g. after HITL interrupt)."""
+    from src.workflow import build_research_workflow, human_override
+
+    graph, memory = build_research_workflow(db_path)
+    config = {"configurable": {"thread_id": thread_id}}
+
+    parsed_updates = {}
+    if updates:
+        try:
+            parsed_updates = json.loads(updates)
+        except json.JSONDecodeError:
+            console.print("[red]Invalid JSON for --updates[/red]")
+            raise typer.Exit(1)
+
+    try:
+        final_state = human_override(graph, config, parsed_updates)
+        console.print(f"[bold green]Resumed![/bold green] Phase: {final_state.get('current_phase', 'done')}")
+    except Exception as e:
+        console.print(f"[bold red]Error resuming:[/bold red] {e}")
         raise typer.Exit(1)
 
 
@@ -72,7 +126,7 @@ def list_reports(
 
     console.print(f"[bold]Found {len(reports)} reports:[/bold]\n")
     for report in sorted(reports, key=lambda x: x.stat().st_mtime, reverse=True):
-        console.print(f"  📄 {report.name}")
+        console.print(f"  {report.name}")
 
 
 @app.command()

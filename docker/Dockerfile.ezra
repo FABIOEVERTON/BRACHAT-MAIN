@@ -1,0 +1,29 @@
+# Ezra OS — harness container
+# Image oficial: ghcr.io/anomalyco/opencode (entrypoint = opencode)
+# Uso: docker compose -f docker/docker-compose.yml up
+
+FROM ghcr.io/anomalyco/opencode:latest
+
+# Runtime para MCP/plugins do Ezra (imagem base Alpine)
+RUN apk add --no-cache \
+    git curl jq python3 py3-pip nodejs npm
+
+WORKDIR /workspace
+
+# Copia o harness (sem segredos — mcp/credentials e .env ficam em volume/env)
+COPY .opencode/ .opencode/
+COPY opencode.json .
+COPY README.md .
+
+# Plugin deps do Ezra (SDK do opencode)
+WORKDIR /workspace/.opencode
+RUN npm install --no-audit --no-fund
+WORKDIR /workspace
+
+# Config global apontando para o workspace
+ENV OPENCODE_CONFIG=/workspace/opencode.json
+
+# Headless server (o Ezra exposto via HTTP para agentes externos)
+EXPOSE 3789
+ENTRYPOINT ["opencode"]
+CMD ["serve", "--port", "3789", "--hostname", "0.0.0.0"]

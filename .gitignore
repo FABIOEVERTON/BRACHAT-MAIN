@@ -1,31 +1,39 @@
 # ============================================================
-# IGNORE EVERYTHING BY DEFAULT
+# SEGREDOS — nunca no git
 # ============================================================
-*
-
-# ============================================================
-# UN-IGNORE: Only these are committed
-# ============================================================
-
-# Agents directory
-!agents/
-!agents/**
-
-# Portfolio directory
-!portifolio/
-!portifolio/**
-portifolio/*/venv/
-portifolio/*/*/venv/
-portifolio/*/node_modules/
-portifolio/*/*/node_modules/
-
-# OpenCode config
-!opencode.json
-
-# Root README
-!README.md
+**/secrets.env
+**/.env
+**/credentials/**
+.opencode/state.json
+.opencode/governance-ledger.jsonl
+.mem0/
+.n8n/
+.opencode/mcp/credentials/
 
 # ============================================================
-# ESSENTIAL: Keep .gitignore itself
+# LIXO DO SISTEMA (macOS)
 # ============================================================
-!.gitignore
+.DS_Store
+**/.DS_Store
+
+# ============================================================
+# CACHES / DEPENDÊNCIAS / AMBIENTES
+# ============================================================
+node_modules/
+**/node_modules/
+venv/
+.venv/
+**/venv/
+**/.venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+bun.lock
+
+# ============================================================
+# LOGS / ESTADO LOCAL DE RUNTIME
+# ============================================================
+logs/
+**/logs/
+.playwright-mcp/
+*.log

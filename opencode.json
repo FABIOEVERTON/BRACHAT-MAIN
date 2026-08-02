@@ -1,4 +1,46 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "instructions": ["AJUSTE/orchestrator/ezra/persona.md"]
+  "instructions": [
+    ".opencode/instructions/mandatory_fixed_rules.md",
+    ".opencode/instructions/manifest.md",
+    ".opencode/instructions/persona.md",
+    ".opencode/instructions/pending_tasks.md",
+    ".opencode/instructions/manifest_tools.md"
+  ],
+  "mcp": {
+    "brachat-mcp": {
+      "type": "local",
+      "command": ["node", ".opencode/mcp/server.mjs"],
+      "enabled": true
+    },
+    "composio": {
+      "type": "remote",
+      "url": "https://connect.composio.dev/mcp",
+      "enabled": true
+    }
+  },
+  "permission": {
+    "read": {
+      "*": "allow",
+      "**/mcp/**": "deny"
+    },
+    "glob": {
+      "*": "allow",
+      "**/mcp/**": "deny"
+    },
+    "edit": {
+      "*": "ask",
+      "**/mcp/**": "deny"
+    },
+    "write": {
+      "*": "ask",
+      "**/mcp/**": "deny"
+    },
+    "bash": {
+      "*": "ask"
+    },
+    "task": {
+      "*": "ask"
+    }
+  }
 }

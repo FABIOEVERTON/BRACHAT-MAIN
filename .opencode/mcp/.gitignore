@@ -1,0 +1,5 @@
+# Sensível — nunca versionar mesmo se o .gitignore raiz liberar mcp/
+credentials/
+personal/
+integrations/
+audit.log
