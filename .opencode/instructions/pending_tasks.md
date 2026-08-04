@@ -13,7 +13,8 @@ Schema: cada item possui `status` (pending | in_progress | done | blocked), `pri
 - Resultado: títulos simplificados para "Dia N" (115 cabeçalhos); dia da semana e data removidos. Diagnóstico: 104/115 datas tinham dia da semana errado (calendário 2027 aplicado a datas 2026) e Dia 1 tinha "30/ago" (corrigido). Header (30/jul início, 22/nov prova) e períodos/simulados confirmados corretos.
 
 ### 2. Configurar os IPs públicos da OCI
-- status: pending | prioridade: alta | dependencias: nenhuma | autorizacao: Fabio
+- status: done | prioridade: alta | dependencias: nenhuma | autorizacao: Fabio
+- Resultado: configurado por Fabio em 2026-08-04. Destrava itens 3, 4, 31 e 32.
 
 ### 3. Colocar os bots na OCI (Ezra e Parashat e suas atribuições)
 - status: pending | prioridade: alta | dependencias: nenhuma | autorizacao: Fabio
