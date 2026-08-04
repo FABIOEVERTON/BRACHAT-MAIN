@@ -5,7 +5,8 @@
     ".opencode/instructions/manifest.md",
     ".opencode/instructions/persona.md",
     ".opencode/instructions/pending_tasks.md",
-    ".opencode/instructions/manifest_tools.md"
+    ".opencode/instructions/manifest_tools.md",
+    ".opencode/instructions/ROTINA_ESTUDOS.md"
   ],
   "mcp": {
     "brachat-mcp": {
@@ -16,7 +17,10 @@
     "composio": {
       "type": "remote",
       "url": "https://connect.composio.dev/mcp",
-      "enabled": true
+      "enabled": true,
+      "headers": {
+        "x-consumer-api-key": "ck_xt1sDN3kL-YoREV-P_VR"
+      }
     }
   },
   "permission": {

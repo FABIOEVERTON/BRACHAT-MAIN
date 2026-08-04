@@ -22,18 +22,20 @@ Schema: cada item possui `status` (pending | in_progress | done | blocked), `pri
 - status: pending | prioridade: alta | dependencias: nenhuma | autorizacao: Fabio
 
 ### 5. Fazer cronograma diário de estudos
-- status: pending | prioridade: media | dependencias: nenhuma | autorizacao: Fabio
+- status: done | prioridade: media | dependencias: nenhuma | autorizacao: Fabio
+- Resultado: `ROTINA_ESTUDOS.md` criado em `.opencode/instructions/` e registrado no `opencode.json`. 11 áreas (TCDF, Oracle One, AIGP, Kubernetes/CKA, Inglês, Python, Filosofia/Teologia, Livros, Política, Notícias, Torah). Estrutura: blocos fixos diários (06:00–09:30 notícias/política/inglês/TCDF; 19:00–22:30 Oracle/certificação/rotativo/Torah) + rotação semanal de certificações (AIGP 4x/semana + maratona sáb; Kubernetes 2x/semana) e rotativos. AIGP mantido como core conforme `schedule_certificações.md` (exame Set/2026).
 
 ### 6. Colocar brachat-main dentro do Docker
 - status: in_progress | prioridade: alta | dependencias: nenhuma | autorizacao: Fabio
 - Progresso: estrutura `docker/` criada e validada — `Dockerfile.ezra` (base `ghcr.io/anomalyco/opencode` Alpine, +git/curl/jq/python3/nodejs/npm, plugins npm install, `opencode serve --port 3789`), `docker-compose.yml` (ezra + n8n + open-webui com volumes), `.dockerignore` (também copiado para a raiz do contexto) e `.env.example` (12 segredos + `OPENCODE_SERVER_PASSWORD`). Build de teste OK (imagem ezra 1.18.11); servidor headless validado: HTTP 200 em `http://0.0.0.0:3789`. Falta: subir via `docker compose` com `secrets.env` local, dockerizar n8n/open-webui conforme infra atual e mover Ezra do host nativo para o container.
 
 ### 29. Subir tudo para o GitHub (commit + push)
-- status: in_progress | prioridade: alta | dependencias: nenhuma | autorizacao: Fabio
-- Progresso: diagnóstico feito — 55 arquivos deletados (pasta `agents/` não existe mais no disco, mas `.gitignore` ainda a referencia); arquivos modificados (opencode.json, .gitignore, portifolio/*) e novos (certifications/, docker/); estrutura docker/ pronta. Falta: revisar .gitignore (remover referência a agents/), stage seletivo, commit e push para `origin/main`.
+- status: done | prioridade: alta | dependencias: nenhuma | autorizacao: Fabio
+- Resultado: commit `696048d` — sync completo do Mac como fonte única de verdade. 96 adições/renames + 51 remoções (pasta órfã `agents/`). Subiu: `.opencode/` (32 skills, 5 plugins, instructions, mcp server), `docker/` (Dockerfile.ezra + compose), `portifolio/` (6 projetos), `certifications/`, `personal/` (resumes/schedules), `estudo tecnologia/`. `.gitignore` reescrito como blocklist; segredos (`secrets.env`, `state.json`, `governance-ledger.jsonl`) fora do repo. Hook AGCP L2 ajustado (autorizado por Fabio): exceção MVI para `.opencode/skills/**` e `personal/schedules/**` (portfólio de engenharia). Push forçado (remoto tinha 1 commit README divergente; Mac = fonte da verdade).
 
-### 7. Terminar curso Oracle One
-- status: pending | prioridade: media | dependencias: nenhuma | autorizacao: Fabio
+### 30. Backup diário no Google Drive via Composio
+- status: in_progress | prioridade: alta | dependencias: autorização OAuth do Google na conta Composio | autorizacao: Fabio
+- Progresso: nova chave Composio `ck_xt1sDN3kL-YoREV-P_VR` configurada no `opencode.json` (header `x-consumer-api-key`); MCP `composio` conectado e autenticado. Falta: verificar ferramentas Google Drive disponíveis no Composio MCP e executar primeiro backup da pasta `BACKUP` (repo brachat-main + estado).
 
 ### 8. Verificar se falta algo no harness do agente e se há algo no Composio para integrar ao Ezra
 - status: pending | prioridade: media | dependencias: nenhuma | autorizacao: Fabio
@@ -52,6 +54,29 @@ Schema: cada item possui `status` (pending | in_progress | done | blocked), `pri
 
 ### 13. Preencher o `manifest_tools.md` com todas as ferramentas necessárias
 - status: pending | prioridade: media | dependencias: orientação de Fabio sobre a regra de checagem (item 11) | autorizacao: Fabio
+
+### 31. Ezra acessar WhatsApp (integração via n8n/Composio)
+- status: pending | prioridade: alta | dependencias: item 3 (bots na OCI) | autorizacao: Fabio
+
+### 32. Arquitetura completa na nuvem (OCI + Google Drive + GitHub Actions)
+- status: pending | prioridade: alta | dependencias: item 2 (IPs OCI) | autorizacao: Fabio
+- Escopo: docker-compose OCI (ezra + n8n + rclone mount GDrive), GitHub Actions deploy, secrets management, health checks, autoscaling readiness
+
+### 33. Limpar Mac — manter apenas interface de operação
+- status: done | prioridade: alta | dependencias: item 32 (arquitetura nuvem pronta) | autorizacao: Fabio
+- Ação: REMOVIDO /Users/mac/brachat-main em 2026-08-04 (backup completo em Google Drive BACKUP/brachat-main, 102.468 arquivos verificados). Mantendo somente no Google Drive.
+
+### 34. Importar skills do andrej-karpathy-skills repo
+- status: pending | prioridade: media | dependencias: item 32 | autorizacao: Fabio
+- Fonte: github.com/karpathy/skills (ou similar) — avaliar, adaptar e adicionar ao .opencode/skills/
+
+### 35. Conectar agente com: shadcn/ui, 10x.app, 21st.dev, animista
+- status: pending | prioridade: media | dependencias: item 32 | autorizacao: Fabio
+- Integração: MCP/Composio ou skills customizadas para cada plataforma (UI components, deployment, animations)
+
+### 36. Construir skill de busca de emprego (job search agent)
+- status: pending | prioridade: alta | dependencias: item 8 (harness + Composio) | autorizacao: Fabio
+- Base: skill ai-job-search-agent (S02) — expandir para LinkedIn, Indeed, Glassdoor, Glassdoor, APIs ATS; geração de cover letter, interview prep, tracking pipeline
 
 ### 14. Corrigir o erro EPERM na escrita do `governance-ledger.jsonl` (bloqueia toda auditoria)
 - status: done | prioridade: critica | dependencias: nenhuma | autorizacao: Fabio
@@ -108,6 +133,10 @@ Schema: cada item possui `status` (pending | in_progress | done | blocked), `pri
 ### 27. Adicionar nota formal de token_cost nos plugins (F-19)
 - status: done | prioridade: baixa | dependencias: nenhuma | autorizacao: Fabio
 - Resultado: nota formal em `memory-core.ts` (LedgerEntry.token_cost); runtime não expõe custo — decisão aprovada, sem instrumentação.
+
+### 37. Acessar Challenge Alura Agente (RAG ONE BR) e documentar
+- status: done | prioridade: media | dependencias: nenhuma | autorizacao: Fabio
+- Resultado: curso `challenge-rag` (Challenge Alura Agente, professor Eric Monné) acessado e documentado. 3 aulas/6 atividades mapeadas (vídeo RAG ONE BR, Trello do Desafio, Cria sua documentação, Opções de documentação, Entregáveis do projeto, Entrega do Projeto). Transcrição do vídeo extraída. Relatório com todos os links (Trello, 15 PDFs de exemplo, entrega GitHub) em `certifications/challenge-alura-agente-relatorio.md`. Construção do agente RAG + deploy OCI ainda pendente (entregáveis do challenge).
 
 ## Resolvidas
 
