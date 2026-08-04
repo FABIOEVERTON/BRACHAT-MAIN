@@ -59,12 +59,13 @@ Schema: cada item possui `status` (pending | in_progress | done | blocked), `pri
 - status: pending | prioridade: alta | dependencias: item 3 (bots na OCI) | autorizacao: Fabio
 
 ### 32. Arquitetura completa na nuvem (OCI + Google Drive + GitHub Actions)
-- status: pending | prioridade: alta | dependencias: item 2 (IPs OCI) | autorizacao: Fabio
+- status: in_progress | prioridade: alta | dependencias: item 2 (IPs OCI) | autorizacao: Fabio
 - Escopo: docker-compose OCI (ezra + n8n + rclone mount GDrive), GitHub Actions deploy, secrets management, health checks, autoscaling readiness
+- Progresso (2026-08-04): Mac virou motor (sem dados locais); brachat-main agora ÚNICA árvore em My Drive/brachat-main (mount do Drive), git remoto GitHub FABIOEVERTON/BRACHAT-MAIN (push 398a05a OK); ~/.n8n backupeado em My Drive/BACKUP/n8n/. Falta: OCI (item 2 → 3 → 4).
 
 ### 33. Limpar Mac — manter apenas interface de operação
 - status: done | prioridade: alta | dependencias: item 32 (arquitetura nuvem pronta) | autorizacao: Fabio
-- Ação: REMOVIDO /Users/mac/brachat-main em 2026-08-04 (backup completo em Google Drive BACKUP/brachat-main, 102.468 arquivos verificados). Mantendo somente no Google Drive.
+- Ação: REMOVIDO /Users/mac/brachat-main em 2026-08-04. Arquitetura aprovada: Mac = motor (ferramentas), Google Drive = dados (My Drive/brachat-main, 102.468 arquivos, árvore única + git GitHub). Executado em 2026-08-04.
 
 ### 34. Importar skills do andrej-karpathy-skills repo
 - status: pending | prioridade: media | dependencias: item 32 | autorizacao: Fabio
