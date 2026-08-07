@@ -1,0 +1,18 @@
+PENDING TASKS
+Schema: id|status|title|deps
+2|pending|Configure OCI public IPs|
+3|pending|Deploy bots to OCI|
+4|pending|Deploy cloud capture script|
+6|in_progress|Dockerize brachat-main|
+8|pending|Review harness/Composio|
+9|pending|Translate documents|
+11|pending|Define manifest_tools rule|
+12|pending|Choose graduate program|
+13|pending|Complete manifest_tools|11
+30|in_progress|Google Drive backup|OAuth Google
+31|pending|WhatsApp|3
+32|in_progress|OCI architecture|2
+34|pending|Import Karpathy skills|32
+35|pending|Integrate UI tools|32
+36|pending|Job Search Agent|8
+37|pending|Build OCI RAG agent|

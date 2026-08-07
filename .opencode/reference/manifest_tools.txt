@@ -1,0 +1,41 @@
+MANIFEST TOOLS — EXTERNAL TOOLS. MINIMAL ROUTING.
+Native tools by ID: manifest_native_tools.txt (light, always in system). Skills by S-ID: manifest.txt. External tools: this file.
+
+RULES (mandatory)
+R1 TOKEN ECONOMY: before any tool-requiring action, consult STATIC SUMMARY below. Report in 1-2 lines if install needed. Update this file AFTER any install/removal.
+R2 MCP CREDENTIAL SECURITY: NEVER delete anything (no key, header, server or credential). Add/modify preserving existing. Any removal requires explicit Fabio authorization.
+R3 TOOL ARCHITECTURE (approved Fabio 02/aug/2026): NOT everything via MCP. MCP = external/agentic integrations (Composio, n8n, mem0, brachat-mcp). Native CLI/LIB = deterministic internal ops (git, docker, node/python, files). MCP = expose/access; CLI/LIB = execute system ops. Exception requires explicit Fabio authorization. Detail: skill S10.
+R4 PRODUCTION IMAGE (approved Fabio 02/aug/2026): every production project in git MUST have own Dockerfile. docker compose up boots. Native run = dev only. Ezra dockerized (docker/Dockerfile.ezra). Share via image, not setup instructions. Detail: skill S12.
+
+CHECK ORDER (summary only, no commands)
+1 MCP available? 2 Composio connected? 3 CLI installed? 4 LIB present?
+
+RESPONSE FORMAT (minimal)
+Exists: OK via <MCP|Composio|CLI|LIB> + execute.
+Missing:
+MISSING: <item>
+ACTION: <install LIB | compose in Composio | install CLI | add MCP>
+Fabio authorization required before install.
+
+STATIC SUMMARY (verified 02/aug/2026)
+MCP: 1 server brachat-mcp. Tools: mcp_list, mcp_read, mcp_write, mcp_secrets_list, mcp_secrets_get. Credential boundary. NO external actions.
+MCP remote composio (added 02/aug/2026): URL https://connect.composio.dev/mcp | type remote | enabled true | auth OAuth (auto) — authenticated. Tools composio_* available.
+n8n (installed 02/aug/2026 — Docker): container n8n (image n8nio/n8n v2.32.7) | port 5678 | --restart unless-stopped. UI http://localhost:5678 (initial setup pending — create owner account). MCP Client nodes available (McpClient, McpClientTool, McpRegistryClientTool, McpTrigger). Composio: MCP Client -> HTTP Streamable -> https://connect.composio.dev/mcp + Header Auth x-consumer-api-key. Security: never delete MCP credentials.
+Composio: CLI installed (v0.7.21) + pip: composio, composio-client, composio_core. API key present in secrets (COMPOSIO_API_KEY) but NOT exported in env — composio apps fails until export or composio login. Connections: not verified (requires auth).
+CLI installed (which OK): node, npm, python3, pip3, docker, git, curl, ffmpeg, jq, opencode.
+LIB Python (pip3): anthropic 0.116.0, openai 2.45.0, langchain 1.3.11, langchain-anthropic/-core/-google-genai/-openai/-protocol, google-genai 2.10.0, google-generativeai 0.8.6, google-api-python-client, composio*, googletrans, groq(?), nvidia(?).
+LIB Node (.opencode/node_modules): @opencode-ai/*, typescript, zod, effect, @ai-sdk, uuid, yaml, ini, toml, etc. Project root: no node_modules, no package.json.
+Secrets (MCP boundary — names): GOOGLE_STUDIO_API_KEY, COMPOSIO_API_KEY, GROQ_API_KEY, NVIDIA_API_KEY, OPENCODE_ZEN_API_KEY, OPENCODE_GO_API_KEY, MEM0_API_KEY, ACESSO_ORACLE, TELEGRAM_BOT_TOKEN.
+
+MAPPED TOOLS
+1|workflow/automation (n8n)|MCP:-|Composio:via MCP Client (HTTP Streamable)|CLI:docker (container n8n)|LIB:-|port 5678; UI setup pending
+2|dockerize brachat-main (T6)|MCP:-|Composio:-|CLI:git, docker|LIB:node/npm (build)|own Dockerfile mandatory (R4)
+3|OCI: public IPs, bots, cloud capture, architecture (T2,T3,T4,T32)|MCP:-|Composio:-|CLI:oci/ssh (secret ACESSO_ORACLE)|LIB:python3 (scripts)|pending; T32 in_progress
+4|Google Drive backup (T30)|MCP:-|Composio:Google Drive (apps)|CLI:-|LIB:google-api-python-client|dep OAuth Google; in_progress
+5|WhatsApp (T31)|MCP:-|Composio:WhatsApp (apps)|CLI:-|LIB:-|dep T3
+6|translate documents (T9)|MCP:-|Composio:-|CLI:-|LIB:googletrans, google-genai|pending
+7|import Karpathy skills (T34)|MCP:-|Composio:-|CLI:git|LIB:-|dep T32; via skill S30
+8|integrate UI tools (T35)|MCP:-|Composio:-|CLI:node/npm|LIB:-|dep T32; pending
+9|job search agent (T36)|MCP:-|Composio:job boards (apps)|CLI:-|LIB:-|skill S02; dep T8
+10|agent RAG OCI (T37)|MCP:-|Composio:-|CLI:oci|LIB:langchain, openai/anthropic|dep T32; pending
+11|harness/Composio (T8)|MCP:brachat-mcp (boundary)|Composio:apps/connections|CLI:composio|LIB:composio_core (pip)|pending; key not exported in env

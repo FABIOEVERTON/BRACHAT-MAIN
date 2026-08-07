@@ -1,0 +1,11 @@
+SKILL deployment | S12 | cluster integracao
+DESC: Packages, versions and deploys agents and skills to production with backup, rollback and health check.
+OBJ: Package, version and deploy agents and skills to production (Docker, VM, OCI) with backup, rollback and safe updates.
+PROD RULE — OWN IMAGE (approved Fabio 02/aug/2026): every production project in git MUST have own Dockerfile. Reason: repo receiver needs no environment setup — `docker compose up` boots. Native execution = dev only. Ezra dockerized via `docker/Dockerfile.ezra`. Portfolio: own Dockerfile when production; share via image, not setup instructions. Secrets never in image: inject via env/volume (`.env`/secrets).
+IN: Artifact to deploy (agent, skill, configuration). Target environment (production, staging, test). Deploy strategy (blue-green, canary, rolling).
+OUT: Packaged and versioned artifact. Successful deploy. Backup of previous state. Documented and tested rollback. Post-deploy health check.
+DEPS: SK-010 (Harness Architecture) for infrastructure. SK-023 (Agent Factory) if deploying new agent.
+BUDGET: 800-1500 tokens per deploy cycle.
+COST: Medium-High. Depends on target infrastructure (Docker, cloud).
+SEC: Every image/artifact signed before deploy. Automatic rollback if health check fails in first 5 minutes. Environment credentials must not be in the artifact (use external secrets).
+TESTS: 1. Backup of previous state created before deploy? 2. Health check passed after deploy? 3. Rollback restored previous state without data loss? 4. Version incremented correctly?

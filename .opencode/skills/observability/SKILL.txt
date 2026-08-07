@@ -1,0 +1,10 @@
+SKILL observability | S22 | cluster avaliacao
+DESC: Records logs, tracing, timeline, events and costs for audit, debugging and retrospective analysis.
+OBJ: Record everything the system does — logs, tracing, timeline, events, costs and decisions — for audit, debugging and retrospective analysis.
+IN: Event to record (type, payload, timestamp, origin). Retention and detail-level configuration.
+OUT: Persisted structured log. Tracing enabled with span tree per execution. Reconstructible timeline of any session. Cost metrics per decision.
+DEPS: skill governance-policy (S18) (data classification and retention). SK-003 (Eval & Evaluation) for cost metrics.
+BUDGET: 200-400 tokens per event record (light, async).
+COST: Low. Write operation, no heavy processing.
+SEC: Logs may contain PII — apply automatic masking before persisting. Tracing must not expose secrets or access tokens. Retain logs per Governance policy (minimum necessary).
+TESTS: 1. Every critical event recorded with timestamp? 2. Tracing allows reconstructing full request flow? 3. Sensitive logs masked before persistence? 4. Retention policy respected (automatic purge)?

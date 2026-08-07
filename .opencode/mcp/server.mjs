@@ -8,7 +8,7 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url))
 const BOUNDARY = await realpath(__dirname)
 const SECRETS_FILE = join(BOUNDARY, "credentials", "secrets.env")
 const AUDIT_FILE = join(BOUNDARY, "audit.log")
-const PROTECTED_FILES = new Set([resolve(BOUNDARY, "server.mjs"), resolve(BOUNDARY, "README.md"), resolve(BOUNDARY, ".gitignore"), resolve(BOUNDARY, "audit.log")])
+const PROTECTED_FILES = new Set([resolve(BOUNDARY, "server.mjs"), resolve(BOUNDARY, "README.txt"), resolve(BOUNDARY, ".gitignore"), resolve(BOUNDARY, "audit.log")])
 const READONLY_DIRS = ["credentials"]
 const PROTOCOL_VERSIONS = new Set(["2024-11-05", "2025-03-26", "2025-06-18"])
 
@@ -36,7 +36,7 @@ const TOOLS = [
   },
   {
     name: "mcp_write",
-    description: "Grava/cria um arquivo dentro da boundary (mcp/). Bloqueado para server.mjs, README.md, .gitignore, audit.log e pasta credentials/.",
+    description: "Grava/cria um arquivo dentro da boundary (mcp/). Bloqueado para server.mjs, README.txt, .gitignore, audit.log e pasta credentials/.",
     inputSchema: {
       type: "object",
       properties: {

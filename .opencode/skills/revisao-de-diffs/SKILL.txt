@@ -1,0 +1,10 @@
+SKILL revisao-de-diffs | S29 | cluster avaliacao
+DESC: Audits produced code identifying awkward abstractions, silent assumptions and bloat, comparing against the original specification.
+OBJ: Audit produced code or content, identifying awkward abstractions, silent assumptions or "slop" (bloated code).
+IN: Produced code or content (diff). Original specification (SK-001).
+OUT: Audit with: violated scope, suspicious deletions, hidden assumptions, elegance suggestions.
+DEPS: SK-001 (needs spec to compare).
+BUDGET: 600-1000 tokens per review.
+COST: Low. Reading and analysis, no external execution.
+SEC: Operates on already-produced code. No extra privileges.
+TESTS: 1. Detected out-of-scope changes? 2. Identified suspicious deletions? 3. Suggested simplifications without changing behavior?

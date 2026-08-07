@@ -1,0 +1,20 @@
+SKILL memory-management | S20 | cluster memoria
+DESC: Manages autonomous short and long-term session memory using mem0, with automatic capture, compression and boot injection.
+WHEN: End of every interaction (capture + compression). Boot of every session (recovery + injection). When a relevant decision or observation occurs.
+HOW:
+BOOT (SessionStart):
+1. Fetch relevant clusters from mem0 via direct API: `GET https://api.mem0.ai/v1/memories/?user_id=mem0-mcp` with tag filter `cluster:*`. Empty result → cold start.
+2. Group results by cluster tag. For each cluster with relevance > 0.3, load cluster summary.
+3. Inject: "Clusters from previous sessions: [cluster: summary]".
+DURING SESSION: for each decision, discovery or relevant observation: `mem0_add_memory(text="[cluster:<name>] [type] compressed summary")`. Append `cluster` in metadata tags: `tags: ["cluster:<name>", "type"]`. Clusters group related memories for batch retrieval.
+Relevance criteria: architectural decision. Route/governance change. User preference. Blocker found. Bug or workaround.
+INTERACTION END (SessionEnd — behavioral hooks):
+1. Compression: summarize interaction in 2-3 sentences.
+2. Save to mem0: `mem0_add_memory(text="[date] [type] [compressed summary]")`.
+3. Tokens saved: do NOT save raw transcript — only the summary.
+PROGRESSIVE DISCLOSURE (4 layers): Cluster = name + date range | loads at boot (search tag `cluster:*`). Index = title + date + type | loads when accessing a cluster. Summary = 2-3 sentences of the fact | loads when referencing an index. Detail = full raw | only if user asks.
+MEMORY STRUCTURE: `[cluster:<name>] [type] [date] [very brief context]`. Types: `[decisao]` architectural or route choice. `[progresso]` task progress. `[bloqueador]` impediment found. `[preferencia]` user preference. `[contexto]` general observation. Mandatory metadata tags: `tags: ["cluster:<name>", "<type>"]`.
+BUDGET: Boot: search (5 results) ~200-400. Save: add_memory (summary) ~50-100. During: add_memory decision ~30-80. Total: less than 500 tokens per session — vs ~5000 for old state.json.
+RETENTION POLICY: run `mem0_search_memories` periodically; if more than 30 days unused, delete with `mem0_delete_memory`: `[progresso]` done > 30 days → delete. `[decisao]` implemented > 60 days → delete. `[bloqueador]` resolved > 14 days → delete. `[contexto]` > 30 days unreferenced → delete. `[preferencia]` → NEVER delete (user rules).
+Also consolidate: every 30 days, if more than 20 memories of same subject, compress into one monthly summary and delete individuals via `mem0_delete_memory`.
+SEC: Do not save PII or secrets in mem0. Do not save raw transcripts — only compressed summaries. mem0 is cloud → assume data leaves the machine. If mem0 fails (call error), fail silently without blocking the session.

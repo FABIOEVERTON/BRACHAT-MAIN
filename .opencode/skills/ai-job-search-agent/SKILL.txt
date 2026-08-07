@@ -1,0 +1,10 @@
+SKILL ai-job-search-agent | S02 | cluster integracao
+DESC: Automates job search, filtering, application and interview preparation for job openings.
+OBJ: Automate job search, filtering, application and interview preparation for job openings.
+IN: User command (/start, /setup, /scrape, /apply [link], /interview [type]). LinkedIn profile (PDF or text). Jobs found via scrapers.
+OUT: Consolidated profile (Profile_master.json), filtered and ranked jobs, custom cover letter + CV, STAR interview guide.
+DEPS: SK-011 (Strategy) for target roles. SK-001 (Spec) for final state of each application. SK-006 (Data Sensemaking) for job interpretation. SK-007 (HITL) for confirmation before applying. Tools: Composio (Gmail), MCP brachat-mcp boundary (API keys via mcp_secrets_get, scrapers).
+BUDGET: /start: 500 tokens | /setup: 1500 tokens | /scrape: 2000 tokens | /apply: 3000 tokens | /interview: 2000 tokens.
+COST: High. Each application generates research + generation + letter tokens.
+SEC: Resume and profile are personal data — LGPD. Application links are External — follow External Integrations Rule. Inventing experience not in the profile is prohibited.
+TESTS: 1. Consolidated profile contains all LinkedIn skills? 2. /apply generates unique letter per company? 3. /interview identifies real candidate gaps?
