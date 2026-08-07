@@ -237,7 +237,6 @@ id|status|title|deps
 38|pending|ajustar git e linkedin e estudar sugestao do kimi para freela|pesquisar emprego paraguai e remotos
 41|in_progress|verificar se conseguimos os 12 g (A1.Flex acquirer)|39
 49|pending|Migrate bots to 12GB A1.Flex when acquired|41,42
-51|pending|Anti-reclaim synthetic load (idle instance protection)|3
 52|pending|Git repo + Dockerfile for parashat-bot (R4)|42
 55|pending|Fazer schedule TCU junto com CGU (buscar materias reais que vao cair)|
 56|pending|Enviar opencode daqui configurado para o filho do Fabio|

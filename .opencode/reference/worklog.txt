@@ -17,3 +17,5 @@ Sessao atual (2026-08-07):
 - Task 37 alterada: removido "Build OCI RAG agent", criado "criar agente do chalalange".
 - Task 41 alterada: "verificar se conseguimos os 12 g (A1.Flex acquirer)".
 - Regra REPORT adicionada ao EZRA_SYSTEM: bot consulta worklog/pending/state/ledger ao responder.
+- Task 51 (aprovado): anti-reclaim deployado nas DUAS VMs (bot_1 e bot_2): /opt/anti-reclaim/anti-reclaim.py + systemd anti-reclaim.service (enable, active). Burst CPU 1 core + 200MB RAM, 20-40s a cada 60-240s, Nice=5 (nao rouba da producao).
+- sync-ezra.sh agora inclui plugin.json (rsync da raiz).
