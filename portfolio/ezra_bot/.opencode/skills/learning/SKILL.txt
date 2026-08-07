@@ -1,0 +1,10 @@
+SKILL learning | S19 | cluster memoria
+DESC: Learns from past experiences extracting patterns and proposing controlled improvements with mandatory audit.
+OBJ: Learn from past experiences in a controlled way: extract patterns, propose improvements, pass audit and approval, then update templates.
+IN: Recorded experience (execution, error, success, user feedback). Current knowledge base (templates, skills, agents).
+OUT: Extracted pattern. Improvement proposal (new or changed template). Decision: APPROVED, REJECTED, NEEDS_REVIEW. Updated template (if approved).
+DEPS: SK-026 (Observability) for recorded experiences. SK-002 (Diff Review) to audit the proposal. HITL (SK-007) for final approval.
+BUDGET: 1000-2000 tokens per learning cycle.
+COST: Medium. Extraction + proposal + audit + update.
+SEC: Autonomous learning without audit is prohibited. Improvement proposal cannot alter the constitution or skill governance-policy (S18) without HITL. Extracted patterns must not contain PII.
+TESTS: 1. Extracted pattern generalizable (no overfitting)? 2. Proposal rejected if it violated principles? 3. Updated template passed review before applying?

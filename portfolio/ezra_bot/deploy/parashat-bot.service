@@ -1,0 +1,17 @@
+[Unit]
+Description=Parashat Torah Study Telegram Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/parashat-bot
+EnvironmentFile=/home/ubuntu/parashat-bot/bot.env
+ExecStart=/home/ubuntu/parashat-bot/venv/bin/python /home/ubuntu/parashat-bot/bot.py
+Restart=always
+RestartSec=10
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

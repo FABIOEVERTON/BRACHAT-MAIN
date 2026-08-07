@@ -1,0 +1,12 @@
+.DS_Store
+state.json
+state/
+governance-ledger.jsonl
+credentials/
+node_modules/
+package.json
+package-lock.json
+logs/
+cache/
+data/
+repos/

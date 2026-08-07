@@ -1,0 +1,10 @@
+SKILL arquitetura-harness | S07 | cluster arquitetura
+DESC: Designs the non-LLM engineering layer providing a secure and persistent environment for the agent.
+OBJ: Design the non-LLM engineering layer that provides the secure persistent environment for the agent to operate.
+IN: Execution requirements (isolation, persistence, security). Chosen orchestration pattern.
+OUT: Harness architecture: pattern, sandbox, persistence, layered memory.
+DEPS: SK-004 (State and Persistence).
+BUDGET: 600-1000 tokens.
+COST: Low. Design, no execution.
+SEC: Sandboxing is a security requirement. Isolate execution from host.
+TESTS: 1. Sandbox isolates execution from host? 2. Persistence survives agent failure? 3. Memory layers operate independently?

@@ -1,0 +1,21 @@
+SKILL skill-creator | S30 | cluster memoria
+DESC: Creates reusable skills in SKILL.txt format from identified patterns — template, registry and versioning.
+OBJ: Turn recurring patterns, non-trivial workflows or error recoveries into reusable skills, following the Hermes loop (Evaluate → Extract → Refine).
+TRIGGERS: Create skill when: same task pattern repeats 3+ times. Workflow involved 5+ tool calls or error recovery. User manually fixed something that should be automated. Successful approach is non-obvious (not in existing skill).
+TEMPLATE (mandatory):
+SKILL <kebab-case-id> | <id>
+DESC: <one line in English>
+OBJ: <what it does, 1-2 sentences>
+IN: <what it needs to receive>
+OUT: <what it produces>
+DEPS: <skills or files needed>
+BUDGET: <estimated tokens>
+COST: <Low/Medium/High>
+SEC: <risks and controls>
+TESTS: 1. <test 1> 2. <test 2> 3. <test 3>
+REGISTRY: 1. Save in `.opencode/skills/<name>/SKILL.txt`. 2. Add to catalog in `state.json -> context.available_skills`. 3. If replacing existing skill → remove old from catalog. 4. Register in mem0 as `[improvement] skill: <name>`.
+REFINEMENT: if better approach found later → edit existing skill, do not create new. If skill becomes obsolete → remove from catalog and archive (do not delete). If skill grows too large (>80 lines) → split into two smaller ones.
+BUDGET: 300-600 tokens to create template. One-time cost (skill reused later).
+COST: Low. Skill created once, reused infinitely.
+SEC: Skills are readable text — no code execution. Follows Least Privilege: skill has only necessary context.
+TESTS: 1. Skill follows mandatory template? 2. Skill registered in catalog? 3. Skill replaces/refines existing one without duplication?

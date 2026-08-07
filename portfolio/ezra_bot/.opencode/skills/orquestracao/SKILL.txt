@@ -1,0 +1,10 @@
+SKILL orquestracao | S23 | cluster orquestracao
+DESC: Breaks complex problems into specialized subtasks and coordinates agents in sequential or parallel flows with safe handoff.
+OBJ: Break complex problems into specialized subtasks and coordinate agents in sequential or parallel flows with safe context handoff and circuit breakers.
+IN: Complex problem / multi-step task. Available agents for allocation. Budget, time and depth constraints.
+OUT: Subtask decomposition, agent allocation, handoff protocol. Executed orchestrated flow with completed handoffs and consolidated results. Circuit breakers activated on failure.
+DEPS: SK-023 (Agent Factory) to create non-existent agents.
+BUDGET: 1000-3000 tokens (depends on number of agents).
+COST: Medium-High. Each agent in chain consumes execution + handoff tokens.
+SEC: Handoff limited to 2000 tokens per transfer. Circuit breaker: 3 failures → pause. Max 5 parallel agents, 3 depth levels. Context must not leak between agents during handoff.
+TESTS: 1. Subtasks cover problem without overlap? 2. Handoff preserves essential context without duplication? 3. Circuit breaker stops after 3 failures? 4. Consolidation combines outputs without losing information?

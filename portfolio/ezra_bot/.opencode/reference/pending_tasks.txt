@@ -1,0 +1,12 @@
+PENDING TASKS
+Schema: id|status|title|deps
+31|pending|WhatsApp|3
+35|pending|Integrate UI tools|32
+36|pending|Job Search Agent|8
+37|pending|criar agente do chalalange|
+38|pending|ajustar git e linkedin e estudar sugestao do kimi para freela|pesquisar emprego paraguai e remotos
+41|in_progress|verificar se conseguimos os 12 g (A1.Flex acquirer)|39
+49|pending|Migrate bots to 12GB A1.Flex when acquired|41,42
+52|pending|Git repo + Dockerfile for parashat-bot (R4)|42
+55|pending|Fazer schedule TCU junto com CGU (buscar materias reais que vao cair)|
+56|pending|Enviar opencode daqui configurado para o filho do Fabio|

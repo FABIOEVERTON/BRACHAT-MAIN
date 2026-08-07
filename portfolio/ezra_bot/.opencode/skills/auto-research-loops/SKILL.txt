@@ -1,0 +1,10 @@
+SKILL auto-research-loops | S09 | cluster avaliacao
+DESC: Runs iterative experiments to optimize processes and agent behavior with metrics and convergence.
+OBJ: Run iterative experiments to optimize processes, prompts and agent behavior, measuring metrics and converging to optimal solutions.
+IN: Hypothesis (current H0 vs proposed H1). Target metric and improvement criterion. Maximum iterations.
+OUT: Experiment result: winning variant, metrics, significance, recommendation.
+DEPS: SK-003 (Eval Design) to configure metrics. SK-012 (Root Cause) if results inconclusive.
+BUDGET: 2000-5000 tokens per full cycle (hypothesis → execution → analysis).
+COST: High. Iterative experiments consume many tokens.
+SEC: Test data must not contain PII. Early stop to avoid excessive spend.
+TESTS: 1. Chosen metric relevant to objective? 2. Statistical significance calculated? 3. Early stop worked when converged?

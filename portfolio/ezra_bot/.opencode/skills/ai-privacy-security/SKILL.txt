@@ -1,0 +1,10 @@
+SKILL ai-privacy-security | S03 | cluster seguranca
+DESC: Protects data, identity and operations in systems that process sensitive information with audit and controls.
+OBJ: Protect data, identity and operations in a world where AI processes sensitive information.
+IN: System/agent to audit. Processed data (classification). Applicable regulations (LGPD, Marco Legal IA).
+OUT: Data audit, protection architecture (Zero Trust, Least Privilege), agent protocol, monthly checklist.
+DEPS: Governance.md (security and LGPD sections).
+BUDGET: 800-1500 tokens.
+COST: Medium. Audit and implementation of controls.
+SEC: CRITICAL. This skill defines system security. All recommendations must follow Least Privilege and Zero Trust.
+TESTS: 1. Sensitive data mapped? 2. PII removed before sending to LLM? 3. Monthly checklist actionable?

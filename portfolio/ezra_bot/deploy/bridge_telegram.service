@@ -1,0 +1,15 @@
+[Unit]
+Description=Ezra Telegram bridge (relay only, no logic)
+After=ezra-serve.service
+Requires=ezra-serve.service
+
+[Service]
+Type=simple
+User=ubuntu
+EnvironmentFile=/home/ubuntu/brachat-main/.env
+ExecStart=/usr/bin/node /home/ubuntu/bridge_telegram.js
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

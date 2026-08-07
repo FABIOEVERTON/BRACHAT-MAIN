@@ -1,0 +1,10 @@
+SKILL governanca-hitl | S17 | cluster governanca
+DESC: Integrates human judgment at critical points to ensure ethical alignment, compliance and accountability in agent decisions.
+OBJ: Integrate human judgment at critical points to ensure ethical alignment, compliance and accountability.
+IN: Process flow. Identified risk points.
+OUT: Mapped pause points, implemented interruptions, exposed chain of thought, configured feedback loop.
+DEPS: Governance.md (HITL policies).
+BUDGET: 400-800 tokens.
+COST: Medium. Requires human intervention, which costs time.
+SEC: Critical. Implements the security gates defined in Governance.
+TESTS: 1. Pause points stop before every irreversible action? 2. Chain of thought auditable by human? 3. Human feedback updates the system?

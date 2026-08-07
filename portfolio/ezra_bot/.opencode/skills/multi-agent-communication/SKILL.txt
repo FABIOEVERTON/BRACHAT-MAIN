@@ -1,0 +1,10 @@
+SKILL multi-agent-communication | S21 | cluster orquestracao
+DESC: Coordinates communication between multiple agents ensuring safe handoff, preserved context and consolidated responses.
+OBJ: Route, coordinate and consolidate communication between multiple agents (Hermes, Specialists, Supervisor, Reviewer, Workers) ensuring safe handoff, preserved context and consolidated responses.
+IN: Multi-agent request (task, involved domains, supervision level). Available agents (existing agent definitions). Communication protocol (sync/async, priority, timeout).
+OUT: Request routed to correct agent. Consolidated response from multiple agents. Audit of each handoff (origin, destination, tokens, timestamp).
+DEPS: SK-023 (Agent Factory) to instantiate non-existent agents. SK-005 (Orchestration and Decomposition) for complex flows. SK-007 (HITL) for high-risk action approval.
+BUDGET: 800-1500 tokens per communication cycle (routing + consolidation).
+COST: Medium. Each involved agent consumes execution + handoff tokens.
+SEC: Handoff limited to 2000 tokens per transfer. Hermes must not expose one agent's internal context to another without need. Supervisor may cancel/correct messages before delivery. Reviewer only receives anonymized output if source agent operates on sensitive data.
+TESTS: 1. Message reached correct destination agent? 2. Context preserved without leakage between agents? 3. Supervisor interrupted flow when needed? 4. Consolidated response lost no individual agent information? 5. Timeout respected without deadlock?

@@ -1,0 +1,10 @@
+SKILL prompt-optimizer | S28 | cluster avaliacao
+DESC: Refines prompts using eval loops with tested variants and comparative metrics to converge to the highest-performance version.
+OBJ: Systematically refine prompts using eval loops, testing variants and converging to the highest-performance version.
+IN: Current low-performance prompt. Validation test cases. Evaluation metrics (accuracy, relevance, conciseness, safety).
+OUT: Diagnosis, tested variants, comparative metrics, winning prompt, evolution record.
+DEPS: SK-003 (Eval Design). SK-012 (Root Cause) for diagnosis.
+BUDGET: 1500-4000 tokens per optimization cycle.
+COST: High. Multiple variants each consuming tokens.
+SEC: Prompts may expose internal logic — classify as Confidential. Test cases must not contain PII.
+TESTS: 1. Winning variant improves > 5%? 2. Low variance between runs of winner? 3. Evolution recorded for audit?

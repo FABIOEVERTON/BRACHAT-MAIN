@@ -1,0 +1,13 @@
+[Unit]
+Description=Anti-reclaim synthetic load (idle instance protection)
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/anti-reclaim/anti-reclaim.py
+Restart=always
+RestartSec=10
+Nice=5
+IOWeight=10
+
+[Install]
+WantedBy=multi-user.target

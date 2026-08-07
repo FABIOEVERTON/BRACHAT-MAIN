@@ -1,0 +1,10 @@
+SKILL state-machine-workflows | S31 | cluster memoria
+DESC: Creates agents with persistent memory between sessions, checkpointing and rewind capability to previous states.
+OBJ: Create agents with short and long-term memory persisting state between sessions with rewind to earlier points.
+IN: Flow with multiple paths. Persistence and checkpoint requirements.
+OUT: State machine implemented with: states, transitions, checkpoints, time travel.
+DEPS: SK-004 (State and Persistence).
+BUDGET: 800-1500 tokens.
+COST: Medium. Frequent checkpointing increases storage cost.
+SEC: Checkpoints may contain PII — apply LGPD before saving.
+TESTS: 1. Checkpoint saves every 3 transitions? 2. Time travel restores previous state? 3. Auto-purge keeps only last 10 checkpoints?

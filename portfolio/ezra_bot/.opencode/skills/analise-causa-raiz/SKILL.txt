@@ -1,0 +1,10 @@
+SKILL analise-causa-raiz | S04 | cluster avaliacao
+DESC: Diagnoses the real origin of failures categorizing problems into 6 axes to avoid palliative solutions.
+OBJ: Diagnose the real origin of any failure (technical or human), categorizing problems into 6 axes (6Ms) to avoid palliative solutions.
+IN: Symptom/error description. Available logs or evidence.
+OUT: Isolated symptom, 6Ms categorization, 5 Whys completed, shielding plan.
+DEPS: none.
+BUDGET: 500-900 tokens.
+COST: Low. Internal analysis.
+SEC: Logs may contain sensitive operational data — mask before use.
+TESTS: 1. 5 Whys reach root cause? 2. Shielding plan makes error impossible to repeat? 3. 6Ms categorization covers all dimensions?

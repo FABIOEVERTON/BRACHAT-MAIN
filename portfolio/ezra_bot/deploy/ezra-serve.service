@@ -1,0 +1,17 @@
+[Unit]
+Description=Ezra opencode serve (PROD brain 24/7)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/brachat-main
+EnvironmentFile=/home/ubuntu/brachat-main/.env
+ExecStart=/usr/bin/opencode serve --port 3791 --hostname 127.0.0.1 --log-level INFO
+Restart=always
+RestartSec=5
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

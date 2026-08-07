@@ -1,0 +1,18 @@
+MANIFEST — NATIVE TOOLS (light index, ALWAYS in system)
+Native tools = opencode built-ins, injected by the runtime every request. Full schemas: Read reference/native_tools.txt (lazy). Choose by ID.
+
+ID        | Tool        | Status | Function
+NT-01     | bash        | ON     | Run terminal commands (persistent shell)
+NT-02     | read        | ON     | Read files/directories
+NT-03     | write       | ON     | Create/overwrite files
+NT-04     | edit        | ON     | Exact string replacement (requires prior read)
+NT-05     | glob        | ON     | Find files by pattern
+NT-06     | grep        | ON     | Search file contents by regex
+NT-07     | task        | ON     | Delegate to subagent
+NT-08     | question    | ON     | Ask the user
+NT-09     | webfetch    | ON     | Fetch URL content
+NT-10     | websearch   | ON     | Real-time web search
+NT-11     | skill       | OFF    | Skills loaded by Read: manifest.txt (S-ID) → skills/<name>/SKILL.txt
+NT-12     | todowrite   | OFF    | Tasks in reference/pending_tasks.txt + state.json
+
+Rules: use the lightest tool that fits. For files prefer grep/glob over full reads. Never use a tool beyond the minimum necessary (least privilege).
