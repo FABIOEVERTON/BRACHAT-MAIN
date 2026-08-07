@@ -230,9 +230,7 @@ PENDING TASKS
 Schema:
 id|status|title|deps
 
-30|in_progress|Google Drive backup|OAuth Google
 31|pending|WhatsApp|3
-32|in_progress|OCI architecture|2
 34|pending|Import Karpathy skills|32
 35|pending|Integrate UI tools|32
 36|pending|Job Search Agent|8
