@@ -1,0 +1,19 @@
+WORKLOG
+"O que foi feito" - resposta padrao do bot para Fabio.
+
+Ultima sessao (2026-08-07, anterior):
+- Cerebro movido para OCI ezra_bot_1: opencode serve (127.0.0.1:3791) + bridge_telegram.service + parashat-bot.service + nblm-refresh.timer (systemd ativos).
+- NotebookLM acessado de forma definitiva: notebooklm-py 0.8.0 + cookies persistentes (~/.notebooklm/profiles/default/storage_state.json); caderno TORAH_STUDIES e4274837-7838-4bbb-a490-8fde601e5c7a, 131 fontes.
+- study.py integrado ao NotebookLM (_notebook_context, respostas com citacoes [1][2]); teste real Nitzavim = 3021 chars.
+- Pipeline de sync Mac->Drive->GitHub->VM: sync-ezra.sh (rsync + git add .opencode/ + pull + restart ezra-serve na VM); bug do hook AGCP corrigido (|| true).
+- Tabela de auditoria das 131 fontes: reference/audit_torah_sources.md.
+- Telegram end-to-end comprovado: Fabio "OI" -> Ezra "Oi, Fabio. Estou pronto." via bridge -> serve OCI.
+- Acquirer A1.Flex rodando no ezra_bot_2 (retry 5min, aguardando capacidade ARM).
+
+Sessao atual (2026-08-07):
+- Pending list reduzida a somente o que falta (done removidos: 3,4,30,32,44,45,46,48,50,53,54).
+- Task 34: audit dos repos do Karpathy + leitura do spec Agent Plugins v1.0.0 -> reference/karpathy-audit.txt.
+- Adotado plugin.json (spec Agent Plugins) na raiz de ~/.opencode (nome ezra, v1.0.0).
+- Task 37 alterada: removido "Build OCI RAG agent", criado "criar agente do chalalange".
+- Task 41 alterada: "verificar se conseguimos os 12 g (A1.Flex acquirer)".
+- Regra REPORT adicionada ao EZRA_SYSTEM: bot consulta worklog/pending/state/ledger ao responder.
