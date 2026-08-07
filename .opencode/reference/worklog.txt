@@ -20,3 +20,4 @@ Sessao atual (2026-08-07):
 - Task 51 (aprovado): anti-reclaim deployado nas DUAS VMs (bot_1 e bot_2): /opt/anti-reclaim/anti-reclaim.py + systemd anti-reclaim.service (enable, active). Burst CPU 1 core + 200MB RAM, 20-40s a cada 60-240s, Nice=5 (nao rouba da producao).
 - sync-ezra.sh agora inclui plugin.json (rsync da raiz).
 - Praxe Portfolio adotada: ezra_bot e parashat_bot criados como projetos separados em brachat-main/portfolio (Google Drive). Commit d170ed0, push ok, VM atualizada. Task 52 done (versionamento via praxe Drive->git).
+- .opencode virou GEMEA completa com o Mac: sync-ezra.sh agora rsync do diretorio inteiro (--delete); excluidos so node_modules, .DS_Store e credentials/ (segredos seguem so no Mac). state.json, governance-ledger, cache, data, logs, repos, config agora vao ao Drive. Git: .gitignore exclui segredos/estado (state.json, credentials, ledger, audit.log, logs, cache, data, repos). Commit 6f11488, sem segredos no git.
