@@ -9,7 +9,15 @@
   "instructions": [
     "~/.opencode/instructions/EZRA_SYSTEM.txt"
   ],
-  "tools": { "todowrite": false, "skill": false, "websearch": false, "webfetch": false, "task": false, "glob": false, "grep": false },
+  "tools": {
+    "todowrite": false,
+    "skill": false,
+    "websearch": false,
+    "webfetch": false,
+    "task": false,
+    "glob": false,
+    "grep": false
+  },
   "provider": {
     "opencode": {
       "options": {
@@ -28,11 +36,6 @@
       "url": "https://connect.composio.dev/mcp",
       "enabled": true,
       "oauth": true
-    },
-    "oci": {
-      "type": "local",
-      "command": ["python3", "/Users/mac/.opencode/mcp/oci_server.py"],
-      "enabled": true
     }
   }
 }
