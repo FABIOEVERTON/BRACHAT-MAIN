@@ -1,24 +1,14 @@
 PENDING TASKS
 Schema: id|status|title|deps
-3|done|Deploy bots to OCI|
-4|done|Deploy cloud capture script|
-30|done|Google Drive backup|OAuth Google
 31|pending|WhatsApp|3
 34|pending|Import Karpathy skills|32
 35|pending|Integrate UI tools|32
 36|pending|Job Search Agent|8
 37|pending|Build OCI RAG agent|
 38|pending|ajustar git e linkedin e estudar sugestao do kimi para freela|pesquisar emprego paraguai e remotos
-41|in_progress|A1.Flex 12GB acquirer RUNNING on ezra_bot_2 (137.131.242.180) retry 5min|39
-44|in_progress|Locate STUDIES_TORAH material (notebookln) - access blocked: need link/CLI|41
-45|done|Deploy bot Ezra on ezra_bot_1|42
-46|in_progress|Acquirer script RUNNING on ezra_bot_2|41
-48|pending|Upload STUDIES_TORAH to OCI Object Storage bucket|44
+41|in_progress|A1.Flex 12GB acquirer (aguardando capacidade OCI)|39
 49|pending|Migrate bots to 12GB A1.Flex when acquired|41,42
-50|pending|Validate daily 09:00 study delivery to YESHIVA|43
 51|pending|Anti-reclaim synthetic load (idle instance protection)|3
 52|pending|Git repo + Dockerfile for parashat-bot (R4)|42
-53|done|Deploy cloud capture script on OCI|4,41
-54|pending|Localize notebookln access (STUDIES_TORAH) - ask Fabio|44
 55|pending|Fazer schedule TCU junto com CGU (buscar materias reais que vao cair)|
 56|pending|Enviar opencode daqui configurado para o filho do Fabio|
