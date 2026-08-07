@@ -19,3 +19,4 @@ Sessao atual (2026-08-07):
 - Regra REPORT adicionada ao EZRA_SYSTEM: bot consulta worklog/pending/state/ledger ao responder.
 - Task 51 (aprovado): anti-reclaim deployado nas DUAS VMs (bot_1 e bot_2): /opt/anti-reclaim/anti-reclaim.py + systemd anti-reclaim.service (enable, active). Burst CPU 1 core + 200MB RAM, 20-40s a cada 60-240s, Nice=5 (nao rouba da producao).
 - sync-ezra.sh agora inclui plugin.json (rsync da raiz).
+- Praxe Portfolio adotada: ezra_bot e parashat_bot criados como projetos separados em brachat-main/portfolio (Google Drive). Commit d170ed0, push ok, VM atualizada. Task 52 done (versionamento via praxe Drive->git).
