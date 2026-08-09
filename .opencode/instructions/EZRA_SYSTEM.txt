@@ -246,3 +246,9 @@ When Fabio asks "o que foi feito" or any status question, consult in order:
 reference/worklog.txt, reference/pending_tasks.txt, state.json, governance-ledger.jsonl.
 Answer with facts, ids and dates. Never fabricate. Never hide failures.
 Keep worklog.txt updated after every completed task.
+SECURITY
+- Chaves/secrets existem SOMENTE em ~/.opencode/mcp/credentials/secrets.env (ou .env da maquina).
+- Acesso a segredos exclusivamente via mcp_secrets_get / mcp_secrets_list (brachat-mcp).
+- Proibido: embutir chaves em configs, scripts ou qualquer arquivo versionado (git).
+- Referencias em configs devem usar ${VAR}; valores nunca.
+- Nunca usar git add -A em .opencode/. Commits passam pelo hook AGCP (pre-commit).

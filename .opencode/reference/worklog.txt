@@ -33,3 +33,8 @@ Sessao atual (2026-08-09): BUG "bot nao executa" RESOLVIDO + WARMUP
 - TESTE FINAL: restart serve -> warmup done -> request imediato HTTP:200 em 42s, arquivo criado. Servicos active: ezra-serve, bridge_telegram, anti-reclaim, parashat-bot.
 - Commit: "bots: warmup ping no start, bridge timeout 600s + ack + retry sessao + ipv4first; composio disabled" (push ok). Arquivos em portfolio/ezra_bot/deploy/ (bridge_telegram.js, ezra-serve.service, ezra-warmup.sh).
 - PENDENTE de seguranca: rotacionar/revogar chave Composio vazada no historico do repo.
+- SEGURANCA (Fabio, 2026-08-09): nunca mais chaves no git; acesso a segredos so via mcp_secrets_*.
+  * Composio removido do opencode.json do repo (ficava header x-consumer-api-key). Chave ja rotacionada por Fabio.
+  * BUG CRITICO: hook AGCP usava grep -P (PCRE) que o BSD grep do macOS NAO suporta -> check de segredos nunca rodava no Mac (por isso a chave entrou no git). Corrigido para grep -E (POSIX).
+  * Hook reforcado (versionado em .opencode/hooks/pre-commit, instalado em .git/hooks no Mac e na VM): bloqueia ck_, sk-, ghp_/gho_, xoxb-, sk_live_, AIza, AKIA, chaves privadas, x-consumer-api-key=valor, TOKEN/SECRET/PASSWORD/API_KEY=valor (16+ chars). Permite nomes de env e ${VAR}.
+  * Auto-teste validado: bloqueia ck_ e ghp_, permite nomes e ${COMPOSIO_API_KEY}. Audit final: 0 valores de segredo em arquivos rastreados.
