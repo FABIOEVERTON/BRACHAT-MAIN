@@ -11,7 +11,10 @@
   "mcp": {
     "brachat-mcp": {
       "type": "local",
-      "command": ["node", ".opencode/mcp/server.mjs"],
+      "command": [
+        "node",
+        ".opencode/mcp/server.mjs"
+      ],
       "enabled": true
     },
     "composio": {
@@ -19,7 +22,7 @@
       "url": "https://connect.composio.dev/mcp",
       "enabled": true,
       "headers": {
-        "x-consumer-api-key": "ck_xt1sDN3kL-YoREV-P_VR"
+        "x-consumer-api-key": "${COMPOSIO_API_KEY}"
       }
     }
   },
@@ -33,15 +36,15 @@
       "**/mcp/**": "deny"
     },
     "edit": {
-      "*": "ask",
+      "*": "allow",
       "**/mcp/**": "deny"
     },
     "write": {
-      "*": "ask",
+      "*": "allow",
       "**/mcp/**": "deny"
     },
     "bash": {
-      "*": "ask"
+      "*": "allow"
     },
     "task": {
       "*": "ask"
