@@ -8,3 +8,5 @@ Schema: id|status|title|deps
 41|in_progress|verificar se conseguimos os 12 g (A1.Flex acquirer)|39
 49|pending|Migrate bots to 12GB A1.Flex when acquired|41,42
 56|pending|Enviar opencode daqui configurado para o filho do Fabio|
+57|pending|fazer enviar tutorial de publicação do livro para carla da sinagoga|
+58|pending|transcrever material que esta em whatsapp dev e verificar se aproveita algo|
