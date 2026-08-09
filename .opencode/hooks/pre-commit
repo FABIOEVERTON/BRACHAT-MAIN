@@ -1,0 +1,64 @@
+#!/bin/bash
+# AGCP-style pre-commit governance hook
+# Rejeita commits que violam as politicas do ecossistema BRACHAT
+
+set -e
+
+GOV_DIR="assistant_agents/governance"
+LEDGER=".opencode/governance-ledger.jsonl"
+mkdir -p "$(dirname "$LEDGER")"
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+fail() {
+  echo -e "${RED}[GOVERNANCE REJECTED]${NC} $1"
+  echo "{\"action_id\":\"pre-commit-$(date +%s)\",\"sequence\":$(date +%s),\"state\":\"REJECTED\",\"tenant\":\"git\",\"rejection_code\":\"$2\",\"evidence\":\"$1\",\"timestamp\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" >> "$LEDGER"
+  exit 1
+}
+
+warn() {
+  echo -e "${YELLOW}[GOVERNANCE WARN]${NC} $1"
+}
+
+echo "[GOVERNANCE] Validando commit (AGCP L2)..."
+echo ""
+
+# 1. SCHEMA — check MVI (<200 lines)
+while read -r file; do
+  case "$file" in
+    .opencode/skills/*|personal/schedules/*) continue ;;
+  esac
+  lines=$(wc -l < "$file")
+  if [ "$lines" -gt 200 ]; then
+    fail "MVI violation: $file has $lines lines (>200)" "POLICY_VIOLATION"
+  fi
+  if [[ "$file" == *AGENT.md ]]; then
+    if [ "$lines" -gt 60 ]; then
+      fail "Prompt limit: $file has $lines lines (>60)" "POLICY_VIOLATION"
+    fi
+  fi
+done < <(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(md|json|py|sh|yml|yaml)$' || true)
+
+# 2. SECURITY — block hardcoded secrets (valores, nao referencias ${VAR} ou nomes de env)
+SECRET_PAT='(sk-[A-Za-z0-9]{20,}|ck_[A-Za-z0-9]{16,}|gh[pous]_[A-Za-z0-9]{20,}|xox[baprs]-[A-Za-z0-9-]{20,}|sk_live_[A-Za-z0-9]{20,}|AIza[0-9A-Za-z_-]{20,}|AKIA[0-9A-Z]{16}|-----BEGIN (RSA |EC )?PRIVATE KEY|x-consumer-api-key[\x22\x27[:space:]]*[:=][[:space:]]*[\x22\x27][A-Za-z0-9]{16,}|(TOKEN|SECRET|PASSWORD|API[_]?KEY)[\x22\x27[:space:]]*[:=][[:space:]]*[\x22\x27][A-Za-z0-9_-]{16,})'
+if git diff --cached --name-only --diff-filter=ACM | grep -v '\.env$' | xargs grep -lP "$SECRET_PAT" 2>/dev/null; then
+  fail "Hardcoded secret detected in staged files" "CONSTRAINT_VIOLATION"
+fi
+
+# 3. AGENT compliance — check harness pattern in new/modified AGENT.md files
+while read -r file; do
+  if [[ "$file" == *AGENT.md ]]; then
+    if ! grep -q "Núcleo Central\|🧠" "$file" 2>/dev/null; then
+      fail "Harness pattern missing in $file (no Núcleo Central)" "INVARIANT_VIOLATION"
+    fi
+    if ! grep -q "Operational Procedure\|⚙️" "$file" 2>/dev/null; then
+      fail "Harness pattern missing in $file (no Operational Procedure)" "INVARIANT_VIOLATION"
+    fi
+  fi
+done < <(git diff --cached --name-only --diff-filter=ACM | grep 'AGENT\.md$' || true)
+
+# 4. Ledger entry
+echo "{\"action_id\":\"pre-commit-$(date +%s)\",\"sequence\":$(date +%s),\"state\":\"AUTHORIZED\",\"tenant\":\"git\",\"rejection_code\":null,\"evidence\":\"Commit validation passed\",\"timestamp\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" >> "$LEDGER"
+
+echo -e "\033[0;32m[GOVERNANCE AUTHORIZED]${NC} Commit passa em todas as validacoes."

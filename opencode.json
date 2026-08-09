@@ -16,14 +16,6 @@
         ".opencode/mcp/server.mjs"
       ],
       "enabled": true
-    },
-    "composio": {
-      "type": "remote",
-      "url": "https://connect.composio.dev/mcp",
-      "enabled": false,
-      "headers": {
-        "x-consumer-api-key": "${COMPOSIO_API_KEY}"
-      }
     }
   },
   "permission": {
