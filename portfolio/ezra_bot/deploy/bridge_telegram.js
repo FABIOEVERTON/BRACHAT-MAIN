@@ -1,7 +1,9 @@
+const dns = require("dns");
+dns.setDefaultResultOrder("ipv4first");
 const BASE = process.env.OPENCODE_URL || "http://127.0.0.1:3791";
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const PASS = process.env.OPENCODE_SERVER_PASSWORD;
-const TIMEOUT = 240000;
+const TIMEOUT = 600000;
 if (!TOKEN || !PASS) { console.error("missing TELEGRAM_BOT_TOKEN or OPENCODE_SERVER_PASSWORD"); process.exit(1); }
 const AUTH = "Basic " + Buffer.from("opencode:" + PASS).toString("base64");
 const TG = "https://api.telegram.org/bot" + TOKEN;
@@ -22,16 +24,30 @@ async function post(url, body) {
     return await fetch(url, { method: "POST", headers: { Authorization: AUTH, "Content-Type": "application/json" }, body: JSON.stringify(body), signal: ctrl.signal });
   } finally { clearTimeout(t); }
 }
-async function ask(chatId, text) {
+async function openSession(chatId) {
   let sid = sessions[chatId];
-  if (!sid) {
-    const r = await post(BASE + "/session", {});
-    if (!r || !r.ok) return send(chatId, "(erro ao abrir sessão)");
-    const j = await r.json();
-    sid = sessions[chatId] = j.id;
+  if (sid) return sid;
+  const r = await post(BASE + "/session", {});
+  if (!r || !r.ok) throw new Error("open session failed");
+  const j = await r.json();
+  return (sessions[chatId] = j.id);
+}
+async function ask(chatId, text) {
+  await send(chatId, "(processando...)");
+  let sid;
+  try { sid = await openSession(chatId); } catch { return send(chatId, "(erro ao abrir sessão)"); }
+  let r;
+  try {
+    r = await post(BASE + "/session/" + sid + "/message", { parts: [{ type: "text", text }] });
+    if (!r || !r.ok) throw new Error("msg failed");
+  } catch {
+    delete sessions[chatId];
+    try {
+      sid = await openSession(chatId);
+      r = await post(BASE + "/session/" + sid + "/message", { parts: [{ type: "text", text }] });
+      if (!r || !r.ok) throw new Error("retry failed");
+    } catch { return send(chatId, "(falha no processamento)"); }
   }
-  const r = await post(BASE + "/session/" + sid + "/message", { parts: [{ type: "text", text }] });
-  if (!r || !r.ok) return send(chatId, "(falha no processamento)");
   const j = await r.json();
   const out = (j.parts || []).filter(p => p.type === "text" && p.text).map(p => p.text).join("\n").trim();
   await send(chatId, out || "(sem resposta)");

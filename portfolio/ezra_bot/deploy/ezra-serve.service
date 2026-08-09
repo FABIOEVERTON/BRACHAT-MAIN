@@ -9,6 +9,7 @@ User=ubuntu
 WorkingDirectory=/home/ubuntu/brachat-main
 EnvironmentFile=/home/ubuntu/brachat-main/.env
 ExecStart=/usr/bin/opencode serve --port 3791 --hostname 127.0.0.1 --log-level INFO
+ExecStartPost=/bin/sh -c '/opt/ezra-warmup/ezra-warmup.sh >/tmp/ezra-warmup.log 2>&1 &'
 Restart=always
 RestartSec=5
 TimeoutStopSec=30
