@@ -1,6 +1,6 @@
-# 🦅 PEGASUS
+# 🦅 EZRA_CURATOR
 
-### Agente RAG corporativo · Santos Pegasus Soluciones
+### Agente RAG corporativo · Santos EZRA_CURATOR Soluciones
 
 ![Python](https://img.shields.io/badge/Python-3.11+-gold?style=for-the-badge&logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.36+-9cf?style=for-the-badge&logo=streamlit)
@@ -38,7 +38,7 @@
 
 ## 🧠 O que é
 
-O **PEGASUS** é um **agente de RAG (Retrieval-Augmented Generation)** que responde perguntas em linguagem natural com base nos documentos internos da empresa. Ele:
+O **EZRA_CURATOR** é um **agente de RAG (Retrieval-Augmented Generation)** que responde perguntas em linguagem natural com base nos documentos internos da empresa. Ele:
 
 - 🔍 **Recupera** os trechos mais relevantes de um banco vetorial (ChromaDB).
 - 🎯 **Reordena** os resultados com um reranker local (cross-encoder).
@@ -50,7 +50,7 @@ O **PEGASUS** é um **agente de RAG (Retrieval-Augmented Generation)** que respo
 
 > "Quais linguagens de programação são usadas no back-end?"
 
-> "De acordo com o contexto fornecido, o back-end da Santos Pegasus Soluciones é baseado em **Java 17+ e Spring Boot 3+** [Guia_Engenharia_Backend.pdf]."
+> "De acordo com o contexto fornecido, o back-end da Santos EZRA_CURATOR Soluciones é baseado em **Java 17+ e Spring Boot 3+** [Guia_Engenharia_Backend.pdf]."
 
 ---
 
@@ -182,7 +182,7 @@ O **estado do sistema é exibido na interface** (modo normal/degradado + provedo
 ## 📁 Estrutura do projeto
 
 ```
-pegasus/
+EZRA_CURATOR/
 ├── app/
 │   ├── app.py           # Streamlit (UI) — tema dark premium
 │   ├── rag.py           # pipeline RAG: recuperação + rerank + geração + fallbacks
@@ -349,8 +349,8 @@ Como evoluir de demo mínima para produção:
 
 - **Autor:** Fabio (FABIOEVERTON)
 - **Projeto:** Challenge Oracle ONE — FASE TECH | Trilha ONE AI FOR TECH
-- **Repositório:** [FABIOEVERTON/pegasus](https://github.com/FABIOEVERTON/pegasus)
+- **Repositório:** [FABIOEVERTON/EZRA_CURATOR](https://github.com/FABIOEVERTON/EZRA_CURATOR)
 
 ---
 
-*PEGASUS · Santos Pegasus Soluciones · Oracle ONE Challenge — FASE TECH*
+*EZRA_CURATOR · Santos EZRA_CURATOR Soluciones · Oracle ONE Challenge — FASE TECH*
