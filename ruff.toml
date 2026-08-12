@@ -1,0 +1,100 @@
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+indent-width = 2
+skip-magic-trailing-comma = true
+respect-noqa = true
+fixable = ["ALL"]
+unfixable = ["T201", "T203"]
+exclude = [
+    ".venv",
+    "venv",
+    ".venv",
+    "node_modules",
+    "__pycache__",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".pytest_cache",
+    "chroma",
+    "logs",
+    "dist",
+    "build",
+    "*.egg-info",
+    ".git",
+    "portfolio/ezra_curator/chroma",
+    "portfolio/ezra_curator/logs"
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+    "T20", # flake8-print
+    "PTH", # flake8-use-pathlib
+    "ERA", # eradicate
+    "PL",  # pylint
+    "TRY", # tryceratops
+    "RUF", # ruff-specific
+    "RET", # flake8-return
+    "ARG", # flake8-unused-arguments
+    "PERF", # perflint
+    "TID", # flake8-tidy-imports
+    "NPY", # numpy
+    "LOG", # flake8-logging-format
+    "EXE", # flake8-executable
+    "ISC", # flake8-implicit-str-concat
+    "ICN", # iconoclast
+    "G",   # flake8-logging
+    "INP", # in-put
+    "PIE", # flake8-pie
+    "TCH", # type-checking
+    "RSE", # ruff-specific
+    "S",   # bandit (security)
+]
+ignore = [
+    "S101", # assert used (ok in tests)
+    "S106", # hardcoded password (false positive in config)
+    "S311", # random (ok for non-crypto)
+    "T201", # print (ok for CLI/debug)
+    "T203", # f-string (ok)
+    "ARG001", # unused argument (ok in callbacks)
+    "ARG002", # unused argument (ok in callbacks)
+    "TRY003", # avoid specifying long messages (ok)
+    "TRY004", # avoid raising exception from None (ok)
+    "PERF401", # dict comprehension (ok)
+    "RUF012", # mutable default (ok in some cases)
+    "RUF013", # mutable default (ok in some cases)
+]
+per-file-ignores = {
+    "tests/*": ["S101", "S106", "T201", "ARG001", "ARG002"],
+    "scripts/*": ["T201", "S101"],
+    "portfolio/ezra_curator/app/app.py": ["T201", "RUF012"],
+    "portfolio/ezra_curator/app/rag.py": ["RUF012"],
+    "portfolio/ezra_curator/app/ingest.py": ["RUF012"],
+    "portfolio/ezra_curator/app/loaders.py": ["RUF012"],
+}
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.isort]
+known-first-party = ["portfolio", "app", "scripts", "tests"]
+known-third-party = ["streamlit", "langchain", "cohere", "chromadb", "pydantic", "pydantic_settings"]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+skip-magic-trailing-comma = true
+line-ending = "lf"
+docstring-code-format = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"

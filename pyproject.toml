@@ -1,0 +1,265 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brachat-main"
+version = "0.1.0"
+description = "Brachat Main - Portfolio of AI agents and tools"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "streamlit>=1.36",
+    "langchain-core>=0.3",
+    "langchain-community>=0.3",
+    "langchain-cohere>=0.3",
+    "langchain-chroma>=0.1",
+    "langchain-text-splitters>=0.3",
+    "cohere>=5.5",
+    "chromadb>=0.5",
+    "pypdf>=4.0",
+    "pandas>=2.0",
+    "python-dotenv>=1.0",
+    "tiktoken>=0.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.5",
+    "mypy>=1.10",
+    "pyright>=1.1",
+    "pytest>=8.0",
+    "pytest-cov>=4.1",
+    "pytest-asyncio>=0.23",
+    "pytest-mock>=3.12",
+    "bandit>=1.7",
+    "pip-audit>=2.7",
+    "pre-commit>=3.6",
+    "bandit>=1.7",
+    "pip-audit>=2.7",
+    "detect-secrets>=1.5",
+    "pytest-cov>=4.1",
+    "pytest-html>=4.1",
+]
+test = [
+    "pytest>=8.0",
+    "pytest-cov>=4.1",
+    "pytest-asyncio>=0.23",
+    "pytest-mock>=3.12",
+    "pytest-html>=4.1",
+]
+lint = [
+    "ruff>=0.5",
+    "mypy>=1.10",
+    "pyright>=1.1",
+    "bandit>=1.7",
+    "pip-audit>=2.7",
+    "detect-secrets>=1.5",
+]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_unused_configs = true
+allow_untyped_globals = false
+allow_untyped_calls = false
+allow_untyped_decorators = false
+warn_unused_configs = true
+enable_error_code = [
+    "attr-defined",
+    "assignment",
+    "attr-defined",
+    "call-arg",
+    "arg-type",
+    "attr-defined",
+    "call-overload",
+    "comparison-overlap",
+    "dict-iter-missing-items",
+    "index",
+    "list-item",
+    "misc",
+    "name-defined",
+    "no-any-return",
+    "no-any-unimported",
+    "no-untyped-def",
+    "override",
+    "return-value",
+    "type-arg",
+    "type-var",
+    "union-attr",
+    "unused-ignore",
+    "valid-type",
+]
+exclude = [
+    "venv",
+    ".venv",
+    "node_modules",
+    "__pycache__",
+    ".mypy_cache",
+    ".pytest_cache",
+    "chroma",
+    "logs",
+    "dist",
+    "build",
+    "*.egg-info",
+    ".git",
+    "portfolio/ezra_curator/chroma",
+    "portfolio/ezra_curator/logs"
+]
+namespace_packages = true
+explicit_package_bases = true
+
+[tool.mypy.overrides]
+module = [
+    "portfolio.ezra_curator.app.*",
+]
+strict = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--strict-config",
+    "--cov=portfolio",
+    "--cov-report=term-missing",
+    "--cov-report=html:htmlcov",
+    "--cov-fail-under=80",
+]
+asyncio_mode = "auto"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["portfolio"]
+omit = [
+    "*/tests/*",
+    "*/venv/*",
+    "*/.venv/*",
+    "*/__pycache__/*",
+    "*/chroma/*",
+    "*/logs/*",
+]
+branch = true
+concurrency = ["threading", "multiprocessing"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+show_missing = true
+skip_covered = false
+
+[tool.bandit]
+exclude_dirs = ["venv", ".venv", "node_modules", "chroma", "logs", "tests", "__pycache__"]
+skips = ["B101", "B106", "B108", "B311", "B324"]
+confidence_level = "medium"
+severity_level = "medium"
+
+[tool.pip-audit]
+desc = true
+dry_run = false
+fix = false
+format = "json"
+output = "pip-audit-report.json"
+progress_bar = "on"
+requirement = "requirements.txt"
+skip = []
+vulnerability_service = "osv"
+
+[tool.detect-secrets]
+exclude_files = [
+    "*.lock",
+    "*.log",
+    "*.json",
+    "*.md",
+    "*.txt",
+    "*.yaml",
+    "*.yml",
+    "*.toml",
+    "*.ini",
+    "*.cfg",
+    "*.conf",
+    "*.config",
+    "*.example",
+    "*.sample",
+    "*.template",
+    "*.dist",
+    "*.bak",
+    "*.backup",
+    "*.orig",
+    "*.old",
+    "*.swp",
+    "*.swo",
+    "*~",
+    ".git/*",
+    "venv/*",
+    ".venv/*",
+    "node_modules/*",
+    "chroma/*",
+    "logs/*",
+    "__pycache__/*",
+    "*.pyc",
+    "*.pyo",
+    "*.pyd",
+    "*.so",
+    "*.dll",
+    "*.dylib",
+    "*.exe",
+    "*.bin",
+    "*.dat",
+    "*.db",
+    "*.sqlite",
+    "*.sqlite3",
+]
+plugins = [
+    "ArtifactoryDetector",
+    "AWSKeyDetector",
+    "AzureStorageKeyDetector",
+    "BasicAuthDetector",
+    "CloudantDetector",
+    "DiscordBotTokenDetector",
+    "GitHubTokenDetector",
+    "GitLabTokenDetector",
+    "GoogleAPIKeyDetector",
+    "GoogleCloudPlatformAPIKeyDetector",
+    "GoogleCloudPlatformOAuthDetector",
+    "HerokuAPIKeyDetector",
+    "IbmCloudApiKeyDetector",
+    "IbmCosHmacDetector",
+    "JwtTokenDetector",
+    "MailchimpAPIKeyDetector",
+    "NpmTokenDetector",
+    "OpenAIAPIKeyDetector",
+    "PgpPrivateKeyDetector",
+    "PivotalTrackerTokenDetector",
+    "PostgresDetector",
+    "PrivateKeyDetector",
+    "RedisDetector",
+    "SendGridAPIKeyDetector",
+    "SlackDetector",
+    "SlackWebhookDetector",
+    "SquareOAuthDetector",
+    "StripeAPIKeyDetector",
+    "TwilioAPIKeyDetector",
+    "TwitchAPIKeyDetector",
+    "TwitterAPIKeyDetector",
+]
