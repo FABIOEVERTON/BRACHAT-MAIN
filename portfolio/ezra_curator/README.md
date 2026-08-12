@@ -1,4 +1,4 @@
-# 🦅 EZRA_CURATOR
+# 🦅 EZRA_CURATOR 
 
 ### Agente RAG corporativo · Santos EZRA_CURATOR Soluciones
 
