@@ -1,0 +1,918 @@
+CRONOGRAMA TCU + CGU 2026
+Inicio: 10/08/2026 (segunda-feira)
+Termino: 30/11/2026
+
+FORMATO SEMANAL (fixo)
+SEG: Portugues | Raciocinio Analitico e Critico | RLM
+TER: Direito Constitucional | Direito Administrativo | AFO
+QUA: Contabilidade Publica | Auditoria Governamental | Estatistica e Analise de Dados
+QUI: SQL/Python | Direito Civil e Processo Civil | Lei 12.846/2013
+SEX: Lei 8.429/1992 | LAI | LGPD
+
+SISTEMA DE REVISOES (repeticao espacada)
+Todo topico estudado no dia D e revisado em D+1, D+2, D+7, D+21 e D+30.
+Revisoes ficam listadas no topo de cada dia, antes das 3 materias.
+D+30 que cai em sabado ou domingo e feito na segunda-feira seguinte.
+Revisoes com vencimento apos 27/11/2026: realizar nos primeiros dias uteis de dezembro.
+
+=== SEMANA 1 (10/08 a 14/08) ===
+SEG 10/08/2026
+PORTUGUÊS: PT01 Compreensão e interpretação de textos (ideia principal, intenção do autor, informações implícitas, inferências)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: RA01 Estrutura de argumentos (premissas, conclusão, argumentos implícitos)
+RLM: RL01 Proposições, valores lógicos e conectivos (negação, conjunção, disjunção, condicional, bicondicional)
+
+TER 11/08/2026
+DIREITO CONSTITUCIONAL: DC01 Fundamentos e princípios fundamentais (art. 1º a 4º CF)
+DIREITO ADMINISTRATIVO: DA01 Conceito, fontes e regime jurídico-administrativo (princípios expressos e implícitos)
+AFO: AF01 Orçamento público (conceito, funções, espécies; ciclo orçamentário)
+REVISOES:
+  D+1: PT01, RA01, RL01
+
+QUA 12/08/2026
+CONTABILIDADE PÚBLICA: CP01 NBC TSP 01 - estrutura conceitual (objetivos, características qualitativas)
+AUDITORIA GOVERNAMENTAL: AU01 Conceitos, finalidades, objeto e tipos de auditoria (conformidade, operacional)
+ESTATÍSTICA E ANÁLISE DE DADOS: ES01 Conceitos básicos (população, amostra, variáveis, níveis de mensuração)
+REVISOES:
+  D+1: AF01, DA01, DC01
+  D+2: PT01, RA01, RL01
+
+QUI 13/08/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ01 SQL - DDL (CREATE, ALTER, DROP; tipos de dados)
+DIREITO CIVIL E PROCESSO CIVIL: DCI01 Lei de Introdução às Normas do Direito Brasileiro (LINDB)
+LEI 12.846/2013 (ANTICORRUPÇÃO): L12.01 Disposições gerais e atos lesivos (art. 5º; rol exemplificativo)
+REVISOES:
+  D+1: AU01, CP01, ES01
+  D+2: AF01, DA01, DC01
+
+SEX 14/08/2026
+LEI 8.429/1992 (IMPROBIDADE): L84.01 Natureza da lei, bens jurídicos tutelados e sujeitos (agentes públicos e terceiros)
+LAI (LEI 12.527/2011): LAI.01 Princípios, conceitos e transparência (dados abertos)
+LGPD (LEI 13.709/2018): LG.01 Conceitos-chave (dado pessoal, dado sensível, anonimização, titular)
+REVISOES:
+  D+1: DCI01, L12.01, SQ01
+  D+2: AU01, CP01, ES01
+
+
+=== SEMANA 2 (17/08 a 21/08) ===
+SEG 17/08/2026
+PORTUGUÊS: PT02 Tipologia e gêneros textuais (narrativo, descritivo, dissertativo, injuntivo; textos oficiais)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: RA02 Tipos de argumento (dedutivo, indutivo, por analogia)
+RLM: RL02 Tabelas-verdade (construção e número de linhas)
+REVISOES:
+  D+1: L84.01, LAI.01, LG.01
+  D+2: DCI01, L12.01, L84.01, LAI.01, LG.01, SQ01
+  D+7: PT01, RA01, RL01
+
+TER 18/08/2026
+DIREITO CONSTITUCIONAL: DC02 Direitos e garantias fundamentais - individuais e coletivos (art. 5º; remédios constitucionais)
+DIREITO ADMINISTRATIVO: DA02 Atos administrativos (elementos, atributos, classificação, extinção, invalidação)
+AFO: AF02 Princípios orçamentários (universalidade, unidade, anualidade, etc.)
+REVISOES:
+  D+1: PT02, RA02, RL02
+  D+7: AF01, DA01, DC01
+
+QUA 19/08/2026
+CONTABILIDADE PÚBLICA: CP02 Patrimônio público (componentes, ativo, passivo, mensuração)
+AUDITORIA GOVERNAMENTAL: AU02 Normas de auditoria (NBASP/ISSAI; normas da INTOSAI; macrofunções CGU)
+ESTATÍSTICA E ANÁLISE DE DADOS: ES02 Distribuição de frequências e representação gráfica (histograma, ramo-e-folhas)
+REVISOES:
+  D+1: AF02, DA02, DC02
+  D+2: PT02, RA02, RL02
+  D+7: AU01, CP01, ES01
+
+QUI 20/08/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ02 SQL - DML (INSERT, UPDATE, DELETE)
+DIREITO CIVIL E PROCESSO CIVIL: DCI02 Pessoa natural e pessoa jurídica (capacidade, direitos da personalidade)
+LEI 12.846/2013 (ANTICORRUPÇÃO): L12.02 Responsabilidade objetiva e atribuição de responsabilidade (pessoas jurídicas, sócios, diretores)
+REVISOES:
+  D+1: AU02, CP02, ES02
+  D+2: AF02, DA02, DC02
+  D+7: DCI01, L12.01, SQ01
+
+SEX 21/08/2026
+LEI 8.429/1992 (IMPROBIDADE): L84.02 Atos de improbidade que importam enriquecimento ilícito (art. 9º)
+LAI (LEI 12.527/2011): LAI.02 Transparência ativa (divulgação de informações de ofício)
+LGPD (LEI 13.709/2018): LG.02 Princípios (art. 6º)
+REVISOES:
+  D+1: DCI02, L12.02, SQ02
+  D+2: AU02, CP02, ES02
+  D+7: L84.01, LAI.01, LG.01
+
+
+=== SEMANA 3 (24/08 a 28/08) ===
+SEG 24/08/2026
+PORTUGUÊS: PT03 Ortografia oficial (emprego correto das letras, homônimos, parônimos, hífen)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: RA03 Validade e solidez; noção de inferência válida
+RLM: RL03 Equivalências lógicas (Leis de De Morgan, contrapositiva, equivalências da condicional)
+REVISOES:
+  D+1: L84.02, LAI.02, LG.02
+  D+2: DCI02, L12.02, L84.02, LAI.02, LG.02, SQ02
+  D+7: PT02, RA02, RL02
+
+TER 25/08/2026
+DIREITO CONSTITUCIONAL: DC03 Direitos sociais (art. 6º a 11)
+DIREITO ADMINISTRATIVO: DA03 Poderes administrativos (hierarquia, disciplina, poder de polícia, discricionariedade)
+AFO: AF03 Planejamento: PPA, LDO e LOA (Lei 4.320/1964 e CF)
+REVISOES:
+  D+1: PT03, RA03, RL03
+  D+7: AF02, DA02, DC02
+
+QUA 26/08/2026
+CONTABILIDADE PÚBLICA: CP03 Variações patrimoniais (qualitativas e quantitativas; VPA e VPD)
+AUDITORIA GOVERNAMENTAL: AU03 Planejamento da auditoria (programas, matriz de planejamento, matriz de achados)
+ESTATÍSTICA E ANÁLISE DE DADOS: ES03 Medidas de posição (média, mediana, moda, quantis, separatrizes)
+REVISOES:
+  D+1: AF03, DA03, DC03
+  D+2: PT03, RA03, RL03
+  D+7: AU02, CP02, ES02
+
+QUI 27/08/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ03 SQL - SELECT e filtros (WHERE, ORDER BY, LIMIT, LIKE)
+DIREITO CIVIL E PROCESSO CIVIL: DCI03 Bens (classificação)
+LEI 12.846/2013 (ANTICORRUPÇÃO): L12.03 Sanções administrativas e judiciais (valores, multas, proibição de contratar)
+REVISOES:
+  D+1: AU03, CP03, ES03
+  D+2: AF03, DA03, DC03
+  D+7: DCI02, L12.02, SQ02
+
+SEX 28/08/2026
+LEI 8.429/1992 (IMPROBIDADE): L84.03 Atos que causam prejuízo ao erário (art. 10)
+LAI (LEI 12.527/2011): LAI.03 Transparência passiva (pedidos de acesso, prazos, requisitos)
+LGPD (LEI 13.709/2018): LG.03 Bases legais de tratamento (art. 7º a 11)
+REVISOES:
+  D+1: DCI03, L12.03, SQ03
+  D+2: AU03, CP03, ES03
+  D+7: L84.02, LAI.02, LG.02
+
+
+=== SEMANA 4 (31/08 a 04/09) ===
+SEG 31/08/2026
+PORTUGUÊS: PT04 Acentuação gráfica (regras, acento diferencial, Acordo Ortográfico 1990)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: RA04 Silogismos e lógica de termos (figuras, formas)
+RLM: RL04 Negação de proposições compostas
+REVISOES:
+  D+1: L84.03, LAI.03, LG.03
+  D+2: DCI03, L12.03, L84.03, LAI.03, LG.03, SQ03
+  D+7: PT03, RA03, RL03
+  D+21: PT01, RA01, RL01
+
+TER 01/09/2026
+DIREITO CONSTITUCIONAL: DC04 Nacionalidade, direitos políticos e partidos políticos (art. 12 a 17)
+DIREITO ADMINISTRATIVO: DA04 Organização administrativa (desconcentração, descentralização, autarquias, fundações, empresas, consórcios)
+AFO: AF04 Créditos adicionais (suplementar, especial, extraordinário; limites)
+REVISOES:
+  D+1: PT04, RA04, RL04
+  D+7: AF03, DA03, DC03
+  D+21: AF01, DA01, DC01
+
+QUA 02/09/2026
+CONTABILIDADE PÚBLICA: CP04 Plano de Contas Aplicado ao Setor Público (classes, natureza das contas)
+AUDITORIA GOVERNAMENTAL: AU04 Materialidade, relevância e risco de auditoria (risco inerente, de controle, de detecção)
+ESTATÍSTICA E ANÁLISE DE DADOS: ES04 Medidas de dispersão (amplitude, desvio, variância, desvio-padrão, CV)
+REVISOES:
+  D+1: AF04, DA04, DC04
+  D+2: PT04, RA04, RL04
+  D+7: AU03, CP03, ES03
+  D+21: AU01, CP01, ES01
+
+QUI 03/09/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ04 SQL - JOINs (INNER, LEFT, RIGHT, FULL; múltiplas tabelas)
+DIREITO CIVIL E PROCESSO CIVIL: DCI04 Fatos jurídicos, ato jurídico e negócio jurídico (elementos, vícios)
+LEI 12.846/2013 (ANTICORRUPÇÃO): L12.04 Acordo de leniência (requisitos, efeitos, competência)
+REVISOES:
+  D+1: AU04, CP04, ES04
+  D+2: AF04, DA04, DC04
+  D+7: DCI03, L12.03, SQ03
+  D+21: DCI01, L12.01, SQ01
+
+SEX 04/09/2026
+LEI 8.429/1992 (IMPROBIDADE): L84.04 Atos que atentam contra os princípios (art. 11)
+LAI (LEI 12.527/2011): LAI.04 Restrições de acesso (sigilo, classificação da informação, prazos)
+LGPD (LEI 13.709/2018): LG.04 Direitos do titular (art. 18)
+REVISOES:
+  D+1: DCI04, L12.04, SQ04
+  D+2: AU04, CP04, ES04
+  D+7: L84.03, LAI.03, LG.03
+  D+21: L84.01, LAI.01, LG.01
+
+
+=== SEMANA 5 (07/09 a 11/09) ===
+SEG 07/09/2026
+PORTUGUÊS: PT05 Emprego das classes de palavras (substantivo, adjetivo, verbo, pronomes, conjunções, preposições)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: RA05 Pressupostos e assunções implícitas (identificação e avaliação)
+RLM: RL05 Implicação lógica (modus ponens, modus tollens; argumentos válidos)
+REVISOES:
+  D+1: L84.04, LAI.04, LG.04
+  D+2: DCI04, L12.04, L84.04, LAI.04, LG.04, SQ04
+  D+7: PT04, RA04, RL04
+  D+21: PT02, RA02, RL02
+
+TER 08/09/2026
+DIREITO CONSTITUCIONAL: DC05 Organização político-administrativa (art. 18 a 33; repartição de competências)
+DIREITO ADMINISTRATIVO: DA05 Agências reguladoras e agências executivas
+AFO: AF05 Receita pública (classificações, categorias econômicas, estágios)
+REVISOES:
+  D+1: PT05, RA05, RL05
+  D+7: AF04, DA04, DC04
+  D+21: AF02, DA02, DC02
+
+QUA 09/09/2026
+CONTABILIDADE PÚBLICA: CP05 Escrituração e sistemas contábeis (orçamentário, patrimonial, compensado - MCASP)
+AUDITORIA GOVERNAMENTAL: AU05 Amostragem e extensão dos testes (técnicas de seleção)
+ESTATÍSTICA E ANÁLISE DE DADOS: ES05 Assimetria e curtose
+REVISOES:
+  D+1: AF05, DA05, DC05
+  D+2: PT05, RA05, RL05
+  D+7: AU04, CP04, ES04
+  D+21: AU02, CP02, ES02
+  D+30: PT01, RA01, RL01
+
+QUI 10/09/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ05 SQL - Agregações (GROUP BY, HAVING, COUNT, SUM, AVG)
+DIREITO CIVIL E PROCESSO CIVIL: DCI05 Prescrição e decadência
+LEI 12.846/2013 (ANTICORRUPÇÃO): L12.05 Processo Administrativo de Responsabilização - PAR (rito, defesa, recursos)
+REVISOES:
+  D+1: AU05, CP05, ES05
+  D+2: AF05, DA05, DC05
+  D+7: DCI04, L12.04, SQ04
+  D+21: DCI02, L12.02, SQ02
+  D+30: AF01, DA01, DC01
+
+SEX 11/09/2026
+LEI 8.429/1992 (IMPROBIDADE): L84.05 Sanções aplicáveis (art. 12; perda da função, multa, suspensão)
+LAI (LEI 12.527/2011): LAI.05 Recursos (instâncias; CGU)
+LGPD (LEI 13.709/2018): LG.05 Agentes de tratamento (controlador, operador, encarregado/DPO)
+REVISOES:
+  D+1: DCI05, L12.05, SQ05
+  D+2: AU05, CP05, ES05
+  D+7: L84.04, LAI.04, LG.04
+  D+21: L84.02, LAI.02, LG.02
+  D+30: AU01, CP01, ES01
+
+
+=== SEMANA 6 (14/09 a 18/09) ===
+SEG 14/09/2026
+PORTUGUÊS: PT06 Emprego do sinal indicativo de crase (regras, casos facultativos e proibidos)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: RA06 Falácias formais (negação do antecedente, afirmação do consequente)
+RLM: RL06 Diagramas lógicos (relações entre conjuntos)
+REVISOES:
+  D+1: L84.05, LAI.05, LG.05
+  D+2: DCI05, L12.05, L84.05, LAI.05, LG.05, SQ05
+  D+7: PT05, RA05, RL05
+  D+21: PT03, RA03, RL03
+  D+30: DCI01, L12.01, L84.01, LAI.01, LG.01, SQ01
+
+TER 15/09/2026
+DIREITO CONSTITUCIONAL: DC06 Administração Pública na CF (art. 37 a 41; tetos, improbidade)
+DIREITO ADMINISTRATIVO: DA06 Licitações - Lei 14.133/2021 (princípios, modalidades, fases, dispensa e inexigibilidade)
+AFO: AF06 Despesa pública (classificações, categorias econômicas, estágios)
+REVISOES:
+  D+1: PT06, RA06, RL06
+  D+7: AF05, DA05, DC05
+  D+21: AF03, DA03, DC03
+
+QUA 16/09/2026
+CONTABILIDADE PÚBLICA: CP06 Receita e despesa sob o enfoque patrimonial
+AUDITORIA GOVERNAMENTAL: AU06 Procedimentos e técnicas de auditoria (inspeção, observação, conferência, cálculos)
+ESTATÍSTICA E ANÁLISE DE DADOS: ES06 Probabilidade (axiomas, eventos, probabilidade condicional, Teorema de Bayes)
+REVISOES:
+  D+1: AF06, DA06, DC06
+  D+2: PT06, RA06, RL06
+  D+7: AU05, CP05, ES05
+  D+21: AU03, CP03, ES03
+  D+30: PT02, RA02, RL02
+
+QUI 17/09/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ06 SQL - Subqueries e CTEs (WHERE IN, FROM derivado)
+DIREITO CIVIL E PROCESSO CIVIL: DCI06 Obrigações (conceito, fontes, modalidades, adimplemento)
+LEI 12.846/2013 (ANTICORRUPÇÃO): L12.06 Prescrição (prazos)
+REVISOES:
+  D+1: AU06, CP06, ES06
+  D+2: AF06, DA06, DC06
+  D+7: DCI05, L12.05, SQ05
+  D+21: DCI03, L12.03, SQ03
+  D+30: AF02, DA02, DC02
+
+SEX 18/09/2026
+LEI 8.429/1992 (IMPROBIDADE): L84.06 Elemento subjetivo (dolo) após a Lei 14.230/2021
+LAI (LEI 12.527/2011): LAI.06 Responsabilidades (sanções pelo descumprimento)
+LGPD (LEI 13.709/2018): LG.06 Transferência internacional de dados
+REVISOES:
+  D+1: DCI06, L12.06, SQ06
+  D+2: AU06, CP06, ES06
+  D+7: L84.05, LAI.05, LG.05
+  D+21: L84.03, LAI.03, LG.03
+  D+30: AU02, CP02, ES02
+
+
+=== SEMANA 7 (21/09 a 25/09) ===
+SEG 21/09/2026
+PORTUGUÊS: PT07 Sintaxe: concordância nominal e verbal (casos especiais, coletivos, locuções)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: RA07 Falácias informais (ad hominem, generalização apressada, apelo à autoridade, falso dilema)
+RLM: RL07 Lógica de argumentação (premissas, conclusão, validade de argumentos)
+REVISOES:
+  D+1: L84.06, LAI.06, LG.06
+  D+2: DCI06, L12.06, L84.06, LAI.06, LG.06, SQ06
+  D+7: PT06, RA06, RL06
+  D+21: PT04, RA04, RL04
+  D+30: DCI02, L12.02, L84.02, LAI.02, LG.02, SQ02
+
+TER 22/09/2026
+DIREITO CONSTITUCIONAL: DC07 Poder Legislativo (art. 44 a 75; processo legislativo, CPI, fiscalização)
+DIREITO ADMINISTRATIVO: DA07 Contratos administrativos (cláusulas exorbitantes, alteração, extinção, sanções, equilíbrio econômico)
+AFO: AF07 Restos a pagar e despesas de exercícios anteriores
+REVISOES:
+  D+1: PT07, RA07, RL07
+  D+7: AF06, DA06, DC06
+  D+21: AF04, DA04, DC04
+
+QUA 23/09/2026
+CONTABILIDADE PÚBLICA: CP07 Balanço orçamentário (demonstração, superávit/déficit)
+AUDITORIA GOVERNAMENTAL: AU07 Evidências (tipos, suficiência, validade, adequação)
+ESTATÍSTICA E ANÁLISE DE DADOS: ES07 Variáveis aleatórias discretas (Bernoulli, Binomial, Poisson; valor esperado)
+REVISOES:
+  D+1: AF07, DA07, DC07
+  D+2: PT07, RA07, RL07
+  D+7: AU06, CP06, ES06
+  D+21: AU04, CP04, ES04
+  D+30: PT03, RA03, RL03
+
+QUI 24/09/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ07 SQL - Funções de janela (noções: ROW_NUMBER, RANK, OVER)
+DIREITO CIVIL E PROCESSO CIVIL: DCI07 Contratos (formação, classificação, extinção, vícios sociais)
+LEI 12.846/2013 (ANTICORRUPÇÃO): L12.07 Programa de integridade (compliance; elementos do art. 42)
+REVISOES:
+  D+1: AU07, CP07, ES07
+  D+2: AF07, DA07, DC07
+  D+7: DCI06, L12.06, SQ06
+  D+21: DCI04, L12.04, SQ04
+  D+30: AF03, DA03, DC03
+
+SEX 25/09/2026
+LEI 8.429/1992 (IMPROBIDADE): L84.07 Prescrição e prazos (modificações da Lei 14.230/2021)
+LAI (LEI 12.527/2011): LAI.07 LAI aplicada ao controle (fiscalização da CGU)
+LGPD (LEI 13.709/2018): LG.07 ANPD e sanções administrativas
+REVISOES:
+  D+1: DCI07, L12.07, SQ07
+  D+2: AU07, CP07, ES07
+  D+7: L84.06, LAI.06, LG.06
+  D+21: L84.04, LAI.04, LG.04
+  D+30: AU03, CP03, ES03
+
+
+=== SEMANA 8 (28/09 a 02/10) ===
+SEG 28/09/2026
+PORTUGUÊS: PT08 Sintaxe: regência nominal e verbal (verbos e nomes com regência própria)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: RA08 Análise crítica de textos argumentativos (força dos argumentos, contra-argumentos)
+RLM: RL08 Raciocínio sequencial e associações lógicas (correlações, ordens)
+REVISOES:
+  D+1: L84.07, LAI.07, LG.07
+  D+2: DCI07, L12.07, L84.07, LAI.07, LG.07, SQ07
+  D+7: PT07, RA07, RL07
+  D+21: PT05, RA05, RL05
+  D+30: DCI03, L12.03, L84.03, LAI.03, LG.03, SQ03
+
+TER 29/09/2026
+DIREITO CONSTITUCIONAL: DC08 Poder Executivo (art. 76 a 91; atribuições, medidas provisórias)
+DIREITO ADMINISTRATIVO: DA08 Serviços públicos (conceito, princípios, delegação, concessão, permissão, autorização)
+AFO: AF08 Execução orçamentária e financeira (empenho, liquidação, pagamento; fontes de recursos)
+REVISOES:
+  D+1: PT08, RA08, RL08
+  D+7: AF07, DA07, DC07
+  D+21: AF05, DA05, DC05
+
+QUA 30/09/2026
+CONTABILIDADE PÚBLICA: CP08 Balanço financeiro (ingressos e dispêndios)
+AUDITORIA GOVERNAMENTAL: AU08 Achados de auditoria (atributos: condição, critério, causa, efeito)
+ESTATÍSTICA E ANÁLISE DE DADOS: ES08 Variáveis aleatórias contínuas (Uniforme, Normal; teorema central do limite)
+REVISOES:
+  D+1: AF08, DA08, DC08
+  D+2: PT08, RA08, RL08
+  D+7: AU07, CP07, ES07
+  D+21: AU05, CP05, ES05
+  D+30: PT04, RA04, RL04
+
+QUI 01/10/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ08 Python - sintaxe e estruturas de dados (listas, dicionários, tuplas, conjuntos)
+DIREITO CIVIL E PROCESSO CIVIL: DCI08 Responsabilidade civil (contratual e extracontratual; dano, nexo, culpa)
+LEI 12.846/2013 (ANTICORRUPÇÃO): L12.08 Aplicação no controle interno (CGU; interface com a auditoria)
+REVISOES:
+  D+1: AU08, CP08, ES08
+  D+2: AF08, DA08, DC08
+  D+7: DCI07, L12.07, SQ07
+  D+21: DCI05, L12.05, SQ05
+  D+30: AF04, DA04, DC04
+
+SEX 02/10/2026
+LEI 8.429/1992 (IMPROBIDADE): L84.08 Processo administrativo e judicial; ação de improbidade (rito)
+LAI (LEI 12.527/2011): LAI.08 Questões comentadas Cebraspe (LAI)
+LGPD (LEI 13.709/2018): LG.08 Segurança da informação, boas práticas e notificação de incidentes
+REVISOES:
+  D+1: DCI08, L12.08, SQ08
+  D+2: AU08, CP08, ES08
+  D+7: L84.07, LAI.07, LG.07
+  D+21: L84.05, LAI.05, LG.05
+  D+30: AU04, CP04, ES04
+
+
+=== SEMANA 9 (05/10 a 09/10) ===
+SEG 05/10/2026
+PORTUGUÊS: PT09 Colocação pronominal (próclise, mesóclise, ênclise; casos obrigatórios)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: RA09 Argumentação aplicada a relatórios de auditoria (achados e recomendações)
+RLM: RL09 Orientação espacial, temporal e de ordem (problemas de posição)
+REVISOES:
+  D+1: L84.08, LAI.08, LG.08
+  D+2: DCI08, L12.08, L84.08, LAI.08, LG.08, SQ08
+  D+7: PT08, RA08, RL08
+  D+21: PT06, RA06, RL06
+  D+30: DCI04, L12.04, L84.04, LAI.04, LG.04, SQ04
+
+TER 06/10/2026
+DIREITO CONSTITUCIONAL: DC09 Poder Judiciário (art. 92 a 126; garantias, tribunais, CNJ)
+DIREITO ADMINISTRATIVO: DA09 Bens públicos (classificação, características, uso, alienação, desafetação)
+AFO: AF09 Programação financeira (cotas, destaques, repasses)
+REVISOES:
+  D+1: PT09, RA09, RL09
+  D+7: AF08, DA08, DC08
+  D+21: AF06, DA06, DC06
+
+QUA 07/10/2026
+CONTABILIDADE PÚBLICA: CP09 Demonstração das Variações Patrimoniais (DVP)
+AUDITORIA GOVERNAMENTAL: AU09 Relatório de auditoria (estrutura, recomendações, manifestação do auditado)
+ESTATÍSTICA E ANÁLISE DE DADOS: ES09 Amostragem (aleatória simples, sistemática, estratificada, por conglomerados)
+REVISOES:
+  D+1: AF09, DA09, DC09
+  D+2: PT09, RA09, RL09
+  D+7: AU08, CP08, ES08
+  D+21: AU06, CP06, ES06
+  D+30: PT05, RA05, RL05
+
+QUI 08/10/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ09 Python - controle de fluxo, funções e módulos
+DIREITO CIVIL E PROCESSO CIVIL: DCI09 Enriquecimento sem causa e pagamento indevido (interface com o erário)
+LEI 12.846/2013 (ANTICORRUPÇÃO): L12.09 Questões comentadas Cebraspe
+REVISOES:
+  D+1: AU09, CP09, ES09
+  D+2: AF09, DA09, DC09
+  D+7: DCI08, L12.08, SQ08
+  D+21: DCI06, L12.06, SQ06
+  D+30: AF05, DA05, DC05
+
+SEX 09/10/2026
+LEI 8.429/1992 (IMPROBIDADE): L84.09 Acordo de não persecução cível (requisitos, efeitos)
+LAI (LEI 12.527/2011): Questoes comentadas + revisao integrada (bloco consolidado)
+LGPD (LEI 13.709/2018): LG.09 LGPD no setor público (compartilhamento, transparência)
+REVISOES:
+  D+1: DCI09, L12.09, SQ09
+  D+2: AU09, CP09, ES09
+  D+7: L84.08, LAI.08, LG.08
+  D+21: L84.06, LAI.06, LG.06
+  D+30: AU05, CP05, ES05
+
+
+=== SEMANA 10 (12/10 a 16/10) ===
+SEG 12/10/2026
+PORTUGUÊS: PT10 Pontuação (vírgula, ponto e vírgula, dois-pontos, aspas, travessão, parênteses)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: RA10 Questões comentadas Cebraspe (argumentação e análise crítica)
+RLM: RL10 Análise combinatória (princípio multiplicativo e aditivo, arranjo, combinação, permutação)
+REVISOES:
+  D+1: L84.09, LG.09
+  D+2: DCI09, L12.09, L84.09, LG.09, SQ09
+  D+7: PT09, RA09, RL09
+  D+21: PT07, RA07, RL07
+  D+30: DCI05, L12.05, L84.05, LAI.05, LG.05, SQ05
+
+TER 13/10/2026
+DIREITO CONSTITUCIONAL: DC10 Funções essenciais à Justiça (MP, advocacia, defensoria)
+DIREITO ADMINISTRATIVO: DA10 Servidores públicos - Lei 8.112/1990 (provimento, vacância, direitos, regime disciplinar)
+AFO: AF10 Lei de Responsabilidade Fiscal - LC 101/2000 (metas, limites, transparência, sanções)
+REVISOES:
+  D+1: PT10, RA10, RL10
+  D+7: AF09, DA09, DC09
+  D+21: AF07, DA07, DC07
+
+QUA 14/10/2026
+CONTABILIDADE PÚBLICA: CP10 Balanço patrimonial (BP) e quadros complementares
+AUDITORIA GOVERNAMENTAL: AU10 Controle interno (COSO I, COSO II/ERM; componentes; avaliação)
+ESTATÍSTICA E ANÁLISE DE DADOS: ES10 Inferência básica (estimação pontual, intervalos de confiança, testes de hipótese)
+REVISOES:
+  D+1: AF10, DA10, DC10
+  D+2: PT10, RA10, RL10
+  D+7: AU09, CP09, ES09
+  D+21: AU07, CP07, ES07
+  D+30: PT06, RA06, RL06
+
+QUI 15/10/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ10 Pandas - leitura, seleção e filtros (DataFrames)
+DIREITO CIVIL E PROCESSO CIVIL: DCI10 Noções de Processo Civil (procedimento comum; pressupostos processuais)
+LEI 12.846/2013 (ANTICORRUPÇÃO): Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: AU10, CP10, ES10
+  D+2: AF10, DA10, DC10
+  D+7: DCI09, L12.09, SQ09
+  D+21: DCI07, L12.07, SQ07
+  D+30: AF06, DA06, DC06
+
+SEX 16/10/2026
+LEI 8.429/1992 (IMPROBIDADE): L84.10 Indisponibilidade de bens e medidas cautelares
+LAI (LEI 12.527/2011): Questoes comentadas + revisao integrada (bloco consolidado)
+LGPD (LEI 13.709/2018): LG.10 Questões comentadas Cebraspe (LGPD)
+REVISOES:
+  D+1: DCI10, SQ10
+  D+2: AU10, CP10, ES10
+  D+7: L84.09, LG.09
+  D+21: L84.07, LAI.07, LG.07
+  D+30: AU06, CP06, ES06
+
+
+=== SEMANA 11 (19/10 a 23/10) ===
+SEG 19/10/2026
+PORTUGUÊS: PT11 Coesão e coerência textuais (referenciação, anáfora, catáfora, conectores)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: Questoes comentadas + revisao integrada (bloco consolidado)
+RLM: RL11 Probabilidade (espaço amostral, eventos, probabilidade condicional, independência)
+REVISOES:
+  D+1: L84.10, LG.10
+  D+2: DCI10, L84.10, LG.10, SQ10
+  D+7: PT10, RA10, RL10
+  D+21: PT08, RA08, RL08
+  D+30: DCI06, L12.06, L84.06, LAI.06, LG.06, SQ06
+
+TER 20/10/2026
+DIREITO CONSTITUCIONAL: DC11 Controle de constitucionalidade (concentrado e difuso; ADI, ADC, ADPF, ADO)
+DIREITO ADMINISTRATIVO: DA11 Processo administrativo - Lei 9.784/1999 (princípios, fases, recursos)
+AFO: AF11 Dívida pública e operações de crédito (endividamento, ROO)
+REVISOES:
+  D+1: PT11, RL11
+  D+7: AF10, DA10, DC10
+  D+21: AF08, DA08, DC08
+
+QUA 21/10/2026
+CONTABILIDADE PÚBLICA: CP11 Demonstração dos Fluxos de Caixa (DFC)
+AUDITORIA GOVERNAMENTAL: AU11 Sistemas de controle na CGU e no TCU (instâncias, competências)
+ESTATÍSTICA E ANÁLISE DE DADOS: ES11 Correlação e regressão linear simples
+REVISOES:
+  D+1: AF11, DA11, DC11
+  D+2: PT11, RL11
+  D+7: AU10, CP10, ES10
+  D+21: AU08, CP08, ES08
+  D+30: PT07, RA07, RL07
+
+QUI 22/10/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ11 Pandas - agrupamentos, merge e análise exploratória
+DIREITO CIVIL E PROCESSO CIVIL: DCI11 Tutela provisória e cautelar (noções)
+LEI 12.846/2013 (ANTICORRUPÇÃO): Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: AU11, CP11, ES11
+  D+2: AF11, DA11, DC11
+  D+7: DCI10, SQ10
+  D+21: DCI08, L12.08, SQ08
+  D+30: AF07, DA07, DC07
+
+SEX 23/10/2026
+LEI 8.429/1992 (IMPROBIDADE): L84.11 Questões comentadas Cebraspe (improbidade)
+LAI (LEI 12.527/2011): Questoes comentadas + revisao integrada (bloco consolidado)
+LGPD (LEI 13.709/2018): Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: DCI11, SQ11
+  D+2: AU11, CP11, ES11
+  D+7: L84.10, LG.10
+  D+21: L84.08, LAI.08, LG.08
+  D+30: AU07, CP07, ES07
+
+
+=== SEMANA 12 (26/10 a 30/10) ===
+SEG 26/10/2026
+PORTUGUÊS: PT12 Reescritura e transformação de frases (paráfrase, reordenação, equivalência sintática)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: Questoes comentadas + revisao integrada (bloco consolidado)
+RLM: RL12 Combinatória e probabilidade em questões compostas
+REVISOES:
+  D+1: L84.11
+  D+2: DCI11, L84.11, SQ11
+  D+7: PT11, RL11
+  D+21: PT09, RA09, RL09
+  D+30: DCI07, L12.07, L84.07, LAI.07, LG.07, SQ07
+
+TER 27/10/2026
+DIREITO CONSTITUCIONAL: DC12 Defesa do Estado e das instituições democráticas (art. 136 a 144; segurança pública)
+DIREITO ADMINISTRATIVO: DA12 Responsabilidade civil do Estado (art. 37 §6º; teoria do risco, ação regressiva)
+AFO: AF12 Suprimento de fundos (requisitos, limites)
+REVISOES:
+  D+1: PT12, RL12
+  D+7: AF11, DA11, DC11
+  D+21: AF09, DA09, DC09
+
+QUA 28/10/2026
+CONTABILIDADE PÚBLICA: CP12 Consolidação das contas (contas de controle, ajustes de consolidação)
+AUDITORIA GOVERNAMENTAL: AU12 Tomada de contas especial (TCE) - características e rito
+ESTATÍSTICA E ANÁLISE DE DADOS: ES12 Séries temporais (noções; tendência, sazonalidade)
+REVISOES:
+  D+1: AF12, DA12, DC12
+  D+2: PT12, RL12
+  D+7: AU11, CP11, ES11
+  D+21: AU09, CP09, ES09
+  D+30: PT08, RA08, RL08
+
+QUI 29/10/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ12 SQL + Python em auditoria contínua (detecção de anomalias, cruzamento de bases)
+DIREITO CIVIL E PROCESSO CIVIL: DCI12 Execução e cumprimento de sentença (noções)
+LEI 12.846/2013 (ANTICORRUPÇÃO): Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: AU12, CP12, ES12
+  D+2: AF12, DA12, DC12
+  D+7: DCI11, SQ11
+  D+21: DCI09, L12.09, SQ09
+  D+30: AF08, DA08, DC08
+
+SEX 30/10/2026
+LEI 8.429/1992 (IMPROBIDADE): Questoes comentadas + revisao integrada (bloco consolidado)
+LAI (LEI 12.527/2011): Questoes comentadas + revisao integrada (bloco consolidado)
+LGPD (LEI 13.709/2018): Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: DCI12, SQ12
+  D+2: AU12, CP12, ES12
+  D+7: L84.11
+  D+21: L84.09, LG.09
+  D+30: AU08, CP08, ES08
+
+
+=== SEMANA 13 (02/11 a 06/11) ===
+SEG 02/11/2026
+PORTUGUÊS: PT13 Semântica (sinonímia, antonímia, polissemia, ambiguidade, denotação e conotação)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: Questoes comentadas + revisao integrada (bloco consolidado)
+RLM: RL13 Problemas de verdades e mentiras; questões de lógica
+REVISOES:
+  D+2: DCI12, SQ12
+  D+7: PT12, RL12
+  D+21: PT10, RA10, RL10
+  D+30: DCI08, L12.08, L84.08, LAI.08, LG.08, SQ08
+
+TER 03/11/2026
+DIREITO CONSTITUCIONAL: DC13 Ordem econômica e financeira (art. 170 a 192; intervenção no domínio econômico)
+DIREITO ADMINISTRATIVO: DA13 Controle da Administração (interno, externo, TCU, controle judicial e legislativo)
+AFO: AF13 Prestação de contas e controle orçamentário
+REVISOES:
+  D+1: PT13, RL13
+  D+7: AF12, DA12, DC12
+  D+21: AF10, DA10, DC10
+
+QUA 04/11/2026
+CONTABILIDADE PÚBLICA: CP13 Lançamentos típicos (restos a pagar, despesas de exercícios anteriores, precatórios)
+AUDITORIA GOVERNAMENTAL: AU13 Auditoria de conformidade e auditoria operacional (diferenças)
+ESTATÍSTICA E ANÁLISE DE DADOS: ES13 Estatística aplicada à auditoria e fiscalização (amostras, risco)
+REVISOES:
+  D+1: AF13, DA13, DC13
+  D+2: PT13, RL13
+  D+7: AU12, CP12, ES12
+  D+21: AU10, CP10, ES10
+  D+30: PT09, RA09, RL09
+
+QUI 05/11/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ13 Data quality e governança de dados (noções; dados abertos)
+DIREITO CIVIL E PROCESSO CIVIL: DCI13 Direito Civil aplicado ao erário (débito, dano ao patrimônio, ressarcimento, TCE)
+LEI 12.846/2013 (ANTICORRUPÇÃO): Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: AU13, CP13, ES13
+  D+2: AF13, DA13, DC13
+  D+7: DCI12, SQ12
+  D+21: DCI10, SQ10
+  D+30: AF09, DA09, DC09
+
+SEX 06/11/2026
+LEI 8.429/1992 (IMPROBIDADE): Questoes comentadas + revisao integrada (bloco consolidado)
+LAI (LEI 12.527/2011): Questoes comentadas + revisao integrada (bloco consolidado)
+LGPD (LEI 13.709/2018): Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: DCI13, SQ13
+  D+2: AU13, CP13, ES13
+  D+21: L84.10, LG.10
+  D+30: AU09, CP09, ES09
+
+
+=== SEMANA 14 (09/11 a 13/11) ===
+SEG 09/11/2026
+PORTUGUÊS: PT14 Variação linguística e norma-padrão (registros, linguagem formal)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: Questoes comentadas + revisao integrada (bloco consolidado)
+RLM: RL14 Questões comentadas Cebraspe (RLM)
+REVISOES:
+  D+2: DCI13, SQ13
+  D+7: PT13, RL13
+  D+21: PT11, RL11
+  D+30: DCI09, L12.09, L84.09, LG.09, SQ09
+
+TER 10/11/2026
+DIREITO CONSTITUCIONAL: DC14 Ordem social (art. 193 a 232; seguridade, educação, saúde)
+DIREITO ADMINISTRATIVO: DA14 Intervenção do Estado na propriedade (desapropriação, limitações, servidão)
+AFO: AF14 AFO aplicada ao controle (auditoria orçamentária e financeira)
+REVISOES:
+  D+1: PT14, RL14
+  D+7: AF13, DA13, DC13
+  D+21: AF11, DA11, DC11
+
+QUA 11/11/2026
+CONTABILIDADE PÚBLICA: CP14 Controle de ativos, almoxarifado e depreciação no setor público
+AUDITORIA GOVERNAMENTAL: AU14 Auditoria contínua e análise de dados (fiscalização orientada a dados)
+ESTATÍSTICA E ANÁLISE DE DADOS: ES14 Questões comentadas (estatística)
+REVISOES:
+  D+1: AF14, DA14, DC14
+  D+2: PT14, RL14
+  D+7: AU13, CP13, ES13
+  D+21: AU11, CP11, ES11
+  D+30: PT10, RA10, RL10
+
+QUI 12/11/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ14 Prática com bases públicas (licitações, despesas, convênios, viagens)
+DIREITO CIVIL E PROCESSO CIVIL: DCI14 Questões comentadas Cebraspe (civil/processo civil)
+LEI 12.846/2013 (ANTICORRUPÇÃO): Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: AU14, CP14, ES14
+  D+2: AF14, DA14, DC14
+  D+7: DCI13, SQ13
+  D+21: DCI11, SQ11
+  D+30: AF10, DA10, DC10
+
+SEX 13/11/2026
+LEI 8.429/1992 (IMPROBIDADE): Questoes comentadas + revisao integrada (bloco consolidado)
+LAI (LEI 12.527/2011): Questoes comentadas + revisao integrada (bloco consolidado)
+LGPD (LEI 13.709/2018): Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: DCI14, SQ14
+  D+2: AU14, CP14, ES14
+  D+21: L84.11
+  D+30: AU10, CP10, ES10
+
+
+=== SEMANA 15 (16/11 a 20/11) ===
+SEG 16/11/2026
+PORTUGUÊS: PT15 Questões comentadas Cebraspe (blocos de interpretação e gramática)
+RACIOCÍNIO ANALÍTICO E CRÍTICO: Questoes comentadas + revisao integrada (bloco consolidado)
+RLM: Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+2: DCI14, SQ14
+  D+7: PT14, RL14
+  D+21: PT12, RL12
+  D+30: DCI10, L84.10, LG.10, SQ10
+
+TER 17/11/2026
+DIREITO CONSTITUCIONAL: DC15 Questões comentadas Cebraspe (constitucional)
+DIREITO ADMINISTRATIVO: DA15 Questões comentadas Cebraspe (administrativo)
+AFO: AF15 Questões comentadas Cebraspe (AFO)
+REVISOES:
+  D+1: PT15
+  D+7: AF14, DA14, DC14
+  D+21: AF12, DA12, DC12
+
+QUA 18/11/2026
+CONTABILIDADE PÚBLICA: CP15 Questões comentadas Cebraspe (contabilidade pública)
+AUDITORIA GOVERNAMENTAL: AU15 Questões comentadas Cebraspe (auditoria)
+ESTATÍSTICA E ANÁLISE DE DADOS: Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: AF15, DA15, DC15
+  D+2: PT15
+  D+7: AU14, CP14, ES14
+  D+21: AU12, CP12, ES12
+  D+30: PT11, RL11
+
+QUI 19/11/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ15 Exercícios aplicados e questões
+DIREITO CIVIL E PROCESSO CIVIL: Questoes comentadas + revisao integrada (bloco consolidado)
+LEI 12.846/2013 (ANTICORRUPÇÃO): Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: AU15, CP15
+  D+2: AF15, DA15, DC15
+  D+7: DCI14, SQ14
+  D+21: DCI12, SQ12
+  D+30: AF11, DA11, DC11
+
+SEX 20/11/2026
+LEI 8.429/1992 (IMPROBIDADE): Questoes comentadas + revisao integrada (bloco consolidado)
+LAI (LEI 12.527/2011): Questoes comentadas + revisao integrada (bloco consolidado)
+LGPD (LEI 13.709/2018): Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: SQ15
+  D+2: AU15, CP15
+  D+30: AU11, CP11, ES11
+
+
+=== SEMANA 16 (23/11 a 27/11) ===
+SEG 23/11/2026
+PORTUGUÊS: PT16 Revisão geral + simulado de Português
+RACIOCÍNIO ANALÍTICO E CRÍTICO: Questoes comentadas + revisao integrada (bloco consolidado)
+RLM: Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+2: SQ15
+  D+7: PT15
+  D+21: PT13, RL13
+  D+30: DCI11, L84.11, SQ11
+
+TER 24/11/2026
+DIREITO CONSTITUCIONAL: DC16 Revisão geral + simulado de Constitucional
+DIREITO ADMINISTRATIVO: DA16 Revisão geral + simulado de Administrativo
+AFO: AF16 Revisão geral + simulado de AFO
+REVISOES:
+  D+1: PT16
+  D+7: AF15, DA15, DC15
+  D+21: AF13, DA13, DC13
+
+QUA 25/11/2026
+CONTABILIDADE PÚBLICA: CP16 Revisão geral + simulado de Contabilidade Pública
+AUDITORIA GOVERNAMENTAL: AU16 Revisão geral + simulado de Auditoria
+ESTATÍSTICA E ANÁLISE DE DADOS: Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: AF16, DA16, DC16
+  D+2: PT16
+  D+7: AU15, CP15
+  D+21: AU13, CP13, ES13
+  D+30: PT12, RL12
+
+QUI 26/11/2026
+ANÁLISE DE DADOS / SQL / PYTHON: SQ16 Projeto integrado (análise completa de uma base real)
+DIREITO CIVIL E PROCESSO CIVIL: Questoes comentadas + revisao integrada (bloco consolidado)
+LEI 12.846/2013 (ANTICORRUPÇÃO): Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: AU16, CP16
+  D+2: AF16, DA16, DC16
+  D+7: SQ15
+  D+21: DCI13, SQ13
+  D+30: AF12, DA12, DC12
+
+SEX 27/11/2026
+LEI 8.429/1992 (IMPROBIDADE): Questoes comentadas + revisao integrada (bloco consolidado)
+LAI (LEI 12.527/2011): Questoes comentadas + revisao integrada (bloco consolidado)
+LGPD (LEI 13.709/2018): Questoes comentadas + revisao integrada (bloco consolidado)
+REVISOES:
+  D+1: SQ16
+  D+2: AU16, CP16
+  D+30: AU12, CP12, ES12
+
+
+SEG 30/11/2026 - FECHAMENTO
+SIMULADO GERAL CEBRASPE (15 materias; questoes certas/erradas)
+REVISOES:
+  D+2: SQ16
+  D+7: PT16
+  D+21: PT14, RL14
+  D+30: DCI12, SQ12
+
+REVISOES PENDENTES APOS 30/11/2026 (primeiros dias uteis de dezembro):
+  01/12/2026: D+21 AF14
+  01/12/2026: D+21 DA14
+  01/12/2026: D+21 DC14
+  01/12/2026: D+7 AF16
+  01/12/2026: D+7 DA16
+  01/12/2026: D+7 DC16
+  02/12/2026: D+21 AU14
+  02/12/2026: D+21 CP14
+  02/12/2026: D+21 ES14
+  02/12/2026: D+30 PT13
+  02/12/2026: D+30 RL13
+  02/12/2026: D+7 AU16
+  02/12/2026: D+7 CP16
+  03/12/2026: D+21 DCI14
+  03/12/2026: D+21 SQ14
+  03/12/2026: D+30 AF13
+  03/12/2026: D+30 DA13
+  03/12/2026: D+30 DC13
+  03/12/2026: D+7 SQ16
+  04/12/2026: D+30 AU13
+  04/12/2026: D+30 CP13
+  04/12/2026: D+30 ES13
+  07/12/2026: D+21 PT15
+  07/12/2026: D+30 DCI13
+  07/12/2026: D+30 SQ13
+  08/12/2026: D+21 AF15
+  08/12/2026: D+21 DA15
+  08/12/2026: D+21 DC15
+  09/12/2026: D+21 AU15
+  09/12/2026: D+21 CP15
+  09/12/2026: D+30 PT14
+  09/12/2026: D+30 RL14
+  10/12/2026: D+21 SQ15
+  10/12/2026: D+30 AF14
+  10/12/2026: D+30 DA14
+  10/12/2026: D+30 DC14
+  11/12/2026: D+30 AU14
+  11/12/2026: D+30 CP14
+  11/12/2026: D+30 ES14
+  14/12/2026: D+21 PT16
+  14/12/2026: D+30 DCI14
+  14/12/2026: D+30 SQ14
+  15/12/2026: D+21 AF16
+  15/12/2026: D+21 DA16
+  15/12/2026: D+21 DC16
+  16/12/2026: D+21 AU16
+  16/12/2026: D+21 CP16
+  16/12/2026: D+30 PT15
+  17/12/2026: D+21 SQ16
+  17/12/2026: D+30 AF15
+  17/12/2026: D+30 DA15
+  17/12/2026: D+30 DC15
+  18/12/2026: D+30 AU15
+  18/12/2026: D+30 CP15
+  21/12/2026: D+30 SQ15
+  23/12/2026: D+30 PT16
+  24/12/2026: D+30 AF16
+  24/12/2026: D+30 DA16
+  24/12/2026: D+30 DC16
+  25/12/2026: D+30 AU16
+  25/12/2026: D+30 CP16
+  28/12/2026: D+30 SQ16

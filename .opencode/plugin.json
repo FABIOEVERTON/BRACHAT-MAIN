@@ -1,8 +1,0 @@
-{
-  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "ezra",
-  "version": "1.0.0",
-  "description": "Ezra skills: automacao, governanca, estudos e agentes",
-  "license": "MIT",
-  "keywords": ["skills", "mcp", "automation", "governance", "studies"]
-}

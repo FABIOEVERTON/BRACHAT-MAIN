@@ -1,0 +1,54 @@
+[
+  {
+    "question": "Quais linguagens de programação são usadas no back-end da plataforma?",
+    "expected_found": true,
+    "expected_sources": [
+      "Guia_Engenharia_Backend.pdf"
+    ]
+  },
+  {
+    "question": "Qual framework é usado no back-end da plataforma?",
+    "expected_found": true,
+    "expected_sources": [
+      "Guia_Engenharia_Backend.pdf"
+    ]
+  },
+  {
+    "question": "Qual arquitetura é usada na plataforma?",
+    "expected_found": true,
+    "expected_sources": [
+      "Guia_Engenharia_Backend.pdf"
+    ]
+  },
+  {
+    "question": "Quais categorias de produtos aparecem nas vendas?",
+    "expected_found": true,
+    "expected_sources": [
+      "vendas.csv"
+    ]
+  },
+  {
+    "question": "Em qual ano ocorrem as vendas registradas?",
+    "expected_found": true,
+    "expected_sources": [
+      "vendas.csv"
+    ]
+  },
+  {
+    "question": "Qual é o produto mais vendido em dezembro de 2015?",
+    "expected_found": true,
+    "expected_sources": [
+      "vendas.csv"
+    ]
+  },
+  {
+    "question": "Qual o horário de funcionamento da cantina?",
+    "expected_found": false,
+    "expected_sources": []
+  },
+  {
+    "question": "Quem é o CEO da empresa?",
+    "expected_found": false,
+    "expected_sources": []
+  }
+]

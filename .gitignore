@@ -4,11 +4,11 @@
 **/secrets.env
 **/.env
 **/credentials/**
-.opencode/state.json
-.opencode/governance-ledger.jsonl
+.opencode/
+secrets/
+personal/
 .mem0/
 .n8n/
-.opencode/mcp/credentials/
 
 # ============================================================
 # LIXO DO SISTEMA (macOS)
