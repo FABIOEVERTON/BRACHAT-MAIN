@@ -1,58 +1,20 @@
-# ============================================================
-# SEGREDOS — nunca no git
-# ============================================================
-
-**/secrets.env
-**/.env
-**/credentials/
-.opencode/
-secrets/
-personal/
-.mem0/
-.n8n/
-
-# ============================================================
-# LIXO DO SISTEMA (macOS)
-# ============================================================
-
+resumes/
+Studies/
+personal_doc/
 .DS_Store
-**/.DS_Store
-
-# ============================================================
-# CACHES / DEPENDÊNCIAS / AMBIENTES
-# ============================================================
-
 node_modules/
 **/node_modules/
 venv/
 .venv/
-**/venv/
-**/.venv/
 __pycache__/
-**/__pycache__/
 *.pyc
-bun.lock
-
-# ============================================================
-# LOGS / ESTADO LOCAL DE RUNTIME
-# ============================================================
-
 logs/
-**/logs/
-.playwright-mcp/
 *.log
+chroma/
+data/
 
-# ============================================================
-# AMBIENTES / CONFIGURAÇÕES LOCAIS
-# ============================================================
-
-.vscode/
-.dockerignore
-
-# ============================================================
-# MATERIAL DE ESTUDO / DOCUMENTOS LOCAIS
-# ============================================================
-
-resumes/
-studies/
-study/
+# SEGREDOS — nunca no git
+**/secrets.env
+**/.env
+**/credentials/
+.secrets.baseline

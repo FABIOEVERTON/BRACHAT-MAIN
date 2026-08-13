@@ -5,13 +5,10 @@ import streamlit as st
 from app.logging import QueryLogger
 from app.rag import system_status
 
-from app.ui.activity import render_activity
 from app.ui.chat import render_chat
-from app.ui.dashboard import render_dashboard
 from app.ui.header import render_header
 from app.ui.state import initialize_session_state
 from app.ui.styles import load_styles
-from app.ui.upload import render_upload
 
 
 st.set_page_config(
@@ -31,16 +28,13 @@ def main() -> None:
     status = system_status()
 
     render_header(status)
-    render_upload()
-    render_activity()
-    render_dashboard()
     render_chat(logger)
 
     st.markdown(
         """
-        <div class="footer">
-            EZRA CURATOR · Knowledge Synthesis Engine · Oracle ONE Challenge
-        </div>
+        <div class="ezra-footer">
+            EZRA CURATOR · Agente de IA com base nos documentos anexados ·
+            <span class="ezra-dot">●</span> respostas citam as fontes
         </div>
         """,
         unsafe_allow_html=True,

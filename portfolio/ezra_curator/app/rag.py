@@ -16,47 +16,46 @@ from app.logging import QueryLogger, now_ms  # noqa: E402
 
 
 # ============================================================
+# INVENTÁRIO DE DOCUMENTOS
+# ============================================================
+
+_MAX_INVENTORY_DOCS = 12
+_INVENTORY_CHARS_PER_DOC = 600
+
+
+# ============================================================
 # PROMPTS E RESPOSTAS PADRÃO
 # ============================================================
 
 SYSTEM_PROMPT = (
-    "Você é o Maestro Santo Pegasus, um agente corporativo que responde "
-    "perguntas de colaboradores da Santos Pegasus Soluciones com base "
-    "SOMENTE no contexto fornecido. "
+    "Você é o EZRA CURATOR, um agente de IA que responde perguntas "
+    "com base SOMENTE nos documentos anexados ao sistema. "
     "Regras: "
-    "1) responda apenas com base no contexto; "
-    "2) se a informação não estiver no contexto, diga "
-    "'Não encontrei essa informação nos documentos disponíveis.' "
-    "e sugira contato com a área responsável; "
-    "3) cite a fonte de cada informação no formato "
-    "[arquivo, seção/página]; "
+    "1) responda apenas com base nos documentos fornecidos no contexto; "
+    "2) se a pergunta não tiver relação com esses documentos, responda "
+    "educadamente que você só tem permissão para falar sobre os documentos "
+    "disponíveis; "
+    "3) cite a fonte de cada informação no formato [arquivo]; "
     "4) nunca invente dados."
 )
 
 FALLBACK_ANSWER = (
     "Não encontrei essa informação nos documentos disponíveis. "
     "Posso ajudar com perguntas sobre os documentos indexados. "
-    "Caso precise de algo de outra área, sugiro entrar em contato "
-    "com a área responsável."
+    "Lembrando que só tenho permissão para falar sobre os documentos."
 )
 
 GREETING_ANSWER = (
-    "Olá! Tudo bem? Sou o Maestro Santo Pegasus 🦅, "
-    "o agente de IA corporativo da Santos Pegasus Soluciones. "
-    "Posso responder perguntas com base nos documentos internos. "
-    "Como posso ajudar?"
+    "Olá! Tudo bem? Sou o EZRA CURATOR, um agente de IA que responde "
+    "perguntas com base nos documentos anexados. "
+    "Posso listar os documentos, resumi-los ou responder perguntas "
+    "sobre o conteúdo deles. Como posso ajudar?"
 )
 
 WHOAMI_ANSWER = (
-    "Sou o Maestro Santo Pegasus 🦅, um agente de IA corporativo "
-    "da Santos Pegasus Soluciones. Respondo perguntas de colaboradores "
-    "com base nos documentos internos da empresa."
-)
-
-DOCS_ANSWER = (
-    "Tenho acesso aos documentos internos que foram indexados no "
-    "banco vetorial do sistema. Posso responder perguntas sobre "
-    "o conteúdo desses documentos."
+    "Sou o EZRA CURATOR, um agente de IA que responde perguntas "
+    "com base nos documentos anexados ao sistema. "
+    "Só tenho permissão para falar sobre esses documentos."
 )
 
 
@@ -70,6 +69,8 @@ GREETING_WORDS = {
     "olá",
     "oii",
     "oie",
+    "oi tudo bem",
+    "oii tudo bem",
     "eai",
     "e ai",
     "opa",
@@ -102,11 +103,44 @@ DOCS_WORDS = {
     "quais documentos voce tem",
     "quais documentos você tem",
     "quais documentos voce possui",
+    "quais documentos você possui",
     "quais arquivos",
     "quais arquivos voce tem",
+    "quais arquivos você tem",
     "documentos disponiveis",
+    "documentos disponíveis",
     "documentos internos",
     "quais documentos voce pode",
+    "quais documentos você pode",
+    "o que voce tem",
+    "o que você tem",
+    "o que esta anexado",
+    "o que está anexado",
+    "o que tem anexado",
+    "quais anexos",
+    "me liste os documentos",
+    "lista de documentos",
+}
+
+SUMMARIZE_DOCS_WORDS = {
+    "resuma os documentos",
+    "resuma todos os documentos",
+    "resumo geral",
+    "resumo dos documentos",
+    "resuma tudo",
+    "resumo de tudo",
+    "o que dizem os documentos",
+    "o que diz os documentos",
+    "sobre o que são os documentos",
+    "fale sobre todos os documentos",
+    "fale sobre os documentos",
+    "faz um resumo",
+    "faça um resumo",
+    "faca um resumo",
+    "me de um resumo",
+    "me dê um resumo",
+    "sumarize",
+    "resumo",
 }
 
 
@@ -133,8 +167,12 @@ def _normalize(text: str) -> str:
     return " ".join(text.split())
 
 
-def _detect_canned(question: str) -> str | None:
-    """Detecta perguntas conversacionais que não precisam de RAG."""
+def _detect_intent(question: str) -> str | None:
+    """Detecta a intenção da pergunta.
+
+    Retorno:
+        "greeting" | "whoami" | "list_docs" | "summarize_docs" | None
+    """
 
     q = _normalize(question)
 
@@ -151,36 +189,49 @@ def _detect_canned(question: str) -> str | None:
         for word in DOCS_WORDS
     }
 
+    normalized_summarize = {
+        _normalize(word)
+        for word in SUMMARIZE_DOCS_WORDS
+    }
+
     normalized_greetings = {
         _normalize(word)
         for word in GREETING_WORDS
     }
 
     if q in normalized_whoami:
-        return WHOAMI_ANSWER
+        return "whoami"
 
     if any(
         word in q
         for word in normalized_whoami
         if len(word) > 8
     ):
-        return WHOAMI_ANSWER
+        return "whoami"
 
-    if any(
+    if q in normalized_summarize or any(
+        word in q
+        for word in normalized_summarize
+        if len(word) >= 7
+    ):
+        return "summarize_docs"
+
+    if q in normalized_docs or any(
         word in q
         for word in normalized_docs
+        if len(word) >= 7
     ):
-        return DOCS_ANSWER
+        return "list_docs"
 
     if q in normalized_greetings:
-        return GREETING_ANSWER
+        return "greeting"
 
     if any(
         q.startswith(word)
         for word in normalized_greetings
         if len(word) >= 3
     ):
-        return GREETING_ANSWER
+        return "greeting"
 
     return None
 
@@ -496,6 +547,248 @@ def retrieve(
 # RESPOSTA PRINCIPAL
 # ============================================================
 
+def _document_inventory() -> list[dict]:
+    """Retorna a lista real de documentos anexados no ChromaDB."""
+
+    try:
+        collection = get_collection()
+        data = collection.get(
+            include=["metadatas", "documents"],
+        )
+    except Exception:  # noqa: BLE001
+        return []
+
+    metadatas = data.get("metadatas") or []
+    documents = data.get("documents") or []
+
+    by_source: dict[str, dict] = {}
+
+    for meta, text in zip(metadatas, documents):
+        meta = meta or {}
+        source = str(meta.get("source") or "?")
+
+        entry = by_source.setdefault(
+            source,
+            {
+                "source": source,
+                "category": str(meta.get("category") or "Geral"),
+                "chunks": 0,
+                "summary": "",
+            },
+        )
+
+        entry["chunks"] += 1
+
+        if meta.get("tipo") == "resumo":
+            entry["summary"] = str(text or "").strip()
+        elif not entry["summary"]:
+            entry["summary"] = str(text or "").strip()
+
+    inventory = sorted(
+        by_source.values(),
+        key=lambda item: item["chunks"],
+        reverse=True,
+    )[:_MAX_INVENTORY_DOCS]
+
+    return inventory
+
+
+def _inventory_context(
+    inventory: list[dict],
+    include_summaries: bool,
+) -> str:
+    """Monta o texto de contexto a partir do inventário de documentos."""
+
+    lines = ["Documentos anexados ao sistema:"]
+
+    for doc in inventory:
+        if include_summaries and doc["summary"]:
+            snippet = doc["summary"].replace(
+                "\n",
+                " ",
+            )[:_INVENTORY_CHARS_PER_DOC]
+            lines.append(f"- {doc['source']}: {snippet}")
+        else:
+            lines.append(f"- {doc['source']}")
+
+    return "\n".join(lines)
+
+
+def _inventory_sources(inventory: list[dict]) -> list[dict]:
+    """Converte o inventário no formato de fontes do RagResult."""
+
+    return [
+        {
+            "source": doc["source"],
+            "category": doc["category"],
+            "chunk": doc["chunks"],
+            "score": 0.0,
+            "excerpt": str(doc["summary"])[:220],
+        }
+        for doc in inventory
+    ]
+
+
+def _generate_answer(
+    messages: list[tuple[str, str]],
+) -> tuple[str, str, str, list[str]]:
+    """Invoca o primeiro LLM disponível com fallback entre provedores.
+
+    Retorno:
+        (answer, provider, model, fallback_messages)
+    """
+
+    answer = ""
+    provider = ""
+    model = ""
+    fallback_messages: list[str] = []
+
+    chain = _make_llm_chain()
+
+    for (
+        current_provider,
+        current_model,
+        llm,
+    ) in chain:
+
+        try:
+            response = llm.invoke(messages)
+            content = getattr(
+                response,
+                "content",
+                response,
+            )
+
+            if isinstance(content, str):
+                answer = content.strip()
+            else:
+                answer = str(content).strip()
+
+            if answer:
+                provider = current_provider
+                model = current_model
+                break
+
+        except Exception as exc:  # noqa: BLE001
+            _llm_failed.add(current_provider)
+            fallback_messages.append(
+                f"LLM {current_provider} indisponível: "
+                f"{str(exc)[:120]}"
+            )
+
+    return answer, provider, model, fallback_messages
+
+
+def _answer_document_intent(
+    intent: str,
+    logger: QueryLogger | None,
+    t0: int,
+    question: str,
+) -> RagResult:
+    """Responde intents sobre o inventário usando o LLM real."""
+
+    inventory = _document_inventory()
+
+    if not inventory:
+        result = RagResult(
+            answer=(
+                "Ainda não há documentos anexados ao sistema. "
+                "Assim que um documento for indexado, "
+                "poderei listá-lo e resumi-lo."
+            ),
+            sources=[],
+            found=False,
+            provider="local",
+            model="validation",
+            fallback="sem documentos indexados",
+        )
+
+        if logger:
+            logger.log(
+                question=question,
+                chunks=[],
+                sources=[],
+                answer=result.answer,
+                latency_ms=now_ms() - t0,
+                provider=result.provider,
+                model=result.model,
+                found=False,
+                fallback=result.fallback,
+            )
+
+        return result
+
+    include_summaries = intent == "summarize_docs"
+
+    if include_summaries:
+        task = (
+            "Resuma o conteúdo de cada documento anexado, "
+            "documento por documento, em tópicos curtos. "
+            "Se houver muitos documentos, priorize os principais."
+        )
+    else:
+        task = (
+            "Liste os documentos anexados ao sistema, "
+            "de forma organizada e legível, com uma descrição "
+            "breve de cada um quando possível."
+        )
+
+    messages = [
+        ("system", SYSTEM_PROMPT),
+        (
+            "human",
+            (
+                f"{_inventory_context(inventory, include_summaries)}\n\n"
+                f"Tarefa: {task}"
+            ),
+        ),
+    ]
+
+    answer, provider, model, fallback_messages = _generate_answer(
+        messages,
+    )
+
+    sources = _inventory_sources(inventory)
+
+    if not answer:
+        answer = (
+            "Encontrei os seguintes documentos anexados:\n"
+            + "\n".join(
+                f"- {doc['source']}"
+                for doc in inventory
+            )
+        )
+        provider = "extractive"
+        model = "local"
+
+    result = RagResult(
+        answer=answer,
+        sources=sources,
+        found=True,
+        provider=provider,
+        model=model,
+        fallback="; ".join(fallback_messages),
+    )
+
+    if logger:
+        logger.log(
+            question=question,
+            chunks=[
+                doc["summary"]
+                for doc in inventory
+            ],
+            sources=sources,
+            answer=result.answer,
+            latency_ms=now_ms() - t0,
+            provider=result.provider,
+            model=result.model,
+            found=result.found,
+            fallback=result.fallback,
+        )
+
+    return result
+
+
 def answer_question(
     question: str,
     logger: QueryLogger | None = None,
@@ -507,7 +800,7 @@ def answer_question(
     question = question.strip()
 
     if not question:
-        result = RagResult(
+        return RagResult(
             answer=FALLBACK_ANSWER,
             sources=[],
             found=False,
@@ -516,15 +809,18 @@ def answer_question(
             fallback="pergunta vazia",
         )
 
-        return result
-
     # --------------------------------------------------------
-    # 1. Perguntas conversacionais
+    # 1. Conversação guiada (sem RAG)
     # --------------------------------------------------------
 
-    canned = _detect_canned(question)
+    intent = _detect_intent(question)
 
-    if canned:
+    if intent in {"greeting", "whoami"}:
+        canned = (
+            GREETING_ANSWER
+            if intent == "greeting"
+            else WHOAMI_ANSWER
+        )
         result = RagResult(
             answer=canned,
             sources=[],
@@ -550,7 +846,19 @@ def answer_question(
         return result
 
     # --------------------------------------------------------
-    # 2. Retrieval
+    # 2. Inventário de documentos (LLM real)
+    # --------------------------------------------------------
+
+    if intent in {"list_docs", "summarize_docs"}:
+        return _answer_document_intent(
+            intent,
+            logger,
+            t0,
+            question,
+        )
+
+    # --------------------------------------------------------
+    # 3. Retrieval
     # --------------------------------------------------------
 
     hits = retrieve(question)
@@ -589,24 +897,56 @@ def answer_question(
                     float(score),
                     3,
                 ),
+                "excerpt": str(hit["text"])[:220],
             }
         )
 
     context = "\n\n".join(context_texts)
 
+    inventory = _document_inventory()
+    inventory_text = _inventory_context(
+        inventory,
+        include_summaries=True,
+    )
+
     # --------------------------------------------------------
-    # 3. Nenhum documento relevante
+    # 4. Sem correspondência: LLM responde o desvio
     # --------------------------------------------------------
 
     if not hits:
+        messages = [
+            ("system", SYSTEM_PROMPT),
+            (
+                "human",
+                (
+                    f"{inventory_text}\n\n"
+                    f"Pergunta: {question}\n\n"
+                    "Se a pergunta não for sobre os documentos "
+                    "acima, responda que você só tem permissão "
+                    "para falar sobre os documentos disponíveis."
+                ),
+            ),
+        ]
+
+        answer, provider, model, fallback_messages = (
+            _generate_answer(messages)
+        )
+
+        if not answer:
+            answer = FALLBACK_ANSWER
+            provider = config.LLM_PROVIDER
+            model = config.LLM_MODEL
+            fallback_messages = (
+                fallback_messages or ["nenhum LLM disponível"]
+            )
 
         result = RagResult(
-            answer=FALLBACK_ANSWER,
+            answer=answer,
             sources=[],
             found=False,
-            provider=config.LLM_PROVIDER,
-            model=config.LLM_MODEL,
-            fallback="sem correspondência nos documentos",
+            provider=provider,
+            model=model,
+            fallback="; ".join(fallback_messages),
         )
 
         if logger:
@@ -625,71 +965,27 @@ def answer_question(
         return result
 
     # --------------------------------------------------------
-    # 4. Geração com fallback entre provedores
+    # 5. Geração com fallback entre provedores
     # --------------------------------------------------------
 
     messages = [
-        (
-            "system",
-            SYSTEM_PROMPT,
-        ),
+        ("system", SYSTEM_PROMPT),
         (
             "human",
             (
+                f"{inventory_text}\n\n"
                 f"Contexto:\n{context}\n\n"
                 f"Pergunta: {question}"
             ),
         ),
     ]
 
-    answer = None
-    provider = ""
-    model = ""
-    fallback_messages = []
-
-    chain = _make_llm_chain()
-
-    for (
-        current_provider,
-        current_model,
-        llm,
-    ) in chain:
-
-        try:
-
-            response = llm.invoke(messages)
-
-            content = getattr(
-                response,
-                "content",
-                response,
-            )
-
-            if isinstance(content, str):
-                answer = content.strip()
-            else:
-                answer = str(content).strip()
-
-            if answer:
-                provider = current_provider
-                model = current_model
-                break
-
-        except Exception as exc:  # noqa: BLE001
-
-            _llm_failed.add(
-                current_provider
-            )
-
-            fallback_messages.append(
-                (
-                    f"LLM {current_provider} indisponível: "
-                    f"{str(exc)[:120]}"
-                )
-            )
+    answer, provider, model, fallback_messages = (
+        _generate_answer(messages)
+    )
 
     # --------------------------------------------------------
-    # 5. Fallback extrativo local
+    # 6. Fallback extrativo local
     # --------------------------------------------------------
 
     if not answer:
@@ -723,7 +1019,7 @@ def answer_question(
         )
 
     # --------------------------------------------------------
-    # 6. Resultado
+    # 7. Resultado
     # --------------------------------------------------------
 
     result = RagResult(
@@ -736,7 +1032,7 @@ def answer_question(
     )
 
     # --------------------------------------------------------
-    # 7. Auditoria
+    # 8. Auditoria
     # --------------------------------------------------------
 
     if logger:
