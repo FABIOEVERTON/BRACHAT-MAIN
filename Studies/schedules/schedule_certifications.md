@@ -56,7 +56,12 @@
 15. CKS — Certified Kubernetes Security Specialist — CNCF (cobre OPA/Rego — policy engines)
 
 ---
+## BLOCO 5 — AGENTES 
+
+1. GitHub Certified: Agentic AI Developer (GH-600) - Microsoft Learn
+
 
 ## COMBINAÇÃO LINKEDIN QUE PRATICAMENTE NÃO EXISTE NO BRASIL HOJE
 
-> `AIGP + CIPP/E + PCPP1 + PCEI + PCAI + PCAD + PCES + OCI GenAI + AWS AI + CKS`
+> `AIGP + CIPP/E + PCPP1 + PCEI + PCAI + PCAD + PCES + OCI GenAI + AWS AI + GitHub Certified: Agentic AI Developer (GH-600)`
+

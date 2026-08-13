@@ -417,4 +417,4 @@ div[data-testid="stChatInput"] button {
 
 def load_styles() -> None:
     """Load EZRA CURATOR global styles."""
-    st.markdown(CSS, unsafe_allow_html=True)
+    st.html(CSS)

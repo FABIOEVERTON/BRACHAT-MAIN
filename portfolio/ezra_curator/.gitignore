@@ -6,7 +6,6 @@ venv/
 env/
 
 data/
-chroma/
 *.jsonl
 logs/
 
@@ -18,3 +17,10 @@ logs/
 *.log
 *.sqlite3
 *.db
+
+!chroma/
+chroma/*
+!chroma/*.sqlite3
+!chroma/manifest.json
+!chroma/**/
+!chroma/**/*

@@ -259,7 +259,7 @@ class RagResult:
 def system_status() -> dict:
     """Retorna o estado atual dos componentes RAG."""
 
-    from app.ingest import embedding_status
+    from app.embeddings import embedding_status
 
     emb = embedding_status()
     chain = _make_llm_chain()
