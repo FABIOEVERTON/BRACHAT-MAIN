@@ -27,11 +27,12 @@
 8. [Contratos e interfaces](#-contratos-e-interfaces)
 9. [Como executar localmente](#-como-executar-localmente)
 10. [Testes e avaliação](#-testes-e-avaliação)
-11. [Deploy na OCI](#-deploy-na-oci)
-12. [Para que pode servir](#-para-que-pode-servir)
-13. [Escalabilidade](#-escalabilidade)
-14. [Roadmap](#-roadmap)
-15. [Autor e contato](#-autor-e-contato)
+11. [Execução (evidência)](#-execução-evidência)
+12. [Deploy na OCI](#-deploy-na-oci)
+13. [Para que pode servir](#-para-que-pode-servir)
+14. [Escalabilidade](#-escalabilidade)
+15. [Roadmap](#-roadmap)
+16. [Autor e contato](#-autor-e-contato)
 
 ---
 
@@ -278,6 +279,18 @@ python tests/eval.py --limit 4    # só os 4 primeiros
 | Eval set | **8 itens** (6 dentro do escopo + 2 fora) |
 | Execução | `python tests/eval.py` (requer chaves de API no `.env`) |
 | Relatório | `logs/eval_<timestamp>.json` |
+
+---
+
+## 🎬 Execução (evidência)
+
+Vídeo da aplicação rodando — perguntas respondidas com base nos documentos, fontes citadas e layout dark:
+
+[▶️ Assista ao vídeo de execução](docs/video_app.mp4)
+
+![Frame da aplicação em execução](docs/video_frame.png)
+
+> O app roda via Docker (`docker compose up -d`) na porta `8501`.
 
 ---
 
