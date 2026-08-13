@@ -9,8 +9,7 @@
 ![ChromaDB](https://img.shields.io/badge/ChromaDB-VectorDB-9cf?style=for-the-badge)
 ![Oracle](https://img.shields.io/badge/Oracle-OCI-8c8c8c?style=for-the-badge&logo=oracle)
 ![Status](https://img.shields.io/badge/status-Fase%208%2F12-7c3aed?style=for-the-badge)
-![Altair](https://img.shields.io/badge/Gráficos-Altair%20interativo-a78bfa?style=for-the-badge)
-![Formato](https://img.shields.io/badge/Formatos-PDF%20CSV%20TXT%20MD%20HTML%20JSON%20DOCX-7c3aed?style=for-the-badge)
+![Formato](https://img.shields.io/badge/Formatos-PDF%20CSV-7c3aed?style=for-the-badge)
 
 > Agente de IA que responde perguntas de colaboradores com base em documentos internos da empresa — recuperando evidências reais e citando as fontes. Construído para o **Challenge Oracle ONE — FASE TECH**.
 
@@ -60,7 +59,7 @@ O **EZRA_CURATOR** é um **agente de RAG (Retrieval-Augmented Generation)** que 
 flowchart TD
     U[Usuário] -->|pergunta em português| S[Streamlit UI]
     S --> Q[Embedding da pergunta<br/>Cohere embed-multilingual-v3.0]
-    Q --> V[(ChromaDB<br/>52 chunks indexados)]
+    Q --> V[(ChromaDB<br/>vetores indexados)]
     V --> R[Reranker local<br/>BAAI/bge-reranker-base]
     R --> C[Montagem do contexto<br/>com fontes + scores]
     C --> L{LLM disponível?}
@@ -78,7 +77,7 @@ flowchart TD
 ```mermaid
 flowchart LR
     D[PDF + CSV] --> P[Carregamento e limpeza]
-    P --> C[Chunking 1500 tokens<br/>overlap 15% + resumo do documento]
+    P --> C[Chunking 1500 tokens<br/>overlap 10%]
     C --> E[Embeddings Cohere<br/>1024 dimensões]
     E --> V[(ChromaDB persistido)]
     V --> M[Manifest SHA-256<br/>--update incremental]
@@ -125,7 +124,7 @@ sequenceDiagram
 |---|---|---|
 | Linguagem | **Python 3.11+** | Backend, ingestão e pipeline RAG |
 | Interface | **Streamlit** | Chat web com fontes, feedback e métricas |
-| Orquestração | **LangChain + LangGraph** | Cadeia de recuperação e geração |
+| Orquestração | **LangChain** | Cadeia de recuperação e geração |
 | Embeddings | **Cohere embed-multilingual-v3.0** | Vetores semânticos multilingue (1024 dims) |
 | Banco vetorial | **ChromaDB** | Persistência e busca por similaridade (cosine) |
 | LLM principal | **Cohere command-r7b-12-2024** | Geração de respostas com citação |
@@ -133,8 +132,6 @@ sequenceDiagram
 | Reranker | **BAAI/bge-reranker-base (local)** | Reordenação fina dos candidatos |
 | Extração de PDF | **pypdf** | Texto nativo dos documentos |
 | Dados tabulares | **pandas** | Leitura de CSV (vendas) |
-| Gráficos | **Altair** | Visualizações interativas (receita, chunks, atividade) |
-| Markup | **BeautifulSoup4** | Extração de texto de HTML |
 | Logs | **JSONL (python)** | Auditoria, rastreabilidade e feedback |
 | Avaliação | **tests/eval.py** | Medição de acurácia (8/8) |
 | Deploy | **Docker + docker-compose** | Container da aplicação |
@@ -149,13 +146,13 @@ sequenceDiagram
 - 🛡️ **Respostas honestas**: recusa quando não há evidência, sem alucinar.
 - 🔁 **Fallbacks automáticos** (LLM e embeddings) — ver seção abaixo.
 - 📊 **Métricas ao vivo**: documentos, chunks, modelo, latência real da resposta.
-- 🗂️ **Abas `💬 Chat` / `📈 Insights`**: chat limpo + gráficos interativos (receita por categoria/mês, top produtos, distribuição de chunks no ChromaDB, painel de atividade: perguntas, latência, fallbacks, feedbacks).
-- 🛡️ **Fallback em destaque na tela principal**: chip fixo com a cadeia `Cohere → Mistral → Anthropic → resposta local`.
+- 🛡️ **Status do sistema exibido na interface** (modo ativo/degradado + provedor ativo).
 - ⚡ **Perguntas rápidas** para demonstrar o agente.
-- 🎨 **Tema dark premium**: grafite `#1c1c22` + letras violeta `#a78bfa`/roxo `#7c3aed`, fontes unificadas (Inter), **sidebar fixo** sempre aberto.
+- 🎨 **Tema dark premium**: fundo `#121218` + letras violeta `#a78bfa`/roxo `#7c3aed`, fontes unificadas (Inter).
 - 👍/👎 **Feedback do usuário** gravado em log.
-- 📈 **Dashboard de execução** (`scripts/dashboard.py`): perguntas sem resposta, latência média, fallbacks acionados, feedbacks negativos.
+- 📈 **Dashboard de análise** (`scripts/dashboard.py`): perguntas sem resposta, latência média, fallbacks acionados, feedbacks negativos.
 - 🔄 **Atualização incremental** dos documentos por hash SHA-256 (`--update`).
+- 📄 **Upload de documentos na interface** (PDF e CSV).
 
 ---
 
@@ -170,8 +167,8 @@ flowchart LR
     C --> D[Sem resposta: orienta o usuário]
 ```
 
-- **LLM**: cada provedor que falha é pulado automaticamente na mesma sessão (cache de falhas) — sem repetir chamadas inúteis.
-- **Embeddings**: Cohere → **MiniLM local** (fallback de emergência, sem nuvem).
+- **LLM**: cada provedor que falha é pulado automaticamente na mesma sessão (cache de falhas) — sem repetir chamadas inúteis. A cadeia atual no código é `Cohere → Mistral → Anthropic → resposta extrativa local` (configurada via `LLM_PROVIDER` no `.env`).
+- **Embeddings**: Cohere → **modelo local** (`EMBEDDING_FALLBACK`; padrão MiniLM-L12, `.env` atual usa `bge-m3`).
 - **Reranker**: se o cross-encoder local não carregar, usa apenas a ordenação por similaridade.
 - **Fora do escopo**: saudação, apresentação e "quais documentos" são respondidos por um **roteador conversacional** que guia o usuário para os documentos.
 
@@ -189,9 +186,11 @@ EZRA_CURATOR/
 │   ├── loaders.py       # carregamento PDF/CSV + chunking + metadados
 │   ├── ingest.py        # indexação vetorial + manifest (--update)
 │   ├── config.py        # configuração por variáveis de ambiente
+│   ├── embeddings.py    # provedores de embeddings + fallback
+│   ├── manifest.py      # hash SHA-256 dos documentos
 │   └── logging.py       # logs JSONL (auditoria)
 ├── data/                # documentos-fonte (não versionado)
-├── docs/                # spec challenge_oracle.md
+├── docs/                # spec challenge_oracle.md + redesign da UI
 ├── scripts/             # gen_vendas, dashboard, tradução de PDFs
 ├── tests/               # eval set + eval.py (avaliação)
 ├── logs/                # queries_*.jsonl (execução)
@@ -276,9 +275,8 @@ python tests/eval.py --limit 4    # só os 4 primeiros
 
 | Resultado | Métrica |
 |---|---|
-| Acerto | **8/8 (100%)** |
-| Perguntas dentro do escopo respondidas com fonte correta | 6/6 |
-| Perguntas fora de escopo corretamente recusadas | 2/2 |
+| Eval set | **8 itens** (6 dentro do escopo + 2 fora) |
+| Execução | `python tests/eval.py` (requer chaves de API no `.env`) |
 | Relatório | `logs/eval_<timestamp>.json` |
 
 ---
@@ -317,7 +315,7 @@ O que torna a solução confiável: **cada resposta cita a fonte, e o agente adm
 
 Como evoluir de demo mínima para produção:
 
-1. **Mais documentos — RAG agnóstico** — basta copiar qualquer arquivo para `data/`: o loader **detecta o tipo automaticamente** (extensão + conteúdo/magic bytes), extrai, gera embeddings e o agente passa a operar sobre ele, sem código novo. Formatos: **PDF, CSV, TXT, MD, HTML/HTM, JSON, DOCX**.
+1. **Mais documentos — PDF e CSV** — basta copiar arquivos para `data/` ou enviar pela interface: o loader **detecta o tipo automaticamente** (extensão + conteúdo/magic bytes), extrai, gera embeddings e o agente passa a operar sobre ele, sem código novo. Formatos suportados hoje: **PDF, CSV** (a arquitetura de loaders permite adicionar novos formatos).
 2. **Mais dados** — ChromaDB escala para milhões de chunks; usar filtros por categoria/metadata.
 3. **Multi-idioma** — os embeddings Cohere são multilingue (PT/ES/EN).
 4. **LLMs maiores** — a cadeia aceita novos provedores com 5 linhas de código (`_llm_factories`).
@@ -337,9 +335,9 @@ Como evoluir de demo mínima para produção:
 | 1–3 | Estrutura, documentos, extração/chunking | ✅ |
 | 4 | Indexação vetorial (ChromaDB + Cohere) | ✅ |
 | 5–7 | RAG + geração + UI Streamlit | ✅ |
-| 8 | Eval set — **8/8 (100%)** | ✅ |
-| 9 | Deploy OCI (A1.Flex + Docker + Vault + Object Storage) | ⏳ em andamento (deploy de apresentação) |
-| 10 | Logs JSONL + dashboard + atualização incremental | ✅ (10.1–10.3) · ⏳ 10.4 (nuvem) |
+| 8 | Eval set — **8 itens definidos** (execução requer chaves no `.env`) | ✅ (set) |
+| 9 | Deploy OCI (A1.Flex + Docker + Vault + Object Storage) | ⏳ previsto |
+| 10 | Logs JSONL + dashboard + atualização incremental | ✅ |
 | 11 | README completo (este documento) | ✅ |
 | 12 | Entrega final (repo, badge, LinkedIn) | ⏳ |
 
@@ -349,7 +347,7 @@ Como evoluir de demo mínima para produção:
 
 - **Autor:** Fabio (FABIOEVERTON)
 - **Projeto:** Challenge Oracle ONE — FASE TECH | Trilha ONE AI FOR TECH
-- **Repositório:** [FABIOEVERTON/EZRA_CURATOR](https://github.com/FABIOEVERTON/EZRA_CURATOR)
+- **Repositório:** projeto dentro de [`FABIOEVERTON/brachat-main`](https://github.com/FABIOEVERTON/brachat-main) → `portfolio/ezra_curator/`
 
 ---
 
