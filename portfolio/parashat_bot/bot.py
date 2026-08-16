@@ -20,7 +20,7 @@ TOKEN = os.environ.get("PARASHAT_TELEGRAM_API_KEY") or ""
 GROUP_HINT = os.environ.get("YESHIVA_CHAT_ID") or ""
 CHAT_FILE = os.path.join(BASE, "chat_ids.json")
 MODEL = os.environ.get("LLM_MODEL", "llama-3.3-70b-versatile")
-GROQ_KEY = os.environ.get("GROQ_API_KEY") or ""
+GROQ_KEY = os.environ.get("GROQ_API_KEY") or (__import__("mcp_client").groq_key_from_mcp() or "")
 
 
 def split_text(text, limit=4000):
@@ -90,7 +90,7 @@ def call_llm(prompt, user_text):
             {"role": "user", "content": user_text},
         ],
         temperature=0.4,
-        max_tokens=8192,
+        max_tokens=2048,
     )
     return resp.choices[0].message.content
 
