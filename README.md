@@ -1,87 +1,159 @@
-# Fabio Everton 🇧🇷
+# brachat-main
 
-**AI Governance Lead & Solutions Architect (OCI) | LLM Agents | OPA/Rego | LGPD & EU AI Act**
+**Portfolio of production AI agents and governance systems. Every project here is built by Fabio Everton, with Ezra (AI assistant) operating under his direct supervision. Nothing deploys without governance.**
 
-🔐 I build AI systems that don't just work — they can be audited, explained, and defended in court.
+## What This Repo Is
 
-[LinkedIn](https://linkedin.com/in/fabioeverton) · [Portfolio](https://fabioeverton.github.io) 📍 Brasília, Brazil · Open to remote
+This is not a collection of demos or tutorials. Each project is a working system — deployed, tested, and governed. The common thread: **runtime governance that cannot be bypassed**.
 
----
+```mermaid
+graph TD
+    subgraph "Repo Structure"
+        ROOT[brachat-main] --> PORT[portfolio/<br/>10 projects]
+        ROOT --> OPS[ops/<br/>deploy scripts, services]
+        ROOT --> AGENTS[agents/<br/>shared skills, memory]
+    end
 
-## 🚀 Featured Projects
+    subgraph "Governance Requirement"
+        PORT --> GW[Every agent passes through<br/>policy gate before execution]
+        GW --> POL[OPA / Rego<br/>deterministic rules]
+        GW --> AU[governance-ledger.jsonl<br/>immutable audit trail]
+        GW --> HITL[Human approval<br/>for high-risk actions]
+    end
 
-### 🛡️ Fellow Governance
-Transforms AI violation notifications (ANPD, NIST, EU AI Act) into auditable legal evidence + executable Rego policies in <300s.
+    subgraph "Built By"
+        F[Fabio Everton<br/>author, supervisor] -->|writes code| PORT
+        EZ[Ezra<br/>AI assistant] -->|drafts, research, automation| PORT
+        F -->|approves everything| EZ
+    end
+```
 
-- ✅ 22 specialized agents with deterministic orchestration (SEK)
-- ✅ OPA/Rego engine with immutable audit chain (SHA-256)
-- ✅ Forensic ZIP generation: thesis + evidence + compiled policies
-- ✅ Multi-tenant architecture with PostgreSQL RLS + pgvector
+## Runtime Governance — The Non-Negotiable
 
-### 🤖 Ezra Agent
-Autonomous Telegram agent with production-grade governance from day 1.
+Every agent in this portfolio enforces the same rule: **if it cannot be audited, it cannot execute.**
 
-- ✅ Sandboxed execution with syscall limits
-- ✅ PII filter + prompt injection blocking
-- ✅ Circuit breaker with model fallback
-- ✅ Immutable audit logs + LGPD compliance hooks
+This is not a feature. It is a constraint on architecture.
 
----
+```mermaid
+flowchart LR
+    subgraph "Every Agent Action"
+        A[Tool Call] --> G{Governance Gate}
+        G -->|allow| E[Execute]
+        G -->|deny| BLOCK[Blocked]
+        G -->|approve| H[Human Queue<br/>60s timeout]
+        H -->|approved| E
+        H -->|rejected| BLOCK
+    end
 
-## 🛠️ Tech Stack
+    subgraph "What Gets Recorded"
+        E --> L[ledger entry<br/>hash chain]
+        BLOCK --> L
+        L --> AUDIT[Replayable evidence<br/>immutable, verifiable]
+    end
+```
+
+### Enforcement Rules
+
+| Rule | Implementation |
+|------|---------------|
+| **Deterministic** | Authorization by code (OPA/Rego), never by LLM opinion |
+| **Immutable** | SHA-256 hash chain on every decision entry |
+| **Scoped** | Derived credential per task, not global access |
+| **Rate-limited** | Anti-drip: max N destructive actions per time window |
+| **Fail-closed** | If gate cannot decide → deny |
+| **Auditable** | Full replay from ledger: who, what, when, outcome |
+
+## Projects
+
+| Project | Category | What It Demonstrates |
+|---------|----------|---------------------|
+| [**ezra_agent**](portfolio/ezra_agent) | Autonomous Agent | 24/7 Telegram agent with skills, memory, OCI deploy |
+| [**ezra_curator**](portfolio/ezra_curator) | RAG | Corporate document RAG with reranking, fallbacks, citations |
+| [**essay_creator**](portfolio/essay-creator) | Multi-Agent Pipeline | 5-agent LangGraph system with HITL and iterative refinement |
+| [**exec-email-assistant**](portfolio/exec-email-assistant) | Multi-Agent Pipeline | Intent-based email routing with semantic memory |
+| [**ezra_control_plane**](portfolio/ezra_control_plane) | Governance | Runtime gate that limits damage of compromised agents |
+| [**agent_nice**](portfolio/agent_nice) | Autonomous Agent | Household governance with financial gates + self-evolution |
+| [**parashat_bot**](portfolio/parashat_bot) | RAG + Bot | Weekly Torah study with NotebookLM + Groq |
+| [**langchain_hands_on**](portfolio/langchain_hands_on) | Research Pipeline | 4-agent RAG research system (LangChain + Gemini) |
+| [**langraph_hands_on**](portfolio/langraph_hands_on) | Research Pipeline | Same pipeline rebuilt on LangGraph with state + persistence |
+| [**code-connect**](portfolio/code-connect) | Full-Stack | pnpm monorepo: React (Vite) + NestJS |
+
+## How Projects Are Built
+
+```mermaid
+flowchart TD
+    subgraph "Author"
+        F[Fabio] -->|defines| SPEC[spec, requirements,<br/>governance rules]
+        F -->|reviews| CODE[code, tests, deploy]
+        F -->|approves| DEP[deployment]
+    end
+
+    subgraph "Ezra (AI Assistant)"
+        EZ[Ezra] -->|drafts| CODE
+        EZ -->|writes| TESTS[tests]
+        EZ -->|generates| DOCS[documentation]
+        EZ -->|automates| OPS[deploy scripts]
+        EZ -->|never| DEP
+    end
+
+    subgraph "Governance"
+        SPEC --> GW[governance gate]
+        CODE --> GW
+        GW -->|pass| DEP
+        GW -->|fail| FIX[returns to Fabio]
+    end
+```
+
+Every project follows this rule:
+- **Fabio** writes specs, defines governance constraints, reviews code, approves deployment.
+- **Ezra** drafts code, generates tests, automates ops — under Fabio's supervision.
+- **Ezra never deploys independently.** Every deployment requires Fabio's explicit approval.
+
+## Infrastructure
+
+```mermaid
+graph LR
+    subgraph "Mac (Local)"
+        DRIVE[Google Drive<br/>source of truth]
+        LA[LaunchAgents<br/>4x backup, 2x scan,<br/>daily commit, 3min sync]
+    end
+
+    subgraph "Oracle Cloud"
+        VM[ezra_bot_1<br/>163.176.111.95<br/>A1.Flex ARM]
+    end
+
+    subgraph "Services"
+        SRV[opencode serve :3791]
+        BR[bridge_telegram.js]
+        PB[parashat-bot]
+        AR[anti-reclaim]
+    end
+
+    DRIVE -->|git pull| VM
+    VM --> SRV
+    VM --> BR
+    VM --> PB
+    VM --> AR
+```
+
+- **Compute**: Oracle Cloud A1.Flex (ARM, always-free tier)
+- **Source of truth**: Google Drive → GitHub → VM
+- **Secrets**: Never in git. `secrets.env` on Mac, `.env` on VM.
+- **Backup**: rclone → Google Drive (4x/day)
+
+## Tech Stack
 
 | Category | Technologies |
 |----------|--------------|
-| **Languages** | Python · SQL · Rego · Bash |
-| **Frameworks** | FastAPI · LangChain · LangGraph · n8n |
-| **AI/LLM** | OpenAI · Ollama · RAG · pgvector · ChromaDB |
-| **Governance** | OPA · NIST AI RMF · EU AI Act · LGPD · PL 2338/2023 |
-| **Infra** | Oracle Cloud (OCI) · Docker · PostgreSQL · GitHub Actions |
-| **Security** | PII filtering · Audit trails · Policy-as-code |
+| **Languages** | Python · SQL · Rego · Bash · JavaScript · TypeScript |
+| **Frameworks** | LangChain · LangGraph · FastAPI · NestJS · OpenCode |
+| **AI/LLM** | OpenAI · Gemini · Cohere · Ollama · Groq · RAG |
+| **Governance** | OPA/Rego · NIST AI RMF · EU AI Act · LGPD |
+| **Infra** | Oracle Cloud (OCI) · Docker · PostgreSQL · pnpm |
 
----
+## Contact
 
-## 🎯 Unique Differentiator
-
-16 years managing complex enterprise infrastructure (R$ 20M+) → 60+ corporate offices delivered.
-
-Today, I translate physical-infrastructure risk management and quality control into cloud-native AI system design.
-
-**Core philosophy:** *"If it cannot be audited, it cannot be deployed."*
-
----
-
-## 🎓 Education & Certifications
-
-**Postgraduate Specialization (Lato Sensu) in GRC Tech: AI Governance, Security & Compliance**  
-Universidade Potiguar (UnP) · **Aug 2026 – Aug 2027 (expected)** · 360h · MEC-recognized  
-*Key modules: Algorithmic Governance, AI & Data Governance/Regulation/Ethics (NIST AI RMF, EU AI Act), Digital Law & Data Protection (LGPD, ISO 27001/27701), Audit/Risk/Pentest in InfoSec, Applied Cryptography, Big Data Analytics, Generative AI for Decision & Management, AI Strategies for Business*
-
-**Bachelor of Law (9 semesters completed)**  
-UniProcessus · **Jan 2021 – Dec 2024** · Focus: Digital Law, Contracts, Compliance, Ethics
-
-**Degree in Legal Operations & Notarial Sciences (Completed)**  
-Centro Universitário Processus (UniProcessus) · **Jan 2021 – Dec 2023** · Cyber Law, Corporate Law, Information Governance
-
-**Certifications (In Progress / Target):**
-- AIGP — AI Governance Professional (IAPP)
-- CIPP/E — Certified Information Privacy Professional/Europe (IAPP)
-- OCI Generative AI Professional (Oracle)
-
-**Completed Certifications:**
-- AI Engineering: Agents, RAG & Orchestration (Alura, Jun 2026)
-- Oracle Cloud Infrastructure 2026 Foundations Associate (Jul 2026)
-- Model Context Protocol (MCP) — Anthropic (Jun 2026)
-- Claude Subagents — Anthropic (Jun 2026)
-- Prepare Data for ML APIs on Google Cloud (Jun 2026)
-- Building with the Claude API — Anthropic (May 2026)
-- Google Cloud Fundamentals: Core Infrastructure (Mar 2026)
-
----
-
-## 📚 Public Learning (Commitment)
-
-✅ 1 commit/day · Verifiable progress · Full transparency
+**Fabio Everton** — [jae.engenharia@gmail.com](mailto:jae.engenharia@gmail.com) · [LinkedIn](https://linkedin.com/in/fabioeverton) · [GitHub](https://github.com/FABIOEVERTON)
 
 ---
 
