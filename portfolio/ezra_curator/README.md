@@ -1,4 +1,4 @@
-# 🦅 EZRA_CURATOR [▶️ Watch Demo](./docs/video_app_compressed.mp4)
+# 🦅 EZRA_CURATOR [▶️ Watch Demo](https://github.com/FABIOEVERTON/BRACHAT-MAIN/raw/refs/heads/main/portfolio/ezra_curator/docs/video_app_compressed.mp4)
 
 
 ### Agente RAG corporativo · Santos EZRA_CURATOR Soluciones
