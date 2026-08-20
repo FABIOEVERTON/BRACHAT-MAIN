@@ -1,7 +1,6 @@
 # 🦅 EZRA_CURATOR [▶️ Watch Demo](./docs/video_app_compressed.mp4)
 
 
-
 ### Agente RAG corporativo · Santos EZRA_CURATOR Soluciones
 
 ![Python](https://img.shields.io/badge/Python-3.11+-gold?style=for-the-badge&logo=python&logoColor=white)
