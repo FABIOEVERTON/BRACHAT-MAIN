@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TasKiro - Gerenciador de Tarefas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        [hidden] { display: none !important; }
+        .toast-enter { transform: translateX(100%); opacity: 0; }
+        .toast-enter-active { transform: translateX(0); opacity: 1; transition: all 0.3s ease; }
+        .toast-exit { transform: translateX(100%); opacity: 0; transition: all 0.3s ease; }
+        .sidebar-fixed { position: fixed; top: 0; left: 0; height: 100vh; z-index: 30; }
+        .main-content { margin-left: 320px; }
+        @media (max-width: 1024px) {
+            .sidebar-fixed { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar-fixed.open { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+        }
+        .drag-over { background-color: #e5e7eb; }
+        .dragging { opacity: 0.5; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="lg:hidden fixed top-4 left-4 z-40 bg-white p-2 rounded-lg shadow-lg border">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar-fixed w-80 bg-white border-r border-gray-200 overflow-y-auto">
+        <div class="p-6">
+            <div class="flex items-center gap-3 mb-8">
+                <img src="https://kiro.dev/images/community/events/thumbnails/meetup2.svg" alt="TasKiro" class="w-8 h-8">
+                <h1 class="text-xl font-bold text-gray-900">TasKiro</h1>
+            </div>
+
+            <!-- View Toggle -->
+            <div class="mb-6">
+                <div class="bg-gray-100 rounded-lg p-1 grid grid-cols-2">
+                    <button id="list-view-btn" class="py-2 px-3 text-sm rounded-md bg-white shadow-sm text-gray-900 font-medium">
+                        <i data-lucide="list" class="w-4 h-4 inline mr-1"></i>
+                        Lista
+                    </button>
+                    <button id="board-view-btn" class="py-2 px-3 text-sm rounded-md text-gray-600 hover:text-gray-900">
+                        <i data-lucide="columns" class="w-4 h-4 inline mr-1"></i>
+                        Kanban
+                    </button>
+                </div>
+            </div>
+            <!-- Quick Actions -->
+            <div class="mb-6">
+                <button id="new-task-btn" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    Nova Tarefa
+                </button>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="space-y-1">
+                <a href="#" class="sidebar-link active flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-700" data-filter="all">
+                    <i data-lucide="inbox" class="w-4 h-4"></i>
+                    Todas as Tarefas
+                    <span class="ml-auto bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full text-xs" id="all-count">0</span>
+                </a>
+                <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100" data-filter="today">
+                    <i data-lucide="calendar-days" class="w-4 h-4"></i>
+                    Hoje
+                    <span class="ml-auto bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full text-xs" id="today-count">0</span>
+                </a>
+                <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100" data-filter="upcoming">
+                    <i data-lucide="calendar-clock" class="w-4 h-4"></i>
+                    Próximas
+                    <span class="ml-auto bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full text-xs" id="upcoming-count">0</span>
+                </a>
+                <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100" data-filter="completed">
+                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                    Concluídas
+                    <span class="ml-auto bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full text-xs" id="completed-count">0</span>
+                </a>
+            </nav>
+            <!-- Projects Section -->
+            <div class="mt-8">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Projetos</h3>
+                    <button id="new-project-btn" class="text-gray-400 hover:text-gray-600">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                    </button>
+                </div>
+                <div id="projects-list" class="space-y-1">
+                    <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100" data-filter="project" data-project="trabalho">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        Trabalho
+                        <span class="ml-auto bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full text-xs">0</span>
+                    </a>
+                    <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100" data-filter="project" data-project="pessoal">
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        Pessoal
+                        <span class="ml-auto bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full text-xs">0</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Labels Section -->
+            <div class="mt-8">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Etiquetas</h3>
+                </div>
+                <div class="space-y-1">
+                    <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100" data-filter="priority" data-priority="urgent">
+                        <i data-lucide="flame" class="w-4 h-4 text-red-500"></i>
+                        Urgente
+                    </a>
+                    <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100" data-filter="priority" data-priority="high">
+                        <i data-lucide="arrow-up" class="w-4 h-4 text-orange-500"></i>
+                        Alta
+                    </a>
+                    <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100" data-filter="priority" data-priority="medium">
+                        <i data-lucide="minus" class="w-4 h-4 text-yellow-500"></i>
+                        Média
+                    </a>
+                    <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100" data-filter="priority" data-priority="low">
+                        <i data-lucide="arrow-down" class="w-4 h-4 text-blue-500"></i>
+                        Baixa
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="bg-white border-b border-gray-200 sticky top-0 z-20">
+            <div class="px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 id="page-title" class="text-2xl font-bold text-gray-900">Todas as Tarefas</h2>
+                        <p id="page-subtitle" class="text-sm text-gray-600 mt-1">Gerencie suas tarefas e projetos</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <!-- Search -->
+                        <div class="relative">
+                            <input 
+                                type="text" 
+                                id="search-input"
+                                placeholder="Buscar tarefas..." 
+                                class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64"
+                            >
+                            <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4"></i>
+                        </div>
+                        
+                        <!-- Sort Dropdown -->
+                        <div class="relative">
+                            <button id="sort-btn" class="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                <i data-lucide="arrow-up-down" class="w-4 h-4"></i>
+                                <span>Ordenar</span>
+                            </button>
+                            <div id="sort-dropdown" class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-30" hidden>
+                                <a href="#" class="sort-option block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-sort="due_date">Data de Vencimento</a>
+                                <a href="#" class="sort-option block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-sort="priority">Prioridade</a>
+                                <a href="#" class="sort-option block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-sort="created_date">Data de Criação</a>
+                                <a href="#" class="sort-option block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-sort="alphabetical">Alfabética</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- List View -->
+        <div id="list-view" class="p-6">
+            <div id="tasks-container" class="space-y-3">
+                <!-- Tasks will be inserted here -->
+            </div>
+            
+            <div id="empty-state" class="text-center py-12" hidden>
+                <i data-lucide="clipboard-list" class="w-16 h-16 text-gray-300 mx-auto mb-4"></i>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Nenhuma tarefa encontrada</h3>
+                <p class="text-gray-500 mb-6">Crie sua primeira tarefa para começar</p>
+                <button class="new-task-trigger bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
+                    <i data-lucide="plus" class="w-4 h-4 inline mr-2"></i>
+                    Nova Tarefa
+                </button>
+            </div>
+        </div>
+        <!-- Kanban View -->
+        <div id="kanban-view" class="p-6" hidden>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- To Do Column -->
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-medium text-gray-900">A Fazer</h3>
+                        <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs" id="todo-count">0</span>
+                    </div>
+                    <div id="todo-column" class="kanban-column space-y-3 min-h-[400px]" data-status="pending">
+                        <!-- Tasks will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- In Progress Column -->
+                <div class="bg-yellow-50 rounded-lg p-4">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-medium text-gray-900">Em Progresso</h3>
+                        <span class="bg-yellow-200 text-yellow-700 px-2 py-1 rounded-full text-xs" id="progress-count">0</span>
+                    </div>
+                    <div id="progress-column" class="kanban-column space-y-3 min-h-[400px]" data-status="in_progress">
+                        <!-- Tasks will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Done Column -->
+                <div class="bg-green-50 rounded-lg p-4">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-medium text-gray-900">Concluído</h3>
+                        <span class="bg-green-200 text-green-700 px-2 py-1 rounded-full text-xs" id="done-count">0</span>
+                    </div>
+                    <div id="done-column" class="kanban-column space-y-3 min-h-[400px]" data-status="completed">
+                        <!-- Tasks will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Task Modal -->
+    <div id="task-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" hidden>
+        <div class="bg-white rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 id="modal-title" class="text-lg font-semibold text-gray-900">Nova Tarefa</h3>
+                    <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <form id="task-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                        <input 
+                            type="text" 
+                            id="task-title" 
+                            required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            placeholder="Digite o título da tarefa"
+                        >
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Descrição</label>
+                        <textarea 
+                            id="task-description" 
+                            rows="3"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                            placeholder="Descrição opcional da tarefa"
+                        ></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Prioridade</label>
+                            <select 
+                                id="task-priority" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            >
+                                <option value="low">Baixa</option>
+                                <option value="medium" selected>Média</option>
+                                <option value="high">Alta</option>
+                                <option value="urgent">Urgente</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Projeto</label>
+                            <select 
+                                id="task-project" 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            >
+                                <option value="">Sem projeto</option>
+                                <option value="trabalho">Trabalho</option>
+                                <option value="pessoal">Pessoal</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Data de Vencimento</label>
+                        <input 
+                            type="date" 
+                            id="task-due-date" 
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                        <select 
+                            id="task-status" 
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                            <option value="pending">Pendente</option>
+                            <option value="in_progress">Em Progresso</option>
+                            <option value="completed">Concluída</option>
+                        </select>
+                    </div>
+
+                    <!-- Subtasks Section -->
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="block text-sm font-medium text-gray-700">Subtarefas</label>
+                            <button type="button" id="add-subtask-btn" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                <i data-lucide="plus" class="w-4 h-4"></i>
+                                Adicionar
+                            </button>
+                        </div>
+                        <div id="subtasks-container" class="space-y-2 max-h-40 overflow-y-auto">
+                            <!-- Subtasks will be added here -->
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3 pt-4">
+                        <button 
+                            type="submit" 
+                            class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        >
+                            <span id="submit-btn-text">Criar Tarefa</span>
+                        </button>
+                        <button 
+                            type="button" 
+                            id="cancel-btn"
+                            class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                        >
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" hidden>
+        <div class="bg-white rounded-lg max-w-sm w-full">
+            <div class="p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+                        <i data-lucide="trash-2" class="w-5 h-5 text-red-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900">Excluir Tarefa</h3>
+                        <p class="text-sm text-gray-600">Esta ação não pode ser desfeita.</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-3">
+                    <button 
+                        id="confirm-delete" 
+                        class="flex-1 bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                    >
+                        Excluir
+                    </button>
+                    <button 
+                        id="cancel-delete"
+                        class="flex-1 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                    >
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Application State
+        let tasks = JSON.parse(localStorage.getItem('taskiro-tasks') || '[]');
+        let currentFilter = 'all';
+        let currentSort = 'due_date';
+        let currentView = 'list';
+        let editingTaskId = null;
+        let taskToDelete = null;
+
+        // DOM Elements
+        const sidebar = document.getElementById('sidebar');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const taskModal = document.getElementById('task-modal');
+        const deleteModal = document.getElementById('delete-modal');
+        const taskForm = document.getElementById('task-form');
+        const tasksContainer = document.getElementById('tasks-container');
+        const emptyState = document.getElementById('empty-state');
+        const listView = document.getElementById('list-view');
+        const kanbanView = document.getElementById('kanban-view');
+        const searchInput = document.getElementById('search-input');
+        const sortBtn = document.getElementById('sort-btn');
+        const sortDropdown = document.getElementById('sort-dropdown');
+        const pageTitle = document.getElementById('page-title');
+        const pageSubtitle = document.getElementById('page-subtitle');
+
+        // Utility Functions
+        function generateId() {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            if (date.toDateString() === today.toDateString()) return 'Hoje';
+            if (date.toDateString() === tomorrow.toDateString()) return 'Amanhã';
+            
+            return date.toLocaleDateString('pt-BR');
+        }
+
+        function isOverdue(dateString) {
+            if (!dateString) return false;
+            const date = new Date(dateString);
+            const today = new Date();
+            today.setHours(23, 59, 59, 999);
+            return date < today;
+        }
+
+        function getPriorityColor(priority) {
+            const colors = {
+                urgent: 'text-red-600 bg-red-100',
+                high: 'text-orange-600 bg-orange-100',
+                medium: 'text-yellow-600 bg-yellow-100',
+                low: 'text-blue-600 bg-blue-100'
+            };
+            return colors[priority] || colors.medium;
+        }
+
+        function getPriorityIcon(priority) {
+            const icons = {
+                urgent: 'flame',
+                high: 'arrow-up',
+                medium: 'minus',
+                low: 'arrow-down'
+            };
+            return icons[priority] || icons.medium;
+        }
+
+        function getProjectColor(project) {
+            const colors = {
+                trabalho: 'bg-red-500',
+                pessoal: 'bg-green-500'
+            };
+            return colors[project] || 'bg-gray-500';
+        }
+
+        function saveToStorage() {
+            localStorage.setItem('taskiro-tasks', JSON.stringify(tasks));
+        }
+
+        // Subtask Management Functions
+        function renderSubtasks(subtasks = []) {
+            const container = document.getElementById('subtasks-container');
+            container.innerHTML = '';
+            
+            subtasks.forEach(subtask => {
+                const subtaskElement = document.createElement('div');
+                subtaskElement.className = 'flex items-center gap-2 p-2 bg-gray-50 rounded-lg';
+                subtaskElement.innerHTML = `
+                    <button type="button" class="subtask-toggle w-4 h-4 rounded border-2 flex items-center justify-center hover:bg-gray-100 ${
+                        subtask.completed ? 'bg-green-600 border-green-600' : 'border-gray-300'
+                    }" data-subtask-id="${subtask.id}">
+                        ${subtask.completed ? '<i data-lucide="check" class="w-2 h-2 text-white"></i>' : ''}
+                    </button>
+                    <input 
+                        type="text" 
+                        value="${subtask.title}"
+                        class="subtask-input flex-1 text-sm bg-transparent border-none outline-none ${subtask.completed ? 'line-through text-gray-500' : 'text-gray-900'}"
+                        data-subtask-id="${subtask.id}"
+                    >
+                    <button type="button" class="remove-subtask text-gray-400 hover:text-red-600" data-subtask-id="${subtask.id}">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                `;
+                container.appendChild(subtaskElement);
+            });
+            
+            lucide.createIcons();
+        }
+
+        function addSubtask() {
+            const container = document.getElementById('subtasks-container');
+            const newSubtask = {
+                id: generateId(),
+                title: '',
+                completed: false
+            };
+            
+            const subtaskElement = document.createElement('div');
+            subtaskElement.className = 'flex items-center gap-2 p-2 bg-gray-50 rounded-lg';
+            subtaskElement.innerHTML = `
+                <button type="button" class="subtask-toggle w-4 h-4 rounded border-2 border-gray-300 flex items-center justify-center hover:bg-gray-100" data-subtask-id="${newSubtask.id}">
+                </button>
+                <input 
+                    type="text" 
+                    placeholder="Digite o título da subtarefa..."
+                    class="subtask-input flex-1 text-sm bg-transparent border-none outline-none text-gray-900"
+                    data-subtask-id="${newSubtask.id}"
+                >
+                <button type="button" class="remove-subtask text-gray-400 hover:text-red-600" data-subtask-id="${newSubtask.id}">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            `;
+            
+            container.appendChild(subtaskElement);
+            lucide.createIcons();
+            
+            // Focus on the new input
+            const input = subtaskElement.querySelector('.subtask-input');
+            input.focus();
+        }
+
+        function getSubtasksFromModal() {
+            const subtasks = [];
+            document.querySelectorAll('#subtasks-container .subtask-input').forEach(input => {
+                const title = input.value.trim();
+                if (title) {
+                    const subtaskId = input.dataset.subtaskId;
+                    const toggle = document.querySelector(`[data-subtask-id="${subtaskId}"].subtask-toggle`);
+                    subtasks.push({
+                        id: subtaskId,
+                        title: title,
+                        completed: toggle.classList.contains('bg-green-600')
+                    });
+                }
+            });
+            return subtasks;
+        }
+        // Toast Notifications
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast-enter bg-white border border-gray-200 rounded-lg shadow-lg p-4 mb-2 flex items-center gap-3 max-w-sm`;
+            
+            const icon = type === 'success' ? 'check-circle' : 'alert-circle';
+            const iconColor = type === 'success' ? 'text-green-600' : 'text-red-600';
+            
+            toast.innerHTML = `
+                <i data-lucide="${icon}" class="w-5 h-5 ${iconColor}"></i>
+                <span class="text-gray-900">${message}</span>
+                <button class="ml-auto text-gray-400 hover:text-gray-600" onclick="removeToast(this.parentElement)">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            `;
+
+            document.getElementById('toast-container').appendChild(toast);
+            lucide.createIcons();
+            
+            // Animate in
+            setTimeout(() => toast.classList.add('toast-enter-active'), 10);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => removeToast(toast), 5000);
+        }
+
+        function removeToast(toast) {
+            toast.classList.add('toast-exit');
+            setTimeout(() => toast.remove(), 300);
+        }
+
+        // Task Filtering
+        function getFilteredTasks() {
+            let filtered = tasks;
+            const searchTerm = searchInput.value.toLowerCase();
+
+            // Apply search filter
+            if (searchTerm) {
+                filtered = filtered.filter(task => 
+                    task.title.toLowerCase().includes(searchTerm) ||
+                    task.description.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            // Apply current filter
+            const today = new Date().toDateString();
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+
+            switch (currentFilter) {
+                case 'today':
+                    filtered = filtered.filter(task => {
+                        if (!task.due_date) return false;
+                        return new Date(task.due_date).toDateString() === today;
+                    });
+                    break;
+                case 'upcoming':
+                    filtered = filtered.filter(task => {
+                        if (!task.due_date) return false;
+                        const dueDate = new Date(task.due_date);
+                        return dueDate > new Date() && dueDate.toDateString() !== today;
+                    });
+                    break;
+                case 'completed':
+                    filtered = filtered.filter(task => task.status === 'completed');
+                    break;
+                case 'project':
+                    const projectName = document.querySelector(`[data-filter="project"].active`)?.dataset.project;
+                    if (projectName) {
+                        filtered = filtered.filter(task => task.project === projectName);
+                    }
+                    break;
+                case 'priority':
+                    const priorityLevel = document.querySelector(`[data-filter="priority"].active`)?.dataset.priority;
+                    if (priorityLevel) {
+                        filtered = filtered.filter(task => task.priority === priorityLevel);
+                    }
+                    break;
+                default:
+                    // 'all' - no additional filtering needed
+                    break;
+            }
+
+            return sortTasks(filtered);
+        }
+        // Task Sorting
+        function sortTasks(taskList) {
+            return taskList.sort((a, b) => {
+                switch (currentSort) {
+                    case 'due_date':
+                        if (!a.due_date && !b.due_date) return 0;
+                        if (!a.due_date) return 1;
+                        if (!b.due_date) return -1;
+                        return new Date(a.due_date) - new Date(b.due_date);
+                    case 'priority':
+                        const priorityOrder = { urgent: 4, high: 3, medium: 2, low: 1 };
+                        return priorityOrder[b.priority] - priorityOrder[a.priority];
+                    case 'created_date':
+                        return new Date(b.created_at) - new Date(a.created_at);
+                    case 'alphabetical':
+                        return a.title.localeCompare(b.title);
+                    default:
+                        return 0;
+                }
+            });
+        }
+
+        // Task HTML Generation
+        function createTaskHTML(task) {
+            const priorityColor = getPriorityColor(task.priority);
+            const priorityIcon = getPriorityIcon(task.priority);
+            const projectColor = task.project ? getProjectColor(task.project) : '';
+            const isTaskOverdue = isOverdue(task.due_date);
+            const dueDateText = formatDate(task.due_date);
+            
+            // Calculate subtask progress
+            const totalSubtasks = task.subtasks ? task.subtasks.length : 0;
+            const completedSubtasks = task.subtasks ? task.subtasks.filter(st => st.completed).length : 0;
+            const hasSubtasks = totalSubtasks > 0;
+            const progressPercent = hasSubtasks ? Math.round((completedSubtasks / totalSubtasks) * 100) : 0;
+
+            return `
+                <div class="task-item bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow ${hasSubtasks ? 'cursor-pointer' : ''}" 
+                     data-task-id="${task.id}" draggable="true">
+                    <div class="flex items-start gap-3">
+                        <button class="task-toggle mt-1 w-5 h-5 rounded-full border-2 flex items-center justify-center hover:bg-gray-50 ${
+                            task.status === 'completed' ? 'bg-green-600 border-green-600' : 'border-gray-300'
+                        }">
+                            ${task.status === 'completed' ? '<i data-lucide="check" class="w-3 h-3 text-white"></i>' : ''}
+                        </button>
+                        
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h3 class="font-medium text-gray-900 ${task.status === 'completed' ? 'line-through' : ''}">${task.title}</h3>
+                                <span class="priority-badge px-2 py-1 rounded-full text-xs font-medium ${priorityColor}">
+                                    <i data-lucide="${priorityIcon}" class="w-3 h-3 inline mr-1"></i>
+                                    ${task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}
+                                </span>
+                                ${task.project ? `<div class="w-3 h-3 rounded-full ${projectColor}"></div>` : ''}
+                                ${hasSubtasks ? `<i data-lucide="chevron-down" class="w-4 h-4 text-gray-400"></i>` : ''}
+                            </div>
+                            
+                            ${task.description ? `<p class="text-sm text-gray-600 mb-2">${task.description}</p>` : ''}
+                            
+                            ${hasSubtasks ? `
+                                <div class="mb-2">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="text-xs text-gray-600">${completedSubtasks}/${totalSubtasks} subtarefas</span>
+                                        <div class="flex-1 bg-gray-200 rounded-full h-1.5">
+                                            <div class="bg-blue-600 h-1.5 rounded-full transition-all" style="width: ${progressPercent}%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-600">${progressPercent}%</span>
+                                    </div>
+                                </div>
+                            ` : ''}
+                            
+                            <div class="flex items-center gap-4 text-xs text-gray-500">
+                                ${task.due_date ? `
+                                    <span class="flex items-center gap-1 ${isTaskOverdue ? 'text-red-600' : ''}">
+                                        <i data-lucide="calendar" class="w-3 h-3"></i>
+                                        ${dueDateText}
+                                    </span>
+                                ` : ''}
+                                ${task.project ? `
+                                    <span class="flex items-center gap-1">
+                                        <i data-lucide="folder" class="w-3 h-3"></i>
+                                        ${task.project.charAt(0).toUpperCase() + task.project.slice(1)}
+                                    </span>
+                                ` : ''}
+                                ${hasSubtasks ? `
+                                    <span class="flex items-center gap-1">
+                                        <i data-lucide="list-checks" class="w-3 h-3"></i>
+                                        ${totalSubtasks} subtarefas
+                                    </span>
+                                ` : ''}
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-1">
+                            <button class="edit-task-btn text-gray-400 hover:text-gray-600 p-1" data-task-id="${task.id}">
+                                <i data-lucide="edit-2" class="w-4 h-4"></i>
+                            </button>
+                            <button class="delete-task-btn text-gray-400 hover:text-red-600 p-1" data-task-id="${task.id}">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        // Render Functions
+        function renderTasks() {
+            const filteredTasks = getFilteredTasks();
+            
+            if (currentView === 'list') {
+                renderListView(filteredTasks);
+            } else {
+                renderKanbanView(filteredTasks);
+            }
+            
+            updateCounts();
+            lucide.createIcons();
+        }
+
+        function renderListView(filteredTasks) {
+            tasksContainer.innerHTML = '';
+            
+            if (filteredTasks.length === 0) {
+                emptyState.removeAttribute('hidden');
+            } else {
+                emptyState.setAttribute('hidden', '');
+                filteredTasks.forEach(task => {
+                    tasksContainer.innerHTML += createTaskHTML(task);
+                });
+            }
+        }
+
+        function renderKanbanView(filteredTasks) {
+            const todoColumn = document.getElementById('todo-column');
+            const progressColumn = document.getElementById('progress-column');
+            const doneColumn = document.getElementById('done-column');
+            
+            todoColumn.innerHTML = '';
+            progressColumn.innerHTML = '';
+            doneColumn.innerHTML = '';
+            
+            filteredTasks.forEach(task => {
+                const taskHTML = createTaskHTML(task);
+                switch (task.status) {
+                    case 'pending':
+                        todoColumn.innerHTML += taskHTML;
+                        break;
+                    case 'in_progress':
+                        progressColumn.innerHTML += taskHTML;
+                        break;
+                    case 'completed':
+                        doneColumn.innerHTML += taskHTML;
+                        break;
+                }
+            });
+        }
+
+        function updateCounts() {
+            const allCount = tasks.length;
+            const todayCount = tasks.filter(task => {
+                if (!task.due_date) return false;
+                return new Date(task.due_date).toDateString() === new Date().toDateString();
+            }).length;
+            const upcomingCount = tasks.filter(task => {
+                if (!task.due_date) return false;
+                const dueDate = new Date(task.due_date);
+                return dueDate > new Date() && dueDate.toDateString() !== new Date().toDateString();
+            }).length;
+            const completedCount = tasks.filter(task => task.status === 'completed').length;
+            
+            document.getElementById('all-count').textContent = allCount;
+            document.getElementById('today-count').textContent = todayCount;
+            document.getElementById('upcoming-count').textContent = upcomingCount;
+            document.getElementById('completed-count').textContent = completedCount;
+            
+            // Kanban counts
+            if (currentView === 'kanban') {
+                const todoCount = tasks.filter(task => task.status === 'pending').length;
+                const progressCount = tasks.filter(task => task.status === 'in_progress').length;
+                const doneCount = tasks.filter(task => task.status === 'completed').length;
+                
+                document.getElementById('todo-count').textContent = todoCount;
+                document.getElementById('progress-count').textContent = progressCount;
+                document.getElementById('done-count').textContent = doneCount;
+            }
+        }
+
+        // View Management
+        function switchView(view) {
+            currentView = view;
+            
+            if (view === 'list') {
+                listView.removeAttribute('hidden');
+                kanbanView.setAttribute('hidden', '');
+                document.getElementById('list-view-btn').classList.add('bg-white', 'shadow-sm', 'text-gray-900', 'font-medium');
+                document.getElementById('list-view-btn').classList.remove('text-gray-600');
+                document.getElementById('board-view-btn').classList.remove('bg-white', 'shadow-sm', 'text-gray-900', 'font-medium');
+                document.getElementById('board-view-btn').classList.add('text-gray-600');
+            } else {
+                listView.setAttribute('hidden', '');
+                kanbanView.removeAttribute('hidden');
+                document.getElementById('board-view-btn').classList.add('bg-white', 'shadow-sm', 'text-gray-900', 'font-medium');
+                document.getElementById('board-view-btn').classList.remove('text-gray-600');
+                document.getElementById('list-view-btn').classList.remove('bg-white', 'shadow-sm', 'text-gray-900', 'font-medium');
+                document.getElementById('list-view-btn').classList.add('text-gray-600');
+            }
+            
+            renderTasks();
+        }
+        // Modal Management
+        function openTaskModal(taskId = null) {
+            editingTaskId = taskId;
+            const modal = document.getElementById('task-modal');
+            const form = document.getElementById('task-form');
+            const title = document.getElementById('modal-title');
+            const submitBtn = document.getElementById('submit-btn-text');
+            
+            if (taskId) {
+                const task = tasks.find(t => t.id === taskId);
+                title.textContent = 'Editar Tarefa';
+                submitBtn.textContent = 'Salvar Alterações';
+                
+                document.getElementById('task-title').value = task.title;
+                document.getElementById('task-description').value = task.description || '';
+                document.getElementById('task-priority').value = task.priority;
+                document.getElementById('task-project').value = task.project || '';
+                document.getElementById('task-due-date').value = task.due_date || '';
+                document.getElementById('task-status').value = task.status;
+                
+                // Render existing subtasks
+                renderSubtasks(task.subtasks || []);
+            } else {
+                title.textContent = 'Nova Tarefa';
+                submitBtn.textContent = 'Criar Tarefa';
+                form.reset();
+                document.getElementById('task-priority').value = 'medium';
+                document.getElementById('task-status').value = 'pending';
+                
+                // Clear subtasks
+                document.getElementById('subtasks-container').innerHTML = '';
+            }
+            
+            modal.removeAttribute('hidden');
+            document.getElementById('task-title').focus();
+        }
+
+        function closeTaskModal() {
+            document.getElementById('task-modal').setAttribute('hidden', '');
+            editingTaskId = null;
+        }
+
+        function openDeleteModal(taskId) {
+            taskToDelete = taskId;
+            document.getElementById('delete-modal').removeAttribute('hidden');
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('delete-modal').setAttribute('hidden', '');
+            taskToDelete = null;
+        }
+
+        // Task CRUD Operations
+        function createTask(taskData) {
+            const task = {
+                id: generateId(),
+                title: taskData.title,
+                description: taskData.description || '',
+                priority: taskData.priority,
+                project: taskData.project || '',
+                due_date: taskData.due_date || '',
+                status: taskData.status || 'pending',
+                subtasks: taskData.subtasks || [],
+                created_at: new Date().toISOString(),
+                updated_at: new Date().toISOString()
+            };
+            
+            tasks.unshift(task);
+            saveToStorage();
+            renderTasks();
+            showToast('Tarefa criada com sucesso!');
+        }
+
+        function updateTask(taskId, taskData) {
+            const taskIndex = tasks.findIndex(t => t.id === taskId);
+            if (taskIndex !== -1) {
+                tasks[taskIndex] = {
+                    ...tasks[taskIndex],
+                    ...taskData,
+                    updated_at: new Date().toISOString()
+                };
+                saveToStorage();
+                renderTasks();
+                showToast('Tarefa atualizada com sucesso!');
+            }
+        }
+
+        function deleteTask(taskId) {
+            const taskIndex = tasks.findIndex(t => t.id === taskId);
+            if (taskIndex !== -1) {
+                tasks.splice(taskIndex, 1);
+                saveToStorage();
+                renderTasks();
+                showToast('Tarefa excluída com sucesso!');
+            }
+        }
+
+        function toggleTaskStatus(taskId) {
+            const task = tasks.find(t => t.id === taskId);
+            if (task) {
+                const newStatus = task.status === 'completed' ? 'pending' : 'completed';
+                task.status = newStatus;
+                
+                // When marking task as completed, mark all subtasks as completed too
+                // When marking task as incomplete, leave subtasks as they are
+                if (newStatus === 'completed' && task.subtasks) {
+                    task.subtasks.forEach(subtask => subtask.completed = true);
+                }
+                
+                task.updated_at = new Date().toISOString();
+                saveToStorage();
+                renderTasks();
+                showToast(task.status === 'completed' ? 'Tarefa concluída!' : 'Tarefa reaberta!');
+            }
+        }
+        // Filter Management
+        function setFilter(filter, extra = {}) {
+            currentFilter = filter;
+            
+            // Update active states
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active', 'bg-blue-50', 'text-blue-700');
+                link.classList.add('text-gray-700', 'hover:bg-gray-100');
+            });
+            
+            let activeLink;
+            if (filter === 'project') {
+                activeLink = document.querySelector(`[data-filter="project"][data-project="${extra.project}"]`);
+            } else if (filter === 'priority') {
+                activeLink = document.querySelector(`[data-filter="priority"][data-priority="${extra.priority}"]`);
+            } else {
+                activeLink = document.querySelector(`[data-filter="${filter}"]`);
+            }
+            
+            if (activeLink) {
+                activeLink.classList.add('active', 'bg-blue-50', 'text-blue-700');
+                activeLink.classList.remove('text-gray-700', 'hover:bg-gray-100');
+            }
+            
+            // Update page title
+            const titles = {
+                all: { title: 'Todas as Tarefas', subtitle: 'Gerencie suas tarefas e projetos' },
+                today: { title: 'Hoje', subtitle: 'Tarefas com vencimento hoje' },
+                upcoming: { title: 'Próximas', subtitle: 'Tarefas com vencimento futuro' },
+                completed: { title: 'Concluídas', subtitle: 'Tarefas finalizadas' },
+                project: { 
+                    title: extra.project?.charAt(0).toUpperCase() + extra.project?.slice(1) || 'Projeto', 
+                    subtitle: 'Tarefas do projeto' 
+                },
+                priority: { 
+                    title: extra.priority?.charAt(0).toUpperCase() + extra.priority?.slice(1) || 'Prioridade', 
+                    subtitle: 'Tarefas por prioridade' 
+                }
+            };
+            
+            const titleData = titles[filter] || titles.all;
+            pageTitle.textContent = titleData.title;
+            pageSubtitle.textContent = titleData.subtitle;
+            
+            renderTasks();
+        }
+
+        // Drag and Drop for Kanban
+        function setupDragAndDrop() {
+            document.addEventListener('dragstart', (e) => {
+                if (e.target.classList.contains('task-item')) {
+                    e.target.classList.add('dragging');
+                    e.dataTransfer.setData('text/plain', e.target.dataset.taskId);
+                }
+            });
+
+            document.addEventListener('dragend', (e) => {
+                if (e.target.classList.contains('task-item')) {
+                    e.target.classList.remove('dragging');
+                }
+            });
+
+            document.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                if (e.target.classList.contains('kanban-column')) {
+                    e.target.classList.add('drag-over');
+                }
+            });
+
+            document.addEventListener('dragleave', (e) => {
+                if (e.target.classList.contains('kanban-column')) {
+                    e.target.classList.remove('drag-over');
+                }
+            });
+
+            document.addEventListener('drop', (e) => {
+                e.preventDefault();
+                const column = e.target.closest('.kanban-column');
+                if (column) {
+                    column.classList.remove('drag-over');
+                    const taskId = e.dataTransfer.getData('text/plain');
+                    const newStatus = column.dataset.status;
+                    
+                    const task = tasks.find(t => t.id === taskId);
+                    if (task && task.status !== newStatus) {
+                        task.status = newStatus;
+                        task.updated_at = new Date().toISOString();
+                        saveToStorage();
+                        renderTasks();
+                        showToast('Status da tarefa atualizado!');
+                    }
+                }
+            });
+        }
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                }
+            });
+
+            // View toggle buttons
+            document.getElementById('list-view-btn').addEventListener('click', () => switchView('list'));
+            document.getElementById('board-view-btn').addEventListener('click', () => switchView('kanban'));
+
+            // New task buttons
+            document.querySelectorAll('#new-task-btn, .new-task-trigger').forEach(btn => {
+                btn.addEventListener('click', () => openTaskModal());
+            });
+
+            // Modal controls
+            document.getElementById('close-modal').addEventListener('click', closeTaskModal);
+            document.getElementById('cancel-btn').addEventListener('click', closeTaskModal);
+            document.getElementById('cancel-delete').addEventListener('click', closeDeleteModal);
+            document.getElementById('confirm-delete').addEventListener('click', () => {
+                if (taskToDelete) {
+                    deleteTask(taskToDelete);
+                    closeDeleteModal();
+                }
+            });
+
+            // Close modals on backdrop click
+            taskModal.addEventListener('click', (e) => {
+                if (e.target === taskModal) closeTaskModal();
+            });
+            deleteModal.addEventListener('click', (e) => {
+                if (e.target === deleteModal) closeDeleteModal();
+            });
+
+            // Form submission
+            taskForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const taskData = {
+                    title: document.getElementById('task-title').value,
+                    description: document.getElementById('task-description').value,
+                    priority: document.getElementById('task-priority').value,
+                    project: document.getElementById('task-project').value,
+                    due_date: document.getElementById('task-due-date').value,
+                    status: document.getElementById('task-status').value,
+                    subtasks: getSubtasksFromModal()
+                };
+
+                if (editingTaskId) {
+                    updateTask(editingTaskId, taskData);
+                } else {
+                    createTask(taskData);
+                }
+                closeTaskModal();
+            });
+
+            // Search functionality
+            searchInput.addEventListener('input', () => {
+                renderTasks();
+            });
+
+            // Sort dropdown
+            sortBtn.addEventListener('click', () => {
+                sortDropdown.toggleAttribute('hidden');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!sortBtn.contains(e.target)) {
+                    sortDropdown.setAttribute('hidden', '');
+                }
+            });
+
+            document.querySelectorAll('.sort-option').forEach(option => {
+                option.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    currentSort = e.target.dataset.sort;
+                    renderTasks();
+                    sortDropdown.setAttribute('hidden', '');
+                });
+            });
+            // Sidebar navigation
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const filter = link.dataset.filter;
+                    
+                    if (filter === 'project') {
+                        setFilter('project', { project: link.dataset.project });
+                    } else if (filter === 'priority') {
+                        setFilter('priority', { priority: link.dataset.priority });
+                    } else {
+                        setFilter(filter);
+                    }
+                });
+            });
+
+            // Task interactions (delegated events)
+            document.addEventListener('click', (e) => {
+                // Task toggle
+                if (e.target.closest('.task-toggle')) {
+                    e.stopPropagation();
+                    const taskId = e.target.closest('.task-item').dataset.taskId;
+                    toggleTaskStatus(taskId);
+                }
+                
+                // Edit task
+                if (e.target.closest('.edit-task-btn')) {
+                    e.stopPropagation();
+                    const taskId = e.target.closest('.edit-task-btn').dataset.taskId;
+                    openTaskModal(taskId);
+                }
+                
+                // Delete task
+                if (e.target.closest('.delete-task-btn')) {
+                    e.stopPropagation();
+                    const taskId = e.target.closest('.delete-task-btn').dataset.taskId;
+                    openDeleteModal(taskId);
+                }
+                
+                // Expand/collapse task to show subtasks
+                if (e.target.closest('.task-item') && !e.target.closest('button')) {
+                    const taskItem = e.target.closest('.task-item');
+                    const taskId = taskItem.dataset.taskId;
+                    const task = tasks.find(t => t.id === taskId);
+                    
+                    if (task && task.subtasks && task.subtasks.length > 0) {
+                        toggleTaskExpansion(taskId);
+                    }
+                }
+            });
+
+        // Task expansion for subtasks
+        function toggleTaskExpansion(taskId) {
+            const taskItem = document.querySelector(`[data-task-id="${taskId}"]`);
+            const existingExpansion = taskItem.querySelector('.subtasks-expansion');
+            
+            if (existingExpansion) {
+                existingExpansion.remove();
+                return;
+            }
+            
+            const task = tasks.find(t => t.id === taskId);
+            if (!task || !task.subtasks || task.subtasks.length === 0) return;
+            
+            const expansionDiv = document.createElement('div');
+            expansionDiv.className = 'subtasks-expansion mt-3 pl-8 border-l-2 border-gray-200';
+            
+            const subtasksHtml = task.subtasks.map(subtask => `
+                <div class="flex items-center gap-2 py-1">
+                    <button class="inline-subtask-toggle w-4 h-4 rounded border flex items-center justify-center hover:bg-gray-50 ${
+                        subtask.completed ? 'bg-green-600 border-green-600' : 'border-gray-300'
+                    }" data-task-id="${taskId}" data-subtask-id="${subtask.id}">
+                        ${subtask.completed ? '<i data-lucide="check" class="w-2 h-2 text-white"></i>' : ''}
+                    </button>
+                    <span class="text-sm ${subtask.completed ? 'line-through text-gray-500' : 'text-gray-700'}">${subtask.title}</span>
+                </div>
+            `).join('');
+            
+            expansionDiv.innerHTML = `
+                <div class="text-xs text-gray-500 mb-2 font-medium">Subtarefas:</div>
+                ${subtasksHtml}
+            `;
+            
+            taskItem.appendChild(expansionDiv);
+            lucide.createIcons();
+        }
+
+        // Handle inline subtask toggle
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.inline-subtask-toggle')) {
+                e.stopPropagation();
+                const toggle = e.target.closest('.inline-subtask-toggle');
+                const taskId = toggle.dataset.taskId;
+                const subtaskId = toggle.dataset.subtaskId;
+                
+                const task = tasks.find(t => t.id === taskId);
+                if (task) {
+                    const subtask = task.subtasks.find(st => st.id === subtaskId);
+                    if (subtask) {
+                        subtask.completed = !subtask.completed;
+                        task.updated_at = new Date().toISOString();
+                        saveToStorage();
+                        renderTasks();
+                        showToast('Subtarefa atualizada!');
+                    }
+                }
+            }
+        });
+
+            // Initialize drag and drop
+            setupDragAndDrop();
+
+            // Subtask event listeners
+            document.getElementById('add-subtask-btn').addEventListener('click', addSubtask);
+            
+            // Delegated event listeners for subtasks
+            document.addEventListener('click', (e) => {
+                // Subtask toggle
+                if (e.target.closest('.subtask-toggle')) {
+                    const toggle = e.target.closest('.subtask-toggle');
+                    const isCompleted = toggle.classList.contains('bg-green-600');
+                    
+                    if (isCompleted) {
+                        toggle.classList.remove('bg-green-600', 'border-green-600');
+                        toggle.classList.add('border-gray-300');
+                        toggle.innerHTML = '';
+                    } else {
+                        toggle.classList.add('bg-green-600', 'border-green-600');
+                        toggle.classList.remove('border-gray-300');
+                        toggle.innerHTML = '<i data-lucide="check" class="w-2 h-2 text-white"></i>';
+                    }
+                    
+                    // Update input styling
+                    const input = document.querySelector(`[data-subtask-id="${toggle.dataset.subtaskId}"].subtask-input`);
+                    if (input) {
+                        if (isCompleted) {
+                            input.classList.remove('line-through', 'text-gray-500');
+                            input.classList.add('text-gray-900');
+                        } else {
+                            input.classList.add('line-through', 'text-gray-500');
+                            input.classList.remove('text-gray-900');
+                        }
+                    }
+                    
+                    lucide.createIcons();
+                }
+                
+                // Remove subtask
+                if (e.target.closest('.remove-subtask')) {
+                    const button = e.target.closest('.remove-subtask');
+                    const subtaskElement = button.closest('.flex');
+                    subtaskElement.remove();
+                }
+            });
+
+            // Load initial data
+            if (tasks.length === 0) {
+                // Add sample tasks for demonstration
+                const sampleTasks = [
+                    {
+                        id: generateId(),
+                        title: 'Revisar relatório mensal',
+                        description: 'Analisar os dados do último mês e preparar apresentação',
+                        priority: 'high',
+                        project: 'trabalho',
+                        due_date: new Date().toISOString().split('T')[0],
+                        status: 'pending',
+                        subtasks: [
+                            { id: generateId(), title: 'Coletar dados de vendas', completed: false },
+                            { id: generateId(), title: 'Analisar métricas de performance', completed: true },
+                            { id: generateId(), title: 'Criar gráficos e visualizações', completed: false },
+                            { id: generateId(), title: 'Escrever conclusões', completed: false }
+                        ],
+                        created_at: new Date().toISOString(),
+                        updated_at: new Date().toISOString()
+                    },
+                    {
+                        id: generateId(),
+                        title: 'Comprar ingredientes para jantar',
+                        description: 'Lista: tomate, alface, frango, azeite',
+                        priority: 'medium',
+                        project: 'pessoal',
+                        due_date: '',
+                        status: 'pending',
+                        subtasks: [
+                            { id: generateId(), title: 'Ir ao supermercado', completed: false },
+                            { id: generateId(), title: 'Comprar vegetais', completed: false }
+                        ],
+                        created_at: new Date().toISOString(),
+                        updated_at: new Date().toISOString()
+                    },
+                    {
+                        id: generateId(),
+                        title: 'Implementar nova feature',
+                        description: 'Desenvolver o sistema de notificações em tempo real',
+                        priority: 'urgent',
+                        project: 'trabalho',
+                        due_date: new Date(Date.now() + 86400000).toISOString().split('T')[0], // Tomorrow
+                        status: 'in_progress',
+                        subtasks: [
+                            { id: generateId(), title: 'Configurar WebSocket', completed: true },
+                            { id: generateId(), title: 'Criar componente de notificação', completed: true },
+                            { id: generateId(), title: 'Implementar lógica de backend', completed: false },
+                            { id: generateId(), title: 'Testar integração', completed: false },
+                            { id: generateId(), title: 'Deploy em produção', completed: false }
+                        ],
+                        created_at: new Date().toISOString(),
+                        updated_at: new Date().toISOString()
+                    }
+                ];
+                
+                tasks = sampleTasks;
+                saveToStorage();
+            }
+
+            // Initial render
+            renderTasks();
+        });
+    </script>
+</body>
+</html>

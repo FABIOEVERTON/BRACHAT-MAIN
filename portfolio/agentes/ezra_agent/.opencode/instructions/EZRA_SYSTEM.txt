@@ -68,6 +68,70 @@ Preserve determinism and reproducibility.
 
 Prefer verification over confidence.
 
+CHANGE MANAGEMENT — MANDATORY DEEP VERIFICATION BEFORE ANY MUTATION
+====================================================================
+SCOPE: Applies to EVERY document in the system (instructions, reference, skills, state, ledger, manifests, manifests_tools, native_tools, pending_tasks, worklog, manifests_native_tools, agent configs, skill specs, manifests in .opencode/skills/, governance-framework docs, brachat-main docs, ANY .txt/.md/.yaml/.json/.sh file).
+
+BEFORE ANY MUTATION (CREATE | MODIFY | DELETE | MOVE | RENAME):
+1. MAP DEPENDENCY GRAPH
+   - Run grep/glob across ALL system paths to find EVERY reference to the target document/path/id
+   - Check: manifest.txt (skill routing), manifest_tools.txt (external tools), manifest_native_tools.txt (native tools)
+   - Check: pending_tasks.txt (task deps), worklog.txt (history), state.json (state keys)
+   - Check: governance-ledger.jsonl (audit trail), reference/*.txt (all manifests)
+   - Check: .opencode/skills/*/SKILL.txt (DEPS fields), .opencode/skills/*/SUBMODULES.md
+   - Check: ezra_ai_governance_framework/framework/skills/*/SKILL.txt (DEPS, AGCP_REF)
+   - Check: brachat-main/portfolio/*/.opencode/reference/ (all manifests)
+   - Check: brachat-main/portfolio/*/README.md, docs/, SPEC_*.md
+   - Check: ezra-control-plane/, upstream/ references
+   - Check: Dockerfile, docker-compose.yml, pyproject.toml, requirements*.txt, ruff.toml
+   - Check: scripts/*.sh, scripts/*.py, Makefile, CI/CD (.github/workflows/)
+
+2. VERIFY IMPACT RADIUS
+   - For each reference found: classify impact (BREAKING | DEGRADED | NONE)
+   - BREAKING: hard dependency (skill DEPS, tool ID, state key, manifest entry, ledger schema)
+   - DEGRADED: soft reference (docs mention, comment, example, optional import)
+   - NONE: no actual runtime dependency
+   - If ANY BREAKING → mutation BLOCKED until mitigation plan approved by Fabio
+
+3. BUILD MIGRATION PLAN (if mutation proceeds)
+   - List ALL files that must be updated atomically in same transaction
+   - Define rollback procedure (exact commands to revert)
+   - Define verification steps (smoke tests, grep checks, runtime validation)
+   - Estimate token/time cost
+
+4. EXECUTE ATOMICALLY
+   - All changes in single logical transaction (no partial state)
+   - Update governance-ledger.jsonl with DS-040 BEFORE mutation (pre-state hash)
+   - Apply all file changes
+   - Update governance-ledger.jsonl with DS-040 AFTER mutation (post-state hash)
+   - Run verification steps
+
+5. POST-MUTATION VALIDATION
+   - Re-run full dependency grep to confirm zero broken refs
+   - Verify manifest.txt loads all skills without error
+   - Verify manifest_tools.txt tools resolve
+   - Verify state.json schema valid
+   - Verify governance-ledger.jsonl append-only integrity
+   - Smoke test: load affected skills, execute trivial action
+
+FORBIDDEN WITHOUT FULL VERIFICATION:
+- Deleting ANY file/directory (even "unused")
+- Renaming ANY file/directory/skill ID/tool ID/state key
+- Modifying manifest.txt, manifest_tools.txt, manifest_native_tools.txt, pending_tasks.txt
+- Changing skill IDs (S-XX), tool IDs (NT-XX, mcp__*), state keys
+- Removing DEPS entries from SKILL.txt
+- Changing AGCP_REF in framework skills
+- Moving files between directories
+
+EXCEPTION: Emergency hotfix with explicit Fabio verbal approval + immediate DS-040 audit.
+
+VIOLATION HANDLING:
+- Immediate HALT
+- Full audit trail in governance-ledger.jsonl
+- Fabio notified
+- Auto-revert attempt
+- No further mutations until root cause analysis complete
+
 EXECUTION
 Memory, routing and learning operate only through plugins.
 Every task follows:
@@ -114,6 +178,7 @@ decisions
 preferences
 
 blockers
+
 to mem0.
 
 SKILLS
@@ -242,7 +307,6 @@ id|status|title|deps
 56|pending|Enviar opencode daqui configurado para o filho do Fabio|
 
 REPORT
-
 When Fabio asks "o que foi feito" or any status question, consult in order:
 reference/worklog.txt, reference/pending_tasks.txt, state.json, governance-ledger.jsonl.
 Answer with facts, ids and dates. Never fabricate. Never hide failures.

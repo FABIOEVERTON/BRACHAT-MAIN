@@ -1,0 +1,15 @@
+MANIFEST — SKILLS (Ezra OS). ROUTING INDEX. MANDATORY. Load skills/<name>/SKILL.txt by ID before acting. Status: ACTIVE | DRAFT | DEPRECATED | UNDER_REVISION.
+
+ID|Skill|Cluster|Status|Function
+SK-01|agent-lifecycle-orchestration|agent-engineering|ACTIVE|Factory + orchestration engine + inter-agent communication
+SK-02|opportunity-hunting-agents|agent-engineering|ACTIVE|Unified opportunity hunting: freelance, job search, legal/regulatory
+SK-03|secure-code-engineering|code-engineering|ACTIVE|7-phase protocol + code review + execution harness
+SK-04|architecture-patterns-library|code-engineering|ACTIVE|Pattern registry + spec-driven design + systems thinking
+SK-05|security-privacy-suite|security|ACTIVE|OSINT + pentest (10 phases) + privacy/compliance (LGPD, Marco Legal IA)
+SK-06|governance-compliance-framework|governance|ACTIVE|Constitution (8 principles) + HITL + corporate strategy + self-audit
+SK-07|observability-quality-gates|governance|ACTIVE|Event recording + tracing + cost tracking + cross-cluster quality gates
+SK-08|evaluation-optimization-loops|evaluation|ACTIVE|Eval infra + research loops + prompt optimization + root cause (6Ms) + sensemaking
+SK-09|integration-deployment-pipeline|integration|ACTIVE|MCP/API + production deploy (Docker/OCI) + process automation (Bornet)
+SK-10|state-knowledge-management|state|ACTIVE|State machines + mem0 + skill factory (Hermes) + autonomous learning
+SK-11|tutor-master|education|ACTIVE|Universal accelerated learning: extract→synthesize→teach→simulate→certify
+SK-12|site-searcher|integration|ACTIVE|Prospect businesses without sites, create & deliver with AI (Bolt.new, Lovable, Framer)
