@@ -78,7 +78,14 @@ flowchart LR
 | [**agent_nice**](portfolio/agentes/agent_nice) | Autonomous Agent | Household governance with financial gates + self-evolution |
 | [**parashat_bot**](portfolio/agentes/parashat_bot) | RAG + Bot | Weekly Torah study with NotebookLM + Groq |
 
-> Hands-on research pipelines (LangChain/LangGraph) and full-stack experiments live in [fabio_studies](https://github.com/FABIOEVERTON/FABIOEVERTON) — study work stays out of this repo.
+> Hands-on research pipelines (LangChain/LangGraph), study projects and certifications live in [studies/](studies/) inside this repo.
+
+## Studies
+
+| Folder | What It Contains |
+|--------|------------------|
+| [**hands_on/**](studies/hands_on) | Hands-on exercises: LangChain, LangGraph, Code Connect experiments |
+| [**certifications/**](studies/certifications) | Course certificates — Git/GitHub, programming logic, cloud, AI |
 
 ## How Projects Are Built
 
