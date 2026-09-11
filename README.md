@@ -8,13 +8,12 @@ This is not a collection of demos or tutorials. Each project is a working system
 
 ```mermaid
 graph TD
-    subgraph "Repo Structure"
-        ROOT[brachat-main] --> PORT[portfolio/<br/>10 projects]
+subgraph "Repo Structure"
+        ROOT[brachat-main] --> PORT[portfolio/<br/>7 projects]
         PORT --> A[agentes/<br/>7 autonomous agents]
-        PORT --> H[hands_on/<br/>research & full-stack]
         PORT --> S[sites/ business sites]
         PORT --> K[HAKA_ANIMA<br/>single-file app]
-end
+    end
 
     subgraph "Governance Requirement"
         PORT --> GW[Every agent passes through<br/>policy gate before execution]
@@ -76,9 +75,8 @@ flowchart LR
 | [**ezra_control_plane**](portfolio/agentes/ezra_control_plane) | Governance | Runtime gate that limits damage of compromised agents |
 | [**agent_nice**](portfolio/agentes/agent_nice) | Autonomous Agent | Household governance with financial gates + self-evolution |
 | [**parashat_bot**](portfolio/agentes/parashat_bot) | RAG + Bot | Weekly Torah study with NotebookLM + Groq |
-| [**langchain_hands_on**](portfolio/hands_on/langchain_hands_on) | Research Pipeline | 4-agent RAG research system (LangChain + Gemini) |
-| [**langraph_hands_on**](portfolio/hands_on/langraph_hands_on) | Research Pipeline | Same pipeline rebuilt on LangGraph with state + persistence |
-| [**code-connect**](portfolio/hands_on/code-connect) | Full-Stack | pnpm monorepo: React (Vite) + NestJS |
+
+> Hands-on research pipelines (LangChain/LangGraph) and full-stack experiments live in [fabio_studies](https://github.com/FABIOEVERTON/FABIOEVERTON) — study work stays out of this production portfolio.
 
 ## How Projects Are Built
 
