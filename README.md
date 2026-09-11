@@ -1,17 +1,17 @@
 # brachat-main
 
-**Portfolio of production AI agents and governance systems. Every project here is built by Fabio Everton, with Ezra (AI assistant) operating under his direct supervision. Nothing deploys without governance.**
+**Personal projects and hands-on studies by Fabio Everton — AI agents, governance systems, and experiments. Built with Ezra (AI assistant) under his direct supervision. Nothing deploys without governance.**
 
 ## What This Repo Is
 
-This is not a collection of demos or tutorials. Each project is a working system — deployed, tested, and governed. The common thread: **runtime governance that cannot be bypassed**.
+This is a **personal portfolio** of things I build and study: autonomous agents, RAG pipelines, governance experiments, and single-file apps. It is **not** client work and it is **not** a product catalog — commercial products (the [Ezra AI Governance Framework](https://github.com/FABIOEVERTON/EZRA_AI_GOVERNANCE_FRAMEWORK) and future SaaS) live in their own repositories. The common thread here: **runtime governance that cannot be bypassed**.
 
 ```mermaid
 graph TD
 subgraph "Repo Structure"
-        ROOT[brachat-main] --> PORT[portfolio/<br/>7 projects]
-        PORT --> A[agentes/<br/>7 autonomous agents]
-        PORT --> S[sites/ business sites]
+        ROOT[brachat-main<br/>personal projects & studies] --> PORT[portfolio/<br/>7 projects]
+        PORT --> A[agentes/<br/>autonomous agents]
+        PORT --> S[sites/ one-off experiments]
         PORT --> K[HAKA_ANIMA<br/>single-file app]
     end
 
@@ -28,6 +28,8 @@ subgraph "Repo Structure"
         F -->|approves everything| EZ
     end
 ```
+
+> **Honest framing:** every folder in this repo is work I did for myself — study projects, experiments and tools. No client contracts, no fake "portfolio" categories. What is sellable (the Ezra framework) has its own public repository.
 
 ## Runtime Governance — The Non-Negotiable
 
@@ -76,7 +78,7 @@ flowchart LR
 | [**agent_nice**](portfolio/agentes/agent_nice) | Autonomous Agent | Household governance with financial gates + self-evolution |
 | [**parashat_bot**](portfolio/agentes/parashat_bot) | RAG + Bot | Weekly Torah study with NotebookLM + Groq |
 
-> Hands-on research pipelines (LangChain/LangGraph) and full-stack experiments live in [fabio_studies](https://github.com/FABIOEVERTON/FABIOEVERTON) — study work stays out of this production portfolio.
+> Hands-on research pipelines (LangChain/LangGraph) and full-stack experiments live in [fabio_studies](https://github.com/FABIOEVERTON/FABIOEVERTON) — study work stays out of this repo.
 
 ## How Projects Are Built
 
