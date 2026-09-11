@@ -10,9 +10,11 @@ This is not a collection of demos or tutorials. Each project is a working system
 graph TD
     subgraph "Repo Structure"
         ROOT[brachat-main] --> PORT[portfolio/<br/>10 projects]
-        ROOT --> OPS[ops/<br/>deploy scripts, services]
-        ROOT --> AGENTS[agents/<br/>shared skills, memory]
-    end
+        PORT --> A[agentes/<br/>7 autonomous agents]
+        PORT --> H[hands_on/<br/>research & full-stack]
+        PORT --> S[sites/ business sites]
+        PORT --> K[HAKA_ANIMA<br/>single-file app]
+end
 
     subgraph "Governance Requirement"
         PORT --> GW[Every agent passes through<br/>policy gate before execution]
@@ -67,16 +69,16 @@ flowchart LR
 
 | Project | Category | What It Demonstrates |
 |---------|----------|---------------------|
-| [**ezra_agent**](portfolio/ezra_agent) | Autonomous Agent | 24/7 Telegram agent with skills, memory, OCI deploy |
-| [**ezra_curator**](portfolio/ezra_curator) | RAG | Corporate document RAG with reranking, fallbacks, citations |
-| [**essay_creator**](portfolio/essay-creator) | Multi-Agent Pipeline | 5-agent LangGraph system with HITL and iterative refinement |
-| [**exec-email-assistant**](portfolio/exec-email-assistant) | Multi-Agent Pipeline | Intent-based email routing with semantic memory |
-| [**ezra_control_plane**](portfolio/ezra_control_plane) | Governance | Runtime gate that limits damage of compromised agents |
-| [**agent_nice**](portfolio/agent_nice) | Autonomous Agent | Household governance with financial gates + self-evolution |
-| [**parashat_bot**](portfolio/parashat_bot) | RAG + Bot | Weekly Torah study with NotebookLM + Groq |
-| [**langchain_hands_on**](portfolio/langchain_hands_on) | Research Pipeline | 4-agent RAG research system (LangChain + Gemini) |
-| [**langraph_hands_on**](portfolio/langraph_hands_on) | Research Pipeline | Same pipeline rebuilt on LangGraph with state + persistence |
-| [**code-connect**](portfolio/code-connect) | Full-Stack | pnpm monorepo: React (Vite) + NestJS |
+| [**ezra_agent**](portfolio/agentes/ezra_agent) | Autonomous Agent | 24/7 Telegram agent with skills, memory, OCI deploy |
+| [**ezra_curator**](portfolio/agentes/ezra_curator) | RAG | Corporate document RAG with reranking, fallbacks, citations |
+| [**essay_creator**](portfolio/agentes/essay-creator) | Multi-Agent Pipeline | 5-agent LangGraph system with HITL and iterative refinement |
+| [**exec-email-assistant**](portfolio/agentes/exec-email-assistant) | Multi-Agent Pipeline | Intent-based email routing with semantic memory |
+| [**ezra_control_plane**](portfolio/agentes/ezra_control_plane) | Governance | Runtime gate that limits damage of compromised agents |
+| [**agent_nice**](portfolio/agentes/agent_nice) | Autonomous Agent | Household governance with financial gates + self-evolution |
+| [**parashat_bot**](portfolio/agentes/parashat_bot) | RAG + Bot | Weekly Torah study with NotebookLM + Groq |
+| [**langchain_hands_on**](portfolio/hands_on/langchain_hands_on) | Research Pipeline | 4-agent RAG research system (LangChain + Gemini) |
+| [**langraph_hands_on**](portfolio/hands_on/langraph_hands_on) | Research Pipeline | Same pipeline rebuilt on LangGraph with state + persistence |
+| [**code-connect**](portfolio/hands_on/code-connect) | Full-Stack | pnpm monorepo: React (Vite) + NestJS |
 
 ## How Projects Are Built
 
