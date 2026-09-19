@@ -1,0 +1,66 @@
+# Ambiente dev local — Plataforma EZRA (PRD §6.3)
+# Zero custo real, zero credenciais AWS. Região fixa: sa-east-1 (ADR-008).
+name: ezra-dev
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ezra
+      POSTGRES_PASSWORD: dev_password
+      POSTGRES_DB: ezra
+    ports: ["5433:5432"]
+    volumes: ["postgres_data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ezra -d ezra"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports: ["6380:6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  localstack:
+    image: localstack/localstack:3
+    environment:
+      SERVICES: s3,sqs,kms
+      DEFAULT_REGION: sa-east-1
+      AWS_DEFAULT_REGION: sa-east-1
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+    ports: ["4566:4566"]
+    volumes: ["localstack_data:/var/lib/localstack"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    # Simula S3 WORM e SQS localmente (R-1 do risk profile: teste pessimista)
+
+  web:
+    build:
+      context: ../../apps/web
+    ports: ["3002:3000"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # E0-S02: serviços gov-ai entram na FASE 1 (sentinel/aegis/guardian têm código real lá).
+  # F0-06 (depends_on healthy) é validado pela cadeia postgres/redis/localstack -> web.
+
+volumes:
+  postgres_data:
+  localstack_data:

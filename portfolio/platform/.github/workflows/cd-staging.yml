@@ -1,0 +1,64 @@
+# EZRA CD — deploy staging ECS Fargate (PRD §6.2, E0-S10, F0-43)
+# Executa APÓS CI green. Segredos: GH Actions secrets (nunca em código, F0-44).
+
+name: CD Staging
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+env:
+  AWS_REGION: sa-east-1
+  ECR_REPO: ezra-staging
+
+jobs:
+  deploy-staging:
+    name: Deploy ECS Fargate staging
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    environment: staging
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS creds (OIDC — sem secrets expostos)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME_STAGING }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login ECR
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build + push imagens
+        run: |
+          docker build -f apps/web/Dockerfile -t $ECR_REPO/web:${{ github.sha }} .
+          docker build -f services/shared/Dockerfile -t $ECR_REPO/shared:${{ github.sha }} .
+          docker push $ECR_REPO/web:${{ github.sha }}
+          docker push $ECR_REPO/shared:${{ github.sha }}
+
+      - name: Deploy ECS (terraform)
+        working-directory: infra/terraform/aws
+        run: |
+          terraform init
+          terraform apply -auto-approve \
+            -var image_web=$ECR_REPO/web:${{ github.sha }} \
+            -var image_shared=$ECR_REPO/shared:${{ github.sha }} \
+            -var env=staging
+
+      - name: Healthcheck staging (F0-43)
+        run: |
+          for i in 1 2 3 4 5 6; do
+            code=$(
+              curl -s -o /dev/null -w "%{http_code}" \
+                "https://staging.ezra.com.br/api/health" || echo 000
+            )
+            [ "$code" = "200" ] && echo "HEALTHCHECK PASS ($code)" && exit 0
+            echo "tentativa $i: $code — aguardando"
+            sleep 10
+          done
+          echo "HEALTHCHECK FAIL" && exit 1

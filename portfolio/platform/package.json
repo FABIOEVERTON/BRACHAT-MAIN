@@ -1,0 +1,30 @@
+{
+  "name": "ezra-platform",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "npm@10.9.2",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "generate:api-types": "bash scripts/generate_api_types.sh",
+    "seed:controls": "python3 scripts/seed_controls.py",
+    "seed:normative-map": "python3 scripts/seed_normative_map.py",
+    "verify:chain": "python3 scripts/verify_chain.py"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0",
+    "eslint": "^9.0.0",
+    "@biomejs/biome": "^1.9.0"
+  }
+}

@@ -1,0 +1,31 @@
+# Wize Dev Kit
+.wize/config/user.toml
+.wize/**/scratch/
+.opencode/output_agents/
+
+# Dependencies
+node_modules/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.pyc
+.venv/
+uv.lock
+
+# Build
+dist/
+.next/
+out/
+coverage/
+
+# Env — nunca commitar valores reais (PRD Apêndice A)
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/

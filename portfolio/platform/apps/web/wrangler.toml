@@ -1,0 +1,5 @@
+# Cloudflare Pages — EZRA web (brachatec.com)
+# Site estático (next export) — deploy: npx wrangler pages deploy out --project-name ezra-web
+name = "ezra-web"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "out"

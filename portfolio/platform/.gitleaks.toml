@@ -1,0 +1,25 @@
+# Gitleaks — scan de segredos (E0-S10, F0-44)
+# Nunca commitara AWS creds, JWT_SECRET, tokens. Falha o CI se detectar.
+
+title = "EZRA gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Caminhos sem segredo verdadeiro (exemplos/seed e PRD marcados)"
+paths = [
+  "**/*.md",
+  "EZRA_PRD_*",
+  ".wize/**",
+  "docs/**",
+]
+
+[[rules]]
+id = "ezra-jwt-secret"
+description = "JWT secret de aplicação (verdadeiro apenas se não-exemplo)"
+regex = '''JWT_SECRET\s*[:=]\s*["'][^"']{16,}["']'''
+secretGroup = 1
+allowlist = [
+  regex = '''(example|dev-only|changeme|placeholder|fase-0)''',
+]
