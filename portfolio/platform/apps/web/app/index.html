@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -42,13 +41,21 @@
   --pad: 48px;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:auto;}
+html{scroll-behavior:smooth;}
+
+/* Offset de nav fixo — scroll-margin-top é suportado em todos os browsers modernos */
+:target,
+section[id],
+div[id]:not([id="nav"]):not([id="cookie-banner"]):not([id="modal-privacy"]):not([id="modal-terms"]) {
+  scroll-margin-top: calc(var(--nav-h) + 32px);
+}
+
 body{background:var(--navy);color:var(--white);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden;}
 ::selection{background:var(--gold-dim);color:var(--gold-2);}
 a{color:var(--gold);text-decoration:none;transition:color .2s;}
 a:hover{color:var(--gold-2);}
 img{max-width:100%;display:block;}
- 
+
 /* ─── NAV ─── */
 #nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
@@ -83,7 +90,7 @@ img{max-width:100%;display:block;}
   transition:all .2s;
 }
 .nav-cta:hover{background:var(--gold-2);transform:translateY(-1px);}
- 
+
 /* ─── HERO ─── */
 #hero{
   min-height:100vh;
@@ -98,7 +105,7 @@ img{max-width:100%;display:block;}
   background:radial-gradient(circle,rgba(201,168,76,.055) 0%,transparent 65%);}
 .hero-glow-2{bottom:-200px;left:-100px;width:700px;height:700px;
   background:radial-gradient(circle,rgba(62,207,190,.04) 0%,transparent 65%);}
- 
+
 .hero-inner{
   max-width:var(--max);margin:0 auto;width:100%;
   display:grid;grid-template-columns:1fr 420px;gap:64px;align-items:center;
@@ -134,7 +141,7 @@ img{max-width:100%;display:block;}
   text-transform:uppercase;transition:all .2s;display:inline-block;
 }
 .btn-ghost:hover{color:var(--white);border-color:rgba(255,255,255,.35);}
- 
+
 /* chain visual */
 .chain-visual{display:flex;flex-direction:column;gap:6px;}
 .chain-node{
@@ -171,10 +178,10 @@ img{max-width:100%;display:block;}
   text-align:center;font-size:11px;color:var(--muted-2);
   letter-spacing:.08em;margin-top:10px;
 }
- 
+
 /* ─── DIVIDER ─── */
 .divider{width:100%;height:1px;background:rgba(201,168,76,.1);}
- 
+
 /* ─── SECTION BASE ─── */
 .section{padding:88px var(--pad);}
 .section-inner{max-width:var(--max);margin:0 auto;}
@@ -193,7 +200,7 @@ img{max-width:100%;display:block;}
   max-width:580px;margin-bottom:52px;
 }
 .s-sub-wide{max-width:760px;}
- 
+
 /* ─── DOR ─── */
 #problema{background:var(--navy-2);}
 .dor-grid{
@@ -227,7 +234,7 @@ img{max-width:100%;display:block;}
   font-size:13px;color:rgba(247,244,238,.7);
   line-height:1.65;font-style:italic;
 }
- 
+
 /* ─── SOLUÇÃO / DIFERENCIAIS ─── */
 #diferencial{background:var(--navy);}
 .diff-grid{
@@ -247,7 +254,7 @@ img{max-width:100%;display:block;}
 .diff-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:8px;letter-spacing:.02em;}
 .diff-text{font-size:13px;color:var(--muted);line-height:1.75;}
 .diff-text strong{color:var(--white);font-weight:500;}
- 
+
 .paradigma-box{
   background:var(--navy-3);
   border:1px solid var(--gold-border);
@@ -270,7 +277,7 @@ img{max-width:100%;display:block;}
 .list-old li::before{content:'✗';color:var(--red);opacity:.7;}
 .list-new li::before{content:'✓';color:var(--green);}
 .list-new li{color:var(--white-2);}
- 
+
 /* ─── RAMOS / PRODUTOS ─── */
 #ramos{background:var(--navy-2);}
 .ramo-tabs{
@@ -290,10 +297,10 @@ img{max-width:100%;display:block;}
 .r-tab:last-child{border-right:none;}
 .r-tab.active{background:var(--gold-dim);color:var(--gold);}
 .r-tab:hover:not(.active){background:rgba(255,255,255,.03);color:var(--white);}
- 
+
 .ramo-panel{display:none;}
 .ramo-panel.active{display:block;}
- 
+
 .ramo-intro{
   display:grid;grid-template-columns:1fr 1fr;gap:24px;
   margin-bottom:32px;padding-bottom:32px;
@@ -314,7 +321,7 @@ img{max-width:100%;display:block;}
 .dor-box{display:flex;flex-direction:column;justify-content:center;}
 .dor-box .ri-label{color:rgba(224,82,82,.8);}
 .dor-box p{font-size:13px;color:var(--muted);line-height:1.75;}
- 
+
 .products-list{display:flex;flex-direction:column;gap:2px;}
 .p-row{
   background:var(--navy);border:1px solid rgba(255,255,255,.06);
@@ -337,7 +344,7 @@ img{max-width:100%;display:block;}
 .b-f1{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border);}
 .b-f2{background:rgba(255,255,255,.04);color:var(--muted);border:1px solid rgba(255,255,255,.08);}
 .b-cond{background:rgba(224,82,82,.08);color:var(--red);border:1px solid rgba(224,82,82,.2);}
- 
+
 .p-body{
   display:none;
   border-top:1px solid rgba(255,255,255,.05);
@@ -362,7 +369,7 @@ img{max-width:100%;display:block;}
 }
 .laudo-name{font-size:12px;font-weight:500;color:var(--white);}
 .laudo-sub{font-size:11px;color:var(--muted-2);}
- 
+
 /* ─── COMO FUNCIONA ─── */
 #como{background:var(--navy);}
 .steps-grid{
@@ -396,7 +403,7 @@ img{max-width:100%;display:block;}
   z-index:1;
 }
 .step:last-child .step-arrow{display:none;}
- 
+
 .chain-explainer{
   margin-top:48px;
   background:var(--navy-3);
@@ -418,7 +425,7 @@ img{max-width:100%;display:block;}
 }
 .ce-step-text{font-size:13px;color:var(--muted);line-height:1.65;}
 .ce-step-text strong{color:var(--white);font-weight:500;}
- 
+
 /* ─── PLANOS ─── */
 #planos{background:var(--navy-2);}
 .plans-grid{
@@ -467,7 +474,7 @@ img{max-width:100%;display:block;}
 .plan-features li::before{content:'✓';color:var(--green);font-size:12px;flex-shrink:0;margin-top:1px;}
 .plan-features li.no{color:var(--muted-2);}
 .plan-features li.no::before{content:'—';color:var(--muted-2);}
- 
+
 /* ─── ACADEMY ─── */
 #academy{background:var(--navy);}
 .academy-grid{
@@ -496,7 +503,7 @@ img{max-width:100%;display:block;}
   font-size:12px;color:var(--muted-2);line-height:1.55;
 }
 .ac-out strong{color:var(--white);font-weight:500;display:block;margin-bottom:3px;}
- 
+
 /* ─── QUEM SOMOS ─── */
 #sobre{background:var(--navy-2);}
 .sobre-grid{
@@ -514,7 +521,7 @@ img{max-width:100%;display:block;}
 .cred-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
 .cred-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px;}
 .cred-text{font-size:12px;color:var(--muted);line-height:1.6;}
- 
+
 /* ─── CTA ─── */
 #contato{
   background:var(--navy-3);
@@ -540,7 +547,7 @@ img{max-width:100%;display:block;}
 }
 .cta-input::placeholder{color:var(--muted-2);}
 .cta-input:focus{border-color:var(--gold-border);}
- 
+
 /* ─── FOOTER ─── */
 footer{
   background:var(--navy);
@@ -567,7 +574,7 @@ footer{
 }
 .f-copy{font-size:12px;color:var(--muted-2);}
 .f-hash{font-family:'Courier New',monospace;font-size:11px;color:var(--muted-2);}
- 
+
 /* ─── MODAL LEGAL ─── */
 .modal-overlay{
   position:fixed;inset:0;z-index:500;
@@ -593,7 +600,7 @@ footer{
 .modal-body{font-size:13px;color:var(--muted);line-height:1.85;}
 .modal-body h3{font-size:14px;color:var(--white);margin:20px 0 8px;font-weight:600;}
 .modal-body p{margin-bottom:10px;}
- 
+
 /* ─── COOKIE BANNER ─── */
 #cookie-banner{
   position:fixed;bottom:0;left:0;right:0;z-index:300;
@@ -619,7 +626,7 @@ footer{
   font-size:12px;cursor:pointer;transition:all .2s;
 }
 .btn-cookie-reject:hover{color:var(--white);border-color:rgba(255,255,255,.3);}
- 
+
 /* ─── MOBILE ─── */
 @media(max-width:920px){
   :root{--pad:24px;}
@@ -644,7 +651,7 @@ footer{
   .academy-grid{grid-template-columns:1fr;}
   .footer-inner{grid-template-columns:1fr;}
 }
- 
+
 /* ─── LANG SWITCHER ─── */
 .lang-switcher{
   display:flex;gap:0;
@@ -668,30 +675,31 @@ footer{
   .lang-switcher{order:-1;}
   .lang-btn{padding:6px 9px;font-size:10px;}
 }
+
 </style>
 </head>
 <body>
- 
+
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-logo">BRACHA<span>TEC</span></div>
   <ul class="nav-links">
-    <li><a href="#problema" onclick="event.preventDefault();scrollToSection('problema');" data-i18n="nav-problema">O Problema</a></li>
-    <li><a href="#diferencial" onclick="event.preventDefault();scrollToSection('diferencial');" data-i18n="nav-diferencial">Diferencial</a></li>
-    <li><a href="#ramos" onclick="event.preventDefault();scrollToSection('ramos');" data-i18n="nav-produtos">Produtos</a></li>
-    <li><a href="#como" onclick="event.preventDefault();scrollToSection('como');" data-i18n="nav-como">Como Funciona</a></li>
-    <li><a href="#planos" onclick="event.preventDefault();scrollToSection('planos');" data-i18n="nav-planos">Planos</a></li>
-    <li><a href="#academy" onclick="event.preventDefault();scrollToSection('academy');" data-i18n="nav-academy">Academy</a></li>
-    <li><a href="#sobre" onclick="event.preventDefault();scrollToSection('sobre');" data-i18n="nav-sobre">Quem Somos</a></li>
+    <li><a href="#sobre" data-i18n="nav-sobre">Quem Somos</a></li>
+    <li><a href="#problema" data-i18n="nav-problema">O Problema</a></li>
+    <li><a href="#diferencial" data-i18n="nav-diferencial">Diferencial</a></li>
+    <li><a href="#ramos" data-i18n="nav-produtos">Produtos</a></li>
+    <li><a href="#como" data-i18n="nav-como">Como Funciona</a></li>
+    <li><a href="#planos" data-i18n="nav-planos">Planos</a></li>
+    <li><a href="#academy" data-i18n="nav-academy">Academy</a></li>
   </ul>
   <div class="lang-switcher">
     <button class="lang-btn active" onclick="setLang('pt')" id="btn-pt">PT</button>
     <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
     <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
   </div>
-  <a href="#contato" onclick="event.preventDefault();scrollToSection('contato');" class="nav-cta" data-i18n="nav-cta" data-pt="Falar com especialista" data-es="Hablar con especialista" data-en="Talk to specialist">Falar com especialista</a>
+  <a href="#contato" class="nav-cta" data-i18n="nav-cta" data-pt="Falar com especialista" data-es="Hablar con especialista" data-en="Talk to specialist">Falar com especialista</a>
 </nav>
- 
+
 <!-- HERO -->
 <section id="hero">
   <div class="hero-glow hero-glow-1"></div>
@@ -702,8 +710,8 @@ footer{
       <h1 class="hero-h1">Governança que<br><em>resiste a litígio,<br>ANPD e TCU.</em></h1>
       <p class="hero-lead" data-i18n="hero-lead">A única plataforma brasileira que une inventário de IA, auditoria contínua, segurança em tempo real e gestão de convênios públicos — gerando laudos periciais com cadeia criptográfica imutável e validade jurídica plena.</p>
       <div class="hero-actions">
-        <a href="#contato" onclick="event.preventDefault();scrollToSection('contato');" class="btn-primary" data-i18n="hero-btn1">Agendar auditoria gratuita</a>
-        <a href="#ramos" onclick="event.preventDefault();scrollToSection('ramos');" class="btn-ghost" data-i18n="hero-btn2">Conhecer os produtos</a>
+        <a href="#contato" class="btn-primary" data-i18n="hero-btn1">Agendar auditoria gratuita</a>
+        <a href="#ramos" class="btn-ghost" data-i18n="hero-btn2">Conhecer os produtos</a>
       </div>
     </div>
     <div class="chain-visual">
@@ -738,9 +746,45 @@ footer{
     </div>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
+<!-- QUEM SOMOS -->
+<section class="section" id="sobre">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="lbl-sobre">Quem Somos</div>
+    <h2 class="s-title" data-i18n="title-sobre">Governança aplicada<br>em tempo de execução.</h2>
+    <div class="sobre-grid">
+      <div class="sobre-text">
+        <p>A BRACHATEC nasceu de uma convicção simples: <strong>conformidade que não resiste a um tribunal não é conformidade — é documentação.</strong></p>
+        <p>Construímos a plataforma a partir de um diferencial técnico único no mercado brasileiro: a capacidade de transformar cada acção auditável em prova forense com cadeia de custódia criptográfica encadeada e imutável. Não vendemos painéis. Vendemos evidência.</p>
+        <p>Nossa arquitectura une engenharia de sistemas agênticos, profundidade regulatória brasileira — LGPD, PL 2338, Lei 14.133, CPC, TCU — e experiência operacional em governança aplicada em runtime, não apenas em frameworks estáticos.</p>
+        <p>O diferencial que nos posiciona não é tecnológico apenas. <strong>É a intersecção entre código, perícia jurídica e experiência operacional</strong> que plataformas globais não conseguem replicar no contexto regulatório brasileiro.</p>
+      </div>
+      <div class="credenciais">
+        <div class="cred-item">
+          <div class="cred-icon">🏛</div>
+          <div><div class="cred-title">Governança em Runtime</div><div class="cred-text">Nossa arquitectura aplica governança no momento da execução — não apenas no relatório pós-evento. A diferença entre prevenir e documentar.</div></div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">⚖</div>
+          <div><div class="cred-title">Profundidade Regulatória Brasileira</div><div class="cred-text">LGPD, PL 2338, CPC Arts. 464+, Lei 14.133/2021, normas TCU/TCE e ANPD integradas nativamente — não traduzidas de frameworks internacionais.</div></div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">🔐</div>
+          <div><div class="cred-title">Engenharia de Sistemas Agênticos</div><div class="cred-text">Arquitectura de agentes orquestrados, RAG e interceptação de runtime com 16 anos de experiência operacional aplicada a GRC Tecnológico.</div></div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">🇧🇷</div>
+          <div><div class="cred-title">Infraestrutura Soberana</div><div class="cred-text">Todos os dados processados e armazenados exclusivamente em território brasileiro. Verificável por auditoria independente de infraestrutura.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- O PROBLEMA -->
 <section class="section" id="problema">
   <div class="section-inner">
@@ -774,16 +818,16 @@ footer{
     </div>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- DIFERENCIAL -->
 <section class="section" id="diferencial">
   <div class="section-inner">
     <div class="s-label" data-i18n="lbl-diferencial">Por que a BRACHATEC</div>
     <h2 class="s-title" data-i18n="title-diferencial">Governança como<br>infraestrutura técnica viva.</h2>
     <p class="s-sub s-sub-wide">As soluções tradicionais tratam conformidade como processo reativo e manual — questionários estáticos, auditorias que nascem desatualizadas, laudos sem validade probatória. A BRACHATEC muda o paradigma: governança automatizada, contínua e juridicamente defensável.</p>
- 
+
     <div class="diff-grid">
       <div class="diff-card">
         <div class="diff-icon">🔗</div>
@@ -816,7 +860,7 @@ footer{
         <div class="diff-text">Bancas de advocacia, contabilidades públicas e associações municipais podem <strong>operar a plataforma sob sua própria marca</strong>. O white-label não é uma feature adicionada — é um modo de operação nativo com tenant isolado e signatário de laudo configurável.</div>
       </div>
     </div>
- 
+
     <div class="paradigma-box">
       <div>
         <div class="paradigma-col-label label-old">Como o mercado opera hoje</div>
@@ -843,22 +887,22 @@ footer{
     </div>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- PRODUTOS / RAMOS -->
 <section class="section" id="ramos">
   <div class="section-inner">
     <div class="s-label" data-i18n="lbl-ramos">Produtos</div>
     <h2 class="s-title" data-i18n="title-ramos">Três ramos. Onze produtos.<br>Um cofre probatório.</h2>
     <p class="s-sub">Cada produto entrega um Laudo Pericial com hash SHA-256 encadeado. Escolha o ramo do seu negócio.</p>
- 
+
     <div class="ramo-tabs">
       <button class="r-tab active" onclick="switchRamo('r1',this)" data-i18n="tab-r1">Governança de IA</button>
       <button class="r-tab" onclick="switchRamo('r2',this)" data-i18n="tab-r2">Gov. Municipal</button>
       <button class="r-tab" onclick="switchRamo('r3',this)" data-i18n="tab-r3">RIG Tech</button>
     </div>
- 
+
     <!-- RAMO 1 -->
     <div id="panel-r1" class="ramo-panel active">
       <div class="ramo-intro">
@@ -914,7 +958,7 @@ footer{
         </div>
       </div>
     </div>
- 
+
     <!-- RAMO 2 -->
     <div id="panel-r2" class="ramo-panel">
       <div class="ramo-intro">
@@ -982,7 +1026,7 @@ footer{
         </div>
       </div>
     </div>
- 
+
     <!-- RAMO 3 -->
     <div id="panel-r3" class="ramo-panel">
       <div class="ramo-intro">
@@ -1020,9 +1064,9 @@ footer{
     </div>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- COMO FUNCIONA -->
 <section class="section" id="como">
   <div class="section-inner">
@@ -1068,9 +1112,9 @@ footer{
     </div>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- PLANOS -->
 <section class="section" id="planos">
   <div class="section-inner">
@@ -1096,7 +1140,7 @@ footer{
             <li class="no">GUARDIAN — Gateway de Runtime</li>
             <li class="no">White-label</li>
           </ul>
-          <a href="#contato" onclick="event.preventDefault();scrollToSection('contato');" class="btn-ghost" style="width:100%;text-align:center;display:block;">Falar com especialista</a>
+          <a href="#contato" class="btn-ghost" style="width:100%;text-align:center;display:block;">Falar com especialista</a>
         </div>
       </div>
       <div class="plan-card featured">
@@ -1117,7 +1161,7 @@ footer{
             <li>Painel de Exposição em tempo real</li>
             <li class="no">White-label</li>
           </ul>
-          <a href="#contato" onclick="event.preventDefault();scrollToSection('contato');" class="btn-primary" style="width:100%;text-align:center;display:block;">Falar com especialista</a>
+          <a href="#contato" class="btn-primary" style="width:100%;text-align:center;display:block;">Falar com especialista</a>
         </div>
       </div>
       <div class="plan-card">
@@ -1137,15 +1181,15 @@ footer{
             <li>Treinamento e certificação Operator</li>
             <li>Inclusão no diretório de parceiros</li>
           </ul>
-          <a href="#contato" onclick="event.preventDefault();scrollToSection('contato');" class="btn-ghost" style="width:100%;text-align:center;display:block;">Falar com especialista</a>
+          <a href="#contato" class="btn-ghost" style="width:100%;text-align:center;display:block;">Falar com especialista</a>
         </div>
       </div>
     </div>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- ACADEMY -->
 <section class="section" id="academy">
   <div class="section-inner">
@@ -1204,43 +1248,9 @@ footer{
     </div>
   </div>
 </section>
- 
-<div class="divider"></div>
- 
-<!-- QUEM SOMOS -->
-<section class="section" id="sobre">
-  <div class="section-inner">
-    <div class="s-label" data-i18n="lbl-sobre">Quem Somos</div>
-    <h2 class="s-title" data-i18n="title-sobre">Governança aplicada<br>em tempo de execução.</h2>
-    <div class="sobre-grid">
-      <div class="sobre-text">
-        <p>A BRACHATEC nasceu de uma convicção simples: <strong>conformidade que não resiste a um tribunal não é conformidade — é documentação.</strong></p>
-        <p>Construímos a plataforma a partir de um diferencial técnico único no mercado brasileiro: a capacidade de transformar cada acção auditável em prova forense com cadeia de custódia criptográfica encadeada e imutável. Não vendemos painéis. Vendemos evidência.</p>
-        <p>Nossa arquitectura une engenharia de sistemas agênticos, profundidade regulatória brasileira — LGPD, PL 2338, Lei 14.133, CPC, TCU — e experiência operacional em governança aplicada em runtime, não apenas em frameworks estáticos.</p>
-        <p>O diferencial que nos posiciona não é tecnológico apenas. <strong>É a intersecção entre código, perícia jurídica e experiência operacional</strong> que plataformas globais não conseguem replicar no contexto regulatório brasileiro.</p>
-      </div>
-      <div class="credenciais">
-        <div class="cred-item">
-          <div class="cred-icon">🏛</div>
-          <div><div class="cred-title">Governança em Runtime</div><div class="cred-text">Nossa arquitectura aplica governança no momento da execução — não apenas no relatório pós-evento. A diferença entre prevenir e documentar.</div></div>
-        </div>
-        <div class="cred-item">
-          <div class="cred-icon">⚖</div>
-          <div><div class="cred-title">Profundidade Regulatória Brasileira</div><div class="cred-text">LGPD, PL 2338, CPC Arts. 464+, Lei 14.133/2021, normas TCU/TCE e ANPD integradas nativamente — não traduzidas de frameworks internacionais.</div></div>
-        </div>
-        <div class="cred-item">
-          <div class="cred-icon">🔐</div>
-          <div><div class="cred-title">Engenharia de Sistemas Agênticos</div><div class="cred-text">Arquitectura de agentes orquestrados, RAG e interceptação de runtime com 16 anos de experiência operacional aplicada a GRC Tecnológico.</div></div>
-        </div>
-        <div class="cred-item">
-          <div class="cred-icon">🇧🇷</div>
-          <div><div class="cred-title">Infraestrutura Soberana</div><div class="cred-text">Todos os dados processados e armazenados exclusivamente em território brasileiro. Verificável por auditoria independente de infraestrutura.</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
- 
+
+
+
 <!-- CTA -->
 <section class="section" id="cta-section" style="padding:0;">
   <div id="contato" style="background:var(--navy-3);border-top:1px solid var(--gold-border);border-bottom:1px solid var(--gold-border);">
@@ -1252,14 +1262,21 @@ footer{
         <a href="mailto:contato@brachatec.com.br?subject=Auditoria%20Diagnóstica%20Gratuita" class="btn-primary" data-i18n="cta-btn1">Agendar auditoria gratuita</a>
         <a href="mailto:parceiros@brachatec.com.br?subject=White-label%20BRACHATEC" class="btn-ghost" data-i18n="cta-btn2">Ser parceiro white-label</a>
       </div>
-      <div class="cta-form">
-        <input class="cta-input" data-i18n="cta-input" type="email" placeholder="seu@email.com.br" id="cta-email">
-        <button class="btn-primary" onclick="submitEmail()" style="white-space:nowrap;padding:13px 24px;" data-i18n="cta-send">Receber material</button>
+      <div class="cta-form" id="cta-form-wrap">
+        <input class="cta-input" data-i18n="cta-input" type="email" placeholder="seu@email.com.br" id="cta-email"
+          onkeydown="if(event.key==='Enter')submitEmail()">
+        <button class="btn-primary" id="cta-send-btn" onclick="submitEmail()"
+          style="white-space:nowrap;padding:13px 24px;" data-i18n="cta-send">Receber material</button>
+      </div>
+      <div id="cta-success" style="display:none;margin-top:16px;padding:14px 20px;
+        background:rgba(76,175,130,.12);border:1px solid rgba(76,175,130,.35);
+        border-radius:4px;font-size:13px;color:#4caf82;letter-spacing:.02em;">
+        ✓ <span id="cta-success-msg">E-mail recebido — entraremos em contacto em até 24h.</span>
       </div>
     </div>
   </div>
 </section>
- 
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -1275,19 +1292,19 @@ footer{
     <div>
       <div class="f-col-title" data-i18n="f-col1">Produtos</div>
       <ul class="f-links">
-        <li><a href="#ramos" onclick="switchRamoByName('r1'); scrollToSection('ramos'); return false;">Governança de IA</a></li>
-        <li><a href="#ramos" onclick="switchRamoByName('r2'); scrollToSection('ramos'); return false;">Gov. Municipal</a></li>
-        <li><a href="#ramos" onclick="switchRamoByName('r3'); scrollToSection('ramos'); return false;">RIG Tech</a></li>
-        <li><a href="#academy" onclick="event.preventDefault();scrollToSection('academy');">BRACHATEC Academy</a></li>
-        <li><a href="#planos" onclick="event.preventDefault();scrollToSection('planos');">Planos e Preços</a></li>
+        <li><a href="#ramos" onclick="switchRamoByName(\'r1\')">Governança de IA</a></li>
+        <li><a href="#ramos" onclick="switchRamoByName(\'r2\')">Gov. Municipal</a></li>
+        <li><a href="#ramos" onclick="switchRamoByName(\'r3\')">RIG Tech</a></li>
+        <li><a href="#academy">BRACHATEC Academy</a></li>
+        <li><a href="#planos">Planos e Preços</a></li>
       </ul>
     </div>
     <div>
       <div class="f-col-title" data-i18n="f-col2">Empresa</div>
       <ul class="f-links">
-        <li><a href="#sobre" onclick="event.preventDefault();scrollToSection('sobre');">Quem Somos</a></li>
-        <li><a href="#diferencial" onclick="event.preventDefault();scrollToSection('diferencial');">Nosso Diferencial</a></li>
-        <li><a href="#como" onclick="event.preventDefault();scrollToSection('como');">Como Funciona</a></li>
+        <li><a href="#sobre">Quem Somos</a></li>
+        <li><a href="#diferencial">Nosso Diferencial</a></li>
+        <li><a href="#como">Como Funciona</a></li>
         <li><a href="mailto:parceiros@brachatec.com.br">Seja Parceiro WL</a></li>
       </ul>
     </div>
@@ -1296,7 +1313,7 @@ footer{
       <ul class="f-links">
         <li><a href="mailto:contato@brachatec.com.br">contato@brachatec.com.br</a></li>
         <li><a href="mailto:parceiros@brachatec.com.br">parceiros@brachatec.com.br</a></li>
-        <li><a href="#contato" onclick="event.preventDefault();scrollToSection('contato');">Auditoria gratuita</a></li>
+        <li><a href="#contato">Auditoria gratuita</a></li>
       </ul>
     </div>
   </div>
@@ -1305,7 +1322,7 @@ footer{
     <div class="f-hash">ENGINE · SHA-256 · WORM · AWS sa-east-1 · LGPD Art. 33</div>
   </div>
 </footer>
- 
+
 <!-- MODAL PRIVACIDADE -->
 <div class="modal-overlay" id="modal-privacy">
   <div class="modal-box">
@@ -1328,7 +1345,7 @@ footer{
     </div>
   </div>
 </div>
- 
+
 <!-- MODAL TERMOS -->
 <div class="modal-overlay" id="modal-terms">
   <div class="modal-box">
@@ -1351,7 +1368,7 @@ footer{
     </div>
   </div>
 </div>
- 
+
 <!-- COOKIE BANNER -->
 <div id="cookie-banner">
   <div class="cookie-text">Este website utiliza apenas cookies técnicos estritamente necessários ao funcionamento. Não utilizamos cookies de rastreamento ou publicidade. <a href="#" onclick="openModal('privacy')">Saiba mais na nossa Política de Privacidade.</a></div>
@@ -1360,21 +1377,18 @@ footer{
     <button class="btn-cookie-accept" data-i18n="cookie-accept" onclick="acceptCookies()">Entendido</button>
   </div>
 </div>
- 
+
 <script>
-/* SCROLL CENTRADO — posiciona o título da secção a 1/4 do viewport a partir do topo */
+/* SCROLL — href nativo com scroll-margin-top CSS como offset.
+   scrollToSection mantido para chamadas programáticas (footer, tabs). */
 function scrollToSection(id) {
   var el = document.getElementById(id);
   if (!el) return;
-  var nav = document.getElementById('nav');
-  var navH = nav ? nav.getBoundingClientRect().height : 72;
-  var vh = window.innerHeight;
-  // Alvo: título da secção aparece a ~20% do viewport (abaixo do nav)
-  var targetOffset = navH + Math.round(vh * 0.08);
-  var elTop = el.getBoundingClientRect().top + window.pageYOffset;
-  window.scrollTo({ top: elTop - targetOffset, behavior: 'smooth' });
+  // Usar location.hash activa o scroll nativo do browser com scroll-margin-top
+  window.location.hash = '';
+  window.location.hash = '#' + id;
 }
- 
+
 /* Interceptar todos os links internos */
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('a[href^="#"], button').forEach(function(el) {
@@ -1391,7 +1405,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
- 
+
 /* NAV */
 function switchRamo(id, btn) {
   document.querySelectorAll('.r-tab').forEach(function(b){b.classList.remove('active');});
@@ -1403,7 +1417,7 @@ function switchRamoByName(id) {
   var btn = document.querySelector('.r-tab[onclick*="'+id+'"]');
   if(btn) switchRamo(id, btn);
 }
- 
+
 /* PRODUCTS */
 function toggleP(row) {
   var wasOpen = row.classList.contains('open');
@@ -1411,7 +1425,7 @@ function toggleP(row) {
   panel.querySelectorAll('.p-row').forEach(function(r){r.classList.remove('open');});
   if(!wasOpen) row.classList.add('open');
 }
- 
+
 /* MODAL */
 function openModal(id){
   document.getElementById('modal-'+id).classList.add('open');
@@ -1429,7 +1443,7 @@ document.querySelectorAll('.modal-overlay').forEach(function(m){
     }
   });
 });
- 
+
 /* COOKIE */
 (function(){
   if(!localStorage.getItem('brt_cookie')){
@@ -1446,81 +1460,73 @@ function rejectCookies(){
   localStorage.setItem('brt_cookie','rejected');
   document.getElementById('cookie-banner').classList.remove('show');
 }
- 
-/* CTA EMAIL */
+
+/* CTA EMAIL — com feedback visual */
 function submitEmail(){
-  var email = document.getElementById('cta-email').value;
-  if(!email || !email.includes('@')){ alert('Por favor, insira um e-mail válido.'); return; }
-  window.location.href='mailto:contato@brachatec.com.br?subject=Material%20BRACHATEC&body=E-mail%20de%20contacto%3A%20'+encodeURIComponent(email);
+  var email = document.getElementById('cta-email').value.trim();
+  var langMsgs = {
+    pt: { err: 'Por favor, insira um e-mail válido.', ok: 'E-mail recebido — entraremos em contacto em até 24h.' },
+    es: { err: 'Por favor, ingrese un e-mail válido.', ok: 'E-mail recibido — le contactaremos en menos de 24h.' },
+    en: { err: "Please enter a valid email address.", ok: "Email received — we'll be in touch within 24h." }
+  };
+  var msgs = langMsgs[LANG] || langMsgs.pt;
+  if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+    var input = document.getElementById('cta-email');
+    input.style.borderColor = 'var(--red)';
+    setTimeout(function(){ input.style.borderColor = ''; }, 2000);
+    return;
+  }
+  // Enviar via mailto
+  window.open('mailto:contato@brachatec.com.br?subject=Material%20BRACHATEC&body=E-mail%3A%20' + encodeURIComponent(email), '_blank');
+  // Mostrar feedback
+  var btn = document.getElementById('cta-send-btn');
+  var form = document.getElementById('cta-form-wrap');
+  var success = document.getElementById('cta-success');
+  var msg = document.getElementById('cta-success-msg');
+  if(form) form.style.display = 'none';
+  if(success) success.style.display = 'block';
+  if(msg) msg.textContent = msgs.ok;
 }
- 
- 
- 
+
+
+
 /* ─── SISTEMA DE TRADUÇÃO ─── */
 var LANG = 'pt';
- 
+
 var T = {
   pt: {
-    /* NAV */
+    'nav-sobre': 'Quem Somos',
     'nav-problema': 'O Problema',
     'nav-diferencial': 'Diferencial',
     'nav-produtos': 'Produtos',
     'nav-como': 'Como Funciona',
     'nav-planos': 'Planos',
     'nav-academy': 'Academy',
-    'nav-sobre': 'Quem Somos',
     'nav-cta': 'Falar com especialista',
-    /* HERO */
     'hero-eyebrow': 'Plataforma de Governança Probatória',
     'hero-h1': 'Governança que<br><em>resiste a litígio,<br>ANPD e TCU.</em>',
     'hero-lead': 'A única plataforma brasileira que une inventário de IA, auditoria contínua, segurança em tempo real e gestão de convênios públicos — gerando laudos periciais com cadeia criptográfica imutável e validade jurídica plena.',
     'hero-btn1': 'Agendar auditoria gratuita',
     'hero-btn2': 'Conhecer os produtos',
-    /* SECTION LABELS */
+    'lbl-sobre': 'Quem Somos',
     'lbl-problema': 'O Problema',
     'lbl-diferencial': 'Por que a BRACHATEC',
     'lbl-ramos': 'Produtos',
     'lbl-como': 'Como Funciona',
     'lbl-planos': 'Planos',
     'lbl-academy': 'BRACHATEC Academy',
-    'lbl-sobre': 'Quem Somos',
     'lbl-cta': 'Próximo passo',
-    /* SECTION TITLES */
+    'title-sobre': 'Governança aplicada<br>em tempo de execução.',
     'title-problema': 'Conformidade em papel<br>não protege ninguém.',
     'title-diferencial': 'Governança como<br>infraestrutura técnica viva.',
     'title-ramos': 'Três ramos. Onze produtos.<br>Um cofre probatório.',
     'title-como': 'Da implementação à prova forense<br>em quatro passos.',
     'title-planos': 'Precificação baseada<br>no valor entregue.',
     'title-academy': 'Do problema ao domínio —<br>em quatro camadas.',
-    'title-sobre': 'Governança aplicada<br>em tempo de execução.',
     'title-cta': 'Pronto para transformar<br>conformidade em prova?',
-    /* TABS */
     'tab-r1': 'Governança de IA',
     'tab-r2': 'Gov. Municipal',
     'tab-r3': 'RIG Tech',
-    /* PLANOS */
-    'plan1-name': 'Essencial',
-    'plan2-name': 'Profissional',
-    'plan3-name': 'White-Label',
-    /* CTA */
-    'cta-sub': 'Agende uma auditoria diagnóstica gratuita de 15 minutos. Analisamos o seu ambiente actual e identificamos as lacunas de maior risco regulatório — sem compromisso.',
-    'cta-btn1': 'Agendar auditoria gratuita',
-    'cta-btn2': 'Ser parceiro white-label',
-    'cta-input': 'seu@email.com.br',
-    'cta-send': 'Receber material',
-    /* FOOTER */
-    'f-tagline': 'Governança que resiste a litígio, ANPD e TCU. A única plataforma brasileira que une inventário, auditoria contínua e segurança em tempo real com laudo pericial encadeado.',
-    'f-col1': 'Produtos',
-    'f-col2': 'Empresa',
-    'f-col3': 'Contacto',
-    'f-privacy': 'Política de Privacidade',
-    'f-terms': 'Termos de Uso',
-    'f-copy': '© 2025 BRACHATEC Tecnologia Ltda. Todos os direitos reservados.',
-    /* COOKIE */
-    'cookie-text': 'Este website utiliza apenas cookies técnicos estritamente necessários ao funcionamento. Não utilizamos cookies de rastreamento ou publicidade.',
-    'cookie-accept': 'Entendido',
-    'cookie-reject': 'Recusar não essenciais',
-    /* STEPS */
     'step1-title': 'Conexão & Inventário',
     'step1-text': 'Conectamos via API, proxy ou agente de rede ao seu ambiente. O SENTINEL mapeia todos os ativos de IA em operação — incluindo Shadow AI em SaaS de terceiros.',
     'step2-title': 'Auditoria Contínua',
@@ -1531,41 +1537,69 @@ var T = {
     'step4-text': 'Cada acção auditável gera um Laudo Pericial com hash SHA-256 encadeado, gravado em cofre WORM. Pronto para tribunal, ANPD ou TCU com 1 clique.',
     'flywheel-title': 'O efeito flywheel da cadeia probatória',
     'flywheel-text': 'Cada laudo emitido encadeia o hash do laudo anterior. Depois de 12 meses, um cliente com centenas de laudos encadeados possui uma linha do tempo probatória contínua, matematicamente verificável e independente de qualquer sistema intermediário. O custo de troca não é contratual — é criptográfico. E cresce a cada laudo emitido.',
+    'plan1-name': 'Essencial',
+    'plan2-name': 'Profissional',
+    'plan3-name': 'White-Label',
+    'cta-sub': 'Agende uma auditoria diagnóstica gratuita de 15 minutos. Analisamos o seu ambiente actual e identificamos as lacunas de maior risco regulatório — sem compromisso.',
+    'cta-btn1': 'Agendar auditoria gratuita',
+    'cta-btn2': 'Ser parceiro white-label',
+    'cta-input': 'seu@email.com.br',
+    'cta-send': 'Receber material',
+    'f-tagline': 'Governança que resiste a litígio, ANPD e TCU. A única plataforma brasileira que une inventário, auditoria contínua e segurança em tempo real com laudo pericial encadeado.',
+    'f-col1': 'Produtos',
+    'f-col2': 'Empresa',
+    'f-col3': 'Contacto',
+    'f-privacy': 'Política de Privacidade',
+    'f-terms': 'Termos de Uso',
+    'f-copy': '© 2025 BRACHATEC Tecnologia Ltda. Todos os direitos reservados.',
+    'cookie-text': 'Este website utiliza apenas cookies técnicos estritamente necessários ao funcionamento. Não utilizamos cookies de rastreamento ou publicidade.',
+    'cookie-accept': 'Entendido',
+    'cookie-reject': 'Recusar não essenciais'
   },
- 
+
   es: {
+    'nav-sobre': 'Quiénes Somos',
     'nav-problema': 'El Problema',
     'nav-diferencial': 'Diferencial',
     'nav-produtos': 'Productos',
     'nav-como': 'Cómo Funciona',
     'nav-planos': 'Planes',
     'nav-academy': 'Academy',
-    'nav-sobre': 'Quiénes Somos',
     'nav-cta': 'Hablar con especialista',
     'hero-eyebrow': 'Plataforma de Gobernanza Probatoria',
     'hero-h1': 'Gobernanza que<br><em>resiste litigios,<br>ANPD y TCU.</em>',
     'hero-lead': 'La única plataforma brasileña que une inventario de IA, auditoría continua, seguridad en tiempo real y gestión de convenios públicos — generando dictámenes periciales con cadena criptográfica inmutable y plena validez jurídica.',
     'hero-btn1': 'Agendar auditoría gratuita',
     'hero-btn2': 'Conocer los productos',
+    'lbl-sobre': 'Quiénes Somos',
     'lbl-problema': 'El Problema',
     'lbl-diferencial': 'Por qué BRACHATEC',
     'lbl-ramos': 'Productos',
     'lbl-como': 'Cómo Funciona',
     'lbl-planos': 'Planes',
     'lbl-academy': 'BRACHATEC Academy',
-    'lbl-sobre': 'Quiénes Somos',
     'lbl-cta': 'Próximo paso',
+    'title-sobre': 'Gobernanza aplicada<br>en tiempo de ejecución.',
     'title-problema': 'La conformidad en papel<br>no protege a nadie.',
     'title-diferencial': 'Gobernanza como<br>infraestructura técnica viva.',
     'title-ramos': 'Tres ramas. Once productos.<br>Una bóveda probatoria.',
     'title-como': 'De la implementación a la prueba forense<br>en cuatro pasos.',
     'title-planos': 'Precios basados<br>en el valor entregado.',
     'title-academy': 'Del problema al dominio —<br>en cuatro capas.',
-    'title-sobre': 'Gobernanza aplicada<br>en tiempo de ejecución.',
     'title-cta': '¿Listo para transformar<br>conformidad en prueba?',
     'tab-r1': 'Gobernanza de IA',
     'tab-r2': 'Gov. Municipal',
     'tab-r3': 'RIG Tech',
+    'step1-title': 'Conexión & Inventario',
+    'step1-text': 'Nos conectamos vía API, proxy o agente de red a su entorno. El SENTINEL mapea todos los activos de IA en operación — incluyendo Shadow AI en SaaS de terceros.',
+    'step2-title': 'Auditoría Continua',
+    'step2-text': 'El AEGIS ejecuta los 122 controles regulatorios de forma continua. Cada cambio de modelo dispara revalidación automática con dictamen de transición.',
+    'step3-title': 'Interceptación en Runtime',
+    'step3-text': 'El GUARDIAN se posiciona entre el usuario y el modelo. Inspecciona cada llamada en milisegundos y registra cada evento bloqueado en rastro forense.',
+    'step4-title': 'Dictamen Pericial',
+    'step4-text': 'Cada acción auditable genera un Dictamen Pericial con hash SHA-256 encadenado, grabado en bóveda WORM. Listo para tribunal, ANPD o TCU con 1 clic.',
+    'flywheel-title': 'El efecto flywheel de la cadena probatoria',
+    'flywheel-text': 'Cada dictamen emitido encadena el hash del anterior. Después de 12 meses, un cliente con cientos de dictámenes encadenados posee una línea de tiempo probatoria continua, matemáticamente verificable e independiente de cualquier sistema intermediario. El coste de cambio no es contractual — es criptográfico.',
     'plan1-name': 'Esencial',
     'plan2-name': 'Profesional',
     'plan3-name': 'White-Label',
@@ -1583,52 +1617,52 @@ var T = {
     'f-copy': '© 2025 BRACHATEC Tecnologia Ltda. Todos los derechos reservados.',
     'cookie-text': 'Este sitio web utiliza únicamente cookies técnicas estrictamente necesarias para el funcionamiento. No utilizamos cookies de seguimiento ni publicidad.',
     'cookie-accept': 'Entendido',
-    'cookie-reject': 'Rechazar no esenciales',
-    'step1-title': 'Conexión & Inventario',
-    'step1-text': 'Nos conectamos vía API, proxy o agente de red a su entorno. El SENTINEL mapea todos los activos de IA en operación — incluyendo Shadow AI en SaaS de terceros.',
-    'step2-title': 'Auditoría Continua',
-    'step2-text': 'El AEGIS ejecuta los 122 controles regulatorios de forma continua. Cada cambio de modelo dispara revalidación automática con dictamen de transición.',
-    'step3-title': 'Interceptación en Runtime',
-    'step3-text': 'El GUARDIAN se posiciona entre el usuario y el modelo. Inspecciona cada llamada en milisegundos y registra cada evento bloqueado en rastro forense.',
-    'step4-title': 'Dictamen Pericial',
-    'step4-text': 'Cada acción auditable genera un Dictamen Pericial con hash SHA-256 encadenado, grabado en bóveda WORM. Listo para tribunal, ANPD o TCU con 1 clic.',
-    'flywheel-title': 'El efecto flywheel de la cadena probatoria',
-    'flywheel-text': 'Cada dictamen emitido encadena el hash del anterior. Después de 12 meses, un cliente con cientos de dictámenes encadenados posee una línea de tiempo probatoria continua, matemáticamente verificable e independiente de cualquier sistema intermediario. El coste de cambio no es contractual — es criptográfico.',
+    'cookie-reject': 'Rechazar no esenciales'
   },
- 
+
   en: {
+    'nav-sobre': 'About Us',
     'nav-problema': 'The Problem',
     'nav-diferencial': 'Differentiator',
     'nav-produtos': 'Products',
     'nav-como': 'How It Works',
     'nav-planos': 'Plans',
     'nav-academy': 'Academy',
-    'nav-sobre': 'About Us',
     'nav-cta': 'Talk to specialist',
     'hero-eyebrow': 'Probatory Governance Platform',
     'hero-h1': 'Governance that<br><em>withstands litigation,<br>ANPD and TCU.</em>',
     'hero-lead': 'The only Brazilian platform that unites AI inventory, continuous auditing, real-time security and public procurement management — generating expert reports with immutable cryptographic chain and full legal validity.',
     'hero-btn1': 'Schedule free audit',
     'hero-btn2': 'Explore products',
+    'lbl-sobre': 'About Us',
     'lbl-problema': 'The Problem',
     'lbl-diferencial': 'Why BRACHATEC',
     'lbl-ramos': 'Products',
     'lbl-como': 'How It Works',
     'lbl-planos': 'Plans',
     'lbl-academy': 'BRACHATEC Academy',
-    'lbl-sobre': 'About Us',
     'lbl-cta': 'Next step',
+    'title-sobre': 'Governance applied<br>at runtime.',
     'title-problema': 'Paper compliance<br>protects no one.',
     'title-diferencial': 'Governance as<br>living technical infrastructure.',
     'title-ramos': 'Three branches. Eleven products.<br>One probatory vault.',
     'title-como': 'From implementation to forensic proof<br>in four steps.',
     'title-planos': 'Pricing based<br>on delivered value.',
     'title-academy': 'From problem to mastery —<br>in four layers.',
-    'title-sobre': 'Governance applied<br>at runtime.',
     'title-cta': 'Ready to turn compliance<br>into proof?',
     'tab-r1': 'AI Governance',
     'tab-r2': 'Municipal Gov.',
     'tab-r3': 'RIG Tech',
+    'step1-title': 'Connection & Inventory',
+    'step1-text': 'We connect via API, proxy or network agent to your environment. SENTINEL maps all AI assets in operation — including Shadow AI in third-party SaaS.',
+    'step2-title': 'Continuous Auditing',
+    'step2-text': 'AEGIS continuously executes 122 regulatory controls. Every model change triggers automatic revalidation with a transition report.',
+    'step3-title': 'Runtime Interception',
+    'step3-text': 'GUARDIAN positions itself between the user and the model. It inspects every call in milliseconds and records every blocked event in a forensic trail.',
+    'step4-title': 'Expert Report',
+    'step4-text': 'Every auditable action generates an Expert Report with chained SHA-256 hash, stored in a WORM vault. Ready for court, ANPD or TCU in 1 click.',
+    'flywheel-title': 'The probatory chain flywheel effect',
+    'flywheel-text': 'Every report chains the hash of the previous one. After 12 months, a client with hundreds of chained reports owns a continuous, mathematically verifiable probatory timeline independent of any intermediary system. The switching cost is not contractual — it is cryptographic.',
     'plan1-name': 'Essential',
     'plan2-name': 'Professional',
     'plan3-name': 'White-Label',
@@ -1646,20 +1680,10 @@ var T = {
     'f-copy': '© 2025 BRACHATEC Tecnologia Ltda. All rights reserved.',
     'cookie-text': 'This website uses only strictly necessary technical cookies. We do not use tracking or advertising cookies.',
     'cookie-accept': 'Got it',
-    'cookie-reject': 'Reject non-essential',
-    'step1-title': 'Connection & Inventory',
-    'step1-text': 'We connect via API, proxy or network agent to your environment. SENTINEL maps all AI assets in operation — including Shadow AI in third-party SaaS.',
-    'step2-title': 'Continuous Auditing',
-    'step2-text': 'AEGIS continuously executes 122 regulatory controls. Every model change triggers automatic revalidation with a transition report.',
-    'step3-title': 'Runtime Interception',
-    'step3-text': 'GUARDIAN positions itself between the user and the model. It inspects every call in milliseconds and records every blocked event in a forensic trail.',
-    'step4-title': 'Expert Report',
-    'step4-text': 'Every auditable action generates an Expert Report with chained SHA-256 hash, stored in a WORM vault. Ready for court, ANPD or TCU in 1 click.',
-    'flywheel-title': 'The probatory chain flywheel effect',
-    'flywheel-text': 'Every report chains the hash of the previous one. After 12 months, a client with hundreds of chained reports owns a continuous, mathematically verifiable probatory timeline independent of any intermediary system. The switching cost is not contractual — it is cryptographic.',
+    'cookie-reject': 'Reject non-essential'
   }
-};
- 
+}
+
 function setLang(lang) {
   LANG = lang;
   // Activar botão
@@ -1680,8 +1704,14 @@ function setLang(lang) {
   });
   // Salvar preferência
   try{ localStorage.setItem('brt_lang', lang); } catch(e){}
+  // Actualizar mensagem de sucesso do CTA se visível
+  var successMsg = { pt: 'E-mail recebido — entraremos em contacto em até 24h.',
+    es: 'E-mail recibido — le contactaremos en menos de 24h.',
+    en: "Email received — we will be in touch within 24h." };
+  var msgEl = document.getElementById('cta-success-msg');
+  if(msgEl) msgEl.textContent = successMsg[lang] || successMsg.pt;
 }
- 
+
 // Restaurar idioma salvo
 (function(){
   try{
@@ -1691,7 +1721,7 @@ function setLang(lang) {
     }
   } catch(e){}
 })();
- 
+
 /* NAV ACTIVE STATE */
 var sections = document.querySelectorAll('section[id], div[id]');
 var navLinks = document.querySelectorAll('.nav-links a');
