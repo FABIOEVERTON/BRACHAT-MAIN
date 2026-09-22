@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RIG Tech — BRACHATEC</title>
+<meta name="description" content="Inteligência legislativa em tempo real. Monitore projetos de lei, regulações e diários oficiais que impactam o seu setor antes que virem risco.">
+<meta property="og:title" content="RIG Tech — BRACHATEC">
+<meta property="og:description" content="Monitoramento regulatório e legislativo de ponta a ponta. Relações Institucionais baseadas em dados e evidências.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.brachatec.com/rigtech">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.brachatec.com/rigtech">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#080d1a;--navy-2:#0e1525;--navy-3:#162032;--navy-4:#1e2d44;
+  --violet:#9b85f5;--violet-2:#b2a0f8;
+  --violet-dim:rgba(155,133,245,.12);--violet-border:rgba(155,133,245,.3);
+  --white:#f7f4ee;--white-2:#e8e3d8;
+  --muted:rgba(247,244,238,.58);--muted-2:rgba(247,244,238,.32);
+  --green:#4caf82;--red:#e05252;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --r:4px;--r2:8px;--r3:12px;
+  --nav-h:72px;--max:1160px;--pad:48px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+section[id],div[id]{scroll-margin-top:calc(var(--nav-h) + 32px);}
+body{background:var(--navy);color:var(--white);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden;}
+::selection{background:var(--violet-dim);color:var(--violet);}
+a{color:var(--violet);text-decoration:none;transition:color .2s;}
+a:hover{color:var(--white);}
+img{max-width:100%;display:block;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,13,26,.92);border-bottom:1px solid rgba(255,255,255,.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);height:var(--nav-h);display:flex;align-items:center;padding:0 var(--pad);gap:24px;}
+.nav-logo{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.1em;color:var(--white);white-space:nowrap;margin-right:auto;color:var(--white)!important;}
+.nav-logo span{color:#c9a84c;} /* Logo remains gold */
+.nav-back{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.nav-back:hover{color:var(--white);}
+.lang-btns{display:flex;gap:2px;}
+.lang-btn{background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--muted-2);padding:4px 8px;font-size:10px;letter-spacing:.08em;cursor:pointer;font-family:var(--sans);border-radius:2px;transition:all .2s;}
+.lang-btn.active,.lang-btn:hover{color:var(--violet);border-color:var(--violet-border);background:var(--violet-dim);}
+.nav-cta{background:var(--violet);color:var(--navy)!important;border:none;padding:9px 22px;border-radius:var(--r);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all .2s;display:inline-block;}
+.nav-cta:hover{background:var(--white);transform:translateY(-1px);}
+
+/* HERO */
+#hero{padding:calc(var(--nav-h) + 80px) var(--pad) 80px;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.05);}
+.hero-glow{position:absolute;pointer-events:none;top:-200px;right:-100px;width:700px;height:700px;background:radial-gradient(circle,rgba(155,133,245,.1) 0%,transparent 65%);}
+.hero-inner{max-width:var(--max);margin:0 auto;text-align:center;}
+.hero-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--violet);margin-bottom:22px;display:inline-flex;align-items:center;gap:14px;background:var(--violet-dim);padding:4px 14px;border-radius:20px;border:1px solid var(--violet-border);}
+.hero-h1{font-family:var(--serif);font-size:56px;font-weight:500;line-height:1.15;color:var(--white);margin-bottom:24px;max-width:900px;margin-left:auto;margin-right:auto;}
+.hero-lead{font-size:18px;color:var(--muted);line-height:1.8;margin-bottom:40px;max-width:700px;margin-left:auto;margin-right:auto;}
+.btn-primary{background:var(--violet);color:var(--navy);border:none;padding:16px 36px;border-radius:var(--r);font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer;text-transform:uppercase;transition:all .2s;display:inline-block;}
+.btn-primary:hover{background:var(--white);transform:translateY(-1px);color:var(--navy);}
+
+/* Sections Common */
+.section{padding:88px var(--pad);}
+.section-inner{max-width:var(--max);margin:0 auto;}
+.s-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--violet);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.s-label::before{content:'';display:block;width:22px;height:1px;background:var(--violet);}
+.s-title{font-family:var(--serif);font-size:36px;font-weight:500;color:var(--white);line-height:1.2;margin-bottom:16px;}
+.s-sub{font-size:16px;color:var(--muted);line-height:1.8;max-width:640px;margin-bottom:48px;}
+
+/* A DOR (Risks) */
+#dor{background:var(--navy-2);}
+.dor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.dor-card{background:var(--navy);border:1px solid rgba(255,255,255,.05);border-radius:var(--r3);padding:32px;}
+.dor-card h3{font-family:var(--serif);font-size:28px;color:var(--red);margin-bottom:12px;font-weight:400;}
+.dor-card h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;}
+.dor-card p{font-size:14px;color:var(--muted);line-height:1.7;}
+
+/* COMO FUNCIONA */
+#workflow{background:var(--navy);}
+.wf-pipeline{display:flex;flex-direction:column;gap:16px;}
+.wf-step{display:grid;grid-template-columns:240px 1fr;background:var(--navy-3);border:1px solid rgba(255,255,255,.06);border-radius:var(--r3);overflow:hidden;}
+.wf-header{background:rgba(255,255,255,.02);padding:32px;border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;justify-content:center;}
+.wf-tag{font-size:10px;color:var(--violet);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.wf-title{font-family:var(--serif);font-size:24px;color:var(--white);}
+.wf-body{padding:32px;display:flex;flex-direction:column;justify-content:center;}
+.wf-desc{font-size:15px;color:var(--muted);line-height:1.7;}
+
+/* ICP TAGS */
+.icp-tags{display:flex;flex-wrap:wrap;gap:12px;}
+.icp-tag{padding:8px 16px;background:var(--navy-3);border:1px solid rgba(255,255,255,.1);border-radius:20px;font-size:13px;color:var(--white);display:flex;align-items:center;gap:8px;}
+.icp-tag::before{content:'✓';color:var(--violet);}
+
+/* PREÇOS */
+#precos{background:var(--navy-2);}
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:24px;max-width:800px;margin-left:auto;margin-right:auto;}
+.price-card{background:var(--navy);border:1px solid rgba(255,255,255,.08);border-radius:var(--r3);padding:40px 32px;position:relative;display:flex;flex-direction:column;}
+.price-card.popular{border-color:var(--violet);background:radial-gradient(ellipse at top,rgba(155,133,245,.05) 0%,var(--navy) 70%);}
+.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--violet);color:var(--navy);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;white-space:nowrap;}
+.pc-name{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
+.pc-price{font-family:var(--serif);font-size:42px;color:var(--white);line-height:1;margin-bottom:8px;}
+.pc-price span{font-family:var(--sans);font-size:14px;color:var(--muted-2);}
+.pc-setup{font-size:12px;color:var(--violet);margin-bottom:32px;min-height:36px;display:block;}
+.pc-list{list-style:none;margin-bottom:40px;flex:1;}
+.pc-list li{font-size:13px;color:var(--muted);margin-bottom:12px;display:flex;gap:10px;line-height:1.5;}
+.pc-list li::before{content:'✓';color:var(--violet);flex-shrink:0;}
+.pc-btn{display:block;text-align:center;padding:14px;border:1px solid var(--violet-border);border-radius:var(--r);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--violet);transition:all .2s;}
+.pc-btn:hover{background:var(--violet-dim);color:var(--white);border-color:var(--violet);}
+.price-card.popular .pc-btn{background:var(--violet);color:var(--navy);border:none;}
+.price-card.popular .pc-btn:hover{background:var(--white);}
+.pricing-note{text-align:center;font-size:13px;color:var(--muted);margin-top:16px;}
+.pricing-note strong{color:var(--white);}
+
+/* FAQ */
+#faq{background:var(--navy);}
+.faq-list{display:flex;flex-direction:column;}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.08);padding:24px 0;}
+.faq-q{font-size:17px;font-weight:500;color:var(--white);margin-bottom:12px;}
+.faq-a{font-size:15px;color:var(--muted);line-height:1.75;}
+
+/* CTA & FOOTER */
+#contato{background:var(--navy-3);border-top:1px solid var(--violet-border);text-align:center;}
+.footer{background:var(--navy-2);border-top:1px solid rgba(255,255,255,.05);padding:64px var(--pad) 32px;text-align:center;}
+.f-copy{font-size:12px;color:var(--muted-2);}
+
+/* RESPONSIVE */
+/* Telas Grandes (Ultrawide / Mac / Monitores 4K) */
+@media(min-width: 1400px){
+  :root { --max: 1280px; }
+  .hero-h1 { font-size: 64px; max-width: 1000px; }
+  .hero-lead { font-size: 20px; max-width: 800px; }
+  .section { padding: 120px var(--pad); }
+}
+
+/* Laptops e Desktop Padrão */
+@media(max-width: 1100px){
+  .dor-grid { gap: 16px; }
+  .pricing-grid { gap: 16px; }
+  .price-card { padding: 32px 24px; }
+}
+
+/* Tablets (iPad) */
+@media(max-width: 960px){
+  .dor-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto 24px; }
+  .wf-step { grid-template-columns: 1fr; }
+  .wf-header { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); padding: 24px; }
+  .filtros-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-h1 { font-size: 46px; }
+  .s-title { font-size: 32px; }
+}
+
+/* Telas Menores e Celulares deitados */
+@media(max-width: 768px){
+  .dor-grid { grid-template-columns: 1fr; }
+  .hero-h1 { font-size: 38px; }
+  .nav { padding: 0 20px; gap: 12px; }
+  .nav-logo { font-size: 15px; }
+  .nav-cta { padding: 8px 14px; font-size: 10px; }
+  .nav-login { font-size: 11px; margin-right: 8px !important; }
+}
+
+/* Celular em pé (iPhone, Android) */
+@media(max-width: 640px){
+  :root { --pad: 20px; }
+  .hero-h1 { font-size: 32px; line-height: 1.25; }
+  .hero-lead { font-size: 16px; }
+  .filtros-grid { grid-template-columns: 1fr; }
+  .lang-btns { display: none; }
+  .pc-price { font-size: 36px; }
+  .nav-cta { padding: 8px 12px; font-size: 9px; }
+}
+
+/* FIX ESPAÇAMENTO HERO */
+#hero { padding-top: 180px !important; padding-bottom: 100px !important; }
+</style>
+<!-- Schema.org FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "O que é RIG Tech?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "RIG Tech (Relações Institucionais e Governamentais + Tecnologia) é o uso de automação e dados para monitorar o Poder Público. Em vez de depender de leitura manual de diários oficiais, a plataforma varre Câmaras, Assembleias, Congresso e Executivo em tempo real, alertando sobre riscos."
+    }
+  },{
+    "@type": "Question",
+    "name": "Quais esferas são monitoradas?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A BRACHATEC monitora as esferas Federal, Estadual e Municipal (capitais e municípios estratégicos), cobrindo Diários Oficiais da União, Diários da Justiça, pautas de comissões e trâmites de Projetos de Lei (PLs)."
+    }
+  },{
+    "@type": "Question",
+    "name": "Como funciona o White-Label para assessorias de RIG?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Escritórios de lobby e relações institucionais podem contratar o motor da BRACHATEC e colocar a sua própria marca e identidade visual no painel. O parceiro entrega inteligência para o seu cliente final com o seu próprio timbre e precifica o serviço livremente."
+    }
+  }]
+}
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-back" data-i18n="nav-back">← Voltar ao início</a>
+  <div style="flex:1"></div>
+  <div class="lang-btns">
+    <button class="lang-btn active" id="btn-pt" onclick="setLang('pt')">PT</button>
+    <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+  <a class="nav-login" href="https://app.brachatec.com" data-i18n="nav-login" style="margin-right:16px;font-size:13px;font-weight:500;color:var(--white);transition:color 0.2s;">Entrar</a>
+  <a class="nav-cta" href="#precos" data-i18n="nav-cta">Ver Planos</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow" data-i18n="hero-tag">Risco Legislativo (RIG)</div>
+    <h1 class="hero-h1" data-i18n="hero-title">Inteligência legislativa que protege o seu setor.</h1>
+    <p class="hero-lead" data-i18n="hero-lead">Monitore projetos de lei, regulações e diários oficiais em tempo real. Saiba exatamente o que o Governo está decidindo antes que vire um risco para o seu negócio.</p>
+    <a class="btn-primary" href="#precos" data-i18n="hero-btn">Analisar Planos</a>
+  </div>
+</section>
+
+<section id="dor" class="section">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="dor-lbl">Custo da Desinformação</div>
+    <h2 class="s-title" data-i18n="dor-title">O que você não sabe, legisla contra você.</h2>
+    <p class="s-sub" data-i18n="dor-sub">Milhares de páginas de diários oficiais são publicadas todos os dias. A leitura manual é impossível, e o custo de ser o último a saber pode destruir a viabilidade da sua operação.</p>
+    <div class="dor-grid">
+      <div class="dor-card">
+        <h3>Lei Surpresa</h3>
+        <h4 data-i18n="dor1-t">Falta de tempo de reação</h4>
+        <p data-i18n="dor1-p">Projetos de Lei (PLs) que tramitam em regime de urgência e são aprovados sem que a sua empresa ou associação consiga articular uma defesa técnica ou propor emendas.</p>
+      </div>
+      <div class="dor-card">
+        <h3>Risco Regulatório</h3>
+        <h4 data-i18n="dor2-t">Quebra de modelo de negócio</h4>
+        <p data-i18n="dor2-p">Portarias de agências reguladoras, decretos e mudanças tributárias sutis que impactam diretamente a margem de lucro e as restrições operacionais da sua indústria.</p>
+      </div>
+      <div class="dor-card">
+        <h3>Vantagem Competitiva</h3>
+        <h4 data-i18n="dor3-t">Perda de Prazos</h4>
+        <p data-i18n="dor3-p">Perder janelas de Consultas Públicas ou deixar de identificar concorrentes atuando silenciosamente nos bastidores para direcionar editais e regulações normativas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="workflow" class="section">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="wf-lbl">Arquitetura de Dados</div>
+    <h2 class="s-title" data-i18n="wf-title">Varredura inteligente e prova de publicidade</h2>
+    <div class="wf-pipeline">
+      <div class="wf-step">
+        <div class="wf-header">
+          <div class="wf-tag">Passo 1</div>
+          <div class="wf-title">Módulo LEX</div>
+        </div>
+        <div class="wf-body">
+          <p class="wf-desc" data-i18n="wf1-desc">Coleta e Indexação de Alta Velocidade. O LEX conecta-se diretamente a APIs legislativas e realiza web scraping legal em centenas de diários oficiais (União, Estados e principais Municípios). Transforma dados desestruturados e PDFs complexos em texto pesquisável utilizando IA.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-header">
+          <div class="wf-tag">Passo 2</div>
+          <div class="wf-title">Módulo ALERTA</div>
+        </div>
+        <div class="wf-body">
+          <p class="wf-desc" data-i18n="wf2-desc">Interceptação de Risco por Palavras-Chave. O cliente cadastra árvores de temas (ex: "Mineração", "Tributo X", nome de concorrentes). Sempre que o LEX identifica a menção, o sistema dispara um push via E-mail ou WhatsApp no momento da publicação, eliminando o delay humano.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-header">
+          <div class="wf-tag">Passo 3</div>
+          <div class="wf-title">Módulo PROVA (Dossiê)</div>
+        </div>
+        <div class="wf-body">
+          <p class="wf-desc" data-i18n="wf3-desc">Lastro probatório. A BRACHATEC tira um "carimbo de tempo" (Time-Stamp SHA-256) do momento exato da publicação de um edital ou portaria. Se o documento for removido do site governamental mais tarde ("apagão de dados"), você tem a prova jurídica incontestável de que ele existiu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--navy-2)">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="icp-lbl">Público-Alvo</div>
+    <h2 class="s-title" style="margin-bottom:32px;" data-i18n="icp-title">Quem utiliza RIG Tech?</h2>
+    <div class="icp-tags">
+      <div class="icp-tag">Assessorias Parlamentares e Lobistas</div>
+      <div class="icp-tag">Agências de Relações Públicas (RP)</div>
+      <div class="icp-tag">Jurídico Corporativo e Compliance</div>
+      <div class="icp-tag">Associações Setoriais e Sindicatos</div>
+      <div class="icp-tag">Indústria Base (Mineração, Agro, Energia)</div>
+    </div>
+  </div>
+</section>
+
+<section id="precos" class="section">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="pr-lbl">Investimento</div>
+    <h2 class="s-title" style="text-align:center;margin-bottom:16px;" data-i18n="pr-title">Planos RIG Tech</h2>
+    <p class="s-sub" style="text-align:center;margin:0 auto 48px;" data-i18n="pr-sub">Modelos para empresas que precisam se proteger, e para agências que vendem inteligência para terceiros.</p>
+    
+    <div class="pricing-grid">
+      <!-- Corporativo -->
+      <div class="price-card popular">
+        <div class="popular-badge">Recomendado</div>
+        <div class="pc-name">Plano Corporativo</div>
+        <div class="pc-price">R$ 3.500<span>/mês</span></div>
+        <div class="pc-setup" data-i18n="pr-set1">Setup Técnico: R$ 5.900<br>Mapeamento de matriz de risco incluso</div>
+        <ul class="pc-list">
+          <li data-i18n="pr1-l1">Monitoramento de até 500 palavras-chave</li>
+          <li data-i18n="pr1-l2">Cobertura Federal, Estadual e 100 maiores cidades</li>
+          <li data-i18n="pr1-l3">Alertas em tempo real (WhatsApp/E-mail)</li>
+          <li data-i18n="pr1-l4">Relatórios analíticos mensais exportáveis</li>
+          <li data-i18n="pr1-l5">Dossiês com validade forense (Cofre WORM)</li>
+          <li data-i18n="pr1-l6">Treinamento para a equipe de compliance</li>
+        </ul>
+        <a class="pc-btn" href="mailto:vendas@brachatec.com.br?subject=Plano%20RIG%20Corporativo" data-i18n="pr-btn">Assinar Corporativo</a>
+      </div>
+      <!-- White-Label -->
+      <div class="price-card">
+        <div class="pc-name">Assessorias (White-Label)</div>
+        <div class="pc-price">R$ 1.350<span>/mês base</span></div>
+        <div class="pc-setup" data-i18n="pr-set2">Zero Taxa de Habilitação (Setup Isento)<br>Inclui 2 clientes ativos. + R$ 450/mês por cliente adicional.</div>
+        <ul class="pc-list">
+          <li data-i18n="pr2-l1">Acesso à plataforma com a marca da sua Agência</li>
+          <li data-i18n="pr2-l2">Múltiplos painéis (um para cada cliente seu)</li>
+          <li data-i18n="pr2-l3">Relatórios de inteligência com o seu logotipo</li>
+          <li data-i18n="pr2-l4">Venda pelo preço que desejar para o cliente final</li>
+          <li data-i18n="pr2-l5">Matriz de risco ilimitada por cliente</li>
+        </ul>
+        <a class="pc-btn" href="mailto:parceiros@brachatec.com.br?subject=Parceria%20RIG%20White-Label" data-i18n="pr-btn-wl">Seja Parceiro White-Label</a>
+      </div>
+    </div>
+    
+    <div class="pricing-note">
+      <span data-i18n="pr-note"><strong>15% de desconto</strong> para contratos anuais pagos à vista.</span>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="section-inner" style="max-width:800px;">
+    <h2 class="s-title" style="text-align:center;margin-bottom:48px;" data-i18n="faq-title">Perguntas Frequentes</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq1-q">O que é RIG Tech?</div>
+        <div class="faq-a" data-i18n="faq1-a">RIG Tech (Relações Institucionais e Governamentais + Tecnologia) é o uso de automação e dados para monitorar o Poder Público. Em vez de depender de leitura manual de diários oficiais, a plataforma varre Câmaras, Assembleias, Congresso e Executivo em tempo real, alertando sobre riscos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq2-q">Quais esferas são monitoradas?</div>
+        <div class="faq-a" data-i18n="faq2-a">A BRACHATEC monitora as esferas Federal, Estadual e Municipal (capitais e municípios estratégicos), cobrindo Diários Oficiais da União, Diários da Justiça, pautas de comissões e trâmites de Projetos de Lei (PLs).</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq3-q">Como funciona o White-Label para assessorias de RIG?</div>
+        <div class="faq-a" data-i18n="faq3-a">Escritórios de lobby e relações institucionais podem contratar o motor da BRACHATEC e colocar a sua própria marca e identidade visual no painel. O parceiro entrega inteligência para o seu cliente final com o seu próprio timbre e precifica o serviço livremente, aumentando seu ticket médio.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato" class="section">
+  <div class="section-inner">
+    <h2 class="s-title" data-i18n="cta-title">Não seja pego de surpresa.</h2>
+    <p class="s-sub" style="margin:0 auto 32px;" data-i18n="cta-sub">Agende uma demonstração da plataforma e veja quais projetos de lei já estão ameaçando o seu negócio hoje.</p>
+    <a class="btn-primary" href="mailto:vendas@brachatec.com.br?subject=Demostracao%20RIG" data-i18n="cta-btn">Agendar Demonstração</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p class="f-copy" data-i18n="f-copy">© 2025 BRACHATEC Tecnologia Ltda. Todos os direitos reservados. · <a href="/" style="color:var(--muted-2);text-decoration:underline;">Ir para a Home</a></p>
+</footer>
+
+<script>
+var LANG='pt';
+var T={
+  pt:{
+    'nav-login':'Entrar',
+    'nav-back':'← Voltar ao início','nav-cta':'Ver Planos',
+    'hero-tag':'Risco Legislativo (RIG)',
+    'hero-title':'Inteligência legislativa que protege o seu setor.',
+    'hero-lead':'Monitore projetos de lei, regulações e diários oficiais em tempo real. Saiba exatamente o que o Governo está decidindo antes que vire um risco para o seu negócio.',
+    'hero-btn':'Analisar Planos',
+    'dor-lbl':'Custo da Desinformação','dor-title':'O que você não sabe, legisla contra você.','dor-sub':'Milhares de páginas de diários oficiais são publicadas todos os dias. A leitura manual é impossível, e o custo de ser o último a saber pode destruir a viabilidade da sua operação.',
+    'dor1-t':'Falta de tempo de reação','dor1-p':'Projetos de Lei (PLs) que tramitam em regime de urgência e são aprovados sem que a sua empresa ou associação consiga articular uma defesa técnica ou propor emendas.',
+    'dor2-t':'Quebra de modelo de negócio','dor2-p':'Portarias de agências reguladoras, decretos e mudanças tributárias sutis que impactam diretamente a margem de lucro e as restrições operacionais da sua indústria.',
+    'dor3-t':'Perda de Prazos','dor3-p':'Perder janelas de Consultas Públicas ou deixar de identificar concorrentes atuando silenciosamente nos bastidores para direcionar editais e regulações normativas.',
+    'wf-lbl':'Arquitetura de Dados','wf-title':'Varredura inteligente e prova de publicidade',
+    'wf1-desc':'Coleta e Indexação de Alta Velocidade. O LEX conecta-se diretamente a APIs legislativas e realiza web scraping legal em centenas de diários oficiais (União, Estados e principais Municípios). Transforma dados desestruturados e PDFs complexos em texto pesquisável utilizando IA.',
+    'wf2-desc':'Interceptação de Risco por Palavras-Chave. O cliente cadastra árvores de temas (ex: "Mineração", "Tributo X", nome de concorrentes). Sempre que o LEX identifica a menção, o sistema dispara um push via E-mail ou WhatsApp no momento da publicação, eliminando o delay humano.',
+    'wf3-desc':'Lastro probatório. A BRACHATEC tira um "carimbo de tempo" (Time-Stamp SHA-256) do momento exato da publicação de um edital ou portaria. Se o documento for removido do site governamental mais tarde ("apagão de dados"), você tem a prova jurídica incontestável de que ele existiu.',
+    'icp-lbl':'Público-Alvo','icp-title':'Quem utiliza RIG Tech?',
+    'pr-lbl':'Investimento','pr-title':'Planos RIG Tech','pr-sub':'Modelos para empresas que precisam se proteger, e para agências que vendem inteligência para terceiros.',
+    'pr-set1':'Setup Técnico: R$ 5.900<br>Mapeamento de matriz de risco incluso',
+    'pr1-l1':'Monitoramento de até 500 palavras-chave','pr1-l2':'Cobertura Federal, Estadual e 100 maiores cidades','pr1-l3':'Alertas em tempo real (WhatsApp/E-mail)','pr1-l4':'Relatórios analíticos mensais exportáveis','pr1-l5':'Dossiês com validade forense (Cofre WORM)','pr1-l6':'Treinamento para a equipe de compliance',
+    'pr-set2':'Zero Taxa de Habilitação (Setup Isento)<br>Inclui 2 clientes ativos. + R$ 450/mês por cliente adicional.',
+    'pr2-l1':'Acesso à plataforma com a marca da sua Agência','pr2-l2':'Múltiplos painéis (um para cada cliente seu)','pr2-l3':'Relatórios de inteligência com o seu logotipo','pr2-l4':'Venda pelo preço que desejar para o cliente final','pr2-l5':'Matriz de risco ilimitada por cliente',
+    'pr-btn':'Assinar Corporativo','pr-btn-wl':'Seja Parceiro White-Label',
+    'pr-note':'<strong>15% de desconto</strong> para contratos anuais pagos à vista.',
+    'faq-title':'Perguntas Frequentes',
+    'faq1-q':'O que é RIG Tech?','faq1-a':'RIG Tech (Relações Institucionais e Governamentais + Tecnologia) é o uso de automação e dados para monitorar o Poder Público. Em vez de depender de leitura manual de diários oficiais, a plataforma varre Câmaras, Assembleias, Congresso e Executivo em tempo real, alertando sobre riscos.',
+    'faq2-q':'Quais esferas são monitoradas?','faq2-a':'A BRACHATEC monitora as esferas Federal, Estadual e Municipal (capitais e municípios estratégicos), cobrindo Diários Oficiais da União, Diários da Justiça, pautas de comissões e trâmites de Projetos de Lei (PLs).',
+    'faq3-q':'Como funciona o White-Label para assessorias de RIG?','faq3-a':'Escritórios de lobby e relações institucionais podem contratar o motor da BRACHATEC e colocar a sua própria marca e identidade visual no painel. O parceiro entrega inteligência para o seu cliente final com o seu próprio timbre e precifica o serviço livremente, aumentando seu ticket médio.',
+    'cta-title':'Não seja pego de surpresa.','cta-sub':'Agende uma demonstração da plataforma e veja quais projetos de lei já estão ameaçando o seu negócio hoje.','cta-btn':'Agendar Demonstração',
+    'f-copy':'© 2025 BRACHATEC Tecnologia Ltda. Todos os direitos reservados.'
+  },
+  es:{
+    'nav-login':'Ingresar',
+    'nav-back':'← Volver al inicio','nav-cta':'Ver Planes',
+    'hero-tag':'Riesgo Legislativo (RIG)',
+    'hero-title':'Inteligencia legislativa que protege su sector.',
+    'hero-lead':'Monitoree proyectos de ley, regulaciones y boletines oficiales en tiempo real. Sepa exactamente qué decide el Gobierno antes de que se convierta en un riesgo.',
+    'hero-btn':'Analizar Planes',
+    'dor-lbl':'Costo de la Desinformación','dor-title':'Lo que no sabe, legisla en su contra.','dor-sub':'La lectura manual de miles de páginas de diarios oficiales es imposible, y el costo de ser el último en saber puede destruir su operación.',
+    'dor1-t':'Falta de tiempo de reacción','dor1-p':'Proyectos de Ley que tramitan de urgencia y son aprobados sin que su empresa logre articular una defensa técnica.',
+    'dor2-t':'Quiebre del modelo de negocio','dor2-p':'Decretos y cambios sutiles de agencias reguladoras que impactan directamente el margen de lucro de su industria.',
+    'dor3-t':'Pérdida de Plazos','dor3-p':'Perder ventanas de Consultas Públicas o no identificar a competidores operando para direccionar regulaciones normativas.',
+    'wf-lbl':'Arquitectura de Datos','wf-title':'Rastreo inteligente y prueba forense',
+    'wf1-desc':'Recolección e Indexación. LEX se conecta a APIs legislativas y realiza web scraping en cientos de diarios oficiales. Transforma datos desestructurados en texto buscable con IA.',
+    'wf2-desc':'Interceptación por Palabras Clave. El cliente registra temas de riesgo. Siempre que LEX identifica una mención, el sistema envía una alerta vía E-mail o WhatsApp al instante.',
+    'wf3-desc':'Respaldo probatorio (Dossier). BRACHATEC extrae un sello de tiempo (SHA-256) del momento exacto de la publicación. Si el documento es borrado luego, usted tiene la prueba forense de que existió.',
+    'icp-lbl':'Público Objetivo','icp-title':'¿Quién utiliza RIG Tech?',
+    'pr-lbl':'Inversión','pr-title':'Planes RIG Tech','pr-sub':'Modelos para empresas que necesitan protegerse, y para agencias que venden inteligencia a terceros.',
+    'pr-set1':'Setup Técnico: R$ 5.900<br>Mapeo de matriz de riesgo incluido',
+    'pr1-l1':'Monitoreo de hasta 500 palabras clave','pr1-l2':'Cobertura Federal, Estatal y 100 ciudades','pr1-l3':'Alertas en tiempo real (WhatsApp/E-mail)','pr1-l4':'Reportes analíticos exportables','pr1-l5':'Dossieres con validez forense (WORM)','pr1-l6':'Entrenamiento para el equipo de compliance',
+    'pr-set2':'Cero Tasa de Habilitación (Setup Exento)<br>Incluye 2 clientes. + R$ 450/mes por adicional.',
+    'pr2-l1':'Acceso a la plataforma con marca de su Agencia','pr2-l2':'Múltiples paneles para sus clientes','pr2-l3':'Reportes de inteligencia con su logotipo','pr2-l4':'Venta al precio que desee para el cliente final','pr2-l5':'Matriz de riesgo ilimitada por cliente',
+    'pr-btn':'Contratar Corporativo','pr-btn-wl':'Ser Socio White-Label',
+    'pr-note':'<strong>15% de descuento</strong> para contratos anuales pagados por adelantado.',
+    'faq-title':'Preguntas Frecuentes',
+    'faq1-q':'¿Qué es RIG Tech?','faq1-a':'El uso de automatización y datos para monitorear al Poder Público. En lugar de depender de la lectura manual, la plataforma rastrea legislaturas en tiempo real.',
+    'faq2-q':'¿Qué esferas se monitorean?','faq2-a':'BRACHATEC monitorea las esferas Federal, Estatal y Municipal, cubriendo Diarios Oficiales, pautas de comisiones y trámites de Proyectos de Ley.',
+    'faq3-q':'¿Cómo funciona el White-Label para agencias?','faq3-a':'Firmas de relaciones institucionales pueden contratar el motor de BRACHATEC y colocar su propia marca. El socio entrega inteligencia a su cliente final con su propio sello y decide el precio.',
+    'cta-title':'No se deje sorprender.','cta-sub':'Agende una demostración de la plataforma y vea qué proyectos de ley ya amenazan su negocio hoy.','cta-btn':'Agendar Demostración',
+    'f-copy':'© 2025 BRACHATEC Tecnologia Ltda. Todos los derechos reservados.'
+  },
+  en:{
+    'nav-login':'Log In',
+    'nav-back':'← Back to home','nav-cta':'View Plans',
+    'hero-tag':'Legislative Risk (RIG)',
+    'hero-title':'Legislative intelligence that protects your sector.',
+    'hero-lead':'Monitor bills, regulations, and official gazettes in real time. Know exactly what the Government is deciding before it becomes a risk to your business.',
+    'hero-btn':'Analyze Plans',
+    'dor-lbl':'The Cost of Unawareness','dor-title':'What you don’t know legislates against you.','dor-sub':'Thousands of pages of official gazettes are published daily. Manual reading is impossible, and the cost of being the last to know can destroy your operation.',
+    'dor1-t':'Lack of reaction time','dor1-p':'Bills that run through urgent voting and are passed without your company having time to mount a technical defense.',
+    'dor2-t':'Business model disruption','dor2-p':'Ordinances from regulatory agencies and subtle tax changes that directly impact profit margins and operational restrictions.',
+    'dor3-t':'Missing Deadlines','dor3-p':'Missing Public Consultation windows or failing to identify competitors acting silently behind the scenes to steer regulations.',
+    'wf-lbl':'Data Architecture','wf-title':'Smart scanning and irrefutable proof',
+    'wf1-desc':'High-Speed Collection. LEX connects directly to legislative APIs and performs legal web scraping on hundreds of official gazettes. It turns unstructured data into searchable text using AI.',
+    'wf2-desc':'Keyword Risk Interception. Clients register risk themes. Whenever LEX identifies a mention, the system fires a push alert via Email or WhatsApp instantly.',
+    'wf3-desc':'Forensic Proof (Dossier). BRACHATEC takes a Time-Stamp (SHA-256) at the exact moment a regulation is published. If the document is later removed from government sites, you have forensic proof it existed.',
+    'icp-lbl':'Target Audience','icp-title':'Who uses RIG Tech?',
+    'pr-lbl':'Investment','pr-title':'RIG Tech Plans','pr-sub':'Models for companies needing protection, and for agencies selling intelligence to third parties.',
+    'pr-set1':'Technical Setup: R$ 5,900<br>Risk matrix mapping included',
+    'pr1-l1':'Monitoring up to 500 keywords','pr1-l2':'Federal, State, and top 100 cities coverage','pr1-l3':'Real-time alerts (WhatsApp/Email)','pr1-l4':'Exportable monthly analytical reports','pr1-l5':'Forensic validity dossiers (WORM Vault)','pr1-l6':'Compliance team training',
+    'pr-set2':'Zero Setup Fee<br>Includes 2 clients. + R$ 450/mo per add. client.',
+    'pr2-l1':'Platform access with your Agency brand','pr2-l2':'Multiple dashboards for your clients','pr2-l3':'Intelligence reports with your logo','pr2-l4':'Sell at any price point to the end client','pr2-l5':'Unlimited risk matrix per client',
+    'pr-btn':'Subscribe Corporate','pr-btn-wl':'Become a White-Label Partner',
+    'pr-note':'<strong>15% discount</strong> for annual upfront contracts.',
+    'faq-title':'Frequently Asked Questions',
+    'faq1-q':'What is RIG Tech?','faq1-a':'The use of automation and data to monitor Public Powers. Instead of relying on manual reading, the platform scans Congress and the Executive in real time.',
+    'faq2-q':'Which spheres are monitored?','faq2-a':'BRACHATEC monitors Federal, State, and strategic Municipal spheres, covering Official Gazettes, committee agendas, and Bill proceedings.',
+    'faq3-q':'How does White-Label for agencies work?','faq3-a':'Lobbying and public relations firms can hire the BRACHATEC engine and apply their own branding. The partner delivers intelligence to their end client under their own name and prices the service freely.',
+    'cta-title':'Don’t be caught by surprise.','cta-sub':'Schedule a platform demo and see which bills are already threatening your business today.','cta-btn':'Schedule Demo',
+    'f-copy':'© 2025 BRACHATEC Tecnologia Ltda. All rights reserved.'
+  }
+};
+function setLang(lang){
+  LANG=lang;
+  ['pt','es','en'].forEach(function(l){var b=document.getElementById('btn-'+l);if(b)b.classList.toggle('active',l===lang);});
+  document.querySelectorAll('[data-i18n]').forEach(function(el){var key=el.getAttribute('data-i18n');if(T[lang]&&T[lang][key]!==undefined){if(el.tagName==='INPUT'){el.placeholder=T[lang][key];}else{el.innerHTML=T[lang][key];}}});
+  try{localStorage.setItem('brt_lang',lang);}catch(e){}
+}
+(function(){try{var s=localStorage.getItem('brt_lang');if(s&&['pt','es','en'].indexOf(s)>-1&&s!=='pt'){setLang(s);}}catch(e){}})();
+</script>
+</body>
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Setor Público — BRACHATEC</title>
+<meta name="description" content="Blindagem processual para municípios. Evite bloqueios no CAUC, rejeição de contas no TCU e perda de convênios federais com auditoria automatizada.">
+<meta property="og:title" content="Setor Público — BRACHATEC">
+<meta property="og:description" content="Auditoria contínua para Prefeituras e Câmaras Municipais. Sistema enquadrado em Dispensa de Licitação (Lei 14.133).">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.brachatec.com/publicsector">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.brachatec.com/publicsector">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#080d1a;--navy-2:#0e1525;--navy-3:#162032;--navy-4:#1e2d44;
+  --gold:#c9a84c;--gold-2:#e2c06a;
+  --gold-dim:rgba(201,168,76,.12);--gold-border:rgba(201,168,76,.28);
+  --white:#f7f4ee;--white-2:#e8e3d8;
+  --muted:rgba(247,244,238,.58);--muted-2:rgba(247,244,238,.32);
+  --green:#4caf82;--red:#e05252;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --r:4px;--r2:8px;--r3:12px;
+  --nav-h:72px;--max:1160px;--pad:48px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+section[id],div[id]{scroll-margin-top:calc(var(--nav-h) + 32px);}
+body{background:var(--navy);color:var(--white);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden;}
+::selection{background:var(--gold-dim);color:var(--gold);}
+a{color:var(--gold);text-decoration:none;transition:color .2s;}
+a:hover{color:var(--white);}
+img{max-width:100%;display:block;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,13,26,.92);border-bottom:1px solid rgba(255,255,255,.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);height:var(--nav-h);display:flex;align-items:center;padding:0 var(--pad);gap:24px;}
+.nav-logo{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.1em;color:var(--white);white-space:nowrap;margin-right:auto;color:var(--white)!important;}
+.nav-logo span{color:var(--gold);}
+.nav-back{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.nav-back:hover{color:var(--white);}
+.lang-btns{display:flex;gap:2px;}
+.lang-btn{background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--muted-2);padding:4px 8px;font-size:10px;letter-spacing:.08em;cursor:pointer;font-family:var(--sans);border-radius:2px;transition:all .2s;}
+.lang-btn.active,.lang-btn:hover{color:var(--gold);border-color:var(--gold-border);background:var(--gold-dim);}
+.nav-cta{background:var(--gold);color:var(--navy)!important;border:none;padding:9px 22px;border-radius:var(--r);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all .2s;display:inline-block;}
+.nav-cta:hover{background:var(--white);transform:translateY(-1px);}
+
+/* HERO */
+#hero{padding:calc(var(--nav-h) + 80px) var(--pad) 80px;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.05);}
+.hero-glow{position:absolute;pointer-events:none;top:-200px;right:-100px;width:700px;height:700px;background:radial-gradient(circle,rgba(201,168,76,.08) 0%,transparent 65%);}
+.hero-inner{max-width:var(--max);margin:0 auto;text-align:center;}
+.hero-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:inline-flex;align-items:center;gap:14px;background:var(--gold-dim);padding:4px 14px;border-radius:20px;border:1px solid var(--gold-border);}
+.hero-h1{font-family:var(--serif);font-size:56px;font-weight:500;line-height:1.15;color:var(--white);margin-bottom:24px;max-width:900px;margin-left:auto;margin-right:auto;}
+.hero-lead{font-size:18px;color:var(--muted);line-height:1.8;margin-bottom:40px;max-width:700px;margin-left:auto;margin-right:auto;}
+.btn-primary{background:var(--gold);color:var(--navy);border:none;padding:16px 36px;border-radius:var(--r);font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer;text-transform:uppercase;transition:all .2s;display:inline-block;}
+.btn-primary:hover{background:var(--white);transform:translateY(-1px);color:var(--navy);}
+
+/* Sections Common */
+.section{padding:88px var(--pad);}
+.section-inner{max-width:var(--max);margin:0 auto;}
+.s-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.s-label::before{content:'';display:block;width:22px;height:1px;background:var(--gold);}
+.s-title{font-family:var(--serif);font-size:36px;font-weight:500;color:var(--white);line-height:1.2;margin-bottom:16px;}
+.s-sub{font-size:16px;color:var(--muted);line-height:1.8;max-width:640px;margin-bottom:48px;}
+
+/* A DOR (Risks) */
+#dor{background:var(--navy-2);}
+.dor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.dor-card{background:var(--navy);border:1px solid rgba(255,255,255,.05);border-radius:var(--r3);padding:32px;}
+.dor-card h3{font-family:var(--serif);font-size:28px;color:var(--red);margin-bottom:12px;font-weight:400;}
+.dor-card h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;}
+.dor-card p{font-size:14px;color:var(--muted);line-height:1.7;}
+
+/* COMO FUNCIONA */
+#workflow{background:var(--navy);}
+.wf-pipeline{display:flex;flex-direction:column;gap:16px;}
+.wf-step{display:grid;grid-template-columns:240px 1fr;background:var(--navy-3);border:1px solid rgba(255,255,255,.06);border-radius:var(--r3);overflow:hidden;}
+.wf-header{background:rgba(255,255,255,.02);padding:32px;border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;justify-content:center;}
+.wf-tag{font-size:10px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.wf-title{font-family:var(--serif);font-size:24px;color:var(--white);}
+.wf-body{padding:32px;display:flex;flex-direction:column;justify-content:center;}
+.wf-desc{font-size:15px;color:var(--muted);line-height:1.7;}
+
+/* ICP TAGS */
+.icp-tags{display:flex;flex-wrap:wrap;gap:12px;}
+.icp-tag{padding:8px 16px;background:var(--navy-3);border:1px solid rgba(255,255,255,.1);border-radius:20px;font-size:13px;color:var(--white);display:flex;align-items:center;gap:8px;}
+.icp-tag::before{content:'✓';color:var(--gold);}
+
+/* PREÇOS */
+#precos{background:var(--navy-2);}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px;}
+.price-card{background:var(--navy);border:1px solid rgba(255,255,255,.08);border-radius:var(--r3);padding:40px 32px;position:relative;display:flex;flex-direction:column;}
+.price-card.popular{border-color:var(--gold);background:radial-gradient(ellipse at top,rgba(201,168,76,.05) 0%,var(--navy) 70%);}
+.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;white-space:nowrap;}
+.pc-name{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
+.pc-price{font-family:var(--serif);font-size:42px;color:var(--white);line-height:1;margin-bottom:8px;}
+.pc-price span{font-family:var(--sans);font-size:14px;color:var(--muted-2);}
+.pc-setup{font-size:12px;color:var(--gold);margin-bottom:32px;min-height:36px;display:block;}
+.pc-list{list-style:none;margin-bottom:40px;flex:1;}
+.pc-list li{font-size:13px;color:var(--muted);margin-bottom:12px;display:flex;gap:10px;line-height:1.5;}
+.pc-list li::before{content:'✓';color:var(--gold);flex-shrink:0;}
+.pc-btn{display:block;text-align:center;padding:14px;border:1px solid var(--gold-border);border-radius:var(--r);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);transition:all .2s;}
+.pc-btn:hover{background:var(--gold-dim);color:var(--white);border-color:var(--gold);}
+.price-card.popular .pc-btn{background:var(--gold);color:var(--navy);border:none;}
+.price-card.popular .pc-btn:hover{background:var(--white);}
+.pricing-note{text-align:center;font-size:13px;color:var(--muted);margin-top:16px;padding:16px;background:rgba(76,175,130,.1);border:1px solid rgba(76,175,130,.3);border-radius:var(--r2);color:var(--white);max-width:800px;margin:24px auto 0;}
+
+/* FAQ */
+#faq{background:var(--navy);}
+.faq-list{display:flex;flex-direction:column;}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.08);padding:24px 0;}
+.faq-q{font-size:17px;font-weight:500;color:var(--white);margin-bottom:12px;}
+.faq-a{font-size:15px;color:var(--muted);line-height:1.75;}
+
+/* CTA & FOOTER */
+#contato{background:var(--navy-3);border-top:1px solid var(--gold-border);text-align:center;}
+.footer{background:var(--navy-2);border-top:1px solid rgba(255,255,255,.05);padding:64px var(--pad) 32px;text-align:center;}
+.f-copy{font-size:12px;color:var(--muted-2);}
+
+/* RESPONSIVE */
+/* Telas Grandes (Ultrawide / Mac / Monitores 4K) */
+@media(min-width: 1400px){
+  :root { --max: 1280px; }
+  .hero-h1 { font-size: 64px; max-width: 1000px; }
+  .hero-lead { font-size: 20px; max-width: 800px; }
+  .section { padding: 120px var(--pad); }
+}
+
+/* Laptops e Desktop Padrão */
+@media(max-width: 1100px){
+  .dor-grid { gap: 16px; }
+  .pricing-grid { gap: 16px; }
+  .price-card { padding: 32px 24px; }
+}
+
+/* Tablets (iPad) */
+@media(max-width: 960px){
+  .dor-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto 24px; }
+  .wf-step { grid-template-columns: 1fr; }
+  .wf-header { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); padding: 24px; }
+  .filtros-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-h1 { font-size: 46px; }
+  .s-title { font-size: 32px; }
+}
+
+/* Telas Menores e Celulares deitados */
+@media(max-width: 768px){
+  .dor-grid { grid-template-columns: 1fr; }
+  .hero-h1 { font-size: 38px; }
+  .nav { padding: 0 20px; gap: 12px; }
+  .nav-logo { font-size: 15px; }
+  .nav-cta { padding: 8px 14px; font-size: 10px; }
+  .nav-login { font-size: 11px; margin-right: 8px !important; }
+}
+
+/* Celular em pé (iPhone, Android) */
+@media(max-width: 640px){
+  :root { --pad: 20px; }
+  .hero-h1 { font-size: 32px; line-height: 1.25; }
+  .hero-lead { font-size: 16px; }
+  .filtros-grid { grid-template-columns: 1fr; }
+  .lang-btns { display: none; }
+  .pc-price { font-size: 36px; }
+  .nav-cta { padding: 8px 12px; font-size: 9px; }
+}
+
+/* FIX ESPAÇAMENTO HERO */
+#hero { padding-top: 180px !important; padding-bottom: 100px !important; }
+</style>
+<!-- Schema.org FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Como a contratação se enquadra na Dispensa de Licitação?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "O valor anual do nosso pacote principal para prefeituras é de R$ 56.300 (Setup + 12 Mensalidades). Este valor está estritamente dentro do limite de R$ 59.906,02 estabelecido pela Lei 14.133/2021 (Art. 75, inciso II e Decreto 11.871/2024) para compras diretas e serviços, permitindo contratação célere."
+    }
+  },{
+    "@type": "Question",
+    "name": "Como o sistema evita o bloqueio no CAUC?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "O módulo VIGÍLIA monitora diariamente 27 itens de conformidade do CAUC, incluindo certidões fiscais, aplicação mínima em saúde/educação e entrega de relatórios (RREO/RGF). O sistema alerta o gestor dias antes do vencimento, permitindo ação preventiva."
+    }
+  },{
+    "@type": "Question",
+    "name": "A ferramenta ajuda a evitar rejeição de contas no TCU/TCE?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sim. Através do Motor Central BRACHATEC, geramos trilhas de auditoria (Cofre WORM com hash SHA-256) para as execuções de convênios federais e licitações. Em caso de questionamento, a prefeitura possui um dossiê pericial matematicamente irrefutável."
+    }
+  }]
+}
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-back" data-i18n="nav-back">← Voltar ao início</a>
+  <div style="flex:1"></div>
+  <div class="lang-btns">
+    <button class="lang-btn active" id="btn-pt" onclick="setLang('pt')">PT</button>
+    <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+  <a class="nav-login" href="https://app.brachatec.com" data-i18n="nav-login" style="margin-right:16px;font-size:13px;font-weight:500;color:var(--white);transition:color 0.2s;">Entrar</a>
+  <a class="nav-cta" href="#precos" data-i18n="nav-cta">Ver Planos e Valores</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow" data-i18n="hero-tag">Gestão Pública</div>
+    <h1 class="hero-h1" data-i18n="hero-title">Seu município está blindado contra rejeição de contas?</h1>
+    <p class="hero-lead" data-i18n="hero-lead">Evite bloqueios no CAUC, perda de convênios federais e responsabilização pessoal do gestor público com nossa plataforma de auditoria automatizada e laudos forenses.</p>
+    <a class="btn-primary" href="#precos" data-i18n="hero-btn">Analisar Pacote Municipal</a>
+  </div>
+</section>
+
+<section id="dor" class="section">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="dor-lbl">A Realidade Fiscal</div>
+    <h2 class="s-title" data-i18n="dor-title">O erro custa a cidade.</h2>
+    <p class="s-sub" data-i18n="dor-sub">A complexidade administrativa e fiscal exige precisão absoluta. Um pequeno atraso ou erro documental pode paralisar as obras e serviços do município.</p>
+    <div class="dor-grid">
+      <div class="dor-card">
+        <h3>Bloqueio no CAUC</h3>
+        <h4 data-i18n="dor1-t">Fim dos repasses federais</h4>
+        <p data-i18n="dor1-p">Uma única certidão vencida bloqueia o município no CAUC, impedindo transferências voluntárias, convênios e, em casos graves, o pagamento da folha de servidores.</p>
+      </div>
+      <div class="dor-card">
+        <h3>Rejeição TCU/TCE</h3>
+        <h4 data-i18n="dor2-t">Irregularidade em convênios</h4>
+        <p data-i18n="dor2-p">Prestações de contas falhas de recursos federais ou estaduais geram Tomadas de Contas Especiais (TCE) e glosa de verbas vitais.</p>
+      </div>
+      <div class="dor-card">
+        <h3>Prefeito / Gestor</h3>
+        <h4 data-i18n="dor3-t">Responsabilidade Pessoal</h4>
+        <p data-i18n="dor3-p">Irregularidades podem ser enquadradas como Improbidade Administrativa, gerando inelegibilidade (Ficha Limpa), multas pessoais e bloqueio de bens (CPF).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="workflow" class="section">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="wf-lbl">Arquitetura da Solução</div>
+    <h2 class="s-title" data-i18n="wf-title">Monitoramento e evidências de ponta a ponta</h2>
+    <div class="wf-pipeline">
+      <div class="wf-step">
+        <div class="wf-header">
+          <div class="wf-tag">Módulo 1</div>
+          <div class="wf-title">RADAR & VIGÍLIA</div>
+        </div>
+        <div class="wf-body">
+          <p class="wf-desc" data-i18n="wf1-desc">Monitoramento preventivo do CAUC e pendências fiscais. O Radar cruza dados de portais da transparência e diários oficiais. O Vigília emite alertas automatizados para secretários e prefeitos dias antes do vencimento de certidões e prazos do SICONFI (RREO/RGF).</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-header">
+          <div class="wf-tag">Módulo 2</div>
+          <div class="wf-title">Módulo COMPRAS</div>
+        </div>
+        <div class="wf-body">
+          <p class="wf-desc" data-i18n="wf2-desc">Validação técnica e jurídica de licitações. Audita editais, contratos e empenhos em tempo real, garantindo enquadramento correto na Nova Lei de Licitações (Lei 14.133) e prevenindo direcionamentos e sobrepreço.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-header">
+          <div class="wf-tag">Módulo 3</div>
+          <div class="wf-title">Módulo EXECUTA</div>
+        </div>
+        <div class="wf-body">
+          <p class="wf-desc" data-i18n="wf3-desc">Auditoria contínua de convênios (Transferegov.br). Gera laudos periciais WORM (SHA-256) atestando que cada centavo do recurso vinculado foi executado no objeto correto. Prova irrefutável para os Tribunais de Contas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--navy-2)">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="icp-lbl">Público Atendido</div>
+    <h2 class="s-title" style="margin-bottom:32px;" data-i18n="icp-title">Quem utiliza a plataforma municipal?</h2>
+    <div class="icp-tags">
+      <div class="icp-tag">Prefeituras Municipais</div>
+      <div class="icp-tag">Câmaras de Vereadores</div>
+      <div class="icp-tag">Fundações e Autarquias</div>
+      <div class="icp-tag">Fundos de Saúde e Previdência</div>
+      <div class="icp-tag">Assessorias Contábeis e Jurídicas (White-Label)</div>
+    </div>
+  </div>
+</section>
+
+<section id="precos" class="section">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="pr-lbl">Pacotes e Licenciamento</div>
+    <h2 class="s-title" data-i18n="pr-title">Conformidade acessível e legal</h2>
+    <p class="s-sub" data-i18n="pr-sub">Modelagem de preços desenhada especificamente para respeitar os limites legais de dispensa de licitação e facilitar a adoção pelas controladorias públicas.</p>
+    
+    <div class="pricing-grid">
+      <!-- Pacote Dispensa -->
+      <div class="price-card popular">
+        <div class="popular-badge">Mais escolhido</div>
+        <div class="pc-name">Pacote Dispensa de Licitação</div>
+        <div class="pc-price">R$ 3.900<span>/mês</span></div>
+        <div class="pc-setup" data-i18n="pr-set1">Setup Técnico de Implantação: R$ 9.500<br>Treinamento de secretários incluso</div>
+        <ul class="pc-list">
+          <li data-i18n="pr1-l1">Sistema Módulo RADAR & VIGÍLIA</li>
+          <li data-i18n="pr1-l2">Prevenção ativa de CAUC (Alertas via WhatsApp)</li>
+          <li data-i18n="pr1-l3">Módulo COMPRAS (Nova Lei 14.133)</li>
+          <li data-i18n="pr1-l4">Geração de Trilhas de Auditoria (WORM/SHA-256)</li>
+          <li data-i18n="pr1-l5">Suporte técnico priorizado</li>
+          <li data-i18n="pr1-l6">Adequado para pequenos e médios municípios</li>
+        </ul>
+        <a class="pc-btn" href="mailto:gov@brachatec.com.br?subject=Pacote%20Dispensa%20de%20Licitacao" data-i18n="pr-btn">Solicitar Proposta Formal</a>
+      </div>
+      <!-- Pacote Customizado -->
+      <div class="price-card">
+        <div class="pc-name">Pacote Licitação / Estados</div>
+        <div class="pc-price"><span style="font-size:24px;">Sob Consulta</span></div>
+        <div class="pc-setup" data-i18n="pr-set2">Implantação customizada<br>Licitação via Pregão Eletrônico</div>
+        <ul class="pc-list">
+          <li data-i18n="pr2-l1">Múltiplas secretarias e autarquias consolidadas</li>
+          <li data-i18n="pr2-l2">Módulo EXECUTA completo (Convênios/Obras)</li>
+          <li data-i18n="pr2-l3">Integração com ERPs de gestão pública</li>
+          <li data-i18n="pr2-l4">Painel de controle do Prefeito (BI)</li>
+          <li data-i18n="pr2-l5">Consultoria de conformidade in-loco</li>
+        </ul>
+        <a class="pc-btn" href="mailto:gov@brachatec.com.br?subject=Pacote%20Estado%20Licitacao" data-i18n="pr-btn-gov">Agendar Reunião Técnica</a>
+      </div>
+      <!-- White-Label -->
+      <div class="price-card">
+        <div class="pc-name">Assessorias (White-Label)</div>
+        <div class="pc-price">R$ 1.350<span>/mês base</span></div>
+        <div class="pc-setup" data-i18n="pr-set3">Zero Taxa de Habilitação (Setup Isento)<br>Inclui 2 clientes ativos. + R$ 450/mês por cliente adicional.</div>
+        <ul class="pc-list">
+          <li data-i18n="pr3-l1">Para escritórios de advocacia e contabilidade pública</li>
+          <li data-i18n="pr3-l2">Plataforma com sua marca e logotipo</li>
+          <li data-i18n="pr3-l3">Gerencie todos os seus prefeitos em um só painel</li>
+          <li data-i18n="pr3-l4">Cobre o valor que desejar do município</li>
+          <li data-i18n="pr3-l5">Geração de relatórios com timbre do parceiro</li>
+        </ul>
+        <a class="pc-btn" href="mailto:parceiros@brachatec.com.br?subject=Parceria%20Setor%20Publico%20WL" data-i18n="pr-btn-wl">Seja Parceiro Certificado</a>
+      </div>
+    </div>
+    
+    <div class="pricing-note">
+      <span data-i18n="pr-note"><strong>✅ Legalidade Garantida:</strong> O pacote principal possui valor total de R$ 56.300/ano (Setup + 12 meses). Este valor encontra-se dentro do limite de R$ 59.906,02, permitindo contratação via <strong>Dispensa de Licitação</strong> pela Lei 14.133.</span>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="section-inner" style="max-width:800px;">
+    <h2 class="s-title" style="text-align:center;margin-bottom:48px;" data-i18n="faq-title">Perguntas Frequentes</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq1-q">Como a contratação se enquadra na Dispensa de Licitação?</div>
+        <div class="faq-a" data-i18n="faq1-a">O valor anual do nosso pacote principal para prefeituras é de R$ 56.300 (Setup + 12 Mensalidades). Este valor está estritamente dentro do limite de R$ 59.906,02 estabelecido pela Lei 14.133/2021 (Art. 75, inciso II e Decreto 11.871/2024) para compras diretas e serviços, permitindo contratação célere e sem licitação burocrática.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq2-q">Como o sistema evita o bloqueio no CAUC?</div>
+        <div class="faq-a" data-i18n="faq2-a">O módulo VIGÍLIA monitora diariamente 27 itens de conformidade do CAUC, incluindo certidões fiscais, aplicação mínima em saúde/educação e entrega de relatórios (RREO/RGF). O sistema alerta o gestor por WhatsApp e E-mail com dias de antecedência antes do vencimento, permitindo ação preventiva.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq3-q">A ferramenta ajuda a evitar rejeição de contas no TCU/TCE?</div>
+        <div class="faq-a" data-i18n="faq3-a">Sim. Através do Motor Central BRACHATEC, geramos trilhas de auditoria (Cofre WORM com hash SHA-256) para as execuções de convênios federais e licitações. Em caso de questionamento futuro, a prefeitura possui um dossiê pericial matematicamente irrefutável demonstrando a lisura do processo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato" class="section">
+  <div class="section-inner">
+    <h2 class="s-title" data-i18n="cta-title">Agende um diagnóstico municipal</h2>
+    <p class="s-sub" style="margin:0 auto 32px;" data-i18n="cta-sub">Fale com nossos especialistas e entenda como blindar as contas do seu município antes que os problemas aconteçam.</p>
+    <a class="btn-primary" href="mailto:gov@brachatec.com.br?subject=Diagnostico%20Municipal" data-i18n="cta-btn">Agendar Reunião Técnica</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p class="f-copy" data-i18n="f-copy">© 2025 BRACHATEC Tecnologia Ltda. Todos os direitos reservados. · <a href="/" style="color:var(--muted-2);text-decoration:underline;">Ir para a Home</a></p>
+</footer>
+
+<script>
+var LANG='pt';
+var T={
+  pt:{
+    'nav-login':'Entrar',
+    'nav-back':'← Voltar ao início','nav-cta':'Ver Planos e Valores',
+    'hero-tag':'Gestão Pública',
+    'hero-title':'Seu município está blindado contra rejeição de contas?',
+    'hero-lead':'Evite bloqueios no CAUC, perda de convênios federais e responsabilização pessoal do gestor público com nossa plataforma de auditoria automatizada e laudos forenses.',
+    'hero-btn':'Analisar Pacote Municipal',
+    'dor-lbl':'A Realidade Fiscal','dor-title':'O erro custa a cidade.','dor-sub':'A complexidade administrativa e fiscal exige precisão absoluta. Um pequeno atraso ou erro documental pode paralisar as obras e serviços do município.',
+    'dor1-t':'Fim dos repasses federais','dor1-p':'Uma única certidão vencida bloqueia o município no CAUC, impedindo transferências voluntárias, convênios e, em casos graves, o pagamento da folha de servidores.',
+    'dor2-t':'Irregularidade em convênios','dor2-p':'Prestações de contas falhas de recursos federais ou estaduais geram Tomadas de Contas Especiais (TCE) e glosa de verbas vitais.',
+    'dor3-t':'Responsabilidade Pessoal','dor3-p':'Irregularidades podem ser enquadradas como Improbidade Administrativa, gerando inelegibilidade (Ficha Limpa), multas pessoais e bloqueio de bens (CPF).',
+    'wf-lbl':'Arquitetura da Solução','wf-title':'Monitoramento e evidências de ponta a ponta',
+    'wf1-desc':'Monitoramento preventivo do CAUC e pendências fiscais. O Radar cruza dados de portais da transparência e diários oficiais. O Vigília emite alertas automatizados para secretários e prefeitos dias antes do vencimento de certidões e prazos do SICONFI (RREO/RGF).',
+    'wf2-desc':'Validação técnica e jurídica de licitações. Audita editais, contratos e empenhos em tempo real, garantindo enquadramento correto na Nova Lei de Licitações (Lei 14.133) e prevenindo direcionamentos e sobrepreço.',
+    'wf3-desc':'Auditoria contínua de convênios (Transferegov.br). Gera laudos periciais WORM (SHA-256) atestando que cada centavo do recurso vinculado foi executado no objeto correto. Prova irrefutável para os Tribunais de Contas.',
+    'icp-lbl':'Público Atendido','icp-title':'Quem utiliza a plataforma municipal?',
+    'pr-lbl':'Pacotes e Licenciamento','pr-title':'Conformidade acessível e legal','pr-sub':'Modelagem de preços desenhada especificamente para respeitar os limites legais de dispensa de licitação e facilitar a adoção pelas controladorias públicas.',
+    'pr-set1':'Setup Técnico de Implantação: R$ 9.500<br>Treinamento de secretários incluso',
+    'pr1-l1':'Sistema Módulo RADAR & VIGÍLIA','pr1-l2':'Prevenção ativa de CAUC (Alertas via WhatsApp)','pr1-l3':'Módulo COMPRAS (Nova Lei 14.133)','pr1-l4':'Geração de Trilhas de Auditoria (WORM/SHA-256)','pr1-l5':'Suporte técnico priorizado','pr1-l6':'Adequado para pequenos e médios municípios',
+    'pr-set2':'Implantação customizada<br>Licitação via Pregão Eletrônico',
+    'pr2-l1':'Múltiplas secretarias e autarquias consolidadas','pr2-l2':'Módulo EXECUTA completo (Convênios/Obras)','pr2-l3':'Integração com ERPs de gestão pública','pr2-l4':'Painel de controle do Prefeito (BI)','pr2-l5':'Consultoria de conformidade in-loco',
+    'pr-set3':'Zero Taxa de Habilitação (Setup Isento)<br>Inclui 2 clientes ativos. + R$ 450/mês por cliente adicional.',
+    'pr3-l1':'Para escritórios de advocacia e contabilidade pública','pr3-l2':'Plataforma com sua marca e logotipo','pr3-l3':'Gerencie todos os seus prefeitos em um só painel','pr3-l4':'Cobre o valor que desejar do município','pr3-l5':'Geração de relatórios com timbre do parceiro',
+    'pr-btn':'Solicitar Proposta Formal','pr-btn-gov':'Agendar Reunião Técnica','pr-btn-wl':'Seja Parceiro Certificado',
+    'pr-note':'<strong>✅ Legalidade Garantida:</strong> O pacote principal possui valor total de R$ 56.300/ano (Setup + 12 meses). Este valor encontra-se dentro do limite de R$ 59.906,02, permitindo contratação via <strong>Dispensa de Licitação</strong> pela Lei 14.133.',
+    'faq-title':'Perguntas Frequentes',
+    'faq1-q':'Como a contratação se enquadra na Dispensa de Licitação?','faq1-a':'O valor anual do nosso pacote principal para prefeituras é de R$ 56.300 (Setup + 12 Mensalidades). Este valor está estritamente dentro do limite de R$ 59.906,02 estabelecido pela Lei 14.133/2021 (Art. 75, inciso II e Decreto 11.871/2024) para compras diretas e serviços, permitindo contratação célere e sem licitação burocrática.',
+    'faq2-q':'Como o sistema evita o bloqueio no CAUC?','faq2-a':'O módulo VIGÍLIA monitora diariamente 27 itens de conformidade do CAUC, incluindo certidões fiscais, aplicação mínima em saúde/educação e entrega de relatórios (RREO/RGF). O sistema alerta o gestor por WhatsApp e E-mail com dias de antecedência antes do vencimento, permitindo ação preventiva.',
+    'faq3-q':'A ferramenta ajuda a evitar rejeição de contas no TCU/TCE?','faq3-a':'Sim. Através do Motor Central BRACHATEC, geramos trilhas de auditoria (Cofre WORM com hash SHA-256) para as execuções de convênios federais e licitações. Em caso de questionamento futuro, a prefeitura possui um dossiê pericial matematicamente irrefutável demonstrando a lisura do processo.',
+    'cta-title':'Agende um diagnóstico municipal','cta-sub':'Fale com nossos especialistas e entenda como blindar as contas do seu município antes que os problemas aconteçam.','cta-btn':'Agendar Reunião Técnica',
+    'f-copy':'© 2025 BRACHATEC Tecnologia Ltda. Todos os direitos reservados.'
+  },
+  es:{
+    'nav-login':'Ingresar',
+    'nav-back':'← Volver al inicio','nav-cta':'Ver Planes y Precios',
+    'hero-tag':'Gestión Pública',
+    'hero-title':'¿Su municipio está blindado contra el rechazo de cuentas?',
+    'hero-lead':'Evite bloqueos, pérdida de fondos federales y responsabilidad personal del alcalde con nuestra plataforma de auditoría automatizada y dictámenes forenses.',
+    'hero-btn':'Analizar Paquete Municipal',
+    'dor-lbl':'La Realidad Fiscal','dor-title':'El error le cuesta a la ciudad.','dor-sub':'La complejidad administrativa exige precisión. Un pequeño retraso documental puede paralizar las obras del municipio.',
+    'dor1-t':'Fin de transferencias federales','dor1-p':'Un solo certificado vencido bloquea al municipio, impidiendo transferencias y, en casos graves, el pago de nómina.',
+    'dor2-t':'Irregularidad en convenios','dor2-p':'Rendiciones de cuentas deficientes de recursos generan Tomas de Cuentas Especiales y suspensión de fondos.',
+    'dor3-t':'Responsabilidad Personal','dor3-p':'Las irregularidades pueden clasificarse como Improbidad Administrativa, generando inelegibilidad y multas personales.',
+    'wf-lbl':'Arquitectura de Solución','wf-title':'Monitoreo y evidencias de extremo a extremo',
+    'wf1-desc':'Monitoreo preventivo de pendencias fiscales. Emitimos alertas automatizadas días antes del vencimiento de certificados y plazos legales.',
+    'wf2-desc':'Validación técnica y jurídica de licitaciones. Audita pliegos y contratos en tiempo real, garantizando el cumplimiento de la ley de contrataciones.',
+    'wf3-desc':'Auditoría continua de convenios. Genera dictámenes periciales atestiguando que cada centavo se ejecutó correctamente. Prueba irrefutable para los Tribunales de Cuentas.',
+    'icp-lbl':'Público Atendido','icp-title':'¿Quién utiliza la plataforma municipal?',
+    'pr-lbl':'Paquetes y Licencias','pr-title':'Conformidad accesible y legal','pr-sub':'Modelado de precios diseñado para respetar los límites legales de contratación directa.',
+    'pr-set1':'Setup Técnico de Implementación: R$ 9.500<br>Capacitación incluida',
+    'pr1-l1':'Sistema Módulo RADAR & VIGÍLIA','pr1-l2':'Prevención activa de bloqueos (Alertas WhatsApp)','pr1-l3':'Módulo COMPRAS','pr1-l4':'Generación de Pistas de Auditoría (WORM)','pr1-l5':'Soporte técnico priorizado','pr1-l6':'Adecuado para pequeños y medianos municipios',
+    'pr-set2':'Implementación personalizada<br>Licitación vía Subasta Electrónica',
+    'pr2-l1':'Múltiples secretarías consolidadas','pr2-l2':'Módulo EJECUTA completo','pr2-l3':'Integración con ERPs de gestión pública','pr2-l4':'Panel de control del Alcalde (BI)','pr2-l5':'Consultoría de conformidad in-situ',
+    'pr-set3':'Cero Tasa de Habilitación (Setup Exento)<br>Incluye 2 clientes activos. + R$ 450/mes por cliente adicional.',
+    'pr3-l1':'Para despachos de abogados y contabilidad pública','pr3-l2':'Plataforma con su marca y logotipo','pr3-l3':'Gestione todas las alcaldías en un solo panel','pr3-l4':'Cobre el valor que desee al municipio','pr3-l5':'Generación de reportes con sello del socio',
+    'pr-btn':'Solicitar Propuesta Formal','pr-btn-gov':'Agendar Reunión Técnica','pr-btn-wl':'Ser Socio Certificado',
+    'pr-note':'<strong>✅ Legalidad Garantizada:</strong> El paquete principal tiene un valor total de R$ 56.300/año. Este valor está dentro de los límites de compras directas (Dispensa de Licitación).',
+    'faq-title':'Preguntas Frecuentes',
+    'faq1-q':'¿Cómo encaja en la Contratación Directa?','faq1-a':'El valor anual de nuestro paquete (R$ 56.300) se encuentra estrictamente dentro del límite legal establecido por la Ley 14.133 para compras directas y servicios, permitiendo una contratación rápida y sin licitación.',
+    'faq2-q':'¿Cómo evita el sistema los bloqueos fiscales?','faq2-a':'El módulo monitorea diariamente 27 ítems de conformidad, incluyendo certificados fiscales y reportes. El sistema alerta al gestor por WhatsApp con días de anticipación.',
+    'faq3-q':'¿Ayuda a evitar el rechazo de cuentas en Tribunales?','faq3-a':'Sí. A través de nuestro motor, generamos pistas de auditoría forense para ejecuciones de convenios. En caso de auditorías futuras, el municipio tiene un expediente pericial irrefutable.',
+    'cta-title':'Agende un diagnóstico municipal','cta-sub':'Hable con nuestros expertos y entienda cómo blindar las cuentas de su municipio antes de que ocurran los problemas.','cta-btn':'Agendar Reunión Técnica',
+    'f-copy':'© 2025 BRACHATEC Tecnologia Ltda. Todos los derechos reservados.'
+  },
+  en:{
+    'nav-login':'Log In',
+    'nav-back':'← Back to home','nav-cta':'View Plans & Pricing',
+    'hero-tag':'Public Sector',
+    'hero-title':'Is your municipality shielded against account rejection?',
+    'hero-lead':'Prevent federal fund blockages, account rejections by the Court of Audits, and personal liability for public managers with automated auditing and forensic reporting.',
+    'hero-btn':'Analyze Municipal Package',
+    'dor-lbl':'The Fiscal Reality','dor-title':'Mistakes cost the city.','dor-sub':'Administrative and fiscal complexity demands absolute precision. A small delay or documentary error can paralyze the municipality’s public works.',
+    'dor1-t':'End of federal transfers','dor1-p':'A single expired certificate blocks the municipality, preventing voluntary transfers and, in severe cases, payroll payments.',
+    'dor2-t':'Covenant irregularities','dor2-p':'Flawed accountability for federal funds generates Special Account Takeovers (TCE) and withholding of vital resources.',
+    'dor3-t':'Personal Liability','dor3-p':'Irregularities can be framed as Administrative Improbity, generating ineligibility, personal fines, and asset freezing.',
+    'wf-lbl':'Solution Architecture','wf-title':'End-to-end monitoring and evidence',
+    'wf1-desc':'Preventive monitoring of fiscal pending issues. We cross-reference transparency portals and official gazettes. Automated alerts are sent days before legal deadlines expire.',
+    'wf2-desc':'Technical and legal validation of public procurements. Audits notices and contracts in real-time, ensuring correct compliance with the New Public Bidding Law.',
+    'wf3-desc':'Continuous auditing of covenants. Generates WORM forensic expert reports (SHA-256) certifying that every penny was executed correctly. Irrefutable proof for the Courts of Audits.',
+    'icp-lbl':'Audience','icp-title':'Who uses the municipal platform?',
+    'pr-lbl':'Packages & Licensing','pr-title':'Accessible and legal compliance','pr-sub':'Pricing models specifically designed to respect legal limits for direct public purchasing without a bidding process.',
+    'pr-set1':'Implementation Setup: R$ 9,500<br>Secretary training included',
+    'pr1-l1':'RADAR & VIGÍLIA Monitoring Module','pr1-l2':'Active blockade prevention (WhatsApp Alerts)','pr1-l3':'PROCUREMENT Module (Law 14.133)','pr1-l4':'Audit Trail Generation (WORM/SHA-256)','pr1-l5':'Prioritized technical support','pr1-l6':'Suitable for small and medium municipalities',
+    'pr-set2':'Custom Implementation<br>Bidding via Electronic Auction',
+    'pr2-l1':'Multiple secretariats consolidated','pr2-l2':'Full EXECUTION Module (Covenants/Works)','pr2-l3':'Integration with public management ERPs','pr2-l4':'Mayor’s BI Control Panel','pr2-l5':'On-site compliance consulting',
+    'pr-set3':'Zero Setup Fee<br>Includes 2 active clients. + R$ 450/mo per additional client.',
+    'pr3-l1':'For law firms and public accounting agencies','pr3-l2':'Platform with your brand and logo','pr3-l3':'Manage all your mayors in a single dashboard','pr3-l4':'Charge whatever price you want','pr3-l5':'Generate reports with partner branding',
+    'pr-btn':'Request Formal Proposal','pr-btn-gov':'Schedule Technical Meeting','pr-btn-wl':'Become a Certified Partner',
+    'pr-note':'<strong>✅ Guaranteed Legality:</strong> The main package has a total value of R$ 56,300/year. This is strictly below the legal limit for direct purchasing without bureaucratic public bidding (Dispensa de Licitação).',
+    'faq-title':'Frequently Asked Questions',
+    'faq1-q':'How does the contract fit into Direct Purchasing?','faq1-a':'The annual value of our main package is R$ 56,300. This is strictly within the limit of R$ 59,906.02 established by Law 14.133/2021 for direct purchases and services, allowing fast contracting without public bidding.',
+    'faq2-q':'How does the system prevent fiscal blockages?','faq2-a':'The system daily monitors 27 compliance items, including tax certificates and legal reports. It alerts the manager via WhatsApp and email days before expiration, allowing preventive action.',
+    'faq3-q':'Does the tool help avoid Court of Audits rejection?','faq3-a':'Yes. Through our engine, we generate audit trails (WORM vault with SHA-256 hash) for the execution of federal covenants. In case of future questioning, the municipality has an irrefutable forensic dossier.',
+    'cta-title':'Schedule a municipal diagnostic','cta-sub':'Talk to our experts and understand how to shield your municipality’s accounts before problems happen.','cta-btn':'Schedule Technical Meeting',
+    'f-copy':'© 2025 BRACHATEC Tecnologia Ltda. All rights reserved.'
+  }
+};
+function setLang(lang){
+  LANG=lang;
+  ['pt','es','en'].forEach(function(l){var b=document.getElementById('btn-'+l);if(b)b.classList.toggle('active',l===lang);});
+  document.querySelectorAll('[data-i18n]').forEach(function(el){var key=el.getAttribute('data-i18n');if(T[lang]&&T[lang][key]!==undefined){if(el.tagName==='INPUT'){el.placeholder=T[lang][key];}else{el.innerHTML=T[lang][key];}}});
+  try{localStorage.setItem('brt_lang',lang);}catch(e){}
+}
+(function(){try{var s=localStorage.getItem('brt_lang');if(s&&['pt','es','en'].indexOf(s)>-1&&s!=='pt'){setLang(s);}}catch(e){}})();
+</script>
+</body>
+</html>

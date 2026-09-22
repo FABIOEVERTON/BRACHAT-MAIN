@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Governança de IA — BRACHATEC</title>
+<meta name="description" content="Auditoria contínua de inteligência artificial. Descubra Shadow AI, intercepte viés algorítmico e gere laudos forenses para a ANPD.">
+<meta property="og:title" content="Governança de IA — BRACHATEC">
+<meta property="og:description" content="Auditoria contínua de inteligência artificial. Descubra Shadow AI e gere laudos forenses.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.brachatec.com/aigovernance">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.brachatec.com/aigovernance">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#080d1a;--navy-2:#0e1525;--navy-3:#162032;--navy-4:#1e2d44;
+  --gold:#c9a84c;--gold-2:#e2c06a;
+  --gold-dim:rgba(201,168,76,.12);--gold-border:rgba(201,168,76,.28);
+  --white:#f7f4ee;--white-2:#e8e3d8;
+  --muted:rgba(247,244,238,.58);--muted-2:rgba(247,244,238,.32);
+  --cyan:#3ecfbe;--cyan-dim:rgba(62,207,190,.1);--cyan-border:rgba(62,207,190,.3);
+  --green:#4caf82;--red:#e05252;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --r:4px;--r2:8px;--r3:12px;
+  --nav-h:72px;--max:1160px;--pad:48px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+section[id],div[id]{scroll-margin-top:calc(var(--nav-h) + 32px);}
+body{background:var(--navy);color:var(--white);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden;}
+::selection{background:var(--cyan-dim);color:var(--cyan);}
+a{color:var(--cyan);text-decoration:none;transition:color .2s;}
+a:hover{color:var(--white);}
+img{max-width:100%;display:block;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,13,26,.92);border-bottom:1px solid rgba(255,255,255,.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);height:var(--nav-h);display:flex;align-items:center;padding:0 var(--pad);gap:24px;}
+.nav-logo{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.1em;color:var(--white);white-space:nowrap;margin-right:auto;color:var(--white)!important;}
+.nav-logo span{color:var(--gold);}
+.nav-back{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.nav-back:hover{color:var(--white);}
+.lang-btns{display:flex;gap:2px;}
+.lang-btn{background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--muted-2);padding:4px 8px;font-size:10px;letter-spacing:.08em;cursor:pointer;font-family:var(--sans);border-radius:2px;transition:all .2s;}
+.lang-btn.active,.lang-btn:hover{color:var(--cyan);border-color:var(--cyan-border);background:var(--cyan-dim);}
+.nav-cta{background:var(--cyan);color:var(--navy)!important;border:none;padding:9px 22px;border-radius:var(--r);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all .2s;display:inline-block;}
+.nav-cta:hover{background:var(--white);transform:translateY(-1px);}
+
+/* HERO */
+#hero{padding:calc(var(--nav-h) + 80px) var(--pad) 80px;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.05);}
+.hero-glow{position:absolute;pointer-events:none;top:-200px;right:-100px;width:700px;height:700px;background:radial-gradient(circle,rgba(62,207,190,.06) 0%,transparent 65%);}
+.hero-inner{max-width:var(--max);margin:0 auto;text-align:center;}
+.hero-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:22px;display:inline-flex;align-items:center;gap:14px;background:var(--cyan-dim);padding:4px 14px;border-radius:20px;border:1px solid var(--cyan-border);}
+.hero-h1{font-family:var(--serif);font-size:56px;font-weight:500;line-height:1.15;color:var(--white);margin-bottom:24px;max-width:900px;margin-left:auto;margin-right:auto;}
+.hero-lead{font-size:18px;color:var(--muted);line-height:1.8;margin-bottom:40px;max-width:700px;margin-left:auto;margin-right:auto;}
+.btn-primary{background:var(--cyan);color:var(--navy);border:none;padding:16px 36px;border-radius:var(--r);font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer;text-transform:uppercase;transition:all .2s;display:inline-block;}
+.btn-primary:hover{background:var(--white);transform:translateY(-1px);color:var(--navy);}
+
+/* Sections Common */
+.section{padding:88px var(--pad);}
+.section-inner{max-width:var(--max);margin:0 auto;}
+.s-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.s-label::before{content:'';display:block;width:22px;height:1px;background:var(--cyan);}
+.s-title{font-family:var(--serif);font-size:36px;font-weight:500;color:var(--white);line-height:1.2;margin-bottom:16px;}
+.s-sub{font-size:16px;color:var(--muted);line-height:1.8;max-width:640px;margin-bottom:48px;}
+
+/* A DOR (Risks) */
+#dor{background:var(--navy-2);}
+.dor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.dor-card{background:var(--navy);border:1px solid rgba(255,255,255,.05);border-radius:var(--r3);padding:32px;}
+.dor-card h3{font-family:var(--serif);font-size:28px;color:var(--red);margin-bottom:12px;font-weight:400;}
+.dor-card h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;}
+.dor-card p{font-size:14px;color:var(--muted);line-height:1.7;}
+
+/* COMO FUNCIONA */
+#workflow{background:var(--navy);}
+.wf-pipeline{display:flex;flex-direction:column;gap:16px;}
+.wf-step{display:grid;grid-template-columns:240px 1fr;background:var(--navy-3);border:1px solid rgba(255,255,255,.06);border-radius:var(--r3);overflow:hidden;}
+.wf-header{background:rgba(255,255,255,.02);padding:32px;border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;justify-content:center;}
+.wf-tag{font-size:10px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.wf-title{font-family:var(--serif);font-size:24px;color:var(--white);}
+.wf-body{padding:32px;display:flex;flex-direction:column;justify-content:center;}
+.wf-desc{font-size:15px;color:var(--muted);line-height:1.7;}
+
+/* FILTROS E ICP */
+.filtros-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:64px;}
+.filtro-cat{background:var(--navy-2);border-top:2px solid var(--cyan-border);padding:20px 16px;border-radius:0 0 var(--r2) var(--r2);}
+.filtro-cat-num{font-size:10px;color:var(--muted-2);margin-bottom:8px;}
+.filtro-cat-title{font-size:12px;font-weight:600;color:var(--white);text-transform:uppercase;}
+.icp-tags{display:flex;flex-wrap:wrap;gap:12px;}
+.icp-tag{padding:8px 16px;background:var(--navy-3);border:1px solid rgba(255,255,255,.1);border-radius:20px;font-size:13px;color:var(--white);display:flex;align-items:center;gap:8px;}
+.icp-tag::before{content:'✓';color:var(--cyan);}
+
+
+.filtro-cat-desc{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.6;font-weight:400;text-transform:none;}
+/* PREÇOS */
+#precos{background:var(--navy-2);}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px;}
+.price-card{background:var(--navy);border:1px solid rgba(255,255,255,.08);border-radius:var(--r3);padding:40px 32px;position:relative;display:flex;flex-direction:column;}
+.price-card.popular{border-color:var(--cyan);background:radial-gradient(ellipse at top,rgba(62,207,190,.05) 0%,var(--navy) 70%);}
+.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--cyan);color:var(--navy);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;}
+.pc-name{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
+.pc-price{font-family:var(--serif);font-size:42px;color:var(--white);line-height:1;margin-bottom:8px;}
+.pc-price span{font-family:var(--sans);font-size:14px;color:var(--muted-2);}
+.pc-setup{font-size:12px;color:var(--cyan);margin-bottom:32px;min-height:36px;display:block;}
+.pc-list{list-style:none;margin-bottom:40px;flex:1;}
+.pc-list li{font-size:13px;color:var(--muted);margin-bottom:12px;display:flex;gap:10px;line-height:1.5;}
+.pc-list li::before{content:'✓';color:var(--cyan);flex-shrink:0;}
+.pc-btn{display:block;text-align:center;padding:14px;border:1px solid var(--cyan-border);border-radius:var(--r);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);transition:all .2s;}
+.pc-btn:hover{background:var(--cyan-dim);color:var(--white);border-color:var(--cyan);}
+.price-card.popular .pc-btn{background:var(--cyan);color:var(--navy);border:none;}
+.price-card.popular .pc-btn:hover{background:var(--white);}
+.pricing-note{text-align:center;font-size:13px;color:var(--muted);margin-top:16px;}
+.pricing-note strong{color:var(--white);}
+
+/* FAQ */
+#faq{background:var(--navy);}
+.faq-list{display:flex;flex-direction:column;}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.08);padding:24px 0;}
+.faq-q{font-size:17px;font-weight:500;color:var(--white);margin-bottom:12px;}
+.faq-a{font-size:15px;color:var(--muted);line-height:1.75;}
+
+/* CTA & FOOTER */
+#contato{background:var(--navy-3);border-top:1px solid var(--cyan-border);text-align:center;}
+.footer{background:var(--navy-2);border-top:1px solid rgba(255,255,255,.05);padding:64px var(--pad) 32px;text-align:center;}
+.f-copy{font-size:12px;color:var(--muted-2);}
+
+/* RESPONSIVE */
+/* Telas Grandes (Ultrawide / Mac / Monitores 4K) */
+@media(min-width: 1400px){
+  :root { --max: 1280px; }
+  .hero-h1 { font-size: 64px; max-width: 1000px; }
+  .hero-lead { font-size: 20px; max-width: 800px; }
+  .section { padding: 120px var(--pad); }
+}
+
+/* Laptops e Desktop Padrão */
+@media(max-width: 1100px){
+  .dor-grid { gap: 16px; }
+  .pricing-grid { gap: 16px; }
+  .price-card { padding: 32px 24px; }
+}
+
+/* Tablets (iPad) */
+@media(max-width: 960px){
+  .dor-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto 24px; }
+  .wf-step { grid-template-columns: 1fr; }
+  .wf-header { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); padding: 24px; }
+  .filtros-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-h1 { font-size: 46px; }
+  .s-title { font-size: 32px; }
+}
+
+/* Telas Menores e Celulares deitados */
+@media(max-width: 768px){
+  .dor-grid { grid-template-columns: 1fr; }
+  .hero-h1 { font-size: 38px; }
+  .nav { padding: 0 20px; gap: 12px; }
+  .nav-logo { font-size: 15px; }
+  .nav-cta { padding: 8px 14px; font-size: 10px; }
+  .nav-login { font-size: 11px; margin-right: 8px !important; }
+}
+
+/* Celular em pé (iPhone, Android) */
+@media(max-width: 640px){
+  :root { --pad: 20px; }
+  .hero-h1 { font-size: 32px; line-height: 1.25; }
+  .hero-lead { font-size: 16px; }
+  .filtros-grid { grid-template-columns: 1fr; }
+  .lang-btns { display: none; }
+  .pc-price { font-size: 36px; }
+  .nav-cta { padding: 8px 12px; font-size: 9px; }
+}
+
+/* FIX ESPAÇAMENTO HERO */
+#hero { padding-top: 180px !important; padding-bottom: 100px !important; }
+</style>
+<!-- Schema.org FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "A governança de IA é obrigatória?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sim. Órgãos como a ANPD já exigem Relatório de Impacto à Proteção de Dados (RIPD) para algoritmos. A ausência de governança probatória pode resultar em presunção de culpa em caso de incidentes, além de multas que chegam a 2% do faturamento (até R$ 50 milhões)."
+    }
+  },{
+    "@type": "Question",
+    "name": "O que é Shadow AI?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "São sistemas de IA (como LLMs ou ferramentas de produtividade) utilizados por colaboradores sem o conhecimento ou aprovação da TI e do Jurídico, gerando risco massivo de vazamento de dados corporativos."
+    }
+  },{
+    "@type": "Question",
+    "name": "Como o Controlador CPT atua?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "O CPT atua inline (Commit-Bound). Se uma IA tentar processar um dado sensível ou tomar uma decisão viesada, a plataforma intercepta a chamada no milissegundo exato e bloqueia a ação, gerando um laudo forense do evento."
+    }
+  }]
+}
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-back" data-i18n="nav-back">← Voltar ao início</a>
+  <div style="flex:1"></div>
+  <div class="lang-btns">
+    <button class="lang-btn active" id="btn-pt" onclick="setLang('pt')">PT</button>
+    <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+  <a class="nav-login" href="https://app.brachatec.com" data-i18n="nav-login" style="margin-right:16px;font-size:13px;font-weight:500;color:var(--white);transition:color 0.2s;">Entrar</a>
+  <a class="nav-cta" href="#precos" data-i18n="nav-cta">Ver Preços</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow" data-i18n="hero-tag">Governança de IA</div>
+    <h1 class="hero-h1" data-i18n="hero-title">Sua inteligência artificial está em conformidade?</h1>
+    <p class="hero-lead" data-i18n="hero-lead">Descubra Shadow AI no seu ambiente, intercepte viés algorítmico em tempo real e gere laudos forenses de explicabilidade prontos para a ANPD e órgãos reguladores.</p>
+    <a class="btn-primary" href="#precos" data-i18n="hero-btn">Analisar Planos</a>
+  </div>
+</section>
+
+<section id="dor" class="section">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="dor-lbl">O Risco</div>
+    <h2 class="s-title" data-i18n="dor-title">O risco não é hipotético. A multa é real.</h2>
+    <p class="s-sub" data-i18n="dor-sub">Sistemas de IA não governados são uma bomba-relógio de passivo jurídico. Quando o incidente ocorrer, a falta de provas técnicas inverte o ônus probatório contra a sua empresa.</p>
+    <div class="dor-grid">
+      <div class="dor-card">
+        <h3>R$ 50 Milhões</h3>
+        <h4 data-i18n="dor1-t">Multa máxima ANPD</h4>
+        <p data-i18n="dor1-p">Teto de multa por infração à LGPD. Ferramentas de IA generativa não homologadas (Shadow AI) vazam dados sensíveis diariamente.</p>
+      </div>
+      <div class="dor-card">
+        <h3>DPO / C-Level</h3>
+        <h4 data-i18n="dor2-t">Responsabilidade Solidária</h4>
+        <p data-i18n="dor2-p">A falta de governança estruturada pode implicar responsabilização civil e criminal direta dos executivos e encarregados de dados.</p>
+      </div>
+      <div class="dor-card">
+        <h3>100% Offline</h3>
+        <h4 data-i18n="dor3-t">Suspensão de Operação</h4>
+        <p data-i18n="dor3-p">Reguladores podem determinar a suspensão total do uso do banco de dados ou do sistema automatizado até a comprovação de conformidade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="workflow" class="section">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="wf-lbl">Arquitetura</div>
+    <h2 class="s-title" data-i18n="wf-title">Como a plataforma opera no seu ambiente</h2>
+    <div class="wf-pipeline">
+      <div class="wf-step">
+        <div class="wf-header">
+          <div class="wf-tag">Passo 1</div>
+          <div class="wf-title">Módulo SENTINEL</div>
+        </div>
+        <div class="wf-body">
+          <p class="wf-desc" data-i18n="wf1-desc">Inventário e Discovery Automático. O Sentinel varre sua infraestrutura corporativa identificando todas as IAs em uso, desde integrações oficiais (APIs corporativas) até Shadow AI (colaboradores usando ferramentas não homologadas). Analisamos permissões, fluxo de dados e mapeamos o Risco Criptográfico associado a cada modelo.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-header">
+          <div class="wf-tag">Passo 2</div>
+          <div class="wf-title">Controlador CPT</div>
+        </div>
+        <div class="wf-body">
+          <p class="wf-desc" data-i18n="wf2-desc">Interceptação e Profiling em Milissegundos. O CPT atua como uma barreira inline. Ele avalia regras de negócio, ética e conformidade <strong>antes</strong> da execução (Commit-Bound). Se um LLM tentar vazar um dado pessoal ou tomar uma decisão enviesada, o CPT trava a operação instantaneamente.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-header">
+          <div class="wf-tag">Passo 3</div>
+          <div class="wf-title">Módulo TT (Time-Travel)</div>
+        </div>
+        <div class="wf-body">
+          <p class="wf-desc" data-i18n="wf3-desc">Explicabilidade e Prova Forense. Cada ação da IA é registrada com assinatura SHA-256 no Cofre WORM. Se a ANPD ou o Ministério Público questionarem uma decisão algorítmica meses depois, o TT reconstrói o exato contexto técnico da época e emite um laudo pericial irrefutável.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--navy-2)">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="icp-lbl">Público e Escopo</div>
+    <h2 class="s-title" data-i18n="icp-title">129 Filtros de Validação Contínua</h2>
+    <div class="filtros-grid">
+      <div class="filtro-cat"><div class="filtro-cat-num">L1</div><div class="filtro-cat-title" data-i18n="f1">Segurança de Dados</div><div class="filtro-cat-desc" data-i18n="f1-desc">Bloqueio automático de PII (CPFs, Cartões, Senhas) antes da comunicação com APIs de IA públicas.</div></div>
+      <div class="filtro-cat"><div class="filtro-cat-num">L2</div><div class="filtro-cat-title" data-i18n="f2">Conformidade (LGPD)</div><div class="filtro-cat-desc" data-i18n="f2-desc">Validação em milissegundos de bases legais e bloqueio de processamento sem consentimento ativo.</div></div>
+      <div class="filtro-cat"><div class="filtro-cat-num">L3</div><div class="filtro-cat-title" data-i18n="f3">Ética e Viés</div><div class="filtro-cat-desc" data-i18n="f3-desc">Interceptação de vieses discriminatórios em algoritmos de decisão sensível (ex: crédito, RH).</div></div>
+      <div class="filtro-cat"><div class="filtro-cat-num">L4</div><div class="filtro-cat-title" data-i18n="f4">Robustez Técnica</div><div class="filtro-cat-desc" data-i18n="f4-desc">Escudo ativo de firewall contra ataques de Prompt Injection, Jailbreaks e extração de contexto.</div></div>
+      <div class="filtro-cat"><div class="filtro-cat-num">L5</div><div class="filtro-cat-title" data-i18n="f5">Explicabilidade Forense</div><div class="filtro-cat-desc" data-i18n="f5-desc">Criação de trilha de auditoria criptografada (WORM) para atestar como cada decisão foi tomada.</div></div>
+    </div>
+    
+    <h3 style="font-size:16px;font-weight:600;color:var(--white);margin-bottom:20px;text-transform:uppercase;letter-spacing:0.1em;" data-i18n="icp-who">Quem precisa de Governança de IA?</h3>
+    <div class="icp-tags">
+      <div class="icp-tag">Escritórios de Advocacia (Tech Law)</div>
+      <div class="icp-tag">DPOs e Encarregados de Dados</div>
+      <div class="icp-tag">Bancos e Instituições Financeiras</div>
+      <div class="icp-tag">Fintechs de Crédito</div>
+      <div class="icp-tag">Empresas de Saúde e Hospitais</div>
+      <div class="icp-tag">Plataformas SaaS B2B</div>
+    </div>
+  </div>
+</section>
+
+<section id="precos" class="section">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="pr-lbl">Planos e Preços</div>
+    <h2 class="s-title" data-i18n="pr-title">Escolha o nível de governança</h2>
+    <p class="s-sub" data-i18n="pr-sub">Planos estruturados para escritórios que querem auditar clientes, e corporações que precisam blindar a própria operação.</p>
+    
+    <div class="pricing-grid">
+      <!-- Standard -->
+      <div class="price-card">
+        <div class="pc-name">Standard</div>
+        <div class="pc-price">R$ 2.900<span>/mês</span></div>
+        <div class="pc-setup" data-i18n="pr-set1">Setup: R$ 7.500<br><strong>(Isento no Programa Fundador)</strong></div>
+        <ul class="pc-list">
+          <li data-i18n="pr1-l1">Inventário Sentinel (até 50 endpoints)</li>
+          <li data-i18n="pr1-l2">Mapeamento de Shadow AI</li>
+          <li data-i18n="pr1-l3">Relatórios de Risco Criptográfico</li>
+          <li data-i18n="pr1-l4">Geração de RIPD de IA simplificado</li>
+          <li data-i18n="pr1-l5">Suporte em horário comercial</li>
+        </ul>
+        <a class="pc-btn" href="mailto:vendas@brachatec.com.br?subject=Plano%20IA%20Standard" data-i18n="pr-btn">Falar com vendas</a>
+      </div>
+      <!-- Enterprise -->
+      <div class="price-card popular">
+        <div class="popular-badge">Recomendado</div>
+        <div class="pc-name">Enterprise</div>
+        <div class="pc-price">R$ 8.900<span>/mês</span></div>
+        <div class="pc-setup" data-i18n="pr-set2">Setup: R$ 15.000<br>+ R$ 1.500 por filial adicional</div>
+        <ul class="pc-list">
+          <li data-i18n="pr2-l1">Tudo do Standard, sem limite de endpoints</li>
+          <li data-i18n="pr2-l2">Controlador CPT inline (Interceptação em TS)</li>
+          <li data-i18n="pr2-l3">Time-Travel e Cofre Forense WORM</li>
+          <li data-i18n="pr2-l4">Prevenção ativa de viés algorítmico</li>
+          <li data-i18n="pr2-l5">SLA de 99.9% e API dedicada</li>
+          <li data-i18n="pr2-l6">Gerente de Sucesso (CSM) dedicado</li>
+        </ul>
+        <a class="pc-btn" href="mailto:vendas@brachatec.com.br?subject=Plano%20IA%20Enterprise" data-i18n="pr-btn">Falar com vendas</a>
+      </div>
+      <!-- White-Label -->
+      <div class="price-card">
+        <div class="pc-name">White-Label / Parceiros</div>
+        <div class="pc-price">R$ 1.350<span>/mês</span></div>
+        <div class="pc-setup" data-i18n="pr-set3">Zero Taxa de Habilitação (Setup Isento)<br>Treinamento e customização de marca</div>
+        <ul class="pc-list">
+          <li data-i18n="pr3-l1">Licença base inclui 2 clientes ativos</li>
+          <li data-i18n="pr3-l2">+ R$ 450/mês por cliente adicional</li>
+          <li data-i18n="pr3-l3">Plataforma com logo e domínio do seu escritório</li>
+          <li data-i18n="pr3-l4">Você define o preço final para seu cliente</li>
+          <li data-i18n="pr3-l5">Materiais de vendas e playbooks</li>
+        </ul>
+        <a class="pc-btn" href="mailto:parceiros@brachatec.com.br?subject=Parceria%20IA%20White-Label" data-i18n="pr-btn-wl">Seja um parceiro</a>
+      </div>
+    </div>
+    <div class="pricing-note">
+      <span data-i18n="pr-note"><strong>15% de desconto</strong> para pagamentos anuais à vista. Contratos reajustados anualmente pelo IPCA.</span>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="section-inner" style="max-width:800px;">
+    <h2 class="s-title" style="text-align:center;margin-bottom:48px;" data-i18n="faq-title">Perguntas Frequentes</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq1-q">A governança de IA é obrigatória?</div>
+        <div class="faq-a" data-i18n="faq1-a">Sim. Órgãos como a ANPD já exigem Relatório de Impacto à Proteção de Dados (RIPD) para algoritmos. A ausência de governança probatória pode resultar em presunção de culpa em caso de incidentes, além de multas que chegam a 2% do faturamento (até R$ 50 milhões).</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq2-q">O que é Shadow AI?</div>
+        <div class="faq-a" data-i18n="faq2-a">São sistemas de IA (como LLMs ou ferramentas de produtividade) utilizados por colaboradores sem o conhecimento ou aprovação da TI e do Jurídico, gerando risco massivo de vazamento de dados corporativos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq3-q">Como o Controlador CPT atua?</div>
+        <div class="faq-a" data-i18n="faq3-a">O CPT atua inline (Commit-Bound). Se uma IA tentar processar um dado sensível ou tomar uma decisão viesada, a plataforma intercepta a chamada no milissegundo exato e bloqueia a ação, gerando um laudo forense do evento.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato" class="section">
+  <div class="section-inner">
+    <h2 class="s-title" data-i18n="cta-title">Agende uma auditoria de IA gratuita</h2>
+    <p class="s-sub" style="margin:0 auto 32px;" data-i18n="cta-sub">Descubra os riscos ocultos na sua operação de IA em 15 minutos.</p>
+    <a class="btn-primary" href="mailto:contato@brachatec.com.br?subject=Auditoria%20IA" data-i18n="cta-btn">Agendar Diagnóstico</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p class="f-copy" data-i18n="f-copy">© 2025 BRACHATEC Tecnologia Ltda. Todos os direitos reservados. · <a href="/" style="color:var(--muted-2);text-decoration:underline;">Ir para a Home</a></p>
+</footer>
+
+<script>
+var LANG='pt';
+var T={
+  pt:{
+    'nav-login':'Entrar',
+    'nav-back':'← Voltar ao início','nav-cta':'Ver Preços',
+    'hero-tag':'Governança de IA',
+    'hero-title':'Sua inteligência artificial está em conformidade?',
+    'hero-lead':'Descubra Shadow AI no seu ambiente, intercepte viés algorítmico em tempo real e gere laudos forenses de explicabilidade prontos para a ANPD e órgãos reguladores.',
+    'hero-btn':'Analisar Planos',
+    'dor-lbl':'O Risco','dor-title':'O risco não é hipotético. A multa é real.','dor-sub':'Sistemas de IA não governados são uma bomba-relógio de passivo jurídico. Quando o incidente ocorrer, a falta de provas técnicas inverte o ônus probatório contra a sua empresa.',
+    'dor1-t':'Multa máxima ANPD','dor1-p':'Teto de multa por infração à LGPD. Ferramentas de IA generativa não homologadas (Shadow AI) vazam dados sensíveis diariamente.',
+    'dor2-t':'Responsabilidade Solidária','dor2-p':'A falta de governança estruturada pode implicar responsabilização civil e criminal direta dos executivos e encarregados de dados.',
+    'dor3-t':'Suspensão de Operação','dor3-p':'Reguladores podem determinar a suspensão total do uso do banco de dados ou do sistema automatizado até a comprovação de conformidade.',
+    'wf-lbl':'Arquitetura','wf-title':'Como a plataforma opera no seu ambiente',
+    'wf1-desc':'Inventário e Discovery Automático. O Sentinel varre sua infraestrutura corporativa identificando todas as IAs em uso, desde integrações oficiais (APIs corporativas) até Shadow AI (colaboradores usando ferramentas não homologadas). Analisamos permissões, fluxo de dados e mapeamos o Risco Criptográfico associado a cada modelo.',
+    'wf2-desc':'Interceptação e Profiling em Milissegundos. O CPT atua como uma barreira inline. Ele avalia regras de negócio, ética e conformidade <strong>antes</strong> da execução (Commit-Bound). Se um LLM tentar vazar um dado pessoal ou tomar uma decisão enviesada, o CPT trava a operação instantaneamente.',
+    'wf3-desc':'Explicabilidade e Prova Forense. Cada ação da IA é registrada com assinatura SHA-256 no Cofre WORM. Se a ANPD ou o Ministério Público questionarem uma decisão algorítmica meses depois, o TT reconstrói o exato contexto técnico da época e emite um laudo pericial irrefutável.',
+    'icp-lbl':'Público e Escopo','icp-title':'129 Filtros de Validação Contínua',
+    'f1':'Segurança de Dados','f2':'Conformidade (LGPD)','f3':'Ética e Viés','f4':'Robustez Técnica','f5':'Explicabilidade Forense',
+    'f1-desc':'Bloqueio automático de PII (CPFs, Cartões, Senhas) antes da comunicação com APIs de IA públicas.',
+    'f2-desc':'Validação em milissegundos de bases legais e bloqueio de processamento sem consentimento ativo.',
+    'f3-desc':'Interceptação de vieses discriminatórios em algoritmos de decisão sensível (ex: crédito, RH).',
+    'f4-desc':'Escudo ativo de firewall contra ataques de Prompt Injection, Jailbreaks e extração de contexto.',
+    'f5-desc':'Criação de trilha de auditoria criptografada (WORM) para atestar como cada decisão foi tomada.',
+    'icp-who':'Quem precisa de Governança de IA?',
+    'pr-lbl':'Planos e Preços','pr-title':'Escolha o nível de governança','pr-sub':'Planos estruturados para escritórios que querem auditar clientes, e corporações que precisam blindar a própria operação.',
+    'pr-set1':'Setup: R$ 7.500<br><strong>(Isento no Programa Fundador)</strong>',
+    'pr1-l1':'Inventário Sentinel (até 50 endpoints)','pr1-l2':'Mapeamento de Shadow AI','pr1-l3':'Relatórios de Risco Criptográfico','pr1-l4':'Geração de RIPD de IA simplificado','pr1-l5':'Suporte em horário comercial',
+    'pr-set2':'Setup: R$ 15.000<br>+ R$ 1.500 por filial adicional',
+    'pr2-l1':'Tudo do Standard, sem limite de endpoints','pr2-l2':'Controlador CPT inline (Interceptação em TS)','pr2-l3':'Time-Travel e Cofre Forense WORM','pr2-l4':'Prevenção ativa de viés algorítmico','pr2-l5':'SLA de 99.9% e API dedicada','pr2-l6':'Gerente de Sucesso (CSM) dedicado',
+    'pr-set3':'Zero Taxa de Habilitação (Setup Isento)<br>Treinamento e customização de marca',
+    'pr3-l1':'Licença base inclui 2 clientes ativos','pr3-l2':'+ R$ 450/mês por cliente adicional','pr3-l3':'Plataforma com logo e domínio do seu escritório','pr3-l4':'Você define o preço final para seu cliente','pr3-l5':'Materiais de vendas e playbooks',
+    'pr-btn':'Falar com vendas','pr-btn-wl':'Seja um parceiro',
+    'pr-note':'<strong>15% de desconto</strong> para pagamentos anuais à vista. Contratos reajustados anualmente pelo IPCA.',
+    'faq-title':'Perguntas Frequentes',
+    'faq1-q':'A governança de IA é obrigatória?','faq1-a':'Sim. Órgãos como a ANPD já exigem Relatório de Impacto à Proteção de Dados (RIPD) para algoritmos. A ausência de governança probatória pode resultar em presunção de culpa em caso de incidentes, além de multas que chegam a 2% do faturamento (até R$ 50 milhões).',
+    'faq2-q':'O que é Shadow AI?','faq2-a':'São sistemas de IA (como LLMs ou ferramentas de produtividade) utilizados por colaboradores sem o conhecimento ou aprovação da TI e do Jurídico, gerando risco massivo de vazamento de dados corporativos.',
+    'faq3-q':'Como o Controlador CPT atua?','faq3-a':'O CPT atua inline (Commit-Bound). Se uma IA tentar processar um dado sensível ou tomar uma decisão viesada, a plataforma intercepta a chamada no milissegundo exato e bloqueia a ação, gerando um laudo forense do evento.',
+    'cta-title':'Agende uma auditoria de IA gratuita','cta-sub':'Descubra os riscos ocultos na sua operação de IA em 15 minutos.','cta-btn':'Agendar Diagnóstico',
+    'f-copy':'© 2025 BRACHATEC Tecnologia Ltda. Todos os direitos reservados.'
+  },
+  es:{
+    'nav-login':'Ingresar',
+    'nav-back':'← Volver al inicio','nav-cta':'Ver Precios',
+    'hero-tag':'Gobernanza de IA',
+    'hero-title':'¿Su inteligencia artificial está en conformidad?',
+    'hero-lead':'Descubra Shadow AI en su entorno, intercepte sesgos algorítmicos en tiempo real y genere dictámenes forenses listos para agencias reguladoras.',
+    'hero-btn':'Analizar Planes',
+    'dor-lbl':'El Riesgo','dor-title':'El riesgo no es hipotético. La multa es real.','dor-sub':'Sistemas de IA no gobernados son una bomba de tiempo de pasivo jurídico. Cuando ocurra el incidente, la falta de pruebas técnicas invierte la carga de la prueba en contra de su empresa.',
+    'dor1-t':'Multas millonarias','dor1-p':'Límite de multas por infracción a leyes de protección de datos. Herramientas de IA generativa no homologadas filtran datos sensibles a diario.',
+    'dor2-t':'Responsabilidad Solidaria','dor2-p':'La falta de gobernanza estructurada puede implicar responsabilidad civil y penal directa de los ejecutivos y encargados de datos.',
+    'dor3-t':'Suspensión de Operación','dor3-p':'Los reguladores pueden ordenar la suspensión total del uso de la base de datos o sistema automatizado hasta comprobar la conformidad.',
+    'wf-lbl':'Arquitectura','wf-title':'Cómo opera la plataforma en su entorno',
+    'wf1-desc':'Inventario y Discovery Automático. Sentinel escanea su infraestructura identificando todas las IAs en uso, desde APIs corporativas hasta Shadow AI. Analizamos permisos, flujo de datos y riesgo criptográfico.',
+    'wf2-desc':'Interceptación en Milisegundos. El CPT actúa como barrera inline. Evalúa reglas de negocio, ética y conformidad antes de la ejecución. Si un LLM intenta filtrar datos, el CPT bloquea la operación al instante.',
+    'wf3-desc':'Explicabilidad Forense. Cada acción de la IA se registra con firma SHA-256 en la Bóveda WORM. Si los reguladores cuestionan una decisión meses después, TT reconstruye el contexto técnico y emite un dictamen pericial irrefutable.',
+    'icp-lbl':'Público y Alcance','icp-title':'129 Filtros de Validación Continua',
+    'f1':'Seguridad de Datos','f2':'Conformidad Regulatoria','f3':'Ética y Sesgos','f4':'Robustez Técnica','f5':'Explicabilidad Forense',
+    'f1-desc':'Bloqueo automático de PII (DNI, Tarjetas) antes de la comunicación con APIs públicas.',
+    'f2-desc':'Validación de bases legales en milisegundos y bloqueo de procesamiento sin consentimiento.',
+    'f3-desc':'Interceptación de sesgos discriminatorios en algoritmos de decisión sensible.',
+    'f4-desc':'Escudo activo contra ataques de Prompt Injection y Jailbreaks algorítmicos.',
+    'f5-desc':'Creación de pista de auditoría criptográfica para justificar cada decisión de la IA.',
+    'icp-who':'¿Quién necesita Gobernanza de IA?',
+    'pr-lbl':'Planes y Precios','pr-title':'Elija el nivel de gobernanza','pr-sub':'Planes estructurados para firmas que auditan clientes, y corporaciones que necesitan blindar su propia operación.',
+    'pr-set1':'Setup: R$ 7.500<br><strong>(Exento en Programa Fundador)</strong>',
+    'pr1-l1':'Inventario Sentinel (hasta 50 endpoints)','pr1-l2':'Mapeo de Shadow AI','pr1-l3':'Reportes de Riesgo Criptográfico','pr1-l4':'Generación simplificada de RIPD de IA','pr1-l5':'Soporte en horario comercial',
+    'pr-set2':'Setup: R$ 15.000<br>+ R$ 1.500 por filial adicional',
+    'pr2-l1':'Todo lo de Standard, sin límite de endpoints','pr2-l2':'Controlador CPT inline (Interceptación)','pr2-l3':'Time-Travel y Bóveda Forense WORM','pr2-l4':'Prevención activa de sesgo algorítmico','pr2-l5':'SLA 99.9% y API dedicada','pr2-l6':'Customer Success Manager dedicado',
+    'pr-set3':'Cero Tasa de Habilitación (Setup Exento)<br>Entrenamiento y personalización de marca',
+    'pr3-l1':'Licencia base incluye 2 clientes activos','pr3-l2':'+ R$ 450/mes por cliente adicional','pr3-l3':'Plataforma con el logo de su firma','pr3-l4':'Usted define el precio final para su cliente','pr3-l5':'Materiales de ventas y playbooks',
+    'pr-btn':'Hablar con ventas','pr-btn-wl':'Ser socio',
+    'pr-note':'<strong>15% de descuento</strong> para pagos anuales. Contratos ajustados anualmente.',
+    'faq-title':'Preguntas Frecuentes',
+    'faq1-q':'¿Es obligatoria la gobernanza de IA?','faq1-a':'Sí. Varias agencias reguladoras ya exigen Evaluación de Impacto para algoritmos. La falta de gobernanza probatoria puede resultar en presunción de culpa en incidentes y multas severas.',
+    'faq2-q':'¿Qué es Shadow AI?','faq2-a':'Sistemas de IA utilizados por empleados sin el conocimiento de TI y Legal, generando riesgos masivos de fuga de datos corporativos.',
+    'faq3-q':'¿Cómo actúa el Controlador CPT?','faq3-a':'El CPT actúa inline (Commit-Bound). Si una IA intenta procesar datos sensibles de manera inapropiada, intercepta la llamada en el milisegundo exacto, bloquea la acción y genera un informe forense.',
+    'cta-title':'Agende una auditoría de IA gratuita','cta-sub':'Descubra los riesgos ocultos en su operación de IA en 15 minutos.','cta-btn':'Agendar Diagnóstico',
+    'f-copy':'© 2025 BRACHATEC Tecnologia Ltda. Todos los derechos reservados.'
+  },
+  en:{
+    'nav-login':'Log In',
+    'nav-back':'← Back to home','nav-cta':'View Pricing',
+    'hero-tag':'AI Governance',
+    'hero-title':'Is your artificial intelligence compliant?',
+    'hero-lead':'Discover Shadow AI in your environment, intercept algorithmic bias in real-time, and generate forensic explainability reports for regulatory agencies.',
+    'hero-btn':'Analyze Plans',
+    'dor-lbl':'The Risk','dor-title':'The risk is not hypothetical. The fine is real.','dor-sub':'Ungoverned AI systems are a legal liability time bomb. When an incident occurs, the lack of technical evidence shifts the burden of proof against your company.',
+    'dor1-t':'Million-dollar fines','dor1-p':'Maximum fines for data protection violations. Unapproved generative AI tools (Shadow AI) leak sensitive data daily.',
+    'dor2-t':'Joint Liability','dor2-p':'The lack of structured governance can lead to direct civil and criminal liability for executives and Data Protection Officers.',
+    'dor3-t':'Operation Suspension','dor3-p':'Regulators can mandate the total suspension of database or automated system usage until compliance is proven.',
+    'wf-lbl':'Architecture','wf-title':'How the platform operates in your environment',
+    'wf1-desc':'Inventory and Automatic Discovery. Sentinel scans your infrastructure identifying all AIs in use, from corporate APIs to Shadow AI. We analyze permissions, data flows, and cryptographic risks.',
+    'wf2-desc':'Millisecond Interception. CPT acts as an inline barrier. It evaluates business, ethics, and compliance rules before execution. If an LLM tries to leak data, CPT blocks the operation instantly.',
+    'wf3-desc':'Forensic Explainability. Every AI action is logged with a SHA-256 signature in the WORM Vault. If regulators question a decision months later, TT reconstructs the technical context and issues an irrefutable report.',
+    'icp-lbl':'Audience & Scope','icp-title':'129 Continuous Validation Filters',
+    'f1':'Data Security','f2':'Regulatory Compliance','f3':'Ethics & Bias','f4':'Technical Robustness','f5':'Forensic Explainability',
+    'f1-desc':'Automatic blocking of PII (SSN, Cards) before communicating with public AI APIs.',
+    'f2-desc':'Millisecond validation of legal basis and prevention of processing without explicit consent.',
+    'f3-desc':'Interception of discriminatory biases in sensitive decision-making algorithms (e.g., HR, Credit).',
+    'f4-desc':'Active shield against Prompt Injection, Jailbreaks, and deliberate system leakage.',
+    'f5-desc':'Creation of a cryptographic audit trail to technically justify how each decision was made.',
+    'icp-who':'Who needs AI Governance?',
+    'pr-lbl':'Plans & Pricing','pr-title':'Choose your governance level','pr-sub':'Structured plans for law firms auditing clients, and corporations needing to shield their own operations.',
+    'pr-set1':'Setup: R$ 7,500<br><strong>(Waived in Founder Program)</strong>',
+    'pr1-l1':'Sentinel Inventory (up to 50 endpoints)','pr1-l2':'Shadow AI Mapping','pr1-l3':'Cryptographic Risk Reports','pr1-l4':'Simplified AI Impact Assessment','pr1-l5':'Business hours support',
+    'pr-set2':'Setup: R$ 15,000<br>+ R$ 1,500 per additional branch',
+    'pr2-l1':'Everything in Standard, unlimited endpoints','pr2-l2':'CPT Inline Controller (Interception)','pr2-l3':'Time-Travel and WORM Forensic Vault','pr2-l4':'Active algorithmic bias prevention','pr2-l5':'99.9% SLA and dedicated API','pr2-l6':'Dedicated Customer Success Manager',
+    'pr-set3':'Zero Setup Fee<br>Training and brand customization',
+    'pr3-l1':'Base license includes 2 active clients','pr3-l2':'+ R$ 450/mo per additional client','pr3-l3':'Platform with your firm’s logo and domain','pr3-l4':'You define the final price for your client','pr3-l5':'Sales materials and playbooks',
+    'pr-btn':'Contact Sales','pr-btn-wl':'Become a Partner',
+    'pr-note':'<strong>15% discount</strong> for annual upfront payments. Contracts adjusted annually.',
+    'faq-title':'Frequently Asked Questions',
+    'faq1-q':'Is AI governance mandatory?','faq1-a':'Yes. Regulatory agencies increasingly demand Algorithmic Impact Assessments. A lack of probatory governance can result in a presumption of guilt during incidents and severe fines.',
+    'faq2-q':'What is Shadow AI?','faq2-a':'AI systems used by employees without IT or Legal knowledge, creating massive risks of corporate data leaks.',
+    'faq3-q':'How does the CPT Controller work?','faq3-a':'CPT acts inline (Commit-Bound). If an AI attempts to process sensitive data inappropriately, it intercepts the call in the exact millisecond, blocks the action, and generates a forensic report.',
+    'cta-title':'Schedule a free AI audit','cta-sub':'Discover the hidden risks in your AI operations in 15 minutes.','cta-btn':'Schedule Diagnostic',
+    'f-copy':'© 2025 BRACHATEC Tecnologia Ltda. All rights reserved.'
+  }
+};
+function setLang(lang){
+  LANG=lang;
+  ['pt','es','en'].forEach(function(l){var b=document.getElementById('btn-'+l);if(b)b.classList.toggle('active',l===lang);});
+  document.querySelectorAll('[data-i18n]').forEach(function(el){var key=el.getAttribute('data-i18n');if(T[lang]&&T[lang][key]!==undefined){if(el.tagName==='INPUT'){el.placeholder=T[lang][key];}else{el.innerHTML=T[lang][key];}}});
+  try{localStorage.setItem('brt_lang',lang);}catch(e){}
+}
+(function(){try{var s=localStorage.getItem('brt_lang');if(s&&['pt','es','en'].indexOf(s)>-1&&s!=='pt'){setLang(s);}}catch(e){}})();
+</script>
+</body>
+</html>
