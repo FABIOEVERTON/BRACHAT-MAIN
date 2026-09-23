@@ -16,6 +16,21 @@ data/
 # SEGREDOS — nunca no git
 **/secrets.env
 **/.env
+**/.env.*
+**/bot.env
 **/credentials/
+**/chat_ids.json
 .secrets.baseline
 *.mov
+
+# ESTADO RUNTIME / BANCOS — nunca no git
+**/state.json
+**/*.sqlite3
+**/*.db
+**/chroma/
+
+# DADOS BRUTOS / ARTEFATOS PESADOS — nunca no git
+**/raw_data/
+**/PROJETO_ORACLE_ONE/
+**/*.mp4
+**/*.mov
