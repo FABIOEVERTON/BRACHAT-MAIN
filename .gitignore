@@ -37,3 +37,7 @@ data/
 
 # WIZE — config local da ferramenta (nao e produto; planning/solutioning SÃO versionados)
 **/.wize/config/
+
+# OPENCODE — artefatos runtime internos (infra local, ledger, secrets names)
+**/.opencode/reference/
+**/.opencode/proposals/
