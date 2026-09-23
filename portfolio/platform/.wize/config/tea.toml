@@ -1,0 +1,13 @@
+# Wize TEA (Hawkeye) — policy config
+# Hawkeye Test Architect policy configuration
+
+[policy]
+mode = "advisory"   # "advisory" | "enforcing"
+
+[gates]
+risk    = { granularity = "once-after-architecture" }
+design  = { granularity = "per-story" }
+trace   = { granularity = "per-story" }
+nfr     = { granularity = "per-epic" }
+review  = { granularity = "per-story" }
+gate    = { granularity = "per-story" }

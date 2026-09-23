@@ -1,0 +1,35 @@
+# Wize Development Kit — Política Fixa de Roteamento & Economia de LLM / Créditos
+# Estratégia de alternância inteligente para evitar esgotamento de taxa/créditos
+
+[policy]
+name = "zero-credit-exhaustion-strategy"
+active = true
+
+[tiers]
+
+# TIER 1: Operações Leves e Varreduras Rápidas
+# Uso: buscas de arquivos, leitura de docs pequenos, linting básico, formatação
+[tiers.tier1_light]
+model_types = ["flash_lite", "flash"]
+purpose = "Exploração rápida, pesquisa pontual, formatação simples, validações leves"
+cost = "mínimo / ultra-econômico"
+
+# TIER 2: Desenvolvimento Ágil, TDD e Documentação Padrão
+# Uso: criação de stories, implementação de rotas, TDD da Shuri, redação da Peggy
+[tiers.tier2_standard]
+model_types = ["gemini_3_7_flash_medium", "inherit"]
+purpose = "Implementação full-stack do dia a dia, TDD, testes unitários, documentação do PRD"
+cost = "balanceado / alta taxa de transferência"
+
+# TIER 3: Raciocínio Complexo, Arquitetura Profunda & Pentest
+# Uso: modelagem de arquitetura (Tony Stark), NFRs (Nick Fury), Auditoria (Hawkeye Gate Final), Pentest (Natasha)
+[tiers.tier3_heavy]
+model_types = ["pro", "bigpickle_mcp"]
+via_mcp = "opencode_mcp"
+purpose = "Decisões arquiteturais críticas, análise forense, pentest de segurança e validações de alta densidade"
+cost = "estratégico / acionado sob demanda"
+
+[fallback_rules]
+on_rate_limit = "fazer fallback imediato para o Tier inferior ou alternar para Big Pickle via MCP"
+conserve_credits = true
+avoid_redundant_calls = true

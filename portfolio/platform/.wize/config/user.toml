@@ -1,0 +1,10 @@
+# Wize Development Kit — user-level customizations.
+# Personal / per-developer config (not committed).
+
+[user]
+name = "Team BRACHATEC"
+role = "Full-Stack Senior Engineer"
+
+[preferences]
+communication   = "pt-BR"
+document_output = "pt-BR"
