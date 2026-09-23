@@ -34,3 +34,6 @@ data/
 **/PROJETO_ORACLE_ONE/
 **/*.mp4
 **/*.mov
+
+# WIZE — config local da ferramenta (nao e produto; planning/solutioning SÃO versionados)
+**/.wize/config/
