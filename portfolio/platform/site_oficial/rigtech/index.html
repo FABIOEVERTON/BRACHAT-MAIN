@@ -311,7 +311,7 @@ img{max-width:100%;display:block;}
       <div class="price-card popular">
         <div class="popular-badge">Recomendado</div>
         <div class="pc-name">Plano Corporativo</div>
-        <div class="pc-price">R$ 3.500<span>/mês</span></div>
+        <div class="pc-price" data-i18n="pr1-price">R$ 3.500<span>/mês</span></div>
         <div class="pc-setup" data-i18n="pr-set1">Setup Técnico: R$ 5.900<br>Mapeamento de matriz de risco incluso</div>
         <ul class="pc-list">
           <li data-i18n="pr1-l1">Monitoramento de até 500 palavras-chave</li>
@@ -321,12 +321,12 @@ img{max-width:100%;display:block;}
           <li data-i18n="pr1-l5">Dossiês com validade forense (Cofre WORM)</li>
           <li data-i18n="pr1-l6">Treinamento para a equipe de compliance</li>
         </ul>
-        <a class="pc-btn" href="mailto:vendas@brachatec.com.br?subject=Plano%20RIG%20Corporativo" data-i18n="pr-btn">Assinar Corporativo</a>
+        <a class="pc-btn" href="/app/cadastro.html?plano=rig_corporate" data-i18n="pr-btn">Assinar Corporativo</a>
       </div>
       <!-- White-Label -->
       <div class="price-card">
         <div class="pc-name">Assessorias (White-Label)</div>
-        <div class="pc-price">R$ 1.350<span>/mês base</span></div>
+        <div class="pc-price" data-i18n="pr2-price">R$ 1.350<span>/mês base</span></div>
         <div class="pc-setup" data-i18n="pr-set2">Zero Taxa de Habilitação (Setup Isento)<br>Inclui 2 clientes ativos. + R$ 450/mês por cliente adicional.</div>
         <ul class="pc-list">
           <li data-i18n="pr2-l1">Acesso à plataforma com a marca da sua Agência</li>
@@ -335,7 +335,7 @@ img{max-width:100%;display:block;}
           <li data-i18n="pr2-l4">Venda pelo preço que desejar para o cliente final</li>
           <li data-i18n="pr2-l5">Matriz de risco ilimitada por cliente</li>
         </ul>
-        <a class="pc-btn" href="mailto:parceiros@brachatec.com.br?subject=Parceria%20RIG%20White-Label" data-i18n="pr-btn-wl">Seja Parceiro White-Label</a>
+        <a class="pc-btn" href="/app/cadastro.html?plano=rig_whitelabel" data-i18n="pr-btn-wl">Seja Parceiro White-Label</a>
       </div>
     </div>
     
@@ -369,7 +369,7 @@ img{max-width:100%;display:block;}
   <div class="section-inner">
     <h2 class="s-title" data-i18n="cta-title">Não seja pego de surpresa.</h2>
     <p class="s-sub" style="margin:0 auto 32px;" data-i18n="cta-sub">Agende uma demonstração da plataforma e veja quais projetos de lei já estão ameaçando o seu negócio hoje.</p>
-    <a class="btn-primary" href="mailto:vendas@brachatec.com.br?subject=Demostracao%20RIG" data-i18n="cta-btn">Agendar Demonstração</a>
+    <a class="btn-primary" href="/app/cadastro.html?acao=demo_rig" data-i18n="cta-btn">Agendar Demonstração</a>
   </div>
 </section>
 
@@ -389,16 +389,16 @@ var T={
     'hero-btn':'Analisar Planos',
     'dor-lbl':'Custo da Desinformação','dor-title':'O que você não sabe, legisla contra você.','dor-sub':'Milhares de páginas de diários oficiais são publicadas todos os dias. A leitura manual é impossível, e o custo de ser o último a saber pode destruir a viabilidade da sua operação.',
     'dor1-t':'Falta de tempo de reação','dor1-p':'Projetos de Lei (PLs) que tramitam em regime de urgência e são aprovados sem que a sua empresa ou associação consiga articular uma defesa técnica ou propor emendas.',
-    'dor2-t':'Quebra de modelo de negócio','dor2-p':'Portarias de agências reguladoras, decretos e mudanças tributárias sutis que impactam diretamente a margem de lucro e as restrições operacionais da sua indústria.',
-    'dor3-t':'Perda de Prazos','dor3-p':'Perder janelas de Consultas Públicas ou deixar de identificar concorrentes atuando silenciosamente nos bastidores para direcionar editais e regulações normativas.',
-    'wf-lbl':'Arquitetura de Dados','wf-title':'Varredura inteligente e prova de publicidade',
+    'dor2-t':'Quebra de modelo de negócio','dor2-p':'Portarias de agências reguladoras, decretos e mudanças tributárias sutis que impactam diretamente a margem de lucro e as restrições operacionais da sua ind�    'wf-lbl':'Arquitetura de Dados','wf-title':'Varredura inteligente e prova de publicidade',
     'wf1-desc':'Coleta e Indexação de Alta Velocidade. O LEX conecta-se diretamente a APIs legislativas e realiza web scraping legal em centenas de diários oficiais (União, Estados e principais Municípios). Transforma dados desestruturados e PDFs complexos em texto pesquisável utilizando IA.',
     'wf2-desc':'Interceptação de Risco por Palavras-Chave. O cliente cadastra árvores de temas (ex: "Mineração", "Tributo X", nome de concorrentes). Sempre que o LEX identifica a menção, o sistema dispara um push via E-mail ou WhatsApp no momento da publicação, eliminando o delay humano.',
     'wf3-desc':'Lastro probatório. A BRACHATEC tira um "carimbo de tempo" (Time-Stamp SHA-256) do momento exato da publicação de um edital ou portaria. Se o documento for removido do site governamental mais tarde ("apagão de dados"), você tem a prova jurídica incontestável de que ele existiu.',
     'icp-lbl':'Público-Alvo','icp-title':'Quem utiliza RIG Tech?',
     'pr-lbl':'Investimento','pr-title':'Planos RIG Tech','pr-sub':'Modelos para empresas que precisam se proteger, e para agências que vendem inteligência para terceiros.',
+    'pr1-price':'R$ 3.500<span>/mês</span>',
     'pr-set1':'Setup Técnico: R$ 5.900<br>Mapeamento de matriz de risco incluso',
     'pr1-l1':'Monitoramento de até 500 palavras-chave','pr1-l2':'Cobertura Federal, Estadual e 100 maiores cidades','pr1-l3':'Alertas em tempo real (WhatsApp/E-mail)','pr1-l4':'Relatórios analíticos mensais exportáveis','pr1-l5':'Dossiês com validade forense (Cofre WORM)','pr1-l6':'Treinamento para a equipe de compliance',
+    'pr2-price':'R$ 1.350<span>/mês base</span>',
     'pr-set2':'Zero Taxa de Habilitação (Setup Isento)<br>Inclui 2 clientes ativos. + R$ 450/mês por cliente adicional.',
     'pr2-l1':'Acesso à plataforma com a marca da sua Agência','pr2-l2':'Múltiplos painéis (um para cada cliente seu)','pr2-l3':'Relatórios de inteligência com o seu logotipo','pr2-l4':'Venda pelo preço que desejar para o cliente final','pr2-l5':'Matriz de risco ilimitada por cliente',
     'pr-btn':'Assinar Corporativo','pr-btn-wl':'Seja Parceiro White-Label',
@@ -427,9 +427,11 @@ var T={
     'wf3-desc':'Respaldo probatorio (Dossier). BRACHATEC extrae un sello de tiempo (SHA-256) del momento exacto de la publicación. Si el documento es borrado luego, usted tiene la prueba forense de que existió.',
     'icp-lbl':'Público Objetivo','icp-title':'¿Quién utiliza RIG Tech?',
     'pr-lbl':'Inversión','pr-title':'Planes RIG Tech','pr-sub':'Modelos para empresas que necesitan protegerse, y para agencias que venden inteligencia a terceros.',
-    'pr-set1':'Setup Técnico: R$ 5.900<br>Mapeo de matriz de riesgo incluido',
+    'pr1-price':'$700<span>/mes</span>',
+    'pr-set1':'Setup Técnico: $1,200<br>Mapeo de matriz de riesgo incluido',
     'pr1-l1':'Monitoreo de hasta 500 palabras clave','pr1-l2':'Cobertura Federal, Estatal y 100 ciudades','pr1-l3':'Alertas en tiempo real (WhatsApp/E-mail)','pr1-l4':'Reportes analíticos exportables','pr1-l5':'Dossieres con validez forense (WORM)','pr1-l6':'Entrenamiento para el equipo de compliance',
-    'pr-set2':'Cero Tasa de Habilitación (Setup Exento)<br>Incluye 2 clientes. + R$ 450/mes por adicional.',
+    'pr2-price':'$270<span>/mes base</span>',
+    'pr-set2':'Cero Tasa de Habilitación (Setup Exento $0)<br>Incluye 2 clientes. + $90/mes por adicional.',
     'pr2-l1':'Acceso a la plataforma con marca de su Agencia','pr2-l2':'Múltiples paneles para sus clientes','pr2-l3':'Reportes de inteligencia con su logotipo','pr2-l4':'Venta al precio que desee para el cliente final','pr2-l5':'Matriz de riesgo ilimitada por cliente',
     'pr-btn':'Contratar Corporativo','pr-btn-wl':'Ser Socio White-Label',
     'pr-note':'<strong>15% de descuento</strong> para contratos anuales pagados por adelantado.',
@@ -457,9 +459,11 @@ var T={
     'wf3-desc':'Forensic Proof (Dossier). BRACHATEC takes a Time-Stamp (SHA-256) at the exact moment a regulation is published. If the document is later removed from government sites, you have forensic proof it existed.',
     'icp-lbl':'Target Audience','icp-title':'Who uses RIG Tech?',
     'pr-lbl':'Investment','pr-title':'RIG Tech Plans','pr-sub':'Models for companies needing protection, and for agencies selling intelligence to third parties.',
-    'pr-set1':'Technical Setup: R$ 5,900<br>Risk matrix mapping included',
+    'pr1-price':'$700<span>/mo</span>',
+    'pr-set1':'Technical Setup: $1,200<br>Risk matrix mapping included',
     'pr1-l1':'Monitoring up to 500 keywords','pr1-l2':'Federal, State, and top 100 cities coverage','pr1-l3':'Real-time alerts (WhatsApp/Email)','pr1-l4':'Exportable monthly analytical reports','pr1-l5':'Forensic validity dossiers (WORM Vault)','pr1-l6':'Compliance team training',
-    'pr-set2':'Zero Setup Fee<br>Includes 2 clients. + R$ 450/mo per add. client.',
+    'pr2-price':'$270<span>/mo base</span>',
+    'pr-set2':'Zero Setup Fee ($0)<br>Includes 2 clients. + $90/mo per add. client.',
     'pr2-l1':'Platform access with your Agency brand','pr2-l2':'Multiple dashboards for your clients','pr2-l3':'Intelligence reports with your logo','pr2-l4':'Sell at any price point to the end client','pr2-l5':'Unlimited risk matrix per client',
     'pr-btn':'Subscribe Corporate','pr-btn-wl':'Become a White-Label Partner',
     'pr-note':'<strong>15% discount</strong> for annual upfront contracts.',
@@ -467,6 +471,9 @@ var T={
     'faq1-q':'What is RIG Tech?','faq1-a':'The use of automation and data to monitor Public Powers. Instead of relying on manual reading, the platform scans Congress and the Executive in real time.',
     'faq2-q':'Which spheres are monitored?','faq2-a':'BRACHATEC monitors Federal, State, and strategic Municipal spheres, covering Official Gazettes, committee agendas, and Bill proceedings.',
     'faq3-q':'How does White-Label for agencies work?','faq3-a':'Lobbying and public relations firms can hire the BRACHATEC engine and apply their own branding. The partner delivers intelligence to their end client under their own name and prices the service freely.',
+    'cta-title':'Don’t be caught by surprise.','cta-sub':'Schedule a platform demo and see which bills are already threatening your business today.','cta-btn':'Schedule Demo',
+    'f-copy':'© 2025 BRACHATEC Tecnologia Ltda. All rights reserved.'
+  }vers intelligence to their end client under their own name and prices the service freely.',
     'cta-title':'Don’t be caught by surprise.','cta-sub':'Schedule a platform demo and see which bills are already threatening your business today.','cta-btn':'Schedule Demo',
     'f-copy':'© 2025 BRACHATEC Tecnologia Ltda. All rights reserved.'
   }

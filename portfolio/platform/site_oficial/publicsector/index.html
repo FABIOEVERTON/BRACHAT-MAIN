@@ -310,7 +310,7 @@ img{max-width:100%;display:block;}
       <div class="price-card popular">
         <div class="popular-badge">Mais escolhido</div>
         <div class="pc-name">Pacote Dispensa de Licitação</div>
-        <div class="pc-price">R$ 3.900<span>/mês</span></div>
+        <div class="pc-price" data-i18n="pr1-price">R$ 3.900<span>/mês</span></div>
         <div class="pc-setup" data-i18n="pr-set1">Setup Técnico de Implantação: R$ 9.500<br>Treinamento de secretários incluso</div>
         <ul class="pc-list">
           <li data-i18n="pr1-l1">Sistema Módulo RADAR & VIGÍLIA</li>
@@ -320,12 +320,12 @@ img{max-width:100%;display:block;}
           <li data-i18n="pr1-l5">Suporte técnico priorizado</li>
           <li data-i18n="pr1-l6">Adequado para pequenos e médios municípios</li>
         </ul>
-        <a class="pc-btn" href="mailto:gov@brachatec.com.br?subject=Pacote%20Dispensa%20de%20Licitacao" data-i18n="pr-btn">Solicitar Proposta Formal</a>
+        <a class="pc-btn" href="/app/cadastro.html?plano=dispensa14133" data-i18n="pr-btn">Solicitar Proposta Formal</a>
       </div>
       <!-- Pacote Customizado -->
       <div class="price-card">
         <div class="pc-name">Pacote Licitação / Estados</div>
-        <div class="pc-price"><span style="font-size:24px;">Sob Consulta</span></div>
+        <div class="pc-price" data-i18n="pr2-price"><span style="font-size:24px;">Sob Consulta</span></div>
         <div class="pc-setup" data-i18n="pr-set2">Implantação customizada<br>Licitação via Pregão Eletrônico</div>
         <ul class="pc-list">
           <li data-i18n="pr2-l1">Múltiplas secretarias e autarquias consolidadas</li>
@@ -334,12 +334,12 @@ img{max-width:100%;display:block;}
           <li data-i18n="pr2-l4">Painel de controle do Prefeito (BI)</li>
           <li data-i18n="pr2-l5">Consultoria de conformidade in-loco</li>
         </ul>
-        <a class="pc-btn" href="mailto:gov@brachatec.com.br?subject=Pacote%20Estado%20Licitacao" data-i18n="pr-btn-gov">Agendar Reunião Técnica</a>
+        <a class="pc-btn" href="/app/cadastro.html?plano=estado_licitacao" data-i18n="pr-btn-gov">Agendar Reunião Técnica</a>
       </div>
       <!-- White-Label -->
       <div class="price-card">
         <div class="pc-name">Assessorias (White-Label)</div>
-        <div class="pc-price">R$ 1.350<span>/mês base</span></div>
+        <div class="pc-price" data-i18n="pr3-price">R$ 1.350<span>/mês base</span></div>
         <div class="pc-setup" data-i18n="pr-set3">Zero Taxa de Habilitação (Setup Isento)<br>Inclui 2 clientes ativos. + R$ 450/mês por cliente adicional.</div>
         <ul class="pc-list">
           <li data-i18n="pr3-l1">Para escritórios de advocacia e contabilidade pública</li>
@@ -348,7 +348,7 @@ img{max-width:100%;display:block;}
           <li data-i18n="pr3-l4">Cobre o valor que desejar do município</li>
           <li data-i18n="pr3-l5">Geração de relatórios com timbre do parceiro</li>
         </ul>
-        <a class="pc-btn" href="mailto:parceiros@brachatec.com.br?subject=Parceria%20Setor%20Publico%20WL" data-i18n="pr-btn-wl">Seja Parceiro Certificado</a>
+        <a class="pc-btn" href="/app/cadastro.html?plano=gov_whitelabel" data-i18n="pr-btn-wl">Seja Parceiro Certificado</a>
       </div>
     </div>
     
@@ -382,7 +382,7 @@ img{max-width:100%;display:block;}
   <div class="section-inner">
     <h2 class="s-title" data-i18n="cta-title">Agende um diagnóstico municipal</h2>
     <p class="s-sub" style="margin:0 auto 32px;" data-i18n="cta-sub">Fale com nossos especialistas e entenda como blindar as contas do seu município antes que os problemas aconteçam.</p>
-    <a class="btn-primary" href="mailto:gov@brachatec.com.br?subject=Diagnostico%20Municipal" data-i18n="cta-btn">Agendar Reunião Técnica</a>
+    <a class="btn-primary" href="/app/cadastro.html?acao=diagnostico_municipal" data-i18n="cta-btn">Agendar Reunião Técnica</a>
   </div>
 </section>
 
@@ -410,10 +410,13 @@ var T={
     'wf3-desc':'Auditoria contínua de convênios (Transferegov.br). Gera laudos periciais WORM (SHA-256) atestando que cada centavo do recurso vinculado foi executado no objeto correto. Prova irrefutável para os Tribunais de Contas.',
     'icp-lbl':'Público Atendido','icp-title':'Quem utiliza a plataforma municipal?',
     'pr-lbl':'Pacotes e Licenciamento','pr-title':'Conformidade acessível e legal','pr-sub':'Modelagem de preços desenhada especificamente para respeitar os limites legais de dispensa de licitação e facilitar a adoção pelas controladorias públicas.',
+    'pr1-price':'R$ 3.900<span>/mês</span>',
     'pr-set1':'Setup Técnico de Implantação: R$ 9.500<br>Treinamento de secretários incluso',
     'pr1-l1':'Sistema Módulo RADAR & VIGÍLIA','pr1-l2':'Prevenção ativa de CAUC (Alertas via WhatsApp)','pr1-l3':'Módulo COMPRAS (Nova Lei 14.133)','pr1-l4':'Geração de Trilhas de Auditoria (WORM/SHA-256)','pr1-l5':'Suporte técnico priorizado','pr1-l6':'Adequado para pequenos e médios municípios',
+    'pr2-price':'<span style="font-size:24px;">Sob Consulta</span>',
     'pr-set2':'Implantação customizada<br>Licitação via Pregão Eletrônico',
     'pr2-l1':'Múltiplas secretarias e autarquias consolidadas','pr2-l2':'Módulo EXECUTA completo (Convênios/Obras)','pr2-l3':'Integração com ERPs de gestão pública','pr2-l4':'Painel de controle do Prefeito (BI)','pr2-l5':'Consultoria de conformidade in-loco',
+    'pr3-price':'R$ 1.350<span>/mês base</span>',
     'pr-set3':'Zero Taxa de Habilitação (Setup Isento)<br>Inclui 2 clientes ativos. + R$ 450/mês por cliente adicional.',
     'pr3-l1':'Para escritórios de advocacia e contabilidade pública','pr3-l2':'Plataforma com sua marca e logotipo','pr3-l3':'Gerencie todos os seus prefeitos em um só painel','pr3-l4':'Cobre o valor que desejar do município','pr3-l5':'Geração de relatórios com timbre do parceiro',
     'pr-btn':'Solicitar Proposta Formal','pr-btn-gov':'Agendar Reunião Técnica','pr-btn-wl':'Seja Parceiro Certificado',
@@ -442,16 +445,19 @@ var T={
     'wf3-desc':'Auditoría continua de convenios. Genera dictámenes periciales atestiguando que cada centavo se ejecutó correctamente. Prueba irrefutable para los Tribunales de Cuentas.',
     'icp-lbl':'Público Atendido','icp-title':'¿Quién utiliza la plataforma municipal?',
     'pr-lbl':'Paquetes y Licencias','pr-title':'Conformidad accesible y legal','pr-sub':'Modelado de precios diseñado para respetar los límites legales de contratación directa.',
-    'pr-set1':'Setup Técnico de Implementación: R$ 9.500<br>Capacitación incluida',
+    'pr1-price':'$780<span>/mes</span>',
+    'pr-set1':'Setup Técnico de Implementación: $1,900<br>Capacitación incluida',
     'pr1-l1':'Sistema Módulo RADAR & VIGÍLIA','pr1-l2':'Prevención activa de bloqueos (Alertas WhatsApp)','pr1-l3':'Módulo COMPRAS','pr1-l4':'Generación de Pistas de Auditoría (WORM)','pr1-l5':'Soporte técnico priorizado','pr1-l6':'Adecuado para pequeños y medianos municipios',
+    'pr2-price':'<span style="font-size:24px;">Bajo Consulta</span>',
     'pr-set2':'Implementación personalizada<br>Licitación vía Subasta Electrónica',
     'pr2-l1':'Múltiples secretarías consolidadas','pr2-l2':'Módulo EJECUTA completo','pr2-l3':'Integración con ERPs de gestión pública','pr2-l4':'Panel de control del Alcalde (BI)','pr2-l5':'Consultoría de conformidad in-situ',
-    'pr-set3':'Cero Tasa de Habilitación (Setup Exento)<br>Incluye 2 clientes activos. + R$ 450/mes por cliente adicional.',
+    'pr3-price':'$270<span>/mes base</span>',
+    'pr-set3':'Cero Tasa de Habilitación (Setup Exento $0)<br>Incluye 2 clientes activos. + $90/mes por cliente adicional.',
     'pr3-l1':'Para despachos de abogados y contabilidad pública','pr3-l2':'Plataforma con su marca y logotipo','pr3-l3':'Gestione todas las alcaldías en un solo panel','pr3-l4':'Cobre el valor que desee al municipio','pr3-l5':'Generación de reportes con sello del socio',
     'pr-btn':'Solicitar Propuesta Formal','pr-btn-gov':'Agendar Reunión Técnica','pr-btn-wl':'Ser Socio Certificado',
-    'pr-note':'<strong>✅ Legalidad Garantizada:</strong> El paquete principal tiene un valor total de R$ 56.300/año. Este valor está dentro de los límites de compras directas (Dispensa de Licitación).',
+    'pr-note':'<strong>✅ Legalidad Garantizada:</strong> El paquete principal tiene un valor total equivalente adaptado al marco normativo de compras públicas.',
     'faq-title':'Preguntas Frecuentes',
-    'faq1-q':'¿Cómo encaja en la Contratación Directa?','faq1-a':'El valor anual de nuestro paquete (R$ 56.300) se encuentra estrictamente dentro del límite legal establecido por la Ley 14.133 para compras directas y servicios, permitiendo una contratación rápida y sin licitación.',
+    'faq1-q':'¿Cómo encaja en la Contratación Directa?','faq1-a':'El valor anual de nuestro paquete se encuentra estrictamente dentro del límite legal para compras directas y servicios, permitiendo una contratación rápida y sin licitación burocrática.',
     'faq2-q':'¿Cómo evita el sistema los bloqueos fiscales?','faq2-a':'El módulo monitorea diariamente 27 ítems de conformidad, incluyendo certificados fiscales y reportes. El sistema alerta al gestor por WhatsApp con días de anticipación.',
     'faq3-q':'¿Ayuda a evitar el rechazo de cuentas en Tribunales?','faq3-a':'Sí. A través de nuestro motor, generamos pistas de auditoría forense para ejecuciones de convenios. En caso de auditorías futuras, el municipio tiene un expediente pericial irrefutable.',
     'cta-title':'Agende un diagnóstico municipal','cta-sub':'Hable con nuestros expertos y entienda cómo blindar las cuentas de su municipio antes de que ocurran los problemas.','cta-btn':'Agendar Reunión Técnica',
@@ -474,16 +480,19 @@ var T={
     'wf3-desc':'Continuous auditing of covenants. Generates WORM forensic expert reports (SHA-256) certifying that every penny was executed correctly. Irrefutable proof for the Courts of Audits.',
     'icp-lbl':'Audience','icp-title':'Who uses the municipal platform?',
     'pr-lbl':'Packages & Licensing','pr-title':'Accessible and legal compliance','pr-sub':'Pricing models specifically designed to respect legal limits for direct public purchasing without a bidding process.',
-    'pr-set1':'Implementation Setup: R$ 9,500<br>Secretary training included',
+    'pr1-price':'$780<span>/mo</span>',
+    'pr-set1':'Implementation Setup: $1,900<br>Secretary training included',
     'pr1-l1':'RADAR & VIGÍLIA Monitoring Module','pr1-l2':'Active blockade prevention (WhatsApp Alerts)','pr1-l3':'PROCUREMENT Module (Law 14.133)','pr1-l4':'Audit Trail Generation (WORM/SHA-256)','pr1-l5':'Prioritized technical support','pr1-l6':'Suitable for small and medium municipalities',
+    'pr2-price':'<span style="font-size:24px;">Custom / Bidding</span>',
     'pr-set2':'Custom Implementation<br>Bidding via Electronic Auction',
     'pr2-l1':'Multiple secretariats consolidated','pr2-l2':'Full EXECUTION Module (Covenants/Works)','pr2-l3':'Integration with public management ERPs','pr2-l4':'Mayor’s BI Control Panel','pr2-l5':'On-site compliance consulting',
-    'pr-set3':'Zero Setup Fee<br>Includes 2 active clients. + R$ 450/mo per additional client.',
+    'pr3-price':'$270<span>/mo base</span>',
+    'pr-set3':'Zero Setup Fee ($0)<br>Includes 2 active clients. + $90/mo per additional client.',
     'pr3-l1':'For law firms and public accounting agencies','pr3-l2':'Platform with your brand and logo','pr3-l3':'Manage all your mayors in a single dashboard','pr3-l4':'Charge whatever price you want','pr3-l5':'Generate reports with partner branding',
     'pr-btn':'Request Formal Proposal','pr-btn-gov':'Schedule Technical Meeting','pr-btn-wl':'Become a Certified Partner',
-    'pr-note':'<strong>✅ Guaranteed Legality:</strong> The main package has a total value of R$ 56,300/year. This is strictly below the legal limit for direct purchasing without bureaucratic public bidding (Dispensa de Licitação).',
+    'pr-note':'<strong>✅ Guaranteed Legality:</strong> Designed to fit directly into statutory direct procurement ceilings without administrative delays.',
     'faq-title':'Frequently Asked Questions',
-    'faq1-q':'How does the contract fit into Direct Purchasing?','faq1-a':'The annual value of our main package is R$ 56,300. This is strictly within the limit of R$ 59,906.02 established by Law 14.133/2021 for direct purchases and services, allowing fast contracting without public bidding.',
+    'faq1-q':'How does the contract fit into Direct Purchasing?','faq1-a':'The annual value of our package is calibrated to fall strictly within statutory thresholds for direct purchasing and services, allowing fast contracting without public bidding.',
     'faq2-q':'How does the system prevent fiscal blockages?','faq2-a':'The system daily monitors 27 compliance items, including tax certificates and legal reports. It alerts the manager via WhatsApp and email days before expiration, allowing preventive action.',
     'faq3-q':'Does the tool help avoid Court of Audits rejection?','faq3-a':'Yes. Through our engine, we generate audit trails (WORM vault with SHA-256 hash) for the execution of federal covenants. In case of future questioning, the municipality has an irrefutable forensic dossier.',
     'cta-title':'Schedule a municipal diagnostic','cta-sub':'Talk to our experts and understand how to shield your municipality’s accounts before problems happen.','cta-btn':'Schedule Technical Meeting',

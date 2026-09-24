@@ -52,10 +52,20 @@
 
 ---
 
-## 3. Regras de Negócio Inegociáveis
-* **RN-01 (Preços Fixos):** Não utilizar "a partir de" nos orçamentos formais e no sistema.
-* **RN-02 (White-Label Setup Isento):** Cobrança base de R$ 1.350/mês para parceiros (inclui 2 tenants) + R$ 450/mês por tenant excedente. Taxa de setup = R$ 0,00.
-* **RN-03 (Imutabilidade Probatória):** Todo registro que entra na cadeia probatória deve ter retenção de integridade por no mínimo 10 anos (política WORM).
+## 3. Regras de Negócio & Arquitetura de Precificação
+* **RN-01 (Política Comercial e Planos Homologados):**
+  * **Governança de IA:**
+    * *Standard:* R$ 2.900/mês + Setup R$ 7.500 (Isento no Programa Fundador).
+    * *Enterprise:* Sob Consulta / Personalizado (dimensionamento sob medida conforme volume de filiais, modelos LLM e operadores terceiros de IA auditados).
+  * **Setor Público:**
+    * *Pacote Dispensa de Licitação (Lei 14.133):* R$ 3.900/mês + Setup R$ 9.500 (R$ 56.300/ano — dentro do teto de compras diretas sem licitação).
+    * *Pacote Licitação / Estados:* Sob Consulta (Pregão Eletrônico).
+  * **RIG Tech:**
+    * *Corporativo:* R$ 3.500/mês + Setup R$ 5.900 (Mapeamento de matriz de risco incluso).
+  * **White-Label (Parceiros em todos os ramos):**
+    * *Licença Base:* R$ 1.350/mês (inclui 2 clientes ativos) + R$ 450/mês por cliente adicional.
+    * *Taxa de Habilitação:* R$ 0,00 (Setup Isento).
+* **RN-02 (Imutabilidade Probatória):** Todo registro que entra na cadeia probatória deve ter retenção de integridade por no mínimo 10 anos (política WORM).
 
 ---
 

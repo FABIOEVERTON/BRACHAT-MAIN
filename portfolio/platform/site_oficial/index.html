@@ -68,6 +68,15 @@ img{max-width:100%;display:block;}
 .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--muted-2);padding:14px 32px;border-radius:var(--r);font-size:13px;letter-spacing:.06em;cursor:pointer;text-transform:uppercase;transition:all .2s;display:inline-block;}
 .btn-ghost:hover{color:var(--white);border-color:rgba(255,255,255,.35);}
 
+/* Hero Guided Paths */
+.hero-paths{margin-top:36px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);}
+.hero-paths-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-weight:600;}
+.hero-paths-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.hero-path-card{background:var(--navy-3);border:1px solid rgba(255,255,255,.08);border-radius:var(--r2);padding:14px 16px;display:flex;flex-direction:column;gap:4px;text-decoration:none;transition:all .2s;}
+.hero-path-card:hover{border-color:var(--gold-border);background:var(--navy-4);transform:translateY(-2px);}
+.hpc-title{font-size:13px;font-weight:600;color:var(--white);display:flex;align-items:center;gap:8px;}
+.hpc-desc{font-size:11px;color:var(--muted);line-height:1.4;}
+
 /* Chain Visual */
 .chain-visual{display:flex;flex-direction:column;gap:6px;}
 .chain-node{background:var(--navy-3);border:1px solid var(--gold-border);border-radius:var(--r2);padding:16px 20px;position:relative;}
@@ -206,10 +215,32 @@ img{max-width:100%;display:block;}
 #cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--navy-3);border-top:1px solid var(--gold-border);padding:16px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:20px;z-index:250;transform:translateY(100%);transition:transform .4s;}
 #cookie-banner.show{transform:translateY(0);}
 .cookie-text{font-size:12px;color:var(--muted);line-height:1.6;flex:1;}
-.cookie-text a{color:var(--gold);font-size:12px;}
 .cookie-btns{display:flex;gap:8px;flex-shrink:0;}
 .btn-cookie-accept{background:var(--gold);color:var(--navy);border:none;padding:8px 18px;border-radius:var(--r);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;}
 .btn-cookie-reject{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,.12);padding:8px 18px;border-radius:var(--r);font-size:11px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;}
+
+/* SIMULADOR DE RISCO */
+#simulador{background:var(--navy-3);border-bottom:1px solid rgba(201,168,76,.15);border-top:1px solid rgba(201,168,76,.15);}
+.sim-container{display:grid;grid-template-columns:1fr 1.5fr;gap:32px;align-items:stretch;}
+.sim-selector{display:flex;flex-direction:column;gap:12px;}
+.sim-tab{background:var(--navy-2);border:1px solid rgba(255,255,255,.08);border-radius:var(--r2);padding:18px 20px;display:flex;align-items:center;gap:16px;cursor:pointer;text-align:left;transition:all .2s;}
+.sim-tab:hover{border-color:var(--gold-border);background:var(--navy);}
+.sim-tab.active{border-color:var(--gold);background:var(--navy);box-shadow:0 0 20px rgba(201,168,76,.15);}
+.sim-tab-icon{font-size:26px;flex-shrink:0;}
+.sim-tab-text strong{display:block;font-size:14px;color:var(--white);margin-bottom:2px;font-family:var(--sans);}
+.sim-tab-text small{font-size:12px;color:var(--muted-2);}
+.sim-card{background:var(--navy-2);border:1px solid var(--gold-border);border-radius:var(--r3);padding:32px;display:flex;flex-direction:column;justify-content:space-between;}
+.sim-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,.06);padding-bottom:14px;}
+.sim-header-title{font-family:var(--serif);font-size:18px;color:var(--white);font-weight:600;}
+.sim-risk-badge{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:3px;}
+.risk-high{background:rgba(224,92,92,.15);color:#ff6b6b;border:1px solid rgba(224,92,92,.4);}
+.risk-med{background:rgba(235,178,55,.15);color:#ebb237;border:1px solid rgba(235,178,55,.4);}
+.sim-scenario{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:18px;}
+.sim-impact-box{background:var(--navy-3);border-radius:var(--r);padding:16px;margin-bottom:24px;border-left:3px solid var(--gold);}
+.sim-impact-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:4px;}
+.sim-impact-text{font-size:13px;color:var(--white);line-height:1.5;}
+.sim-cta-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+@media(max-width:960px){.sim-container{grid-template-columns:1fr;}}
 
 /* RESPONSIVE */
 /* Telas Grandes (Ultrawide / Mac / Monitores 4K) */
@@ -272,6 +303,7 @@ img{max-width:100%;display:block;}
     <li><a href="#sobre" data-i18n="nav-sobre">Quem Somos</a></li>
     <li><a href="#motor" data-i18n="nav-motor">Motor Central</a></li>
     <li><a href="#solucoes" data-i18n="nav-solucoes">Soluções</a></li>
+    <li><a href="#simulador" data-i18n="nav-simulador">Simulador</a></li>
     <li><a href="#academy" data-i18n="nav-academy">Academy</a></li>
     <li><a href="#contato" data-i18n="nav-contato">Contato</a></li>
   </ul>
@@ -296,6 +328,19 @@ img{max-width:100%;display:block;}
       <div class="hero-actions">
         <a class="btn-primary" href="#contato" data-i18n="hero-btn1">Agendar auditoria gratuita</a>
         <a class="btn-ghost" href="#solucoes" data-i18n="hero-btn2">Conhecer as soluções</a>
+      </div>
+      <div class="hero-paths">
+        <div class="hero-paths-label" data-i18n="hero-paths-label">Selecione o seu objetivo:</div>
+        <div class="hero-paths-grid">
+          <a href="#solucoes" class="hero-path-card">
+            <span class="hpc-title"><span style="color:var(--gold);">🏛️</span> <span data-i18n="hpc-org-title">Blindar Minha Organização</span></span>
+            <span class="hpc-desc" data-i18n="hpc-org-desc">Para Prefeituras, Empresas, Bancos e Indústrias.</span>
+          </a>
+          <a href="javascript:void(0)" onclick="openModal('whitelabel')" class="hero-path-card">
+            <span class="hpc-title"><span style="color:var(--cyan);">💼</span> <span data-i18n="hpc-wl-title">Parceria White-Label</span></span>
+            <span class="hpc-desc" data-i18n="hpc-wl-desc">Para Assessorias, Contabilidades e Escritórios.</span>
+          </a>
+        </div>
       </div>
     </div>
     <div class="chain-visual">
@@ -327,6 +372,45 @@ img{max-width:100%;display:block;}
         </div>
       </div>
       <div class="chain-label">Cadeia probatória SHA-256 · Cofre WORM</div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULADOR DE RISCO EM 60 SEGUNDOS -->
+<section id="simulador" class="section">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="lbl-simulador">Diagnóstico Interativo</div>
+    <h2 class="s-title" data-i18n="title-simulador">Simulador de Risco em 60 Segundos</h2>
+    <p class="s-sub" data-i18n="sub-simulador">Identifique em instantes onde estão os maiores riscos regulatórios da sua operação e receba a recomendação técnica de blindagem.</p>
+    
+    <div class="sim-container">
+      <div class="sim-selector">
+        <button class="sim-tab active" onclick="selectSim('ia')" id="tab-ia">
+          <span class="sim-tab-icon">🤖</span>
+          <span class="sim-tab-text">
+            <strong data-i18n="sim-tab1-t">Governança de IA</strong>
+            <small data-i18n="sim-tab1-s">Shadow AI & Responsabilidade LGPD</small>
+          </span>
+        </button>
+        <button class="sim-tab" onclick="selectSim('gov')" id="tab-gov">
+          <span class="sim-tab-icon">🏛️</span>
+          <span class="sim-tab-text">
+            <strong data-i18n="sim-tab2-t">Setor Público</strong>
+            <small data-i18n="sim-tab2-s">Radar CAUC & Convênios TCE</small>
+          </span>
+        </button>
+        <button class="sim-tab" onclick="selectSim('rig')" id="tab-rig">
+          <span class="sim-tab-icon">📜</span>
+          <span class="sim-tab-text">
+            <strong data-i18n="sim-tab3-t">Risco Legislativo (RIG)</strong>
+            <small data-i18n="sim-tab3-s">Projetos de Lei & Diários Oficiais</small>
+          </span>
+        </button>
+      </div>
+
+      <div class="sim-card" id="sim-card-body">
+        <!-- Injetado dinamicamente via JS -->
+      </div>
     </div>
   </div>
 </section>
@@ -522,14 +606,14 @@ img{max-width:100%;display:block;}
     <h2 class="s-title" style="text-align:center;" data-i18n="title-cta">Pronto para transformar<br>conformidade em prova?</h2>
     <p class="s-sub" style="text-align:center;max-width:none;font-size:16px;" data-i18n="cta-sub">Agende uma auditoria diagnóstica gratuita de 15 minutos. Analisamos o seu ambiente atual e identificamos as lacunas de maior risco regulatório — sem compromisso.</p>
     <div class="cta-actions">
-      <a class="btn-primary" href="mailto:contato@brachatec.com.br?subject=Auditoria%20Gratuita" data-i18n="cta-btn1">Agendar auditoria gratuita</a>
-      <a class="btn-ghost" href="mailto:parceiros@brachatec.com.br?subject=Parceria%20White-Label" data-i18n="cta-btn2">Ser parceiro white-label</a>
+      <a class="btn-primary" href="javascript:void(0)" onclick="openModal('auditoria')" data-i18n="cta-btn1">Agendar auditoria gratuita</a>
+      <a class="btn-ghost" href="javascript:void(0)" onclick="openModal('whitelabel')" data-i18n="cta-btn2">Ser parceiro white-label</a>
     </div>
     <div class="cta-form" id="cta-form-wrap">
       <input class="cta-input" type="email" id="cta-email" data-i18n="cta-input" placeholder="seu@email.com.br">
       <button class="btn-primary" onclick="submitEmail()" data-i18n="cta-send">Receber material</button>
     </div>
-    <div class="cta-success" id="cta-success"><span id="cta-success-msg">E-mail recebido — entraremos em contato em até 24h.</span></div>
+    <div class="cta-success" id="cta-success"><span id="cta-success-msg">E-mail recebido com sucesso! Nossa equipe entrará em contato em até 24h.</span></div>
   </div>
 </section>
 
@@ -555,14 +639,14 @@ img{max-width:100%;display:block;}
       <ul class="f-links">
         <li><a href="#sobre">Quem Somos</a></li>
         <li><a href="#motor">Motor Central</a></li>
-        <li><a href="mailto:parceiros@brachatec.com.br">Seja Parceiro WL</a></li>
+        <li><a href="javascript:void(0)" onclick="openModal('whitelabel')">Seja Parceiro WL</a></li>
       </ul>
     </div>
     <div>
       <div class="f-col-title" data-i18n="f-col3">Contato</div>
       <ul class="f-links">
-        <li><a href="mailto:contato@brachatec.com.br">contato@brachatec.com.br</a></li>
-        <li><a href="mailto:parceiros@brachatec.com.br">parceiros@brachatec.com.br</a></li>
+        <li><a href="javascript:void(0)" onclick="openModal('auditoria')">Falar com Consultor</a></li>
+        <li><a href="javascript:void(0)" onclick="openModal('whitelabel')">Canal Parceiros WL</a></li>
         <li><a href="#contato">Auditoria gratuita</a></li>
       </ul>
     </div>
@@ -616,6 +700,40 @@ img{max-width:100%;display:block;}
   </div>
 </div>
 
+<div class="modal-overlay" id="modal-whitelabel">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('whitelabel')">✕</button>
+    <div class="modal-title">Programa de Parceiros White-Label</div>
+    <div class="modal-body">
+      <p>Tenha a plataforma BRACHATEC com a marca, logotipo e domínio do seu escritório. Atenda múltiplos clientes com faturamento direto e <strong>Taxa de Setup Isenta (R$ 0)</strong>.</p>
+      <div id="wl-form-wrap">
+        <input class="cta-input" type="text" id="wl-name" placeholder="Seu nome completo" style="margin-bottom:12px;width:100%;box-sizing:border-box;">
+        <input class="cta-input" type="email" id="wl-email" placeholder="Seu e-mail corporativo" style="margin-bottom:12px;width:100%;box-sizing:border-box;">
+        <input class="cta-input" type="text" id="wl-org" placeholder="Nome do Escritório / Assessoria" style="margin-bottom:16px;width:100%;box-sizing:border-box;">
+        <button class="btn-primary" onclick="submitWhitelabel()" style="width:100%;">Solicitar Habilitação de Parceiro</button>
+      </div>
+      <div class="cta-success" id="wl-success" style="margin-top:16px;display:none;">Solicitação de parceria enviada com sucesso! Nossa equipe entrará em contato em até 24 horas.</div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-auditoria">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('auditoria')">✕</button>
+    <div class="modal-title">Agendar Diagnóstico Gratuito</div>
+    <div class="modal-body">
+      <p>Descubra as lacunas e riscos regulatórios na sua operação em uma sessão técnica de 15 minutos com nossos especialistas.</p>
+      <div id="aud-form-wrap">
+        <input class="cta-input" type="text" id="aud-name" placeholder="Seu nome" style="margin-bottom:12px;width:100%;box-sizing:border-box;">
+        <input class="cta-input" type="email" id="aud-email" placeholder="Seu e-mail corporativo" style="margin-bottom:12px;width:100%;box-sizing:border-box;">
+        <input class="cta-input" type="text" id="aud-org" placeholder="Empresa ou Município" style="margin-bottom:16px;width:100%;box-sizing:border-box;">
+        <button class="btn-primary" onclick="submitAuditoria()" style="width:100%;">Confirmar Agendamento</button>
+      </div>
+      <div class="cta-success" id="aud-success" style="margin-top:16px;display:none;">Agendamento solicitado com sucesso! Você receberá a confirmação por e-mail em instantes.</div>
+    </div>
+  </div>
+</div>
+
 <!-- COOKIE -->
 <div id="cookie-banner">
   <div class="cookie-text" data-i18n="cookie-text">Este website utiliza apenas cookies técnicos estritamente necessários. Não utilizamos cookies de rastreamento ou publicidade. <a href="#" onclick="openModal('privacy')">Política de Privacidade.</a></div>
@@ -627,8 +745,8 @@ img{max-width:100%;display:block;}
 
 <script>
 /* MODAL */
-function openModal(id){document.getElementById('modal-'+id).classList.add('open');document.body.style.overflow='hidden';}
-function closeModal(id){document.getElementById('modal-'+id).classList.remove('open');document.body.style.overflow='';}
+function openModal(id){var m=document.getElementById('modal-'+id);if(m){m.classList.add('open');document.body.style.overflow='hidden';}}
+function closeModal(id){var m=document.getElementById('modal-'+id);if(m){m.classList.remove('open');document.body.style.overflow='';}}
 document.querySelectorAll('.modal-overlay').forEach(function(m){m.addEventListener('click',function(e){if(e.target===m){m.classList.remove('open');document.body.style.overflow='';}});});
 
 /* COOKIE */
@@ -636,13 +754,28 @@ document.querySelectorAll('.modal-overlay').forEach(function(m){m.addEventListen
 function acceptCookies(){localStorage.setItem('brt_cookie','accepted');document.getElementById('cookie-banner').classList.remove('show');}
 function rejectCookies(){localStorage.setItem('brt_cookie','rejected');document.getElementById('cookie-banner').classList.remove('show');}
 
-/* EMAIL */
+/* FORMS */
 function submitEmail(){
   var email=document.getElementById('cta-email').value.trim();
   if(!email||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){document.getElementById('cta-email').style.borderColor='var(--red)';setTimeout(function(){document.getElementById('cta-email').style.borderColor='';},2000);return;}
-  window.open('mailto:contato@brachatec.com.br?subject=Material%20BRACHATEC&body=E-mail%3A%20'+encodeURIComponent(email),'_blank');
   document.getElementById('cta-form-wrap').style.display='none';
   document.getElementById('cta-success').style.display='block';
+}
+
+function submitWhitelabel(){
+  var email=document.getElementById('wl-email').value.trim();
+  var name=document.getElementById('wl-name').value.trim();
+  if(!name||!email||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){alert('Por favor, preencha seu nome e e-mail corporativo válido.');return;}
+  document.getElementById('wl-form-wrap').style.display='none';
+  document.getElementById('wl-success').style.display='block';
+}
+
+function submitAuditoria(){
+  var email=document.getElementById('aud-email').value.trim();
+  var name=document.getElementById('aud-name').value.trim();
+  if(!name||!email||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){alert('Por favor, preencha seu nome e e-mail corporativo válido.');return;}
+  document.getElementById('aud-form-wrap').style.display='none';
+  document.getElementById('aud-success').style.display='block';
 }
 
 /* TRADUÇÃO */
@@ -650,11 +783,20 @@ var LANG='pt';
 var T={
   pt:{
     'nav-login':'Entrar',
-    'nav-sobre':'Quem Somos','nav-motor':'Motor Central','nav-solucoes':'Soluções','nav-academy':'Academy','nav-contato':'Contato','nav-cta':'Falar com especialista',
+    'nav-sobre':'Quem Somos','nav-motor':'Motor Central','nav-solucoes':'Soluções','nav-simulador':'Simulador','nav-academy':'Academy','nav-contato':'Contato','nav-cta':'Falar com especialista',
     'hero-eyebrow':'Plataforma de Governança Probatória',
     'hero-h1':'Governança que<br><em>resiste a litígios,<br>auditorias e órgãos reguladores.</em>',
     'hero-lead':'Somos uma plataforma de governança estruturada em três grandes ramos de atuação: Inteligência Artificial, Setor Público e Risco Legislativo. Transformamos a sua conformidade em provas forenses com validade jurídica.',
     'hero-btn1':'Agendar auditoria gratuita','hero-btn2':'Conhecer as soluções',
+    'hero-paths-label':'Selecione o seu objetivo:',
+    'hpc-org-title':'Blindar Minha Organização',
+    'hpc-org-desc':'Para Prefeituras, Empresas, Bancos e Indústrias.',
+    'hpc-wl-title':'Parceria White-Label',
+    'hpc-wl-desc':'Para Assessorias, Contabilidades e Escritórios.',
+    'lbl-simulador':'Diagnóstico Interativo','title-simulador':'Simulador de Risco em 60 Segundos','sub-simulador':'Identifique em instantes onde estão os maiores riscos regulatórios da sua operação e receba a recomendação técnica de blindagem.',
+    'sim-tab1-t':'Governança de IA','sim-tab1-s':'Shadow AI & Responsabilidade LGPD',
+    'sim-tab2-t':'Setor Público','sim-tab2-s':'Radar CAUC & Convênios TCE',
+    'sim-tab3-t':'Risco Legislativo (RIG)','sim-tab3-s':'Projetos de Lei & Diários Oficiais',
     'lbl-sobre':'Quem Somos','title-sobre':'Governança forense em<br>três ramos de atuação.',
     'sobre-p1':'A <strong>BRACHATEC</strong> nasceu da convergência entre direito, tecnologia e administração pública. Atuamos como uma <strong>plataforma de governança probatória</strong> — transformamos conformidade em provas forenses com validade jurídica.',
     'sobre-p2':'Cada ação realizada na plataforma gera um <strong>Laudo Pericial</strong> com assinatura SHA-256 encadeada, gravado em cofre WORM (Write Once Read Many). Isso cria uma linha do tempo probatória contínua, matematicamente verificável e inquestionável em qualquer corte — de órgãos reguladores e auditorias independentes.',
@@ -683,11 +825,20 @@ var T={
   },
   es:{
     'nav-login':'Ingresar',
-    'nav-sobre':'Quiénes Somos','nav-motor':'Motor Central','nav-solucoes':'Soluciones','nav-academy':'Academy','nav-contato':'Contacto','nav-cta':'Hablar con especialista',
+    'nav-sobre':'Quiénes Somos','nav-motor':'Motor Central','nav-solucoes':'Soluciones','nav-simulador':'Simulador','nav-academy':'Academy','nav-contato':'Contacto','nav-cta':'Hablar con especialista',
     'hero-eyebrow':'Plataforma de Gobernanza Probatoria',
     'hero-h1':'Gobernanza que<br><em>resiste litigios,<br>auditorías y agencias reguladoras.</em>',
     'hero-lead':'Somos una plataforma de gobernanza estructurada en tres ramas: Inteligencia Artificial, Sector Público y Riesgo Legislativo. Transformamos su conformidad en pruebas forenses con validez jurídica.',
     'hero-btn1':'Agendar auditoría gratuita','hero-btn2':'Conocer las soluciones',
+    'hero-paths-label':'Seleccione su objetivo:',
+    'hpc-org-title':'Proteger Mi Organización',
+    'hpc-org-desc':'Para Alcaldías, Empresas, Bancos e Industrias.',
+    'hpc-wl-title':'Alianza White-Label',
+    'hpc-wl-desc':'Para Asesorías, Contabilidades y Firmas.',
+    'lbl-simulador':'Diagnóstico Interactivo','title-simulador':'Simulador de Riesgo en 60 Segundos','sub-simulador':'Identifique al instante los mayores riesgos regulatorios de su operación y obtenga recomendaciones técnicas.',
+    'sim-tab1-t':'Gobernanza de IA','sim-tab1-s':'Shadow AI & Responsabilidad',
+    'sim-tab2-t':'Sector Público','sim-tab2-s':'Bloqueos Fiscales & Convenios',
+    'sim-tab3-t':'Riesgo Legislativo (RIG)','sim-tab3-s':'Proyectos de Ley & Boletines',
     'lbl-sobre':'Quiénes Somos','title-sobre':'Gobernanza forense en<br>tres ramas de actuación.',
     'sobre-p1':'<strong>BRACHATEC</strong> nació de la convergencia entre derecho, tecnología y administración pública. Actuamos como una <strong>plataforma de gobernanza probatoria</strong> — transformamos conformidad en pruebas forenses con validez jurídica.',
     'sobre-p2':'Cada acción genera un <strong>Dictamen Pericial</strong> con firma SHA-256 encadenada, grabado en bóveda WORM. Esto crea una línea de tiempo probatoria continua, matemáticamente verificable e incuestionable ante cualquier tribunal u agencia reguladora.',
@@ -699,12 +850,12 @@ var T={
     'step4-title':'Bóveda Forense','step4-text':'Cada acción genera un Dictamen Pericial SHA-256 encadenado, grabado en bóveda WORM. Listo para agencias reguladoras.',
     'fw-title':'El efecto flywheel de la cadena probatoria','fw-text':'Cada dictamen encadena el hash del anterior. Después de 12 meses, el cliente posee una línea probatoria continua e independiente.',
     'lbl-solucoes':'Soluciones por Segmento','title-solucoes':'Tres ramas. Un motor central.','sub-solucoes':'Elija la rama que atiende su sector. Cada una opera sobre el Motor BRACHATEC.',
-    'ramo1-name':'Gobernanza de IA','ramo1-desc':'Auditoría continua de inteligencia artificial. Descubra Shadow AI, intercepte sesgo algorítmico y genere dictámenes forenses para agencias reguladoras.',
-    'ramo1-price':'Desde <strong>R$ 2.900</strong>/mes','ramo1-note':'Setup + Programa Fundador disponible','ramo1-btn':'Conocer Gobernanza de IA →',
+    'ramo1-name':'Gobernanza de IA','ramo1-desc':'Auditoria continua de inteligencia artificial. Descubra Shadow AI, intercepte sesgo algorítmico y genere dictámenes forenses para agencias reguladoras.',
+    'ramo1-price':'Desde <strong>$580</strong>/mes','ramo1-note':'Setup + Programa Fundador disponible','ramo1-btn':'Conocer Gobernanza de IA →',
     'ramo2-name':'Sector Público','ramo2-desc':'Blindaje procesal para municipios. Evite bloqueos, rechazo de cuentas y pérdida de convenios federales con auditoría automatizada.',
-    'ramo2-price':'Desde <strong>R$ 3.900</strong>/mes','ramo2-note':'Adecuado a la Ley 14.133 (Dispensa)','ramo2-btn':'Conocer Sector Público →',
+    'ramo2-price':'Desde <strong>$780</strong>/mes','ramo2-note':'Adecuado a la Ley 14.133 (Dispensa)','ramo2-btn':'Conocer Sector Público →',
     'ramo3-name':'RIG Tech','ramo3-desc':'Inteligencia legislativa en tiempo real. Monitoree proyectos de ley y regulaciones que impactan su sector.',
-    'ramo3-price':'Desde <strong>R$ 3.500</strong>/mes','ramo3-btn':'Conocer RIG Tech →',
+    'ramo3-price':'Desde <strong>$700</strong>/mes','ramo3-btn':'Conocer RIG Tech →',
     'lbl-academy':'BRACHATEC Academy','title-academy':'Del problema al dominio —<br>en cuatro capas.','sub-academy':'Educación regulatoria estructurada para equipos que necesitan dominar la conformidad.',
     'lbl-cta':'Próximo paso','title-cta':'¿Listo para transformar<br>conformidad en prueba?',
     'cta-sub':'Agende una auditoría diagnóstica gratuita de 15 minutos — sin compromiso.','cta-btn1':'Agendar auditoría gratuita','cta-btn2':'Ser socio white-label','cta-input':'su@email.com','cta-send':'Recibir material',
@@ -714,11 +865,20 @@ var T={
   },
   en:{
     'nav-login':'Log In',
-    'nav-sobre':'About Us','nav-motor':'Core Engine','nav-solucoes':'Solutions','nav-academy':'Academy','nav-contato':'Contact','nav-cta':'Talk to specialist',
+    'nav-sobre':'About Us','nav-motor':'Core Engine','nav-solucoes':'Solutions','nav-simulador':'Simulator','nav-academy':'Academy','nav-contato':'Contact','nav-cta':'Talk to specialist',
     'hero-eyebrow':'Probatory Governance Platform',
     'hero-h1':'Governance that<br><em>withstands litigation,<br>audits and regulatory agencies.</em>',
     'hero-lead':'We are a governance platform structured in three branches: Artificial Intelligence, Public Sector, and Legislative Risk. We turn your compliance into forensic proofs with legal validity.',
     'hero-btn1':'Schedule free audit','hero-btn2':'Explore solutions',
+    'hero-paths-label':'Select your goal:',
+    'hpc-org-title':'Shield My Organization',
+    'hpc-org-desc':'For Municipalities, Enterprises, Banks and Industries.',
+    'hpc-wl-title':'White-Label Partnership',
+    'hpc-wl-desc':'For Consultancies, Accounting & Law Firms.',
+    'lbl-simulador':'Interactive Diagnostic','title-simulador':'60-Second Risk Simulator','sub-simulador':'Quickly identify where the greatest regulatory risks are in your operations and receive technical shielding recommendations.',
+    'sim-tab1-t':'AI Governance','sim-tab1-s':'Shadow AI & Data Liability',
+    'sim-tab2-t':'Public Sector','sim-tab2-s':'Fiscal Blockades & Covenants',
+    'sim-tab3-t':'Legislative Risk (RIG)','sim-tab3-s':'Bills & Official Gazettes',
     'lbl-sobre':'About Us','title-sobre':'Forensic governance in<br>three business branches.',
     'sobre-p1':'<strong>BRACHATEC</strong> was born from the convergence of law, technology and public administration. We operate as a <strong>probatory governance platform</strong> — turning compliance into forensic-grade proofs with legal validity.',
     'sobre-p2':'Every action on the platform generates an <strong>Expert Report</strong> with a chained SHA-256 signature, stored in a WORM vault. This creates a continuous, mathematically verifiable probatory timeline that is unquestionable in any court or regulatory agency.',
@@ -731,11 +891,11 @@ var T={
     'fw-title':'The probatory chain flywheel effect','fw-text':'Every report chains the hash of the previous one. After 12 months, a client owns a continuous, mathematically verifiable probatory timeline independent of any intermediary.',
     'lbl-solucoes':'Solutions by Segment','title-solucoes':'Three branches. One core engine.','sub-solucoes':'Choose the branch that fits your sector. Each one runs on the BRACHATEC Engine with specialized products.',
     'ramo1-name':'AI Governance','ramo1-desc':'Continuous AI auditing. Discover Shadow AI, intercept algorithmic bias, and generate forensic explainability reports for regulatory agencies.',
-    'ramo1-price':'Starting at <strong>R$ 2,900</strong>/mo','ramo1-note':'Setup + Founder Program available','ramo1-btn':'Explore AI Governance →',
+    'ramo1-price':'Starting at <strong>$580</strong>/mo','ramo1-note':'Setup + Founder Program available','ramo1-btn':'Explore AI Governance →',
     'ramo2-name':'Public Sector','ramo2-desc':'Process shielding for municipalities. Prevent federal fund blockages, account rejections, and covenant losses with end-to-end automated auditing.',
-    'ramo2-price':'Starting at <strong>R$ 3,900</strong>/mo','ramo2-note':'Compliant with Law 14.133 (Direct Purchase)','ramo2-btn':'Explore Public Sector →',
+    'ramo2-price':'Starting at <strong>$780</strong>/mo','ramo2-note':'Compliant with Law 14.133 (Direct Purchase)','ramo2-btn':'Explore Public Sector →',
     'ramo3-name':'RIG Tech','ramo3-desc':'Real-time legislative intelligence. Monitor bills, regulations, and official gazettes that impact your sector before they become risk.',
-    'ramo3-price':'Starting at <strong>R$ 3,500</strong>/mo','ramo3-btn':'Explore RIG Tech →',
+    'ramo3-price':'Starting at <strong>$700</strong>/mo','ramo3-btn':'Explore RIG Tech →',
     'lbl-academy':'BRACHATEC Academy','title-academy':'From problem to mastery —<br>in four layers.','sub-academy':'Structured regulatory education for teams that need to master compliance with technical depth.',
     'lbl-cta':'Next step','title-cta':'Ready to turn compliance<br>into proof?',
     'cta-sub':'Schedule a free 15-minute diagnostic audit. We analyse your environment and identify the highest regulatory risk gaps — no commitment.','cta-btn1':'Schedule free audit','cta-btn2':'Become a white-label partner','cta-input':'your@email.com','cta-send':'Get material',
@@ -744,13 +904,158 @@ var T={
     'cookie-text':'This website uses only strictly necessary technical cookies.','cookie-accept':'Got it','cookie-reject':'Reject'
   }
 };
+
+/* SIMULADOR DATA & ENGINE */
+var CURRENT_SIM = 'ia';
+var SIM_DATA = {
+  ia: {
+    pt: {
+      title: 'Diagnóstico: Governança de IA & Shadow AI',
+      badge: 'Risco Crítico / Responsabilidade Solidária',
+      badgeClass: 'risk-high',
+      scenario: 'Colaboradores ou operadores terceiros estão inserindo dados corporativos em LLMs (ChatGPT, Claude, APIs externas). Sem auditoria inline, a empresa responde solidariamente (LGPD Arts. 37/42) e corre risco de multas de até R$ 50 milhões por infração.',
+      impactTitle: 'Impacto Imediato',
+      impactText: 'Vazamento involuntário de segredos industriais e passivo regulatório imediato perante a ANPD e o Judiciário.',
+      btnUrl: '/aigovernance',
+      btnText: 'Conhecer Blindagem de IA →',
+      btnAuditText: 'Agendar Auditoria de IA'
+    },
+    es: {
+      title: 'Diagnóstico: Gobernanza de IA & Shadow AI',
+      badge: 'Riesgo Crítico / Responsabilidad Solidaria',
+      badgeClass: 'risk-high',
+      scenario: 'Empleados o proveedores de IA procesan datos confidenciales en modelos externos sin control inline. La empresa responde solidariamente ante leyes de protección de datos y arriesga multas millonarias.',
+      impactTitle: 'Impacto Inmediato',
+      impactText: 'Fuga de secretos corporativos y pasivo regulatorio frente a agencias de protección de datos.',
+      btnUrl: '/aigovernance',
+      btnText: 'Conocer Protección de IA →',
+      btnAuditText: 'Agendar Auditoría de IA'
+    },
+    en: {
+      title: 'Diagnostic: AI Governance & Shadow AI',
+      badge: 'Critical Risk / Joint Liability',
+      badgeClass: 'risk-high',
+      scenario: 'Employees or third-party AI operators process customer data in external LLMs without inline guardrails. Under data protection laws, the enterprise faces strict liability and potential regulatory penalties.',
+      impactTitle: 'Immediate Impact',
+      impactText: 'Uncontrolled data leakage and compliance liability before regulatory authorities and courts.',
+      btnUrl: '/aigovernance',
+      btnText: 'Explore AI Governance →',
+      btnAuditText: 'Schedule AI Audit'
+    }
+  },
+  gov: {
+    pt: {
+      title: 'Diagnóstico: Gestão Municipal & CAUC',
+      badge: 'Risco Alto / Bloqueio de Repasses',
+      badgeClass: 'risk-high',
+      scenario: 'Municípios com certidões prestes a vencer ou inconsistências contábeis no SICONFI correm o risco iminente de negativação no CAUC, paralisando transferências voluntárias da União e gerando Tomadas de Contas Especiais no TCE.',
+      impactTitle: 'Impacto Imediato',
+      impactText: 'Bloqueio de recursos de convênios federais e risco de inelegibilidade/rejeição de contas do gestor público.',
+      btnUrl: '/publicsector',
+      btnText: 'Conhecer Solução para Prefeituras →',
+      btnAuditText: 'Diagnóstico Municipal'
+    },
+    es: {
+      title: 'Diagnóstico: Gestión Pública & Bloqueos Fiscales',
+      badge: 'Riesgo Alto / Suspensión de Fondos',
+      badgeClass: 'risk-high',
+      scenario: 'Municipios con certificados a punto de expirar o inconsistencias fiscales corren el riesgo inminente de suspensión de transferencias federales y auditorías de tribunales de cuentas.',
+      impactTitle: 'Impacto Inmediato',
+      impactText: 'Paralización de obras públicas y responsabilidad directa del funcionario.',
+      btnUrl: '/publicsector',
+      btnText: 'Conocer Solución Municipal →',
+      btnAuditText: 'Diagnóstico Municipal'
+    },
+    en: {
+      title: 'Diagnostic: Public Sector & Fiscal Compliance',
+      badge: 'High Risk / Fund Freeze',
+      badgeClass: 'risk-high',
+      scenario: 'Municipalities with expiring tax certificates or accounting inconsistencies face immediate blocking of voluntary federal transfers and formal investigation by Courts of Audits.',
+      impactTitle: 'Immediate Impact',
+      impactText: 'Covenant paralysis, public works stoppage, and personal liability for the public administrator.',
+      btnUrl: '/publicsector',
+      btnText: 'Explore Municipal Solution →',
+      btnAuditText: 'Municipal Diagnostic'
+    }
+  },
+  rig: {
+    pt: {
+      title: 'Diagnóstico: Risco Regulatório & Projetos de Lei',
+      badge: 'Risco Estratégico / Desinformação',
+      badgeClass: 'risk-med',
+      scenario: 'Projetos de Lei (PLs), portarias de agências e alterações tributárias tramitam diariamente em regime de urgência. Sem monitoramento automatizado, sua empresa só descobre a nova regra quando ela já foi sancionada.',
+      impactTitle: 'Impacto Imediato',
+      impactText: 'Perda de prazos para articulação técnica, alteração de alíquotas tributárias e inviabilidade de novos investimentos.',
+      btnUrl: '/rigtech',
+      btnText: 'Conhecer Monitoramento Legislativo →',
+      btnAuditText: 'Agendar Demo de RIG'
+    },
+    es: {
+      title: 'Diagnóstico: Riesgo Regulatorio & Proyectos de Ley',
+      badge: 'Riesgo Estratégico / Desinformación',
+      badgeClass: 'risk-med',
+      scenario: 'Proyectos de Ley y regulaciones avanzan con rapidez en el Congreso y diarios oficiales. Sin monitoreo automatizado, su industria descubre las nuevas trabas cuando ya están promulgadas.',
+      impactTitle: 'Impacto Inmediato',
+      impactText: 'Pérdida del plazo de reacción, sanciones y aumento de carga regulatoria.',
+      btnUrl: '/rigtech',
+      btnText: 'Conocer Inteligencia Legislativa →',
+      btnAuditText: 'Agendar Demo de RIG'
+    },
+    en: {
+      title: 'Diagnostic: Regulatory Risk & Legislative Bills',
+      badge: 'Strategic Risk / Lack of Real-Time Intel',
+      badgeClass: 'risk-med',
+      scenario: 'Bills and regulatory decrees pass rapidly through committees and official gazettes. Without automated real-time alerts, your enterprise only learns of restrictive laws after they take effect.',
+      impactTitle: 'Immediate Impact',
+      impactText: 'Missed consultation windows, unexpected tax changes, and operational compliance exposure.',
+      btnUrl: '/rigtech',
+      btnText: 'Explore Legislative Intelligence →',
+      btnAuditText: 'Schedule RIG Demo'
+    }
+  }
+};
+
+function renderSim(){
+  var data = (SIM_DATA[CURRENT_SIM] && SIM_DATA[CURRENT_SIM][LANG]) ? SIM_DATA[CURRENT_SIM][LANG] : SIM_DATA[CURRENT_SIM]['pt'];
+  var el = document.getElementById('sim-card-body');
+  if(!el) return;
+  el.innerHTML = '<div>' +
+    '<div class="sim-header">' +
+      '<span class="sim-header-title">' + data.title + '</span>' +
+      '<span class="sim-risk-badge ' + data.badgeClass + '">' + data.badge + '</span>' +
+    '</div>' +
+    '<p class="sim-scenario">' + data.scenario + '</p>' +
+    '<div class="sim-impact-box">' +
+      '<div class="sim-impact-title">' + data.impactTitle + '</div>' +
+      '<div class="sim-impact-text">' + data.impactText + '</div>' +
+    '</div>' +
+  '</div>' +
+  '<div class="sim-cta-row">' +
+    '<a href="' + data.btnUrl + '" class="btn-primary" style="padding:10px 20px;font-size:12px;">' + data.btnText + '</a>' +
+    '<a href="#contato" class="btn-ghost" style="padding:10px 20px;font-size:12px;">' + data.btnAuditText + '</a>' +
+  '</div>';
+}
+
+function selectSim(type){
+  CURRENT_SIM = type;
+  ['ia','gov','rig'].forEach(function(t){
+    var b = document.getElementById('tab-'+t);
+    if(b) b.classList.toggle('active', t === type);
+  });
+  renderSim();
+}
+
 function setLang(lang){
   LANG=lang;
   ['pt','es','en'].forEach(function(l){var b=document.getElementById('btn-'+l);if(b)b.classList.toggle('active',l===lang);});
   document.querySelectorAll('[data-i18n]').forEach(function(el){var key=el.getAttribute('data-i18n');if(T[lang]&&T[lang][key]!==undefined){if(el.tagName==='INPUT'){el.placeholder=T[lang][key];}else{el.innerHTML=T[lang][key];}}});
+  renderSim();
   try{localStorage.setItem('brt_lang',lang);}catch(e){}
 }
-(function(){try{var s=localStorage.getItem('brt_lang');if(s&&['pt','es','en'].indexOf(s)>-1&&s!=='pt'){setTimeout(function(){setLang(s);},100);}}catch(e){}})();
+(function(){
+  try{var s=localStorage.getItem('brt_lang');if(s&&['pt','es','en'].indexOf(s)>-1&&s!=='pt'){setTimeout(function(){setLang(s);},100);}}catch(e){}
+  renderSim();
+})();
 
 /* SCROLL SMOOTH */
 document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var id=this.getAttribute('href').slice(1);var el=document.getElementById(id);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});}});});
