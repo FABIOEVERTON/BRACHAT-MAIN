@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BrachaTec Academy — Treinamentos e Cursos</title>
+<meta name="description" content="Auditoria contínua de inteligência artificial. Descubra Shadow AI, intercepte viés algorítmico e gere laudos forenses para órgãos reguladores.">
+<meta property="og:title" content="Governança de IA — BrachaTec">
+<meta property="og:description" content="Auditoria contínua de inteligência artificial. Descubra Shadow AI e gere laudos forenses.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.BrachaTec.com/aigovernance">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.BrachaTec.com/aigovernance">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#080d1a;--navy-2:#0e1525;--navy-3:#162032;--navy-4:#1e2d44;
+  --gold:#c9a84c;--gold-2:#e2c06a;
+  --gold-dim:rgba(201,168,76,.12);--gold-border:rgba(201,168,76,.28);
+  --white:#f7f4ee;--white-2:#e8e3d8;
+  --muted:rgba(247,244,238,.58);--muted-2:rgba(247,244,238,.32);
+  --cyan:#3ecfbe;--cyan-dim:rgba(62,207,190,.1);--cyan-border:rgba(62,207,190,.3);
+  --green:#4caf82;--red:#e05252;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --r:4px;--r2:8px;--r3:12px;
+  --nav-h:72px;--max:1160px;--pad:48px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+section[id],div[id]{scroll-margin-top:calc(var(--nav-h) + 32px);}
+body{background:var(--navy);color:var(--white);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden;}
+::selection{background:var(--cyan-dim);color:var(--cyan);}
+a{color:var(--cyan);text-decoration:none;transition:color .2s;}
+a:hover{color:var(--white);}
+img{max-width:100%;display:block;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,13,26,.92);border-bottom:1px solid rgba(255,255,255,.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);height:var(--nav-h);display:flex;align-items:center;padding:0 var(--pad);gap:24px;}
+.nav-logo{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.1em;color:var(--white);white-space:nowrap;margin-right:auto;color:var(--white)!important;}
+.nav-logo span{color:var(--gold);}
+.nav-back{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.nav-back:hover{color:var(--white);}
+.lang-btns{display:flex;gap:2px;}
+.lang-btn{background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--muted-2);padding:4px 8px;font-size:10px;letter-spacing:.08em;cursor:pointer;font-family:var(--sans);border-radius:2px;transition:all .2s;}
+.lang-btn.active,.lang-btn:hover{color:var(--cyan);border-color:var(--cyan-border);background:var(--cyan-dim);}
+.nav-cta{background:var(--cyan);color:var(--navy)!important;border:none;padding:9px 22px;border-radius:var(--r);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all .2s;display:inline-block;}
+.nav-cta:hover{background:var(--white);transform:translateY(-1px);}
+
+/* HERO */
+#hero{padding:calc(var(--nav-h) + 80px) var(--pad) 80px;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.05);}
+.hero-glow{position:absolute;pointer-events:none;top:-200px;right:-100px;width:700px;height:700px;background:radial-gradient(circle,rgba(62,207,190,.06) 0%,transparent 65%);}
+.hero-inner{max-width:var(--max);margin:0 auto;text-align:center;}
+.hero-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:22px;display:inline-flex;align-items:center;gap:14px;background:var(--cyan-dim);padding:4px 14px;border-radius:20px;border:1px solid var(--cyan-border);}
+.hero-h1{font-family:var(--serif);font-size:56px;font-weight:500;line-height:1.15;color:var(--white);margin-bottom:24px;max-width:900px;margin-left:auto;margin-right:auto;}
+.hero-lead{font-size:18px;color:var(--muted);line-height:1.8;margin-bottom:40px;max-width:700px;margin-left:auto;margin-right:auto;}
+.btn-primary{background:var(--cyan);color:var(--navy);border:none;padding:16px 36px;border-radius:var(--r);font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer;text-transform:uppercase;transition:all .2s;display:inline-block;}
+.btn-primary:hover{background:var(--white);transform:translateY(-1px);color:var(--navy);}
+
+/* Sections Common */
+.section{padding:88px var(--pad);}
+.section-inner{max-width:var(--max);margin:0 auto;}
+.s-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.s-label::before{content:'';display:block;width:22px;height:1px;background:var(--cyan);}
+.s-title{font-family:var(--serif);font-size:36px;font-weight:500;color:var(--white);line-height:1.2;margin-bottom:16px;}
+.s-sub{font-size:16px;color:var(--muted);line-height:1.8;max-width:640px;margin-bottom:48px;}
+
+/* A DOR (Risks) */
+#dor{background:var(--navy-2);}
+.dor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.dor-card{background:var(--navy);border:1px solid rgba(255,255,255,.05);border-radius:var(--r3);padding:32px;}
+.dor-card h3{font-family:var(--serif);font-size:28px;color:var(--red);margin-bottom:12px;font-weight:400;}
+.dor-card h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;}
+.dor-card p{font-size:14px;color:var(--muted);line-height:1.7;}
+
+/* COMO FUNCIONA */
+#workflow{background:var(--navy);}
+.wf-pipeline{display:flex;flex-direction:column;gap:16px;}
+.wf-step{display:grid;grid-template-columns:240px 1fr;background:var(--navy-3);border:1px solid rgba(255,255,255,.06);border-radius:var(--r3);overflow:hidden;}
+.wf-header{background:rgba(255,255,255,.02);padding:32px;border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;justify-content:center;}
+.wf-tag{font-size:10px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.wf-title{font-family:var(--serif);font-size:24px;color:var(--white);}
+.wf-body{padding:32px;display:flex;flex-direction:column;justify-content:center;}
+.wf-desc{font-size:15px;color:var(--muted);line-height:1.7;}
+
+/* FILTROS E ICP */
+.filtros-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:64px;}
+.filtro-cat{background:var(--navy-2);border-top:2px solid var(--cyan-border);padding:20px 16px;border-radius:0 0 var(--r2) var(--r2);}
+.filtro-cat-num{font-size:10px;color:var(--muted-2);margin-bottom:8px;}
+.filtro-cat-title{font-size:12px;font-weight:600;color:var(--white);text-transform:uppercase;}
+.icp-tags{display:flex;flex-wrap:wrap;gap:12px;}
+.icp-tag{padding:8px 16px;background:var(--navy-3);border:1px solid rgba(255,255,255,.1);border-radius:20px;font-size:13px;color:var(--white);display:flex;align-items:center;gap:8px;}
+.icp-tag::before{content:'✓';color:var(--cyan);}
+
+
+.filtro-cat-desc{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.6;font-weight:400;text-transform:none;}
+/* PREÇOS */
+#precos{background:var(--navy-2);}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px;}
+.price-card{background:var(--navy);border:1px solid rgba(255,255,255,.08);border-radius:var(--r3);padding:40px 32px;position:relative;display:flex;flex-direction:column;}
+.price-card.popular{border-color:var(--cyan);background:radial-gradient(ellipse at top,rgba(62,207,190,.05) 0%,var(--navy) 70%);}
+.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--cyan);color:var(--navy);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;}
+.pc-name{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
+.pc-price{font-family:var(--serif);font-size:42px;color:var(--white);line-height:1;margin-bottom:8px;}
+.pc-price span{font-family:var(--sans);font-size:14px;color:var(--muted-2);}
+.pc-setup{font-size:12px;color:var(--cyan);margin-bottom:32px;min-height:36px;display:block;}
+.pc-list{list-style:none;margin-bottom:40px;flex:1;}
+.pc-list li{font-size:13px;color:var(--muted);margin-bottom:12px;display:flex;gap:10px;line-height:1.5;}
+.pc-list li::before{content:'✓';color:var(--cyan);flex-shrink:0;}
+.pc-btn{display:block;text-align:center;padding:14px;border:1px solid var(--cyan-border);border-radius:var(--r);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);transition:all .2s;}
+.pc-btn:hover{background:var(--cyan-dim);color:var(--white);border-color:var(--cyan);}
+.price-card.popular .pc-btn{background:var(--cyan);color:var(--navy);border:none;}
+.price-card.popular .pc-btn:hover{background:var(--white);}
+.pricing-note{text-align:center;font-size:13px;color:var(--muted);margin-top:16px;}
+.pricing-note strong{color:var(--white);}
+
+/* FAQ */
+#faq{background:var(--navy);}
+.faq-list{display:flex;flex-direction:column;}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.08);padding:24px 0;}
+.faq-q{font-size:17px;font-weight:500;color:var(--white);margin-bottom:12px;}
+.faq-a{font-size:15px;color:var(--muted);line-height:1.75;}
+
+/* CTA & FOOTER */
+#contato{background:var(--navy-3);border-top:1px solid var(--cyan-border);text-align:center;}
+.footer{background:var(--navy-2);border-top:1px solid rgba(255,255,255,.05);padding:64px var(--pad) 32px;text-align:center;}
+.f-copy{font-size:12px;color:var(--muted-2);}
+
+/* RESPONSIVE */
+/* Telas Grandes (Ultrawide / Mac / Monitores 4K) */
+@media(min-width: 1400px){
+  :root { --max: 1280px; }
+  .hero-h1 { font-size: 64px; max-width: 1000px; }
+  .hero-lead { font-size: 20px; max-width: 800px; }
+  .section { padding: 120px var(--pad); }
+}
+
+/* Laptops e Desktop Padrão */
+@media(max-width: 1100px){
+  .dor-grid { gap: 16px; }
+  .pricing-grid { gap: 16px; }
+  .price-card { padding: 32px 24px; }
+}
+
+/* Tablets (iPad) */
+@media(max-width: 960px){
+  .dor-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto 24px; }
+  .wf-step { grid-template-columns: 1fr; }
+  .wf-header { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); padding: 24px; }
+  .filtros-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-h1 { font-size: 46px; }
+  .s-title { font-size: 32px; }
+}
+
+/* Telas Menores e Celulares deitados */
+@media(max-width: 768px){
+  .dor-grid { grid-template-columns: 1fr; }
+  .hero-h1 { font-size: 38px; }
+  .nav { padding: 0 20px; gap: 12px; }
+  .nav-logo { font-size: 15px; }
+  .nav-cta { padding: 8px 14px; font-size: 10px; }
+  .nav-login { font-size: 11px; margin-right: 8px !important; }
+}
+
+/* Celular em pé (iPhone, Android) */
+@media(max-width: 640px){
+  :root { --pad: 20px; }
+  .hero-h1 { font-size: 32px; line-height: 1.25; }
+  .hero-lead { font-size: 16px; }
+  .filtros-grid { grid-template-columns: 1fr; }
+  .lang-btns { display: none; }
+  .pc-price { font-size: 36px; }
+  .nav-cta { padding: 8px 12px; font-size: 9px; }
+}
+
+/* FIX ESPAÇAMENTO HERO */
+#hero { padding-top: 180px !important; padding-bottom: 100px !important; }
+</style>
+<!-- Schema.org FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "A governança de IA é obrigatória?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sim. Órgãos reguladores já exigem Relatório de Impacto à Proteção de Dados (RIPD) para algoritmos. A ausência de governança probatória pode resultar em presunção de culpa em caso de incidentes, além de multas que chegam a 2% do faturamento (até R$ 50 milhões)."
+    }
+  },{
+    "@type": "Question",
+    "name": "O que é Shadow AI?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "São sistemas de IA (como LLMs ou ferramentas de produtividade) utilizados por colaboradores sem o conhecimento ou aprovação da TI e do Jurídico, gerando risco massivo de vazamento de dados corporativos."
+    }
+  },{
+    "@type": "Question",
+    "name": "Como o Controlador CPT atua?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "O CPT atua inline (Commit-Bound). Se uma IA tentar processar um dado sensível ou tomar uma decisão viesada, a plataforma intercepta a chamada no milissegundo exato e bloqueia a ação, gerando um laudo forense do evento."
+    }
+  }]
+}
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-back" data-i18n="nav-back">← Voltar ao início</a>
+  <div style="flex:1"></div>
+  <div class="lang-btns">
+    <button class="lang-btn active" id="btn-pt" onclick="setLang('pt')">PT</button>
+    <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+  <a class="nav-login" href="/app/login.html" data-i18n="nav-login" style="margin-right:16px;font-size:13px;font-weight:500;color:var(--white);transition:color 0.2s;">Entrar</a>
+  <a class="nav-cta" href="#precos" data-i18n="nav-cta">Ver Preços</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow" data-i18n="hero-tag">Governança de IA</div>
+    <h1 class="hero-h1" data-i18n="hero-title">Sua inteligência artificial está em conformidade?</h1>
+    <p class="hero-lead" data-i18n="hero-lead">Descubra Shadow AI no seu ambiente, intercepte viés algorítmico em tempo real e gere laudos forenses de explicabilidade prontos para órgãos reguladores.</p>
+    <a class="btn-primary" href="#precos" data-i18n="hero-btn">Analisar Planos</a>
+  </div>
+</section>
+
+
+<section id="cursos" class="section">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="cur-lbl">Grade Curricular</div>
+    <h2 class="s-title" data-i18n="cur-title">Módulos em Vídeo e Texto</h2>
+    
+    <div class="curriculum-list" style="margin-top:40px; display:flex; flex-direction:column; gap:16px; max-width:800px; margin-left:auto; margin-right:auto;">
+      
+      <!-- Module 1 -->
+      <div style="background:var(--navy-2); border:1px solid var(--gold-border); border-radius:8px; padding:24px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <h3 style="margin:0; color:var(--white); font-size:20px;" data-i18n="mod1-title">Módulo 1: Conscientização Regulatória</h3>
+          <span style="background:var(--gold-dim); color:var(--gold); padding:4px 12px; border-radius:12px; font-size:12px; font-weight:600;" data-i18n="mod-free">Gratuito</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px; margin-bottom:16px;" data-i18n="mod1-desc">Fundamentos de conformidade, riscos de Shadow AI e introdução ao monitoramento de diários oficiais.</p>
+        <div style="display:flex; gap:16px; font-size:13px; color:var(--muted-2);">
+          <span style="display:flex; align-items:center; gap:4px;">▶ <span data-i18n="mod-vid">4 Aulas (Vídeo)</span></span>
+          <span style="display:flex; align-items:center; gap:4px;">📄 <span data-i18n="mod-txt">2 Materiais de Apoio (PDF)</span></span>
+        </div>
+      </div>
+      
+      <!-- Module 2 -->
+      <div style="background:var(--navy-2); border:1px solid var(--gold-border); border-radius:8px; padding:24px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <h3 style="margin:0; color:var(--white); font-size:20px;" data-i18n="mod2-title">Módulo 2: Governança Prática de IA</h3>
+          <span style="background:var(--navy-4); color:var(--white-2); padding:4px 12px; border-radius:12px; font-size:12px; font-weight:600;" data-i18n="mod-pro">Pro</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px; margin-bottom:16px;" data-i18n="mod2-desc">Como auditar endpoints, bloquear PII (dados sensíveis) em tempo real e construir relatórios forenses SHA-256.</p>
+        <div style="display:flex; gap:16px; font-size:13px; color:var(--muted-2);">
+          <span style="display:flex; align-items:center; gap:4px;">▶ <span data-i18n="mod-vid2">8 Aulas Práticas (Vídeo)</span></span>
+          <span style="display:flex; align-items:center; gap:4px;">📄 <span data-i18n="mod-txt2">Scripts e Templates</span></span>
+        </div>
+      </div>
+
+      <!-- Module 3 -->
+      <div style="background:var(--navy-2); border:1px solid var(--gold-border); border-radius:8px; padding:24px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <h3 style="margin:0; color:var(--white); font-size:20px;" data-i18n="mod3-title">Módulo 3: Implantação e Certificação</h3>
+          <span style="background:var(--navy-4); color:var(--white-2); padding:4px 12px; border-radius:12px; font-size:12px; font-weight:600;" data-i18n="mod-cert">Certificação</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px; margin-bottom:16px;" data-i18n="mod3-desc">Exame final de múltipla escolha e avaliação prática para emissão do Certificado Oficial <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Integrator.</p>
+        <div style="display:flex; gap:16px; font-size:13px; color:var(--muted-2);">
+          <span style="display:flex; align-items:center; gap:4px;">🏆 <span data-i18n="mod-badge">Badge Oficial</span></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- MANIFESTO / AUTORIDADE -->
+<section class="section" style="background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+  <div class="section-inner" style="max-width: 960px; text-align: left;">
+    <div class="hero-eyebrow" data-i18n="auth-tag">O Paradigma "Code as Law"</div>
+    <h2 class="s-title" style="text-align: left; margin-bottom: 24px;" data-i18n="auth-title">Arquitetura Zero Trust & Segurança em Runtime</h2>
+    <p style="color: var(--muted); line-height: 1.8; margin-bottom: 24px; font-size: 16px;" data-i18n="auth-p1">
+      A transformação digital acelerada exige que a regulação migre do papel para o código. Inspirada no modelo <strong>Zero Trust (NIST SP 800-207)</strong>, a <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> converte diretrizes doutrinárias e critérios de órgãos reguladores em barreiras técnicas de execução.
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px;">
+      <div style="background: var(--bg); padding: 32px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+        <h4 style="margin: 0 0 12px 0; color: var(--cyan); font-size: 18px;" data-i18n="auth-b1-t">Policy Decision Point (PDP)</h4>
+        <p style="margin: 0; color: #999; font-size: 14px; line-height: 1.6;" data-i18n="auth-b1-d">Avaliação em tempo real via <em>Policy-as-Code</em> para garantir que cada ação do algoritmo cumpra rigorosamente todas as regras de conformidade corporativa e ética estabelecidas.</p>
+      </div>
+      <div style="background: var(--bg); padding: 32px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+        <h4 style="margin: 0 0 12px 0; color: var(--cyan); font-size: 18px;" data-i18n="auth-b2-t">Policy Enforcement Point (PEP)</h4>
+        <p style="margin: 0; color: #999; font-size: 14px; line-height: 1.6;" data-i18n="auth-b2-d">Portão de execução que intercepta a IA. Se a política for violada, o bloqueio atua no modo <em>fail-closed</em> (bloqueio padrão), contendo qualquer falha antes que o dano ocorra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="precos" class="section">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="pr-lbl">Planos e Preços</div>
+    <h2 class="s-title" data-i18n="pr-title">Escolha o nível de governança</h2>
+    <p class="s-sub" data-i18n="pr-sub">Planos estruturados para escritórios que querem auditar clientes, e corporações que precisam blindar a própria operação.</p>
+    
+    <div class="pricing-grid">
+      <!-- Standard -->
+      <div class="price-card">
+        <div class="pc-name">Standard</div>
+        <div class="pc-price" data-i18n="pr1-price">R$ 2.900<span>/mês</span></div>
+        <div class="pc-setup" data-i18n="pr-set1">Setup: R$ 7.500<br><strong>(Isento no Programa Fundador)</strong></div>
+        <ul class="pc-list">
+          <li data-i18n="pr1-l1">Inventário Sentinel (até 50 endpoints)</li>
+          <li data-i18n="pr1-l2">Mapeamento de Shadow AI</li>
+          <li data-i18n="pr1-l3">Relatórios de Risco Criptográfico</li>
+          <li data-i18n="pr1-l4">Geração de RIPD de IA simplificado</li>
+          <li data-i18n="pr1-l5">Suporte em horário comercial</li>
+        </ul>
+        <a class="pc-btn" href="../app/cadastro.html" data-i18n="pr-btn-std">Assinar Standard</a>
+      </div>
+      <!-- Enterprise -->
+      <div class="price-card popular">
+        <div class="popular-badge">Recomendado</div>
+        <div class="pc-name">Enterprise</div>
+        <div class="pc-price" data-i18n="pr2-price">Sob Consulta</div>
+        <div class="pc-setup" data-i18n="pr-set2">Dimensionamento sob medida conforme volume de filiais e operadores de IA homologados</div>
+        <ul class="pc-list">
+          <li data-i18n="pr2-l1">Tudo do Standard, sem limite de endpoints</li>
+          <li data-i18n="pr2-l2">Controlador CPT inline (Interceptação em TS)</li>
+          <li data-i18n="pr2-l3">Time-Travel e Cofre Forense WORM</li>
+          <li data-i18n="pr2-l4">Prevenção ativa de viés algorítmico</li>
+          <li data-i18n="pr2-l5">SLA de 99.9% e API dedicada</li>
+          <li data-i18n="pr2-l6">Gerente de Sucesso (CSM) dedicado</li>
+        </ul>
+        <a class="pc-btn" href="../app/cadastro.html" data-i18n="pr-btn-ent">Falar com Consultor Enterprise</a>
+      </div>
+      <!-- White-Label -->
+      <div class="price-card">
+        <div class="pc-name">White-Label / Parceiros</div>
+        <div class="pc-price" data-i18n="pr3-price">R$ 1.350<span>/mês</span></div>
+        <div class="pc-setup" data-i18n="pr-set3">Zero Taxa de Habilitação (Setup Isento)<br>Treinamento e customização de marca</div>
+        <ul class="pc-list">
+          <li data-i18n="pr3-l1">Licença base inclui 2 clientes ativos</li>
+          <li data-i18n="pr3-l2">+ R$ 450/mês por cliente adicional</li>
+          <li data-i18n="pr3-l3">Plataforma com logo e domínio do seu escritório</li>
+          <li data-i18n="pr3-l4">Você define o preço final para seu cliente</li>
+          <li data-i18n="pr3-l5">Materiais de vendas e playbooks</li>
+        </ul>
+        <a class="pc-btn" href="../app/cadastro.html" data-i18n="pr-btn-wl">Seja um parceiro</a>
+      </div>
+    </div>
+    <div class="pricing-note">
+      <span data-i18n="pr-note"><strong>15% de desconto</strong> para pagamentos anuais à vista. Contratos reajustados anualmente pelo IPCA.</span>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="section-inner" style="max-width:800px;">
+    <h2 class="s-title" style="text-align:center;margin-bottom:48px;" data-i18n="faq-title">Perguntas Frequentes</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq1-q">A governança de IA é obrigatória?</div>
+        <div class="faq-a" data-i18n="faq1-a">Sim. Órgãos reguladores já exigem Relatório de Impacto à Proteção de Dados (RIPD) para algoritmos. A ausência de governança probatória pode resultar em presunção de culpa em caso de incidentes, além de multas que chegam a 2% do faturamento (até R$ 50 milhões).</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq2-q">O que é Shadow AI?</div>
+        <div class="faq-a" data-i18n="faq2-a">São sistemas de IA (como LLMs ou ferramentas de produtividade) utilizados por colaboradores sem o conhecimento ou aprovação da TI e do Jurídico, gerando risco massivo de vazamento de dados corporativos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq3-q">Como o Controlador CPT atua?</div>
+        <div class="faq-a" data-i18n="faq3-a">O CPT atua inline (Commit-Bound). Se uma IA tentar processar um dado sensível ou tomar uma decisão viesada, a plataforma intercepta a chamada no milissegundo exato e bloqueia a ação, gerando um laudo forense do evento.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato" class="section">
+  <div class="section-inner">
+    <h2 class="s-title" data-i18n="cta-title">Agende uma auditoria de IA gratuita</h2>
+    <p class="s-sub" style="margin:0 auto 32px;" data-i18n="cta-sub">Descubra os riscos ocultos na sua operação de IA em 15 minutos.</p>
+    <a class="btn-primary" href="../app/cadastro.html" data-i18n="cta-btn">Agendar Diagnóstico</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p class="f-copy" data-i18n="f-copy">© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados. · <a href="/" style="color:var(--muted-2);text-decoration:underline;">Ir para a Home</a></p>
+</footer>
+
+<script>
+var LANG='pt';
+
+var T={
+  pt:{
+    'nav-login':'Acessar Plataforma',
+    'nav-back':'← Voltar para home','nav-cta':'Ver Planos',
+    'hero-tag':'<span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Academy',
+    'hero-title':'Do problema ao domínio.<br>Capacitação Regulatória.',
+    'hero-lead':'Educação corporativa estruturada. Videoaulas, materiais de apoio e certificação para times que precisam dominar conformidade com profundidade técnica.',
+    'vid-play':'Assistir ao Trailer da Academia',
+    'hero-btn':'Explorar Cursos',
+    'cur-lbl':'Grade Curricular','cur-title':'Módulos em Vídeo e Texto',
+    'mod1-title':'Módulo 1: Conscientização Regulatória',
+    'mod-free':'Gratuito',
+    'mod1-desc':'Fundamentos de conformidade, riscos de Shadow AI e introdução ao monitoramento de diários oficiais.',
+    'mod-vid':'4 Aulas (Vídeo)','mod-txt':'2 Materiais de Apoio (PDF)',
+    'mod2-title':'Módulo 2: Governança Prática de IA',
+    'mod-pro':'Premium',
+    'mod2-desc':'Como auditar endpoints, bloquear PII (dados sensíveis) em tempo real e construir relatórios forenses SHA-256.',
+    'mod-vid2':'8 Aulas Práticas (Vídeo)','mod-txt2':'Scripts e Templates',
+    'mod3-title':'Módulo 3: Implantação e Certificação',
+    'mod-cert':'Certificação',
+    'mod3-desc':'Exame final de múltipla escolha e avaliação prática para emissão do Certificado Oficial <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Integrator.',
+    'mod-badge':'Badge Oficial',
+    'pr-lbl':'Acesso','pr-title':'Planos da Academia','pr-sub':'Comece a estudar gratuitamente ou forme todo o seu time de compliance.',
+    'pr1-price':'R$ 0<span>/mês</span>',
+    'pr-set1':'Acesso Imediato<br>Sem necessidade de cartão de crédito',
+    'pr1-l1':'Módulo 1 completo (Vídeos)',
+    'pr1-l2':'Material de apoio em PDF',
+    'pr1-l3':'Participação em Webinars',
+    'pr-btn-std':'Criar Conta Grátis',
+    'pr2-price':'R$ 149<span>/usuário/mês</span>',
+    'pr-set2':'Acesso total<br>Cancele quando quiser',
+    'pr2-l1':'Todos os módulos em Vídeo',
+    'pr2-l2':'Acesso a Scripts e Templates',
+    'pr2-l3':'Emissão de Certificado',
+    'pr2-l4':'Suporte direto com tutores',
+    'pr-btn-ent':'Assinar Premium',
+    'pr3-price':'Sob Consulta',
+    'pr-set3':'Para empresas e agências',
+    'pr3-l1':'Licenças em lote (10+ usuários)',
+    'pr3-l2':'Painel de acompanhamento de alunos',
+    'pr3-l3':'Treinamentos In-Company',
+    'pr-btn-wl':'Falar com Vendas',
+    'faq-title':'Dúvidas Frequentes',
+    'faq1-q':'Os cursos emitem certificado?','faq1-a':'Sim, ao concluir os módulos pagos e passar na avaliação final, você recebe um certificado digital.',
+    'faq2-q':'Posso baixar as videoaulas?','faq2-a':'As videoaulas devem ser assistidas na plataforma, mas os materiais de apoio (PDFs) podem ser baixados.',
+    'faq3-q':'Como funciona para empresas?','faq3-a':'No plano corporativo, o gestor recebe um painel para acompanhar o progresso das aulas de toda a equipe.',
+    'cta-title':'Pronto para dominar a governança?','cta-sub':'Crie sua conta gratuita agora e comece a assistir à primeira aula.','cta-btn':'Começar Agora',
+    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados.'
+  },
+  es:{
+    'nav-login':'Iniciar Sesión',
+    'nav-back':'← Volver al inicio','nav-cta':'Ver Planes',
+    'hero-tag':'<span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Academy',
+    'hero-title':'Del problema al dominio.<br>Capacitación Regulatoria.',
+    'hero-lead':'Educación corporativa estructurada. Videoclases, materiales de apoyo y certificación para equipos.',
+    'vid-play':'Ver Trailer de la Academia',
+    'hero-btn':'Explorar Cursos',
+    'cur-lbl':'Plan de Estudios','cur-title':'Módulos en Video y Texto',
+    'mod1-title':'Módulo 1: Conciencia Regulatoria',
+    'mod-free':'Gratis',
+    'mod1-desc':'Fundamentos de cumplimiento, riesgos de Shadow AI e introducción al monitoreo.',
+    'mod-vid':'4 Clases (Video)','mod-txt':'2 Materiales de Apoyo (PDF)',
+    'mod2-title':'Módulo 2: Gobernanza Práctica de IA',
+    'mod-pro':'Premium',
+    'mod2-desc':'Cómo auditar endpoints, bloquear PII (datos sensibles) en tiempo real y emitir reportes.',
+    'mod-vid2':'8 Clases Prácticas (Video)','mod-txt2':'Scripts y Plantillas',
+    'mod3-title':'Módulo 3: Implementación y Certificación',
+    'mod-cert':'Certificación',
+    'mod3-desc':'Examen final para emisión del Certificado Oficial <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Integrator.',
+    'mod-badge':'Insignia Oficial',
+    'pr-lbl':'Acceso','pr-title':'Planes de la Academia','pr-sub':'Empiece a estudiar gratis o forme a todo su equipo de compliance.',
+    'pr1-price':'$0<span>/mes</span>',
+    'pr-set1':'Acceso Inmediato<br>Sin tarjeta de crédito',
+    'pr1-l1':'Módulo 1 completo (Videos)',
+    'pr1-l2':'Material de apoyo en PDF',
+    'pr1-l3':'Participación en Webinars',
+    'pr-btn-std':'Crear Cuenta Gratis',
+    'pr2-price':'$29<span>/usuario/mes</span>',
+    'pr-set2':'Acceso total<br>Cancele cuando quiera',
+    'pr2-l1':'Todos los módulos en Video',
+    'pr2-l2':'Acceso a Scripts y Plantillas',
+    'pr2-l3':'Emisión de Certificado',
+    'pr2-l4':'Soporte directo con tutores',
+    'pr-btn-ent':'Suscribirse Premium',
+    'pr3-price':'Bajo Consulta',
+    'pr-set3':'Para empresas y agencias',
+    'pr3-l1':'Licencias por volumen (10+ usuarios)',
+    'pr3-l2':'Panel de seguimiento de alumnos',
+    'pr3-l3':'Entrenamientos In-Company',
+    'pr-btn-wl':'Hablar con Ventas',
+    'faq-title':'Preguntas Frecuentes',
+    'faq1-q':'¿Los cursos emiten certificado?','faq1-a':'Sí, al concluir los módulos pagos y aprobar la evaluación final, recibe un certificado digital.',
+    'faq2-q':'¿Puedo descargar las videoclases?','faq2-a':'Las videoclases deben ser vistas en la plataforma, pero los materiales de apoyo (PDF) pueden descargarse.',
+    'faq3-q':'¿Cómo funciona para empresas?','faq3-a':'En el plan corporativo, el gerente recibe un panel para rastrear el progreso de todo el equipo.',
+    'cta-title':'¿Listo para dominar la gobernanza?','cta-sub':'Cree su cuenta gratis ahora y comience a ver la primera clase.','cta-btn':'Empezar Ahora',
+    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos los derechos reservados.'
+  },
+  en:{
+    'nav-login':'Log In',
+    'nav-back':'← Back to home','nav-cta':'View Plans',
+    'hero-tag':'<span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Academy',
+    'hero-title':'From problem to mastery.<br>Regulatory Training.',
+    'hero-lead':'Structured corporate education. Video lessons, support materials, and certification for teams.',
+    'vid-play':'Watch Academy Trailer',
+    'hero-btn':'Explore Courses',
+    'cur-lbl':'Curriculum','cur-title':'Video and Text Modules',
+    'mod1-title':'Module 1: Regulatory Awareness',
+    'mod-free':'Free',
+    'mod1-desc':'Compliance fundamentals, Shadow AI risks, and introduction to gazette monitoring.',
+    'mod-vid':'4 Lessons (Video)','mod-txt':'2 Support Materials (PDF)',
+    'mod2-title':'Module 2: Practical AI Governance',
+    'mod-pro':'Premium',
+    'mod2-desc':'How to audit endpoints, block PII (sensitive data) in real-time, and build forensic reports.',
+    'mod-vid2':'8 Practical Lessons (Video)','mod-txt2':'Scripts and Templates',
+    'mod3-title':'Module 3: Implementation and Certification',
+    'mod-cert':'Certification',
+    'mod3-desc':'Final exam to earn the Official <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Integrator Certificate.',
+    'mod-badge':'Official Badge',
+    'pr-lbl':'Access','pr-title':'Academy Plans','pr-sub':'Start studying for free or train your entire compliance team.',
+    'pr1-price':'$0<span>/mo</span>',
+    'pr-set1':'Instant Access<br>No credit card required',
+    'pr1-l1':'Module 1 complete (Videos)',
+    'pr1-l2':'Support material in PDF',
+    'pr1-l3':'Webinar participation',
+    'pr-btn-std':'Create Free Account',
+    'pr2-price':'$29<span>/user/mo</span>',
+    'pr-set2':'Full Access<br>Cancel anytime',
+    'pr2-l1':'All video modules',
+    'pr2-l2':'Access to Scripts and Templates',
+    'pr2-l3':'Certificate issuance',
+    'pr2-l4':'Direct support with tutors',
+    'pr-btn-ent':'Subscribe Premium',
+    'pr3-price':'On Demand',
+    'pr-set3':'For companies and agencies',
+    'pr3-l1':'Bulk licenses (10+ users)',
+    'pr3-l2':'Student tracking dashboard',
+    'pr3-l3':'In-Company training',
+    'pr-btn-wl':'Talk to Sales',
+    'faq-title':'Frequently Asked Questions',
+    'faq1-q':'Do the courses issue a certificate?','faq1-a':'Yes, upon completing the paid modules and passing the final exam, you receive a digital certificate.',
+    'faq2-q':'Can I download the video lessons?','faq2-a':'Video lessons must be watched on the platform, but support materials (PDFs) can be downloaded.',
+    'faq3-q':'How does it work for companies?','faq3-a':'On the corporate plan, managers get a dashboard to track the progress of their entire team.',
+    'cta-title':'Ready to master governance?','cta-sub':'Create your free account now and start watching the first lesson.','cta-btn':'Start Now',
+    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. All rights reserved.'
+  }
+};
+
+function setLang(lang){
+  LANG=lang;
+  ['pt','es','en'].forEach(function(l){var b=document.getElementById('btn-'+l);if(b)b.classList.toggle('active',l===lang);});
+  document.querySelectorAll('[data-i18n]').forEach(function(el){var key=el.getAttribute('data-i18n');if(T[lang]&&T[lang][key]!==undefined){if(el.tagName==='INPUT'){el.placeholder=T[lang][key];}else{el.innerHTML=T[lang][key];}}});
+  try{localStorage.setItem('brt_lang',lang);}catch(e){}
+}
+(function(){try{var s=localStorage.getItem('brt_lang');if(s&&['pt','es','en'].indexOf(s)>-1&&s!=='pt'){setLang(s);}}catch(e){}})();
+</script>
+</body>
+</html>

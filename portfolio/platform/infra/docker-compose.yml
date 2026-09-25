@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  brachatec_db:
+    image: postgres:16-alpine
+    container_name: brachatec_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin_password
+      POSTGRES_DB: brachatec_engine
+    ports:
+      - "5432:5432"
+    volumes:
+      - brachatec_pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  brachatec_pgdata:
