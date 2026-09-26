@@ -257,40 +257,63 @@ img{max-width:100%;display:block;}
   </div>
 </section>
 
+<!-- DIFERENCIAL -->
+<section id="diferencial" class="section" style="background:var(--navy-3);">
+  <div class="section-inner">
+    <div class="s-label" data-i18n="dif-lbl">Nosso Diferencial</div>
+    <h2 class="s-title" data-i18n="dif-title">O que nós fazemos (e que ninguém mais faz).</h2>
+    <p class="s-sub" data-i18n="dif-sub">O mercado de Governança B2B foca em dashboards visuais e auditoria com modelos linguísticos falhos. Nós somos a única plataforma do mundo impulsionada pela engine exclusiva <strong>superXAi</strong>, nosso maior diferencial técnico que une Matemática Pura e Criptografia Forense para detectar o que dashboards convencionais ignoram.</p>
+    <div class="dor-grid">
+      <div class="dor-card" style="background:var(--navy-2);">
+        <h3 style="color:var(--gold);">1. Sem Viés Algorítmico</h3>
+        <h4 data-i18n="dif1-t">Auditoria Matemática Pura</h4>
+        <p data-i18n="dif1-p">Nós NÃO usamos "IAs para fiscalizar IAs". Nosso <strong>superXAi</strong> extrai vetores semânticos e usa Matrizes de Densidade e Álgebra Linear para calcular a intenção em 20ms. O bloqueio é 100% determinístico e livre de falsos positivos.</p>
+      </div>
+      <div class="dor-card" style="background:var(--navy-2);">
+        <h3 style="color:var(--gold);">2. Interceptação "Em Voo"</h3>
+        <h4 data-i18n="dif2-t">Não Adivinhamos. Capturamos.</h4>
+        <p data-i18n="dif2-p">Outras soluções tentam adivinhar falhas lendo logs depois que vazaram. Nossa interceptação captura a <strong>assinatura de intenção oculta</strong> no exato momento (In-Flight), antes do dado corporativo sequer sair para a OpenAI.</p>
+      </div>
+      <div class="dor-card" style="background:var(--navy-2);">
+        <h3 style="color:var(--gold);">3. Laudos SHA-256</h3>
+        <h4 data-i18n="dif3-t">A Máquina do Tempo Jurídica</h4>
+        <p data-i18n="dif3-p">Painéis bonitos não servem em tribunais. Toda interceptação do BTMonitor é trancada com criptografia <strong>WORM (Write Once, Read Many)</strong>. Se processada, a plataforma emite um laudo forense com a exata prova matemática (Hash) da sua inocência.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <section id="workflow" class="section">
   <div class="section-inner">
     <div class="s-label" data-i18n="wf-lbl">Arquitetura</div>
     <h2 class="s-title" data-i18n="wf-title">Como a plataforma opera no seu ambiente</h2>
     <div class="wf-pipeline">
+      <!-- Passo 1: BTScan -->
       <div class="wf-step">
         <div class="wf-header">
-          <div class="wf-tag">Passo 1</div>
-          <div class="wf-title">Módulo SENTINEL</div>
+          <div class="wf-tag">Módulo 1</div>
+          <div class="wf-title">BTScan (Discovery & Auditoria)</div>
         </div>
         <div class="wf-body">
-          <p class="wf-desc" data-i18n="wf1-desc">Inventário e Discovery Automático. O Sentinel varre sua infraestrutura corporativa identificando todas as IAs em uso, desde integrações oficiais (APIs corporativas) até Shadow AI (colaboradores usando ferramentas não homologadas). Analisamos permissões, fluxo de dados e mapeamos o Risco Criptográfico associado a cada modelo.</p>
+          <p class="wf-desc" data-i18n="wf1-desc">Inventário e Discovery Retroativo. O BTScan varre sua infraestrutura corporativa mapeando Shadow AI e integrações oficiais. Ele aplica nosso framework de interpretabilidade matemática (superXAi) retrospectivamente para auditar o perfil de risco do que já aconteceu e tranca os laudos no Cofre WORM.</p>
         </div>
       </div>
+
+      <!-- Passo 2: BTMonitor -->
       <div class="wf-step">
         <div class="wf-header">
-          <div class="wf-tag">Passo 2</div>
-          <div class="wf-title">Controlador CPT</div>
+          <div class="wf-tag">Módulo 2</div>
+          <div class="wf-title">BTMonitor (Segurança Inline)</div>
         </div>
         <div class="wf-body">
-          <p class="wf-desc" data-i18n="wf2-desc">Interceptação e Profiling em Milissegundos. O CPT atua como uma barreira inline. Ele avalia regras de negócio, ética e conformidade <strong>antes</strong> da execução (Commit-Bound). Se um LLM tentar vazar um dado pessoal ou tomar uma decisão enviesada, o CPT trava a operação instantaneamente.</p>
+          <p class="wf-desc" data-i18n="wf2-desc">Proxy reverso Commit-Bound com latência zero. O motor avalia instantaneamente 129 filtros de compliance em runtime (barrando PII, CPFs e código-fonte). SIMULTANEAMENTE, o BTMonitor aplica o <strong>Insight Framework</strong> "em voo", extraindo a assinatura matemática da intenção do usuário para detectar injeções de prompt ocultas. A interceptação é selada no Cofre SHA-256.</p>
         </div>
       </div>
-      <div class="wf-step">
-        <div class="wf-header">
-          <div class="wf-tag">Passo 3</div>
-          <div class="wf-title">Módulo TT (Time-Travel)</div>
-        </div>
-        <div class="wf-body">
-          <p class="wf-desc" data-i18n="wf3-desc">Explicabilidade e Prova Forense. Cada ação da IA é registrada com assinatura SHA-256 no Cofre WORM. Se órgãos reguladores ou o Ministério Público questionarem uma decisão algorítmica meses depois, o TT reconstrói o exato contexto técnico da época e emite um laudo pericial irrefutável.</p>
-        </div>
-      </div>
+
     </div>
   </div>
+
 </section>
 
 <section class="section" style="background:var(--navy-2)">
@@ -323,7 +346,7 @@ img{max-width:100%;display:block;}
     <div class="hero-eyebrow" data-i18n="auth-tag">O Paradigma "Code as Law"</div>
     <h2 class="s-title" style="text-align: left; margin-bottom: 24px;" data-i18n="auth-title">Arquitetura Zero Trust & Segurança em Runtime</h2>
     <p style="color: var(--muted); line-height: 1.8; margin-bottom: 24px; font-size: 16px;" data-i18n="auth-p1">
-      A transformação digital acelerada exige que a regulação migre do papel para o código. Inspirada no modelo <strong>Zero Trust (NIST SP 800-207)</strong>, a <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> converte diretrizes doutrinárias e critérios de órgãos reguladores em barreiras técnicas de execução.
+      A transformação digital exige que a regulação migre do papel para o código. A <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> é a primeira plataforma de auditoria contínua a garantir total conformidade com o <strong>PL 2338/2023 (Marco Legal da IA)</strong> e a <strong>LGPD</strong>. Além disso, auditamos nativamente e de forma ativa os maiores frameworks globais de IA: <strong>ISO/IEC 42001</strong>, <strong>NIST AI RMF</strong> e o <strong>EU AI Act (Lei Europeia)</strong>. Convertendo todas essas diretrizes em barreiras técnicas de execução automatizada.
     </p>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px;">
       <div style="background: var(--bg); padding: 32px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
@@ -477,7 +500,7 @@ var T={
     'dor2-t':'Responsabilidade Solidária','dor2-p':'A falta de governança estruturada pode implicar responsabilização civil e criminal direta dos executivos e encarregados de dados.',
     'dor3-t':'Suspensão de Operação','dor3-p':'Reguladores podem determinar a suspensão total do uso do banco de dados ou do sistema automatizado até a comprovação de conformidade.',
     'wf-lbl':'Arquitetura','wf-title':'Como a plataforma opera no seu ambiente',
-    'wf1-desc':'Inventário e Discovery Automático. O Sentinel varre sua infraestrutura corporativa identificando todas as IAs em uso, desde integrações oficiais (APIs corporativas) até Shadow AI (colaboradores usando ferramentas não homologadas). Analisamos permissões, fluxo de dados e mapeamos o Risco Criptográfico associado a cada modelo.',
+    'wf1-desc':'Inventário e Discovery Retroativo. O BTScan varre sua infraestrutura corporativa mapeando Shadow AI e integrações oficiais. Ele aplica nosso framework de interpretabilidade matemática (superXAi) retrospectivamente para auditar o perfil de risco do que já aconteceu e tranca os laudos no Cofre WORM.',
     'wf2-desc':'Interceptação e Profiling em Milissegundos. O CPT atua como uma barreira inline. Ele avalia regras de negócio, ética e conformidade <strong>antes</strong> da execução (Commit-Bound). Se um LLM tentar vazar um dado pessoal ou tomar uma decisão enviesada, o CPT trava a operação instantaneamente.',
     'wf3-desc':'Explicabilidade e Prova Forense. Cada ação da IA é registrada com assinatura SHA-256 no Cofre WORM. Se órgãos reguladores ou o Ministério Público questionarem uma decisão algorítmica meses depois, o TT reconstrói o exato contexto técnico da época e emite um laudo pericial irrefutável.',
     'icp-lbl':'Público e Escopo','icp-title':'129 Filtros de Validação Contínua',
@@ -517,7 +540,7 @@ var T={
     'dor2-t':'Responsabilidad Solidaria','dor2-p':'La falta de gobernanza estructurada puede implicar responsabilidad civil y penal directa de los ejecutivos y encargados de datos.',
     'dor3-t':'Suspensión de Operación','dor3-p':'Los reguladores pueden ordenar la suspensión total del uso de la base de datos o sistema automatizado hasta comprobar la conformidad.',
     'wf-lbl':'Arquitectura','wf-title':'Cómo opera la plataforma en su entorno',
-    'wf1-desc':'Inventario y Discovery Automático. Sentinel escanea su infraestructura identificando todas las IAs en uso, desde APIs corporativas hasta Shadow AI. Analizamos permisos, flujo de datos y riesgo criptográfico.',
+    'wf1-desc':'Inventário e Discovery Retroativo. O BTScan varre sua infraestrutura corporativa mapeando Shadow AI e integrações oficiais. Ele aplica nosso framework de interpretabilidade matemática (superXAi) retrospectivamente para auditar o perfil de risco do que já aconteceu e tranca os laudos no Cofre WORM.',
     'wf2-desc':'Interceptación en Milisegundos. El CPT actúa como barrera inline. Evalúa reglas de negocio, ética y conformidad antes de la ejecución. Si un LLM intenta filtrar datos, el CPT bloquea la operación al instante.',
     'wf3-desc':'Explicabilidad Forense. Cada acción de la IA se registra con firma SHA-256 en la Bóveda WORM. Si los reguladores cuestionan una decisión meses después, TT reconstruye el contexto técnico y emite un dictamen pericial irrefutable.',
     'icp-lbl':'Público y Alcance','icp-title':'129 Filtros de Validación Continua',
@@ -560,7 +583,7 @@ var T={
     'dor3-t':'Operation Suspension','dor3-p':'Regulators can mandate the total suspension of database or automated system usage until compliance is proven.',
     'wf-lbl':'Architecture','wf-title':'How the platform operates in your environment',
     'wf1-desc':'Inventory and Automatic Discovery. Sentinel scans your infrastructure identifying all AIs in use, from corporate APIs to Shadow AI. We analyze permissions, data flows, and cryptographic risks.',
-    'wf2-desc':'Millisecond Interception. CPT acts as an inline barrier. It evaluates business, ethics, and compliance rules before execution. If an LLM tries to leak data, CPT blocks the operation instantly.',
+    'wf2-desc':'Proxy reverso Commit-Bound com latência zero. O motor avalia instantaneamente 129 filtros de compliance em runtime (barrando PII, CPFs e código-fonte). SIMULTANEAMENTE, o BTMonitor aplica o Insight Framework "em voo", extraindo a assinatura matemática da intenção do usuário para detectar injeções de prompt ocultas. A interceptação é selada no Cofre SHA-256.',
     'wf3-desc':'Forensic Explainability. Every AI action is logged with a SHA-256 signature in the WORM Vault. If regulators question a decision months later, TT reconstructs the technical context and issues an irrefutable report.',
     'icp-lbl':'Audience & Scope','icp-title':'129 Continuous Validation Filters',
     'f1':'Data Security','f2':'Regulatory Compliance','f3':'Ethics & Bias','f4':'Technical Robustness','f5':'Forensic Explainability',

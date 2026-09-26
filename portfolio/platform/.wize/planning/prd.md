@@ -16,29 +16,28 @@
   * **AC-01.2:** Cada tenant opera em um schema isolado do PostgreSQL 16 (`tenant_{id}`).
   * **AC-01.3:** Parceiros White-Label visualizam painel consolidado com a sua marca e subtenants vinculados.
 
-### Módulo 1: Governança de IA (Ezra / Sentinel / CPT / Time-Travel)
-* **RF-02 (Discovery & Sentinel):** Inventário contínuo de endpoints e detecção de Shadow AI corporativa.
-  * **AC-02.1:** Registro de chamadas de LLM com classificação de risco criptográfico.
-  * **AC-02.2:** Detecção e mascaramento de PII (CPFs, cartões, senhas) antes do envio para provedores de IA.
-* **RF-03 (Controlador CPT Inline):** Interceptação Commit-Bound em milissegundos (< 50ms) com avaliação dos 129 filtros em 5 camadas (L1 a L5).
-  * **AC-03.1:** Se houver infração de regra ou viés discriminatório, a requisição é bloqueada em modo *fail-closed*.
-  * **AC-03.2:** Geração de evento forense com hash SHA-256 vinculado à cadeia do tenant.
-* **RF-04 (Time-Travel & Explicabilidade):** Emissão de RIPD de IA e reconstrução do contexto exato da decisão algorítmica.
-  * **AC-04.1:** Geração de Laudo Pericial de Explicabilidade com assinatura digital e recibo WORM.
+### Módulo 1: Governança de IA (BTScan, BTMonitor & superXAi)
+* **RF-02 (BTScan):** Mapeamento e inventário contínuo de endpoints focado estritamente em capturar Shadow AI corporativa.
+  * **AC-02.1:** Registro de chamadas de LLM com classificação de risco e mascaramento de PII.
+* **RF-03 (BTMonitor):** Controlador CPT inline responsável exclusivo por aplicar os 129 filtros de IA em tempo real.
+  * **AC-03.1:** Se houver infração de regra ou viés discriminatório, a requisição é bloqueada em modo *fail-closed* (< 50ms).
+* **RF-04 (superXAi):** Motor de expressão matemática e explicabilidade que reconstrói a lógica da decisão algorítmica.
+  * **AC-04.1:** Ambos (BTMonitor e superXAi) geram relatórios forenses fortíssimos com assinatura digital SHA-256 e recibo WORM.
 
-### Módulo 2: Setor Público (Radar / Vigília / Compras / Executa)
-* **RF-05 (Radar & Vigília do CAUC):** Monitoramento de 27 itens de conformidade fiscal e certidões municipais.
-  * **AC-05.1:** Disparo de alertas automáticos (WhatsApp/E-mail) 15, 7 e 2 dias antes do vencimento de certidões ou prazos do SICONFI (RREO/RGF).
-  * **AC-05.2:** Status em tempo real no Dashboard: Verde (Regular), Amarelo (Atenção), Vermelho (Risco de Bloqueio).
-* **RF-06 (Módulo Compras & Lei 14.133):** Auditoria preventiva de editais, contratos e dispensas de licitação.
-  * **AC-06.1:** Verificação automática de enquadramento em limites legais de dispensa (Art. 75, II).
-* **RF-07 (Módulo Executa):** Rastreabilidade de convênios (Transferegov.br) com ateste de execução e prova para o TCE.
+### Módulo 2: Setor Público (BTGestor / BTLicita / BTCapta)
+* **RF-05 (BTGestor):** Monitoramento de obras no Transferegov e SIAFI.
+  * **AC-05.1:** Quando uma obra começa e precisa ser inserida no Transferegov e SIAFI, ele monitora e auxilia o gestor em tudo o que acontecer lá, provendo documentos e ajudando em diligências.
+* **RF-06 (BTLicita):** Assistente passo a passo de licitação.
+  * **AC-06.1:** Desenvolvido para treinar e ajudar diretamente o pregoeiro ou a equipe de licitação passo a passo na montagem da licitação.
+* **RF-07 (BTCapta):** Motor de rastreabilidade de convênios.
+  * **AC-07.1:** Rastreia convênios federais, emendas parlamentares ou qualquer outro fundo em que o prefeito deseje realizar buscas de recursos.
 
-### Módulo 3: RIG Tech (Lex / Alerta / Prova)
-* **RF-08 (Módulo LEX):** Ingestão e indexação contínua de proposições legislativas e diários oficiais.
-  * **AC-08.1:** Web scraping legal e integração com APIs de Câmaras, Assembleias e Congresso.
-  * **AC-08.2:** Busca semântica e classificação de risco por árvore de palavras-chave.
-* **RF-09 (Módulo PROVA):** Carimbo de tempo criptográfico (Time-Stamp SHA-256) de publicações oficiais para proteção contra apagão de dados.
+### Módulo 3: BTRig (BTLex / BTAlerta / BTProva)
+* **RF-08 (BTLex):** Monitoramento de qualquer tipo de órgão (incluindo projetos na Câmara e Senado).
+  * **AC-08.1:** Focado em empresas (que pagam caro para assessores fazerem este monitoramento). Realiza ingestão e indexação contínua.
+* **RF-09 (BTAlerta & BTProva):** Prevenção e evidências imutáveis.
+  * **AC-09.1:** (BTAlerta) Busca semântica e emissão de alertas de risco antecipado.
+  * **AC-09.2:** (BTProva) Carimbo de tempo criptográfico (Time-Stamp SHA-256) de publicações oficiais gerando dossiês com prova inalterável.
 
 ### Módulo Central: Painel de Controle (`/app/dashboard.html`) & Relatórios Dinâmicos
 * **RF-10 (Dashboard Operacional em Tempo Real):**
@@ -85,3 +84,9 @@
 * **AC-14.1 (Eventos de Negócio):** Disparo de mensagem no canal `#brachatec-vendas` a cada novo cadastro, upgrade de plano ou fatura paga.
 * **AC-14.2 (Alertas de Erros & Incidentes):** Disparo imediato no canal `#brachatec-alertas-dev` para qualquer exceção 500, falha de integridade SHA-256 ou lentidão anormal (>500ms).
 * **AC-14.3 (Heartbeat Diário):** Relatório automático diário às 08:00 UTC-3 com métricas de saúde e estabilidade de todos os microserviços.
+
+## 5. Restrição Arquitetural: Isolamento de Ramos (White-Label Strict)
+* **RN-03 (Isolamento de Infraestrutura):** Os módulos de Governança de IA, Setor Público e BTRig são produtos fisicamente separados no backend.
+  * **AC-03.1:** Obrigatório Back-end separado para cada um dos 3 ramos.
+  * **AC-03.2:** Obrigatório Banco de Dados separado e totalmente independente para cada um dos 3 ramos.
+  * **AC-03.3:** Frontend da área logada deve ter instâncias separadas por ramo caso haja necessidade de customização extrema para clientes White-Label.
