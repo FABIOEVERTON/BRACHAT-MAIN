@@ -194,13 +194,48 @@ img{max-width:100%;display:block;}
     "name": "A ferramenta ajuda a evitar rejeição de contas/TCE?",
     "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Sim. Através do Motor Central <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span>, geramos trilhas de auditoria (Cofre WORM com hash SHA-256) para as execuções de convênios federais e licitações. Em caso de questionamento, a prefeitura possui um dossiê pericial matematicamente irrefutável."
+      "text": "Sim. Através do Motor Central <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span>, geramos trilhas de auditoria (Cofre WORM com hash SHA-256) para as execuções de convênios federais e licitações. Em caso de questionamento, a prefeitura possui um dossiê pericial matematicamente irrefutável."
     }
   }]
 }
 </script>
+
+<style>
+/* PREMIUM OVERRIDE - HIGH TECH ABYSSAL INK */
+:root {
+  --navy: #0a0e17 !important;
+  --navy-2: #101622 !important;
+  --navy-3: #141c2b !important;
+  --navy-4: #1e2d44 !important;
+  --gold: #3ecfbe !important;
+  --gold-2: #cef79e !important;
+  --cyan: #3ecfbe !important;
+  --cyan-dim: rgba(62,207,190,0.1) !important;
+  --violet: #9b85f5 !important;
+  --white: #f8f9fa !important;
+  --serif: 'Inter', sans-serif !important;
+}
+body { background-color: var(--navy) !important; }
+.dor-card, .price-card, .wf-item, .filtro-cat, .ramo-card, .faq-item, .mod-card, .curso-card {
+  background: rgba(20, 28, 43, 0.6) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255,255,255,0.05) !important;
+  transition: all 0.4s ease !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+  border-radius: 12px !important;
+}
+.dor-card:hover, .price-card:hover, .wf-item:hover, .filtro-cat:hover, .ramo-card:hover, .mod-card:hover, .curso-card:hover {
+  border-color: rgba(62,207,190,0.3) !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 10px 40px rgba(62,207,190,0.1) !important;
+}
+section[id],div[id]{scroll-margin-top: 40vh !important;}
+.bt-color { color: var(--gold) !important; font-weight: 700 !important; }
+</style>
 </head>
 <body>
+<canvas id="hero-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background: radial-gradient(circle at 50% 0%, rgba(10,30,40,1) 0%, #0a0e17 80%); pointer-events: none; opacity: 0.8;"></canvas>
+
 
 <nav class="nav">
   <a href="/" class="nav-back" data-i18n="nav-back">← Voltar ao início</a>
@@ -379,7 +414,7 @@ img{max-width:100%;display:block;}
       </div>
       <div class="faq-item">
         <div class="faq-q" data-i18n="faq3-q">A ferramenta ajuda a evitar rejeição de contas/TCE?</div>
-        <div class="faq-a" data-i18n="faq3-a">Sim. Através do Motor Central <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span>, geramos trilhas de auditoria (Cofre WORM com hash SHA-256) para as execuções de convênios federais e licitações. Em caso de questionamento futuro, a prefeitura possui um dossiê pericial matematicamente irrefutável demonstrando a lisura do processo.</div>
+        <div class="faq-a" data-i18n="faq3-a">Sim. Através do Motor Central <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span>, geramos trilhas de auditoria (Cofre WORM com hash SHA-256) para as execuções de convênios federais e licitações. Em caso de questionamento futuro, a prefeitura possui um dossiê pericial matematicamente irrefutável demonstrando a lisura do processo.</div>
       </div>
     </div>
   </div>
@@ -394,7 +429,7 @@ img{max-width:100%;display:block;}
 </section>
 
 <footer class="footer">
-  <p class="f-copy" data-i18n="f-copy">© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados. · <a href="/" style="color:var(--muted-2);text-decoration:underline;">Ir para a Home</a></p>
+  <p class="f-copy" data-i18n="f-copy">© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados. · <a href="/" style="color:var(--muted-2);text-decoration:underline;">Ir para a Home</a></p>
 </footer>
 
 <script>
@@ -431,9 +466,9 @@ var T={
     'faq-title':'Perguntas Frequentes',
     'faq1-q':'Como a contratação se enquadra na Dispensa de Licitação?','faq1-a':'O valor anual do nosso pacote principal para prefeituras é de R$ 56.300 (Setup + 12 Mensalidades). Este valor está estritamente dentro do limite de R$ 59.906,02 estabelecido pela Lei 14.133/2021 (Art. 75, inciso II e Decreto 11.871/2024) para compras diretas e serviços, permitindo contratação célere e sem licitação burocrática.',
     'faq2-q':'Como o sistema auxilia na gestão de obras?','faq2-a':'O módulo VIGÍLIA auxilia o gestor em todas as etapas quando começa uma obra no Transferegov e SIAFI, provendo documentos e respondendo a diligências. O sistema monitora a execução e alerta por WhatsApp e E-mail.',
-    'faq3-q':'A ferramenta ajuda a evitar rejeição de contas/TCE?','faq3-a':'Sim. Através do Motor Central <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span>, geramos trilhas de auditoria (Cofre WORM com hash SHA-256) para as execuções de convênios federais e licitações. Em caso de questionamento futuro, a prefeitura possui um dossiê pericial matematicamente irrefutável demonstrando a lisura do processo.',
+    'faq3-q':'A ferramenta ajuda a evitar rejeição de contas/TCE?','faq3-a':'Sim. Através do Motor Central <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span>, geramos trilhas de auditoria (Cofre WORM com hash SHA-256) para as execuções de convênios federais e licitações. Em caso de questionamento futuro, a prefeitura possui um dossiê pericial matematicamente irrefutável demonstrando a lisura do processo.',
     'cta-title':'Agende um diagnóstico municipal','cta-sub':'Fale com nossos especialistas e entenda como blindar as contas do seu município antes que os problemas aconteçam.','cta-btn':'Agendar Reunião Técnica',
-    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados.'
+    'f-copy':'© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados.'
   },
   es:{
     'nav-login':'Ingresar',
@@ -468,7 +503,7 @@ var T={
     'faq2-q':'¿Cómo evita el sistema los bloqueos fiscales?','faq2-a':'El módulo monitorea diariamente 27 ítems de conformidad, incluyendo certificados fiscales y reportes. El sistema alerta al gestor por WhatsApp con días de anticipación.',
     'faq3-q':'¿Ayuda a evitar el rechazo de cuentas en Tribunales?','faq3-a':'Sí. A través de nuestro motor, generamos pistas de auditoría forense para ejecuciones de convenios. En caso de auditorías futuras, el municipio tiene un expediente pericial irrefutable.',
     'cta-title':'Agende un diagnóstico municipal','cta-sub':'Hable con nuestros expertos y entienda cómo blindar las cuentas de su municipio antes de que ocurran los problemas.','cta-btn':'Agendar Reunión Técnica',
-    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos los derechos reservados.'
+    'f-copy':'© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. Todos los derechos reservados.'
   },
   en:{
     'nav-login':'Log In',
@@ -503,7 +538,7 @@ var T={
     'faq2-q':'How does the system prevent fiscal blockages?','faq2-a':'The system daily monitors 27 compliance items, including tax certificates and legal reports. It alerts the manager via WhatsApp and email days before expiration, allowing preventive action.',
     'faq3-q':'Does the tool help avoid Court of Audits rejection?','faq3-a':'Yes. Through our engine, we generate audit trails (WORM vault with SHA-256 hash) for the execution of federal covenants. In case of future questioning, the municipality has an irrefutable forensic dossier.',
     'cta-title':'Schedule a municipal diagnostic','cta-sub':'Talk to our experts and understand how to shield your municipality’s accounts before problems happen.','cta-btn':'Schedule Technical Meeting',
-    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. All rights reserved.'
+    'f-copy':'© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. All rights reserved.'
   }
 };
 function setLang(lang){
@@ -514,5 +549,62 @@ function setLang(lang){
 }
 (function(){try{var s=localStorage.getItem('brt_lang');if(s&&['pt','es','en'].indexOf(s)>-1&&s!=='pt'){setLang(s);}}catch(e){}})();
 </script>
+
+<script>
+// High-Tech WebGL/Canvas Node Network Animation (Background)
+const canvas = document.getElementById('hero-canvas');
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width, height, particles;
+    function init() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      particles = [];
+      const particleCount = window.innerWidth < 768 ? 30 : 70;
+      for(let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          size: Math.random() * 2 + 1
+        });
+      }
+    }
+    function animate() {
+      requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#3ecfbe';
+      ctx.strokeStyle = 'rgba(62, 207, 190, 0.1)';
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if(p.x < 0 || p.x > width) p.vx *= -1;
+        if(p.y < 0 || p.y > height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      for(let i = 0; i < particles.length; i++) {
+        for(let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if(dist < 180) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.lineWidth = 1 - (dist / 180);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+    window.addEventListener('resize', init);
+    init();
+    animate();
+}
+</script>
 </body>
+
 </html>

@@ -188,20 +188,55 @@ img{max-width:100%;display:block;}
     "name": "Quais esferas são monitoradas?",
     "acceptedAnswer": {
       "@type": "Answer",
-      "text": "A <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> monitora as esferas Federal, Estadual e Municipal (capitais e municípios estratégicos), cobrindo Diários Oficiais da União, Diários da Justiça, pautas de comissões e trâmites de Projetos de Lei (PLs)."
+      "text": "A <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> monitora as esferas Federal, Estadual e Municipal (capitais e municípios estratégicos), cobrindo Diários Oficiais da União, Diários da Justiça, pautas de comissões e trâmites de Projetos de Lei (PLs)."
     }
   },{
     "@type": "Question",
     "name": "Como funciona o White-Label para assessorias de RIG?",
     "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Escritórios de lobby e relações institucionais podem contratar o motor da <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> e colocar a sua própria marca e identidade visual no painel. O parceiro entrega inteligência para o seu cliente final com o seu próprio timbre e precifica o serviço livremente."
+      "text": "Escritórios de lobby e relações institucionais podem contratar o motor da <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> e colocar a sua própria marca e identidade visual no painel. O parceiro entrega inteligência para o seu cliente final com o seu próprio timbre e precifica o serviço livremente."
     }
   }]
 }
 </script>
+
+<style>
+/* PREMIUM OVERRIDE - HIGH TECH ABYSSAL INK */
+:root {
+  --navy: #0a0e17 !important;
+  --navy-2: #101622 !important;
+  --navy-3: #141c2b !important;
+  --navy-4: #1e2d44 !important;
+  --gold: #3ecfbe !important;
+  --gold-2: #cef79e !important;
+  --cyan: #3ecfbe !important;
+  --cyan-dim: rgba(62,207,190,0.1) !important;
+  --violet: #9b85f5 !important;
+  --white: #f8f9fa !important;
+  --serif: 'Inter', sans-serif !important;
+}
+body { background-color: var(--navy) !important; }
+.dor-card, .price-card, .wf-item, .filtro-cat, .ramo-card, .faq-item, .mod-card, .curso-card {
+  background: rgba(20, 28, 43, 0.6) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255,255,255,0.05) !important;
+  transition: all 0.4s ease !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+  border-radius: 12px !important;
+}
+.dor-card:hover, .price-card:hover, .wf-item:hover, .filtro-cat:hover, .ramo-card:hover, .mod-card:hover, .curso-card:hover {
+  border-color: rgba(62,207,190,0.3) !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 10px 40px rgba(62,207,190,0.1) !important;
+}
+section[id],div[id]{scroll-margin-top: 40vh !important;}
+.bt-color { color: var(--gold) !important; font-weight: 700 !important; }
+</style>
 </head>
 <body>
+<canvas id="hero-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background: radial-gradient(circle at 50% 0%, rgba(10,30,40,1) 0%, #0a0e17 80%); pointer-events: none; opacity: 0.8;"></canvas>
+
 
 <nav class="nav">
   <a href="/" class="nav-back" data-i18n="nav-back">← Voltar ao início</a>
@@ -279,7 +314,7 @@ img{max-width:100%;display:block;}
           <div class="wf-title">BTProva (Dossiê)</div>
         </div>
         <div class="wf-body">
-          <p class="wf-desc" data-i18n="wf3-desc">Lastro probatório. A <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> tira um "carimbo de tempo" (Time-Stamp SHA-256) do momento exato da publicação de um edital ou portaria. Se o documento for removido do site governamental mais tarde ("apagão de dados"), você tem a prova jurídica incontestável de que ele existiu.</p>
+          <p class="wf-desc" data-i18n="wf3-desc">Lastro probatório. A <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> tira um "carimbo de tempo" (Time-Stamp SHA-256) do momento exato da publicação de um edital ou portaria. Se o documento for removido do site governamental mais tarde ("apagão de dados"), você tem a prova jurídica incontestável de que ele existiu.</p>
         </div>
       </div>
     </div>
@@ -355,11 +390,11 @@ img{max-width:100%;display:block;}
       </div>
       <div class="faq-item">
         <div class="faq-q" data-i18n="faq2-q">Quais esferas são monitoradas?</div>
-        <div class="faq-a" data-i18n="faq2-a">A <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> monitora as esferas Federal, Estadual e Municipal (capitais e municípios estratégicos), cobrindo Diários Oficiais da União, Diários da Justiça, pautas de comissões e trâmites de Projetos de Lei (PLs).</div>
+        <div class="faq-a" data-i18n="faq2-a">A <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> monitora as esferas Federal, Estadual e Municipal (capitais e municípios estratégicos), cobrindo Diários Oficiais da União, Diários da Justiça, pautas de comissões e trâmites de Projetos de Lei (PLs).</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" data-i18n="faq3-q">Como funciona o White-Label para assessorias de RIG?</div>
-        <div class="faq-a" data-i18n="faq3-a">Escritórios de lobby e relações institucionais podem contratar o motor da <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> e colocar a sua própria marca e identidade visual no painel. O parceiro entrega inteligência para o seu cliente final com o seu próprio timbre e precifica o serviço livremente, aumentando seu ticket médio.</div>
+        <div class="faq-a" data-i18n="faq3-a">Escritórios de lobby e relações institucionais podem contratar o motor da <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> e colocar a sua própria marca e identidade visual no painel. O parceiro entrega inteligência para o seu cliente final com o seu próprio timbre e precifica o serviço livremente, aumentando seu ticket médio.</div>
       </div>
     </div>
   </div>
@@ -374,7 +409,7 @@ img{max-width:100%;display:block;}
 </section>
 
 <footer class="footer">
-  <p class="f-copy" data-i18n="f-copy">© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados. · <a href="/" style="color:var(--muted-2);text-decoration:underline;">Ir para a Home</a></p>
+  <p class="f-copy" data-i18n="f-copy">© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados. · <a href="/" style="color:var(--muted-2);text-decoration:underline;">Ir para a Home</a></p>
 </footer>
 
 <script>
@@ -392,7 +427,7 @@ var T={
     'dor2-t':'Quebra de modelo de negócio','dor2-p':'Portarias de agências reguladoras, decretos e mudanças tributárias sutis que impactam diretamente a margem de lucro e as restrições operacionais da sua ind    'wf-lbl':'Arquitetura de Dados','wf-title':'Varredura inteligente e prova de publicidade',
     'wf1-desc':'Coleta e Indexação 100% Customizável. O BTLex realiza a varredura completa: Diários Oficiais, Câmara dos Deputados, Senado e Assembleias Legislativas. Mas a grande força é a personalização: o cliente define quais fontes quer monitorar. Tribunais, Agências Reguladoras (ANVISA, ANEEL), Câmaras Municipais ou qualquer outro órgão específico. O motor se conecta e transforma PDFs desestruturados em texto pesquisável.',
     'wf2-desc':'Interceptação de Risco por Palavras-Chave. O cliente cadastra árvores de temas (ex: "Mineração", "Tributo X", nome de concorrentes). Sempre que o LEX identifica a menção, o sistema dispara um push via E-mail ou WhatsApp no momento da publicação, eliminando o delay humano.',
-    'wf3-desc':'Lastro probatório. A <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> tira um "carimbo de tempo" (Time-Stamp SHA-256) do momento exato da publicação de um edital ou portaria. Se o documento for removido do site governamental mais tarde ("apagão de dados"), você tem a prova jurídica incontestável de que ele existiu.',
+    'wf3-desc':'Lastro probatório. A <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> tira um "carimbo de tempo" (Time-Stamp SHA-256) do momento exato da publicação de um edital ou portaria. Se o documento for removido do site governamental mais tarde ("apagão de dados"), você tem a prova jurídica incontestável de que ele existiu.',
     'icp-lbl':'Público-Alvo','icp-title':'Quem utiliza BTRig?',
     'pr-lbl':'Investimento','pr-title':'Planos BTRig','pr-sub':'Modelos para empresas que precisam se proteger, e para agências que vendem inteligência para terceiros.',
     'pr1-price':'R$ 3.500<span>/mês</span>',
@@ -405,10 +440,10 @@ var T={
     'pr-note':'<strong>15% de desconto</strong> para contratos anuais pagos à vista.',
     'faq-title':'Perguntas Frequentes',
     'faq1-q':'O que é BTRig?','faq1-a':'BTRig (Relações Institucionais e Governamentais + Tecnologia) é o uso de automação e dados para monitorar o Poder Público. Em vez de depender de leitura manual de diários oficiais, a plataforma varre Câmaras, Assembleias, Congresso e Executivo em tempo real, alertando sobre riscos.',
-    'faq2-q':'Quais esferas são monitoradas?','faq2-a':'A <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> monitora as esferas Federal, Estadual e Municipal (capitais e municípios estratégicos), cobrindo Diários Oficiais da União, Diários da Justiça, pautas de comissões e trâmites de Projetos de Lei (PLs).',
-    'faq3-q':'Como funciona o White-Label para assessorias de RIG?','faq3-a':'Escritórios de lobby e relações institucionais podem contratar o motor da <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> e colocar a sua própria marca e identidade visual no painel. O parceiro entrega inteligência para o seu cliente final com o seu próprio timbre e precifica o serviço livremente, aumentando seu ticket médio.',
+    'faq2-q':'Quais esferas são monitoradas?','faq2-a':'A <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> monitora as esferas Federal, Estadual e Municipal (capitais e municípios estratégicos), cobrindo Diários Oficiais da União, Diários da Justiça, pautas de comissões e trâmites de Projetos de Lei (PLs).',
+    'faq3-q':'Como funciona o White-Label para assessorias de RIG?','faq3-a':'Escritórios de lobby e relações institucionais podem contratar o motor da <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> e colocar a sua própria marca e identidade visual no painel. O parceiro entrega inteligência para o seu cliente final com o seu próprio timbre e precifica o serviço livremente, aumentando seu ticket médio.',
     'cta-title':'Não seja pego de surpresa.','cta-sub':'Agende uma demonstração da plataforma e veja quais projetos de lei já estão ameaçando o seu negócio hoje.','cta-btn':'Agendar Demonstração',
-    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados.'
+    'f-copy':'© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados.'
   },
   es:{
     'nav-login':'Ingresar',
@@ -424,7 +459,7 @@ var T={
     'wf-lbl':'Arquitectura de Datos','wf-title':'Rastreo inteligente y prueba forense',
     'wf1-desc':'Coleta e Indexação 100% Customizável. O BTLex realiza a varredura completa: Diários Oficiais, Câmara dos Deputados, Senado e Assembleias Legislativas. Mas a grande força é a personalização: o cliente define quais fontes quer monitorar. Tribunais, Agências Reguladoras (ANVISA, ANEEL), Câmaras Municipais ou qualquer outro órgão específico. O motor se conecta e transforma PDFs desestruturados em texto pesquisável.',
     'wf2-desc':'Interceptación por Palabras Clave. El cliente registra temas de riesgo. Siempre que LEX identifica una mención, el sistema envía una alerta vía E-mail o WhatsApp al instante.',
-    'wf3-desc':'Respaldo probatorio (Dossier). <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> extrae un sello de tiempo (SHA-256) del momento exacto de la publicación. Si el documento es borrado luego, usted tiene la prueba forense de que existió.',
+    'wf3-desc':'Respaldo probatorio (Dossier). <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> extrae un sello de tiempo (SHA-256) del momento exacto de la publicación. Si el documento es borrado luego, usted tiene la prueba forense de que existió.',
     'icp-lbl':'Público Objetivo','icp-title':'¿Quién utiliza BTRig?',
     'pr-lbl':'Inversión','pr-title':'Planes BTRig','pr-sub':'Modelos para empresas que necesitan protegerse, y para agencias que venden inteligencia a terceros.',
     'pr1-price':'$700<span>/mes</span>',
@@ -437,10 +472,10 @@ var T={
     'pr-note':'<strong>15% de descuento</strong> para contratos anuales pagados por adelantado.',
     'faq-title':'Preguntas Frecuentes',
     'faq1-q':'¿Qué es BTRig?','faq1-a':'El uso de automatización y datos para monitorear al Poder Público. En lugar de depender de la lectura manual, la plataforma rastrea legislaturas en tiempo real.',
-    'faq2-q':'¿Qué esferas se monitorean?','faq2-a':'<span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> monitorea las esferas Federal, Estatal y Municipal, cubriendo Diarios Oficiales, pautas de comisiones y trámites de Proyectos de Ley.',
-    'faq3-q':'¿Cómo funciona el White-Label para agencias?','faq3-a':'Firmas de relaciones institucionales pueden contratar el motor de <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> y colocar su propia marca. El socio entrega inteligencia a su cliente final con su propio sello y decide el precio.',
+    'faq2-q':'¿Qué esferas se monitorean?','faq2-a':'<span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> monitorea las esferas Federal, Estatal y Municipal, cubriendo Diarios Oficiales, pautas de comisiones y trámites de Proyectos de Ley.',
+    'faq3-q':'¿Cómo funciona el White-Label para agencias?','faq3-a':'Firmas de relaciones institucionales pueden contratar el motor de <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> y colocar su propia marca. El socio entrega inteligencia a su cliente final con su propio sello y decide el precio.',
     'cta-title':'No se deje sorprender.','cta-sub':'Agende una demostración de la plataforma y vea qué proyectos de ley ya amenazan su negocio hoy.','cta-btn':'Agendar Demostración',
-    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos los derechos reservados.'
+    'f-copy':'© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. Todos los derechos reservados.'
   },
   en:{
     'nav-login':'Log In',
@@ -456,7 +491,7 @@ var T={
     'wf-lbl':'Data Architecture','wf-title':'Smart scanning and irrefutable proof',
     'wf1-desc':'Coleta e Indexação 100% Customizável. O BTLex realiza a varredura completa: Diários Oficiais, Câmara dos Deputados, Senado e Assembleias Legislativas. Mas a grande força é a personalização: o cliente define quais fontes quer monitorar. Tribunais, Agências Reguladoras (ANVISA, ANEEL), Câmaras Municipais ou qualquer outro órgão específico. O motor se conecta e transforma PDFs desestruturados em texto pesquisável.',
     'wf2-desc':'Keyword Risk Interception. Clients register risk themes. Whenever LEX identifies a mention, the system fires a push alert via Email or WhatsApp instantly.',
-    'wf3-desc':'Forensic Proof (Dossier). <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> takes a Time-Stamp (SHA-256) at the exact moment a regulation is published. If the document is later removed from government sites, you have forensic proof it existed.',
+    'wf3-desc':'Forensic Proof (Dossier). <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> takes a Time-Stamp (SHA-256) at the exact moment a regulation is published. If the document is later removed from government sites, you have forensic proof it existed.',
     'icp-lbl':'Target Audience','icp-title':'Who uses BTRig?',
     'pr-lbl':'Investment','pr-title':'BTRig Plans','pr-sub':'Models for companies needing protection, and for agencies selling intelligence to third parties.',
     'pr1-price':'$700<span>/mo</span>',
@@ -469,10 +504,10 @@ var T={
     'pr-note':'<strong>15% discount</strong> for annual upfront contracts.',
     'faq-title':'Frequently Asked Questions',
     'faq1-q':'What is BTRig?','faq1-a':'The use of automation and data to monitor Public Powers. Instead of relying on manual reading, the platform scans Congress and the Executive in real time.',
-    'faq2-q':'Which spheres are monitored?','faq2-a':'<span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> monitors Federal, State, and strategic Municipal spheres, covering Official Gazettes, committee agendas, and Bill proceedings.',
-    'faq3-q':'How does White-Label for agencies work?','faq3-a':'Lobbying and public relations firms can hire the <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> engine and apply their own branding. The partner delivers intelligence to their end client under their own name and prices the service freely.',
+    'faq2-q':'Which spheres are monitored?','faq2-a':'<span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> monitors Federal, State, and strategic Municipal spheres, covering Official Gazettes, committee agendas, and Bill proceedings.',
+    'faq3-q':'How does White-Label for agencies work?','faq3-a':'Lobbying and public relations firms can hire the <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> engine and apply their own branding. The partner delivers intelligence to their end client under their own name and prices the service freely.',
     'cta-title':'Don’t be caught by surprise.','cta-sub':'Schedule a platform demo and see which bills are already threatening your business today.','cta-btn':'Schedule Demo',
-    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. All rights reserved.'
+    'f-copy':'© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. All rights reserved.'
   }
 };
 function setLang(lang){
@@ -483,5 +518,62 @@ function setLang(lang){
 }
 (function(){try{var s=localStorage.getItem('brt_lang');if(s&&['pt','es','en'].indexOf(s)>-1&&s!=='pt'){setLang(s);}}catch(e){}})();
 </script>
+
+<script>
+// High-Tech WebGL/Canvas Node Network Animation (Background)
+const canvas = document.getElementById('hero-canvas');
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width, height, particles;
+    function init() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      particles = [];
+      const particleCount = window.innerWidth < 768 ? 30 : 70;
+      for(let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          size: Math.random() * 2 + 1
+        });
+      }
+    }
+    function animate() {
+      requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#3ecfbe';
+      ctx.strokeStyle = 'rgba(62, 207, 190, 0.1)';
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if(p.x < 0 || p.x > width) p.vx *= -1;
+        if(p.y < 0 || p.y > height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      for(let i = 0; i < particles.length; i++) {
+        for(let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if(dist < 180) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.lineWidth = 1 - (dist / 180);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+    window.addEventListener('resize', init);
+    init();
+    animate();
+}
+</script>
 </body>
+
 </html>

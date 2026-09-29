@@ -207,8 +207,43 @@ img{max-width:100%;display:block;}
   }]
 }
 </script>
+
+<style>
+/* PREMIUM OVERRIDE - HIGH TECH ABYSSAL INK */
+:root {
+  --navy: #0a0e17 !important;
+  --navy-2: #101622 !important;
+  --navy-3: #141c2b !important;
+  --navy-4: #1e2d44 !important;
+  --gold: #3ecfbe !important;
+  --gold-2: #cef79e !important;
+  --cyan: #3ecfbe !important;
+  --cyan-dim: rgba(62,207,190,0.1) !important;
+  --violet: #9b85f5 !important;
+  --white: #f8f9fa !important;
+  --serif: 'Inter', sans-serif !important;
+}
+body { background-color: var(--navy) !important; }
+.dor-card, .price-card, .wf-item, .filtro-cat, .ramo-card, .faq-item, .mod-card, .curso-card {
+  background: rgba(20, 28, 43, 0.6) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255,255,255,0.05) !important;
+  transition: all 0.4s ease !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+  border-radius: 12px !important;
+}
+.dor-card:hover, .price-card:hover, .wf-item:hover, .filtro-cat:hover, .ramo-card:hover, .mod-card:hover, .curso-card:hover {
+  border-color: rgba(62,207,190,0.3) !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 10px 40px rgba(62,207,190,0.1) !important;
+}
+section[id],div[id]{scroll-margin-top: 40vh !important;}
+.bt-color { color: var(--gold) !important; font-weight: 700 !important; }
+</style>
 </head>
 <body>
+<canvas id="hero-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background: radial-gradient(circle at 50% 0%, rgba(10,30,40,1) 0%, #0a0e17 80%); pointer-events: none; opacity: 0.8;"></canvas>
+
 
 <nav class="nav">
   <a href="/" class="nav-back" data-i18n="nav-back">← Voltar ao início</a>
@@ -272,7 +307,7 @@ img{max-width:100%;display:block;}
           <h3 style="margin:0; color:var(--white); font-size:20px;" data-i18n="mod3-title">Módulo 3: Implantação e Certificação</h3>
           <span style="background:var(--navy-4); color:var(--white-2); padding:4px 12px; border-radius:12px; font-size:12px; font-weight:600;" data-i18n="mod-cert">Certificação</span>
         </div>
-        <p style="color:var(--muted); font-size:14px; margin-bottom:16px;" data-i18n="mod3-desc">Exame final de múltipla escolha e avaliação prática para emissão do Certificado Oficial <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Integrator.</p>
+        <p style="color:var(--muted); font-size:14px; margin-bottom:16px;" data-i18n="mod3-desc">Exame final de múltipla escolha e avaliação prática para emissão do Certificado Oficial <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Integrator.</p>
         <div style="display:flex; gap:16px; font-size:13px; color:var(--muted-2);">
           <span style="display:flex; align-items:center; gap:4px;">🏆 <span data-i18n="mod-badge">Badge Oficial</span></span>
         </div>
@@ -291,7 +326,7 @@ img{max-width:100%;display:block;}
     <div class="hero-eyebrow" data-i18n="auth-tag">O Paradigma "Code as Law"</div>
     <h2 class="s-title" style="text-align: left; margin-bottom: 24px;" data-i18n="auth-title">Arquitetura Zero Trust & Segurança em Runtime</h2>
     <p style="color: var(--muted); line-height: 1.8; margin-bottom: 24px; font-size: 16px;" data-i18n="auth-p1">
-      A transformação digital acelerada exige que a regulação migre do papel para o código. Inspirada no modelo <strong>Zero Trust (NIST SP 800-207)</strong>, a <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> converte diretrizes doutrinárias e critérios de órgãos reguladores em barreiras técnicas de execução.
+      A transformação digital acelerada exige que a regulação migre do papel para o código. Inspirada no modelo <strong>Zero Trust (NIST SP 800-207)</strong>, a <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> converte diretrizes doutrinárias e critérios de órgãos reguladores em barreiras técnicas de execução.
     </p>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px;">
       <div style="background: var(--bg); padding: 32px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
@@ -393,7 +428,7 @@ img{max-width:100%;display:block;}
 </section>
 
 <footer class="footer">
-  <p class="f-copy" data-i18n="f-copy">© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados. · <a href="/" style="color:var(--muted-2);text-decoration:underline;">Ir para a Home</a></p>
+  <p class="f-copy" data-i18n="f-copy">© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados. · <a href="/" style="color:var(--muted-2);text-decoration:underline;">Ir para a Home</a></p>
 </footer>
 
 <script>
@@ -403,7 +438,7 @@ var T={
   pt:{
     'nav-login':'Acessar Plataforma',
     'nav-back':'← Voltar para home','nav-cta':'Ver Planos',
-    'hero-tag':'<span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Academy',
+    'hero-tag':'<span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Academy',
     'hero-title':'Do problema ao domínio.<br>Capacitação Regulatória.',
     'hero-lead':'Educação corporativa estruturada. Videoaulas, materiais de apoio e certificação para times que precisam dominar conformidade com profundidade técnica.',
     'vid-play':'Assistir ao Trailer da Academia',
@@ -419,7 +454,7 @@ var T={
     'mod-vid2':'8 Aulas Práticas (Vídeo)','mod-txt2':'Scripts e Templates',
     'mod3-title':'Módulo 3: Implantação e Certificação',
     'mod-cert':'Certificação',
-    'mod3-desc':'Exame final de múltipla escolha e avaliação prática para emissão do Certificado Oficial <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Integrator.',
+    'mod3-desc':'Exame final de múltipla escolha e avaliação prática para emissão do Certificado Oficial <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Integrator.',
     'mod-badge':'Badge Oficial',
     'pr-lbl':'Acesso','pr-title':'Planos da Academia','pr-sub':'Comece a estudar gratuitamente ou forme todo o seu time de compliance.',
     'pr1-price':'R$ 0<span>/mês</span>',
@@ -446,12 +481,12 @@ var T={
     'faq2-q':'Posso baixar as videoaulas?','faq2-a':'As videoaulas devem ser assistidas na plataforma, mas os materiais de apoio (PDFs) podem ser baixados.',
     'faq3-q':'Como funciona para empresas?','faq3-a':'No plano corporativo, o gestor recebe um painel para acompanhar o progresso das aulas de toda a equipe.',
     'cta-title':'Pronto para dominar a governança?','cta-sub':'Crie sua conta gratuita agora e comece a assistir à primeira aula.','cta-btn':'Começar Agora',
-    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados.'
+    'f-copy':'© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados.'
   },
   es:{
     'nav-login':'Iniciar Sesión',
     'nav-back':'← Volver al inicio','nav-cta':'Ver Planes',
-    'hero-tag':'<span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Academy',
+    'hero-tag':'<span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Academy',
     'hero-title':'Del problema al dominio.<br>Capacitación Regulatoria.',
     'hero-lead':'Educación corporativa estructurada. Videoclases, materiales de apoyo y certificación para equipos.',
     'vid-play':'Ver Trailer de la Academia',
@@ -467,7 +502,7 @@ var T={
     'mod-vid2':'8 Clases Prácticas (Video)','mod-txt2':'Scripts y Plantillas',
     'mod3-title':'Módulo 3: Implementación y Certificación',
     'mod-cert':'Certificación',
-    'mod3-desc':'Examen final para emisión del Certificado Oficial <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Integrator.',
+    'mod3-desc':'Examen final para emisión del Certificado Oficial <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Integrator.',
     'mod-badge':'Insignia Oficial',
     'pr-lbl':'Acceso','pr-title':'Planes de la Academia','pr-sub':'Empiece a estudiar gratis o forme a todo su equipo de compliance.',
     'pr1-price':'$0<span>/mes</span>',
@@ -494,12 +529,12 @@ var T={
     'faq2-q':'¿Puedo descargar las videoclases?','faq2-a':'Las videoclases deben ser vistas en la plataforma, pero los materiales de apoyo (PDF) pueden descargarse.',
     'faq3-q':'¿Cómo funciona para empresas?','faq3-a':'En el plan corporativo, el gerente recibe un panel para rastrear el progreso de todo el equipo.',
     'cta-title':'¿Listo para dominar la gobernanza?','cta-sub':'Cree su cuenta gratis ahora y comience a ver la primera clase.','cta-btn':'Empezar Ahora',
-    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos los derechos reservados.'
+    'f-copy':'© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. Todos los derechos reservados.'
   },
   en:{
     'nav-login':'Log In',
     'nav-back':'← Back to home','nav-cta':'View Plans',
-    'hero-tag':'<span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Academy',
+    'hero-tag':'<span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Academy',
     'hero-title':'From problem to mastery.<br>Regulatory Training.',
     'hero-lead':'Structured corporate education. Video lessons, support materials, and certification for teams.',
     'vid-play':'Watch Academy Trailer',
@@ -515,7 +550,7 @@ var T={
     'mod-vid2':'8 Practical Lessons (Video)','mod-txt2':'Scripts and Templates',
     'mod3-title':'Module 3: Implementation and Certification',
     'mod-cert':'Certification',
-    'mod3-desc':'Final exam to earn the Official <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Integrator Certificate.',
+    'mod3-desc':'Final exam to earn the Official <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Integrator Certificate.',
     'mod-badge':'Official Badge',
     'pr-lbl':'Access','pr-title':'Academy Plans','pr-sub':'Start studying for free or train your entire compliance team.',
     'pr1-price':'$0<span>/mo</span>',
@@ -542,7 +577,7 @@ var T={
     'faq2-q':'Can I download the video lessons?','faq2-a':'Video lessons must be watched on the platform, but support materials (PDFs) can be downloaded.',
     'faq3-q':'How does it work for companies?','faq3-a':'On the corporate plan, managers get a dashboard to track the progress of their entire team.',
     'cta-title':'Ready to master governance?','cta-sub':'Create your free account now and start watching the first lesson.','cta-btn':'Start Now',
-    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. All rights reserved.'
+    'f-copy':'© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. All rights reserved.'
   }
 };
 
@@ -554,5 +589,62 @@ function setLang(lang){
 }
 (function(){try{var s=localStorage.getItem('brt_lang');if(s&&['pt','es','en'].indexOf(s)>-1&&s!=='pt'){setLang(s);}}catch(e){}})();
 </script>
+
+<script>
+// High-Tech WebGL/Canvas Node Network Animation (Background)
+const canvas = document.getElementById('hero-canvas');
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width, height, particles;
+    function init() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      particles = [];
+      const particleCount = window.innerWidth < 768 ? 30 : 70;
+      for(let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          size: Math.random() * 2 + 1
+        });
+      }
+    }
+    function animate() {
+      requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#3ecfbe';
+      ctx.strokeStyle = 'rgba(62, 207, 190, 0.1)';
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if(p.x < 0 || p.x > width) p.vx *= -1;
+        if(p.y < 0 || p.y > height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      for(let i = 0; i < particles.length; i++) {
+        for(let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if(dist < 180) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.lineWidth = 1 - (dist / 180);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+    window.addEventListener('resize', init);
+    init();
+    animate();
+}
+</script>
 </body>
+
 </html>

@@ -207,8 +207,43 @@ img{max-width:100%;display:block;}
   }]
 }
 </script>
+
+<style>
+/* PREMIUM OVERRIDE - HIGH TECH ABYSSAL INK */
+:root {
+  --navy: #0a0e17 !important;
+  --navy-2: #101622 !important;
+  --navy-3: #141c2b !important;
+  --navy-4: #1e2d44 !important;
+  --gold: #3ecfbe !important;
+  --gold-2: #cef79e !important;
+  --cyan: #3ecfbe !important;
+  --cyan-dim: rgba(62,207,190,0.1) !important;
+  --violet: #9b85f5 !important;
+  --white: #f8f9fa !important;
+  --serif: 'Inter', sans-serif !important;
+}
+body { background-color: var(--navy) !important; }
+.dor-card, .price-card, .wf-item, .filtro-cat, .ramo-card, .faq-item, .mod-card, .curso-card {
+  background: rgba(20, 28, 43, 0.6) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255,255,255,0.05) !important;
+  transition: all 0.4s ease !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+  border-radius: 12px !important;
+}
+.dor-card:hover, .price-card:hover, .wf-item:hover, .filtro-cat:hover, .ramo-card:hover, .mod-card:hover, .curso-card:hover {
+  border-color: rgba(62,207,190,0.3) !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 10px 40px rgba(62,207,190,0.1) !important;
+}
+section[id],div[id]{scroll-margin-top: 40vh !important;}
+.bt-color { color: var(--gold) !important; font-weight: 700 !important; }
+</style>
 </head>
 <body>
+<canvas id="hero-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background: radial-gradient(circle at 50% 0%, rgba(10,30,40,1) 0%, #0a0e17 80%); pointer-events: none; opacity: 0.8;"></canvas>
+
 
 <nav class="nav">
   <a href="/" class="nav-back" data-i18n="nav-back">← Voltar ao início</a>
@@ -346,7 +381,7 @@ img{max-width:100%;display:block;}
     <div class="hero-eyebrow" data-i18n="auth-tag">O Paradigma "Code as Law"</div>
     <h2 class="s-title" style="text-align: left; margin-bottom: 24px;" data-i18n="auth-title">Arquitetura Zero Trust & Segurança em Runtime</h2>
     <p style="color: var(--muted); line-height: 1.8; margin-bottom: 24px; font-size: 16px;" data-i18n="auth-p1">
-      A transformação digital exige que a regulação migre do papel para o código. A <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> é a primeira plataforma de auditoria contínua a garantir total conformidade com o <strong>PL 2338/2023 (Marco Legal da IA)</strong> e a <strong>LGPD</strong>. Além disso, auditamos nativamente e de forma ativa os maiores frameworks globais de IA: <strong>ISO/IEC 42001</strong>, <strong>NIST AI RMF</strong> e o <strong>EU AI Act (Lei Europeia)</strong>. Convertendo todas essas diretrizes em barreiras técnicas de execução automatizada.
+      A transformação digital exige que a regulação migre do papel para o código. A <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> é a primeira plataforma de auditoria contínua a garantir total conformidade com o <strong>PL 2338/2023 (Marco Legal da IA)</strong> e a <strong>LGPD</strong>. Além disso, auditamos nativamente e de forma ativa os maiores frameworks globais de IA: <strong>ISO/IEC 42001</strong>, <strong>NIST AI RMF</strong> e o <strong>EU AI Act (Lei Europeia)</strong>. Convertendo todas essas diretrizes em barreiras técnicas de execução automatizada.
     </p>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px;">
       <div style="background: var(--bg); padding: 32px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
@@ -387,7 +422,7 @@ img{max-width:100%;display:block;}
       <!-- Feed / API -->
       <div class="price-card" style="text-align:left; padding:32px;">
         <div class="pc-name" style="font-size:24px; color:var(--white);" data-i18n="acc3-title">Na sua Infraestrutura (Feed/API)</div>
-        <p style="color:var(--muted); font-size:14px; margin:16px 0;" data-i18n="acc3-desc">O motor <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> plugado nos seus sistemas. Filtros inline de milissegundos conectados via API. Bloqueie dados antes de chegarem à OpenAI no nível do seu servidor.</p>
+        <p style="color:var(--muted); font-size:14px; margin:16px 0;" data-i18n="acc3-desc">O motor <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> plugado nos seus sistemas. Filtros inline de milissegundos conectados via API. Bloqueie dados antes de chegarem à OpenAI no nível do seu servidor.</p>
         <div class="pc-price" style="font-size:24px; margin-bottom:0;" data-i18n="acc3-price">Integração API Rest</div>
       </div>
 
@@ -482,7 +517,7 @@ img{max-width:100%;display:block;}
 </section>
 
 <footer class="footer">
-  <p class="f-copy" data-i18n="f-copy">© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados. · <a href="/" style="color:var(--muted-2);text-decoration:underline;">Ir para a Home</a></p>
+  <p class="f-copy" data-i18n="f-copy">© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados. · <a href="/" style="color:var(--muted-2);text-decoration:underline;">Ir para a Home</a></p>
 </footer>
 
 <script>
@@ -526,7 +561,7 @@ var T={
     'faq2-q':'O que é Shadow AI?','faq2-a':'São sistemas de IA (como LLMs ou ferramentas de produtividade) utilizados por colaboradores sem o conhecimento ou aprovação da TI e do Jurídico, gerando risco massivo de vazamento de dados corporativos.',
     'faq3-q':'Como o Controlador CPT atua?','faq3-a':'O CPT atua inline (Commit-Bound). Se uma IA tentar processar um dado sensível ou tomar uma decisão viesada, a plataforma intercepta a chamada no milissegundo exato e bloqueia a ação, gerando um laudo forense do evento.',
     'cta-title':'Agende uma auditoria de IA gratuita','cta-sub':'Descubra os riscos ocultos na sua operação de IA em 15 minutos.','cta-btn':'Agendar Diagnóstico',
-    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados.'
+    'f-copy':'© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. Todos os direitos reservados.'
   },
   es:{
     'nav-login':'Ingresar',
@@ -568,7 +603,7 @@ var T={
     'faq2-q':'¿Qué es Shadow AI?','faq2-a':'Sistemas de IA utilizados por empleados sin el conocimiento de TI y Legal, generando riesgos masivos de fuga de datos corporativos.',
     'faq3-q':'¿Cómo actúa el Controlador CPT?','faq3-a':'El CPT actúa inline (Commit-Bound). Si una IA intenta procesar datos sensibles de manera inapropiada, intercepta la llamada en el milisegundo exacto, bloquea la acción y genera un informe forense.',
     'cta-title':'Agende una auditoría de IA gratuita','cta-sub':'Descubra los riesgos ocultos en su operación de IA en 15 minutos.','cta-btn':'Agendar Diagnóstico',
-    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. Todos los derechos reservados.'
+    'f-copy':'© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. Todos los derechos reservados.'
   },
   en:{
     'nav-login':'Log In',
@@ -610,7 +645,7 @@ var T={
     'faq2-q':'What is Shadow AI?','faq2-a':'AI systems used by employees without IT or Legal knowledge, creating massive risks of corporate data leaks.',
     'faq3-q':'How does the CPT Controller work?','faq3-a':'CPT acts inline (Commit-Bound). If an AI attempts to process sensitive data inappropriately, it intercepts the call in the exact millisecond, blocks the action, and generates a forensic report.',
     'cta-title':'Schedule a free AI audit','cta-sub':'Discover the hidden risks in your AI operations in 15 minutes.','cta-btn':'Schedule Diagnostic',
-    'f-copy':'© 2025 <span style="color:var(--white);"><span style="color:var(--gold);">B</span>racha<span style="color:var(--gold);">T</span>ec</span> Tecnologia Ltda. All rights reserved.'
+    'f-copy':'© 2025 <span style="color:var(--white);"><span class="bt-color">B</span>racha<span class="bt-color">T</span>ec</span> Tecnologia Ltda. All rights reserved.'
   }
 };
 function setLang(lang){
@@ -621,5 +656,62 @@ function setLang(lang){
 }
 (function(){try{var s=localStorage.getItem('brt_lang');if(s&&['pt','es','en'].indexOf(s)>-1&&s!=='pt'){setLang(s);}}catch(e){}})();
 </script>
+
+<script>
+// High-Tech WebGL/Canvas Node Network Animation (Background)
+const canvas = document.getElementById('hero-canvas');
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width, height, particles;
+    function init() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      particles = [];
+      const particleCount = window.innerWidth < 768 ? 30 : 70;
+      for(let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          size: Math.random() * 2 + 1
+        });
+      }
+    }
+    function animate() {
+      requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#3ecfbe';
+      ctx.strokeStyle = 'rgba(62, 207, 190, 0.1)';
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if(p.x < 0 || p.x > width) p.vx *= -1;
+        if(p.y < 0 || p.y > height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      for(let i = 0; i < particles.length; i++) {
+        for(let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if(dist < 180) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.lineWidth = 1 - (dist / 180);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+    window.addEventListener('resize', init);
+    init();
+    animate();
+}
+</script>
 </body>
+
 </html>
