@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOC Master — BrachaTec</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #05080f; color: #f8f9fa; margin: 0; overflow: hidden; }
+    .glass-card {
+      background: rgba(14, 21, 33, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    }
+    .pulse-green { box-shadow: 0 0 10px rgba(76, 175, 130, 0.4); }
+    .pulse-orange { box-shadow: 0 0 10px rgba(224, 130, 82, 0.4); }
+    .pulse-red { box-shadow: 0 0 10px rgba(224, 82, 82, 0.4); }
+    
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+  </style>
+</head>
+<body class="flex h-screen text-gray-100">
+
+  <!-- BACKGROUND ANIMATION (NOC VIBE) -->
+  <canvas id="bg-canvas" class="fixed top-0 left-0 w-full h-full -z-10 opacity-40"></canvas>
+
+  <!-- SIDEBAR -->
+  <aside class="w-16 md:w-64 border-r border-white/5 bg-[#080d1a]/80 backdrop-blur-md flex flex-col z-10 transition-all">
+    <div class="h-14 flex items-center justify-center md:justify-start md:px-6 border-b border-white/5">
+      <h1 class="text-xl font-bold tracking-widest text-white hidden md:block">
+        <span class="text-[#3ecfbe]">B</span>T<span class="text-[10px] text-white/40 ml-1 font-mono uppercase">NOC</span>
+      </h1>
+      <i data-lucide="cpu" class="w-6 h-6 text-[#3ecfbe] md:hidden"></i>
+    </div>
+        <nav class="flex-1 py-4 flex flex-col gap-2 px-2 md:px-4">
+      <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all border border-transparent">
+        <i data-lucide="activity" class="w-5 h-5"></i> <span class="text-sm font-medium hidden md:block">Telemetria Global</span>
+      </a>
+      <a href="clientes.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all border border-transparent">
+        <i data-lucide="users" class="w-5 h-5"></i> <span class="text-sm font-medium hidden md:block">Clientes</span>
+      </a>
+      <a href="parceiros.html" class="flex items-center gap-3 px-3 py-2.5 bg-[#3ecfbe]/10 text-[#3ecfbe] rounded-lg border border-[#3ecfbe]/20 transition-all hover:bg-[#3ecfbe]/20">
+        <i data-lucide="shield" class="w-5 h-5"></i> <span class="text-sm font-medium hidden md:block">Parceiros WL</span>
+      </a>
+      <a href="financeiro.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all border border-transparent">
+        <i data-lucide="dollar-sign" class="w-5 h-5"></i> <span class="text-sm font-medium hidden md:block">Financeiro</span>
+      </a>
+      <a href="infraestrutura.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all border border-transparent">
+        <i data-lucide="layers" class="w-5 h-5"></i> <span class="text-sm font-medium hidden md:block">Infraestrutura</span>
+      </a>
+      <a href="logs.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all border border-transparent">
+        <i data-lucide="bug" class="w-5 h-5"></i> <span class="text-sm font-medium hidden md:block">Log de Exceções</span>
+      </a>
+      <a href="cofre.html" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all border border-transparent">
+        <i data-lucide="database" class="w-5 h-5"></i> <span class="text-sm font-medium hidden md:block">Cofre WORM</span>
+      </a>
+    </nav>
+    <div class="p-4 border-t border-white/5 text-center md:text-left">
+      <div class="flex items-center justify-center md:justify-start gap-2 text-[10px] uppercase tracking-wider text-gray-500 font-mono">
+        <div class="w-1.5 h-1.5 rounded-full bg-[#3ecfbe] animate-ping"></div>
+        <span class="hidden md:inline">Cluster SA-EAST-1</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 flex flex-col h-screen z-10">
+    <!-- TOP HEADER -->
+    <header class="h-14 border-b border-white/5 bg-[#080d1a]/80 backdrop-blur-md flex items-center justify-between px-6">
+      <div class="flex items-center gap-4">
+        <h2 class="text-sm font-medium text-gray-300 font-mono uppercase tracking-widest">Network Operations Center</h2>
+        <span class="text-[10px] bg-green-500/10 text-green-400 border border-green-500/20 px-2 py-0.5 rounded font-mono">ALL SYSTEMS OPERATIONAL</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <i data-lucide="bell" class="w-4 h-4 text-gray-400 cursor-pointer hover:text-white"></i>
+        <div class="h-6 w-px bg-white/10"></div>
+        <span class="text-xs text-gray-400 font-mono">Root Admin</span>
+      </div>
+    </header>
+
+    <!-- DASHBOARD SCROLL AREA -->
+    <div class="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
+      <div class="glass-card p-10 rounded-lg flex flex-col items-center justify-center text-center h-[60vh]">
+        <i data-lucide="shield" class="w-16 h-16 text-[#3ecfbe] mb-6 opacity-80 animate-bounce"></i>
+        <h2 class="text-2xl font-bold text-white mb-2">Módulo: Parceiros WL</h2>
+        <p class="text-gray-400 max-w-md">Esta interface está sendo projetada. Os dados de parceiros wl da arquitetura Shared-Nothing serão conectados em breve.</p>
+      </div>
+    </div>
+</main>
+
+  <!-- Background WebGL Script -->
+  <script>
+    lucide.createIcons();
+    
+    // Matrix-style tech background
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    let width, height, dots = [];
+    
+    function init() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      dots = [];
+      for(let i=0; i<100; i++) {
+        dots.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          s: Math.random() * 1.5 + 0.5,
+          v: Math.random() * 0.5 + 0.1
+        });
+      }
+    }
+    
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = 'rgba(62, 207, 190, 0.15)';
+      dots.forEach(d => {
+        d.y -= d.v;
+        if(d.y < 0) d.y = height;
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.s, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      requestAnimationFrame(animate);
+    }
+    
+    window.addEventListener('resize', init);
+    init();
+    animate();
+  </script>
+</body>
+</html>

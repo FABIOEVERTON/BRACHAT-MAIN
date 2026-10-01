@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout Seguro — BrachaTec</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #0a0e17; color: #f8f9fa; margin: 0; }
+    .glass-card {
+      background: rgba(20, 28, 43, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border-radius: 12px;
+    }
+    .input-field {
+      width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1);
+      color: white; padding: 12px 16px; border-radius: 8px; outline: none; transition: border 0.2s;
+    }
+    .input-field:focus { border-color: #3ecfbe; }
+    .btn-pay {
+      background: #3ecfbe; color: #0a0e17; font-weight: 700; width: 100%; padding: 16px;
+      border-radius: 8px; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s;
+    }
+    .btn-pay:hover { background: #f8f9fa; transform: translateY(-1px); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col relative">
+
+  <!-- BACKGROUND ANIMATION -->
+  <canvas id="hero-canvas" class="fixed top-0 left-0 w-full h-full -z-10 opacity-80" style="background: radial-gradient(circle at 50% 0%, rgba(10,30,40,1) 0%, #0a0e17 80%);"></canvas>
+
+  <!-- HEADER -->
+  <header class="h-20 border-b border-white/5 flex items-center justify-between px-8 bg-[#0a0e17]/80 backdrop-blur-md">
+    <a href="../index.html" class="text-xl font-bold tracking-widest text-white">
+      <span class="text-[#3ecfbe]">B</span>racha<span class="text-[#3ecfbe]">T</span>ec<span class="text-xs text-white/40 ml-2 font-normal uppercase tracking-widest">Checkout</span>
+    </a>
+    <div class="flex items-center gap-2 text-xs text-gray-400 font-mono">
+      <i data-lucide="lock" class="w-3 h-3 text-green-400"></i> Ambiente 100% Seguro
+    </div>
+  </header>
+
+  <!-- CHECKOUT CONTENT -->
+  <main class="flex-1 max-w-5xl w-full mx-auto p-6 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+    
+    <!-- LEFT: ORDER SUMMARY -->
+    <div class="flex flex-col gap-6">
+      <h1 class="text-3xl font-bold text-white">Finalize sua assinatura</h1>
+      
+      <div class="glass-card p-6">
+        <div class="flex justify-between items-start border-b border-white/5 pb-4 mb-4">
+          <div>
+            <div class="text-lg font-bold text-white">BT Gov AI — Standard</div>
+            <div class="text-sm text-gray-400 mt-1">Licença Mensal (Faturamento Recorrente)</div>
+          </div>
+          <div class="text-xl font-bold text-[#3ecfbe]">R$ 2.900</div>
+        </div>
+        
+        <div class="space-y-3 mb-6 text-sm text-gray-300">
+          <div class="flex items-center gap-3">
+            <i data-lucide="check" class="w-4 h-4 text-[#3ecfbe]"></i> Monitoramento em Runtime
+          </div>
+          <div class="flex items-center gap-3">
+            <i data-lucide="check" class="w-4 h-4 text-[#3ecfbe]"></i> Cofre WORM Ativado
+          </div>
+          <div class="flex items-center gap-3">
+            <i data-lucide="check" class="w-4 h-4 text-[#3ecfbe]"></i> Geração de Hashes SHA-256
+          </div>
+          <div class="flex items-center gap-3">
+            <i data-lucide="check" class="w-4 h-4 text-[#3ecfbe]"></i> 3 Usuários Administradores
+          </div>
+        </div>
+
+        <div class="border-t border-white/5 pt-4 flex justify-between items-center">
+          <div class="text-gray-400">Total a pagar hoje</div>
+          <div class="text-2xl font-bold text-white">R$ 2.900<span class="text-sm text-gray-400 font-normal">/mês</span></div>
+        </div>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="flex items-center gap-4 text-xs text-gray-500 font-mono">
+        <div class="flex items-center gap-1"><i data-lucide="shield-check" class="w-4 h-4 text-gray-400"></i> Criptografia AES-256</div>
+        <div class="w-px h-4 bg-gray-700"></div>
+        <div class="flex items-center gap-1"><i data-lucide="server" class="w-4 h-4 text-gray-400"></i> AWS Infraestrutura</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: PAYMENT FORM -->
+    <div class="glass-card p-8">
+      <h2 class="text-xl font-bold text-white mb-6">Dados de Pagamento</h2>
+      
+      <form class="space-y-5" onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
+        <!-- Email -->
+        <div>
+          <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">E-mail corporativo</label>
+          <input type="email" class="input-field" placeholder="seu.nome@empresa.com.br" required>
+        </div>
+
+        <!-- Nome no Cartao -->
+        <div>
+          <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Nome no Cartão</label>
+          <input type="text" class="input-field" placeholder="NOME IMPRESSO NO CARTÃO" required>
+        </div>
+
+        <!-- Cartao -->
+        <div>
+          <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Número do Cartão</label>
+          <div class="relative">
+            <input type="text" class="input-field pl-10" placeholder="0000 0000 0000 0000" required>
+            <i data-lucide="credit-card" class="w-5 h-5 text-gray-500 absolute left-3 top-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Data e CVV -->
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">Validade</label>
+            <input type="text" class="input-field" placeholder="MM/AA" required>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wider">CVC</label>
+            <div class="relative">
+              <input type="text" class="input-field" placeholder="123" required>
+              <i data-lucide="help-circle" class="w-4 h-4 text-gray-500 absolute right-3 top-4 cursor-help"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botao -->
+        <div class="pt-4">
+          <button type="submit" class="btn-pay flex justify-center items-center gap-2">
+            <i data-lucide="lock" class="w-4 h-4"></i> Pagar R$ 2.900 e Iniciar Setup
+          </button>
+          <div class="text-center mt-4 flex items-center justify-center gap-2">
+            <span class="text-[10px] text-gray-500 uppercase tracking-widest font-mono">Powered by</span>
+            <span class="font-bold text-gray-400 text-sm tracking-tighter">Stripe</span>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </main>
+
+  <script>
+    lucide.createIcons();
+    // Canvas animation
+    const canvas = document.getElementById('hero-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height, particles;
+        function init() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; particles = []; for(let i=0; i<40; i++) particles.push({x:Math.random()*width, y:Math.random()*height, vx:(Math.random()-0.5)*0.3, vy:(Math.random()-0.5)*0.3, size:Math.random()*2+1}); }
+        function animate() { requestAnimationFrame(animate); ctx.clearRect(0,0,width,height); ctx.fillStyle='#3ecfbe'; ctx.strokeStyle='rgba(62,207,190,0.1)'; particles.forEach(p=>{p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>width)p.vx*=-1; if(p.y<0||p.y>height)p.vy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();}); for(let i=0;i<particles.length;i++){for(let j=i+1;j<particles.length;j++){const dist=Math.hypot(particles[i].x-particles[j].x, particles[i].y-particles[j].y); if(dist<180){ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.lineWidth=1-(dist/180); ctx.stroke();}}} }
+        window.addEventListener('resize', init); init(); animate();
+    }
+  </script>
+</body>
+</html>

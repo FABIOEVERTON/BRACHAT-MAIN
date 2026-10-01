@@ -17,8 +17,18 @@
         .links { margin-top: 16px; font-size: 12px; color: #888; }
         .links a { color: var(--cyan); text-decoration: none; }
     </style>
-</head>
+
+            <style>
+            :root { --navy: #0a0e17 !important; --gold: #3ecfbe !important; --cyan: #3ecfbe !important; }
+            body { background-color: var(--navy) !important; }
+            .login-box, .auth-box, .card { background: rgba(20, 28, 43, 0.6) !important; backdrop-filter: blur(10px) !important; border: 1px solid rgba(255,255,255,0.05) !important; box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; border-radius: 12px !important; }
+            .bt-color { color: var(--gold) !important; font-weight: 700 !important; }
+            /* PREMIUM OVERRIDE */
+            </style>
+            </head>
 <body>
+<canvas id="hero-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background: radial-gradient(circle at 50% 0%, rgba(10,30,40,1) 0%, #0a0e17 80%); pointer-events: none; opacity: 0.8;"></canvas>
+
     <div class="box">
         <div class="logo">
             <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4l7.5 15h-15L12 6z"/></svg>
@@ -35,5 +45,17 @@
         </div>
         <div style="margin-top:24px;"><a href="/" style="color:#888; font-size: 11px; text-decoration:none;">&larr; Voltar ao site oficial</a></div>
     </div>
-</body>
+
+            <script>
+            const canvas = document.getElementById('hero-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let width, height, particles;
+                function init() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; particles = []; for(let i=0; i<50; i++) particles.push({x:Math.random()*width, y:Math.random()*height, vx:(Math.random()-0.5)*0.3, vy:(Math.random()-0.5)*0.3, size:Math.random()*2+1}); }
+                function animate() { requestAnimationFrame(animate); ctx.clearRect(0,0,width,height); ctx.fillStyle='#3ecfbe'; ctx.strokeStyle='rgba(62,207,190,0.1)'; particles.forEach(p=>{p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>width)p.vx*=-1; if(p.y<0||p.y>height)p.vy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();}); for(let i=0;i<particles.length;i++){for(let j=i+1;j<particles.length;j++){const dist=Math.hypot(particles[i].x-particles[j].x, particles[i].y-particles[j].y); if(dist<180){ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.lineWidth=1-(dist/180); ctx.stroke();}}} }
+                window.addEventListener('resize', init); init(); animate();
+            }
+            </script>
+            </body>
+            
 </html>

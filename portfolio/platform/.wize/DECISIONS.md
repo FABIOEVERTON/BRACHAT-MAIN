@@ -32,3 +32,13 @@ Sempre que um produto for descrito, o seu "Killer Feature" deve estar explícito
 ## 5. UI / Navegação (Landing Page)
 - **Scroll e Âncoras:** Links do menu devem rolar a página parando com uma margem de `40vh` (meio exato da tela) para focar a leitura do executivo.
 - **Isolamento da Academy:** O link "Academy" é o único que não rola a página atual, direcionando imediatamente para `academy/index.html`, isolando o funil de compra de software do funil educacional.
+
+## 6. Painel de Controle Master (NOC Global)
+- **Decisão:** O Backoffice central da BrachaTec atuará como um Network Operations Center (NOC) visual, hospedado no diretório isolado `master_admin/index.html`.
+- **Justificativa:** Refletir visualmente e tecnicamente a arquitetura Shared-Nothing, garantindo que o Hub monitore clusters independentes.
+- **Estrutura:** Deve obrigatoriamente exibir a separação física da infraestrutura: Instâncias de Banco de Dados, Nodos Computacionais (EKS) e Cofres Glacier para cada um dos ramos (BT Gov AI, BT Muni, BT Rig) separadamente.
+
+## 7. Gateway de Pagamento e Faturamento (Escala Global)
+- **Gateway Oficial:** **Stripe** será o motor financeiro oficial da plataforma.
+- **Justificativa:** Atender clientes globalmente (Dólar/Euro via cartão internacional) e clientes no Brasil (incluindo prefeituras) via PIX e Boleto nativos.
+- **Emissão de Notas Fiscais (NFS-e):** Como o Stripe não gera NFS-e brasileira nativamente, a arquitetura exige a integração de um serviço auxiliar via Webhook (ex: eNotas ou Focus NFe) disparado automaticamente assim que o Stripe confirmar a liquidação (PIX, Boleto ou Cartão).
