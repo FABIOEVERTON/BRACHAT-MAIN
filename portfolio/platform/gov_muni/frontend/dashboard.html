@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BT Muni — Painel do Prefeito</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #060913; color: #f8f9fa; margin: 0; overflow: hidden; }
+    .glass-card {
+      background: rgba(14, 21, 33, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(234, 179, 8, 0.1);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    }
+    .cauc-alert {
+      background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+      border: 1px solid #34d399;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(234, 179, 8, 0.2); border-radius: 4px; }
+    .topo-bg {
+      background-image: radial-gradient(rgba(234, 179, 8, 0.05) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+  </style>
+</head>
+<body class="flex h-screen text-gray-100 topo-bg">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 border-r border-yellow-500/10 bg-[#060913]/90 backdrop-blur-md flex flex-col z-10">
+    <div class="h-16 flex items-center px-6 border-b border-yellow-500/10">
+      <h1 class="text-xl font-bold tracking-widest text-white">
+        <span class="text-[#3ecfbe]">BT</span> Muni
+      </h1>
+    </div>
+    
+    <!-- Client Info -->
+    <div class="p-4 border-b border-yellow-500/10">
+      <div class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Prefeitura Municipal</div>
+      <div class="text-sm font-bold text-gray-200">São Paulo - SP</div>
+      <div class="text-xs text-green-400 font-mono mt-1 flex items-center gap-1">
+        <i data-lucide="check-circle-2" class="w-3 h-3"></i> SIAFI Conectado
+      </div>
+    </div>
+
+    <nav class="flex-1 py-4 flex flex-col gap-2 px-4">
+      <div class="text-[10px] text-gray-600 font-mono uppercase tracking-widest mb-2 mt-2">Core</div>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 bg-yellow-500/10 text-yellow-400 rounded-lg border border-yellow-500/20 shadow-[0_0_10px_rgba(234,179,8,0.1)]">
+        <i data-lucide="layout-dashboard" class="w-4 h-4"></i> <span class="text-sm font-medium">Gabinete do Prefeito</span>
+      </a>
+      
+      <div class="text-[10px] text-gray-600 font-mono uppercase tracking-widest mb-2 mt-4">Ecossistema</div>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:text-yellow-400 hover:bg-yellow-500/5 rounded-lg transition-all">
+        <i data-lucide="landmark" class="w-4 h-4"></i> <span class="text-sm font-medium">BTCapta <span class="text-[9px] ml-2 text-gray-500">Emendas</span></span>
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:text-yellow-400 hover:bg-yellow-500/5 rounded-lg transition-all">
+        <i data-lucide="bar-chart-3" class="w-4 h-4"></i> <span class="text-sm font-medium">BTGestor <span class="text-[9px] ml-2 text-gray-500">CAUC</span></span>
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:text-yellow-400 hover:bg-yellow-500/5 rounded-lg transition-all">
+        <i data-lucide="gavel" class="w-4 h-4"></i> <span class="text-sm font-medium">BTLicita <span class="text-[9px] ml-2 text-gray-500">Auditor</span></span>
+      </a>
+      
+      <div class="text-[10px] text-gray-600 font-mono uppercase tracking-widest mb-2 mt-4">Compliance</div>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:text-[#3ecfbe] hover:bg-[#3ecfbe]/5 rounded-lg transition-all">
+        <i data-lucide="database" class="w-4 h-4"></i> <span class="text-sm font-medium">Cofre TCE (WORM)</span>
+      </a>
+    </nav>
+    
+    <div class="p-4 border-t border-yellow-500/10">
+      <div class="flex items-center gap-3 text-xs text-gray-400">
+        <div class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-yellow-400 font-bold">PR</div>
+        <div>
+          <div class="font-medium text-gray-200">Gabinete Central</div>
+          <div class="text-[10px] font-mono">Controladoria</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 flex flex-col h-screen z-10 relative">
+    
+    <!-- TOP HEADER -->
+    <header class="h-16 border-b border-yellow-500/10 bg-[#060913]/90 backdrop-blur-md flex items-center justify-between px-6">
+      <div class="flex items-center gap-4">
+        <h2 class="text-lg font-medium text-gray-200 tracking-wide">Centro de Operações Municipais</h2>
+      </div>
+      
+      <div class="cauc-alert flex items-center gap-2 px-4 py-1.5 rounded font-bold text-white text-xs uppercase tracking-widest">
+        <i data-lucide="check-circle" class="w-4 h-4 text-white"></i>
+        Certidões Regulares (CAUC OK)
+      </div>
+    </header>
+
+    <!-- DASHBOARD SCROLL AREA -->
+    <div class="flex-1 overflow-y-auto p-6 space-y-6">
+      
+      <!-- TOP CARDS -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="glass-card p-6 rounded-xl border-l-4 border-l-green-500 relative overflow-hidden">
+          <div class="absolute right-0 top-0 opacity-10 -mt-2 -mr-2"><i data-lucide="banknote" class="w-24 h-24"></i></div>
+          <div class="text-xs text-gray-400 uppercase tracking-widest font-mono mb-1">Recursos Captados (Mês)</div>
+          <div class="text-3xl font-bold text-white mb-1">R$ 4.250.000</div>
+          <div class="text-[10px] text-green-400 font-mono">2 Emendas Liberadas • Via BTCapta</div>
+        </div>
+
+        <div class="glass-card p-6 rounded-xl border-l-4 border-l-yellow-500">
+          <div class="text-xs text-gray-400 uppercase tracking-widest font-mono mb-1">Risco de Transferência (SIAFI)</div>
+          <div class="text-2xl font-bold text-yellow-500 mb-1">1 PENDÊNCIA</div>
+          <div class="text-[10px] text-gray-400">Regularidade previdenciária expira em 3 dias</div>
+        </div>
+
+        <div class="glass-card p-6 rounded-xl border-l-4 border-l-purple-500">
+          <div class="text-xs text-gray-400 uppercase tracking-widest font-mono mb-1">Licitações Auditadas</div>
+          <div class="text-3xl font-bold text-white mb-1">42</div>
+          <div class="text-[10px] text-red-400 flex items-center gap-1 font-mono">
+            <i data-lucide="alert-circle" class="w-3 h-3"></i> 2 Sobrepreços Evitados (BTLicita)
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN SPLIT -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- CAUC & TRANFEREGOV RADAR -->
+        <div class="glass-card p-6 rounded-xl flex flex-col h-[340px]">
+          <h3 class="text-xs font-mono text-white uppercase tracking-widest border-b border-white/10 pb-3 mb-4 flex items-center gap-2">
+            <i data-lucide="activity" class="w-4 h-4 text-yellow-500"></i> Radar de Convênios
+          </h3>
+          <div class="flex-1 overflow-y-auto space-y-4">
+            
+            <div class="bg-[#0a0e17] border border-white/5 p-3 rounded-lg flex justify-between items-center">
+              <div>
+                <div class="text-xs font-bold text-green-400">Convênio FNS-88/24 (Saúde)</div>
+                <div class="text-[10px] text-gray-500 mt-1">Status: Pagamento Liberado</div>
+              </div>
+              <div class="text-right">
+                <div class="text-sm font-mono text-white">R$ 1.2M</div>
+                <div class="text-[9px] text-gray-600">Transferegov</div>
+              </div>
+            </div>
+
+            <div class="bg-[#0a0e17] border border-yellow-500/20 p-3 rounded-lg flex justify-between items-center relative overflow-hidden">
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-yellow-500"></div>
+              <div class="pl-2">
+                <div class="text-xs font-bold text-yellow-400">Emenda Parlamentar PL-12</div>
+                <div class="text-[10px] text-gray-500 mt-1">Status: Aguardando Empenho</div>
+              </div>
+              <div class="text-right">
+                <div class="text-sm font-mono text-white">R$ 500k</div>
+                <div class="text-[9px] text-gray-600">Plataforma Brasil</div>
+              </div>
+            </div>
+
+            <div class="bg-[#0a0e17] border border-red-500/20 p-3 rounded-lg flex justify-between items-center relative overflow-hidden">
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-red-500"></div>
+              <div class="pl-2">
+                <div class="text-xs font-bold text-red-400">Convênio Obras Públicas 19/22</div>
+                <div class="text-[10px] text-gray-500 mt-1">Status: Risco de Paralisação</div>
+              </div>
+              <div class="text-right">
+                <button class="text-[10px] bg-red-500/10 text-red-400 px-2 py-1 rounded border border-red-500/20 hover:bg-red-500/20">Ver Pendência</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- LIVE FEED (BTLICITA BLOCKER) -->
+        <div class="lg:col-span-2 glass-card rounded-xl flex flex-col h-[340px]">
+          <div class="p-4 border-b border-white/10 flex justify-between items-center bg-yellow-500/5">
+            <h3 class="text-xs font-mono text-white flex items-center gap-2 uppercase tracking-widest">
+              <i data-lucide="shield-check" class="w-4 h-4 text-yellow-500"></i> BTLicita (Auditoria em Tempo Real)
+            </h3>
+            <span class="text-[10px] flex items-center gap-1 text-yellow-500 font-mono border border-yellow-500/30 px-2 py-0.5 rounded">
+              <div class="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-ping"></div> Monitorando Pregões
+            </span>
+          </div>
+          
+          <div class="flex-1 overflow-y-auto p-4 space-y-3 font-mono">
+            
+            <div class="bg-red-500/10 border border-red-500/20 p-3 rounded-lg text-xs">
+              <div class="flex justify-between mb-2">
+                <span class="text-red-400 font-bold flex items-center gap-1"><i data-lucide="siren" class="w-3 h-3"></i> ALERTA DE SOBREPREÇO (LEI 14.133)</span>
+                <span class="text-gray-500">14:15 - Secretaria de Saúde</span>
+              </div>
+              <div class="text-gray-300 mb-2">
+                Pregão Eletrônico 44/2026: Item "Seringa Descartável" orçado 34% acima do Painel Nacional de Preços. Procedimento suspenso preventivamente.
+              </div>
+              <div class="flex justify-between items-center border-t border-red-500/20 pt-2 mt-1">
+                <span class="text-[9px] text-gray-500">Hash WORM: 9f12c...d44</span>
+                <button class="text-[9px] text-red-400 hover:text-white underline">Gerar Relatório TCE</button>
+              </div>
+            </div>
+
+            <div class="bg-green-500/5 border border-green-500/20 p-3 rounded-lg text-xs opacity-80">
+              <div class="flex justify-between mb-2">
+                <span class="text-green-400 font-bold flex items-center gap-1"><i data-lucide="check" class="w-3 h-3"></i> DISPENSA DE LICITAÇÃO OK</span>
+                <span class="text-gray-500">10:30 - Secretaria de Educação</span>
+              </div>
+              <div class="text-gray-400">
+                Contratação Direta 12/2026. Valores e documentação em conformidade total com o Art. 75. Aprovado pelo Motor IA.
+              </div>
+            </div>
+
+            <div class="bg-yellow-500/10 border border-yellow-500/20 p-3 rounded-lg text-xs">
+              <div class="flex justify-between mb-2">
+                <span class="text-yellow-400 font-bold flex items-center gap-1"><i data-lucide="alert-triangle" class="w-3 h-3"></i> RESTRIÇÃO DE COMPETITIVIDADE</span>
+                <span class="text-gray-500">Ontem, 16:45 - Sec. Obras</span>
+              </div>
+              <div class="text-gray-300 mb-2">
+                Edital 09/2026: Cláusula de exigência de certidão específica não prevista em lei. Sugestão de retificação gerada.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Agroecologia Sim - Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { onyx: '#171721', graphite: '#1e1e2a', obsidian: '#272735', cobalt: '#5266eb', ash: '#c3c3cc', ivory: '#ededf3' },
+                          fontFamily: { sans: ['Nunito', 'sans-serif'] },
+                          borderRadius: { card: '24px', pill: '32px' } }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #171721; color: #ededf3; font-family: 'Nunito', sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(30, 30, 42, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .btn-primary { background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; padding: 12px 24px; border-radius: 40px; font-weight: 800; transition: all 0.3s; box-shadow: 0 4px 15px rgba(239,68,68,0.4); text-transform: uppercase; letter-spacing: 1px; }
+        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 20px rgba(239,68,68,0.6); }
+        
+        .grid-farm { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .plot { background: repeating-linear-gradient(0deg, #3d2e1f, #3d2e1f 12px, #2a1f15 12px, #2a1f15 24px); border-radius: 12px; aspect-ratio: 1; cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; overflow: hidden; border: 3px solid #1a120b; box-shadow: inset 0 15px 25px rgba(0,0,0,0.7), 0 5px 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .plot:hover { border-color: #ef4444; transform: translateY(-4px) scale(1.02); box-shadow: 0 15px 30px rgba(239,68,68,0.3), inset 0 15px 25px rgba(0,0,0,0.7); }
+        
+        .tool-btn { background: #272735; border: 2px solid transparent; border-radius: 16px; padding: 12px; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+        .tool-btn.active { border-color: #ef4444; background: #3f2020; transform: scale(1.05); box-shadow: 0 0 20px rgba(239,68,68,0.3); }
+        
+        .plant-emoji { font-size: 3.5rem; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.5)); z-index: 10; animation: grow 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        @keyframes grow { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+        
+        .stat-bar { width: 80%; height: 6px; background: #171721; border-radius: 4px; margin-top: 4px; overflow: hidden; }
+        .stat-fill-water { height: 100%; background: #3b82f6; transition: width 0.3s; }
+        .stat-fill-fert { height: 100%; background: #10b981; transition: width 0.3s; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Mission Start Modal -->
+    <div id="mission-start" class="fixed inset-0 z-50 flex items-center justify-center bg-onyx/90 backdrop-blur-md transition-opacity duration-500">
+        <div class="bg-gradient-to-br from-red-500 to-rose-700 p-10 rounded-[32px] text-center shadow-[0_20px_60px_rgba(239,68,68,0.6)] border border-white/20 max-w-md">
+            <div class="text-7xl mb-6 drop-shadow-lg">🚜</div>
+            <h2 class="text-3xl font-extrabold text-white mb-4 uppercase tracking-wider">Nova Missão</h2>
+            <p class="text-red-100 text-lg mb-8 font-medium">Equilibre lucros e sustentabilidade. Sobreviva por 24 meses (2 anos) mantendo o solo fértil!</p>
+            <button onclick="startMission()" class="bg-white text-red-700 px-10 py-4 rounded-full font-bold text-xl hover:bg-red-50 transition-transform hover:scale-105 shadow-xl">Aceitar a Fazenda</button>
+        </div>
+    </div>
+
+    <!-- Mission End Modal -->
+    <div id="mission-end" class="fixed inset-0 z-50 items-center justify-center bg-onyx/90 backdrop-blur-md transition-opacity duration-500 opacity-0 hidden">
+        <div class="bg-gradient-to-br from-red-600 to-red-900 p-10 rounded-[32px] text-center shadow-[0_20px_60px_rgba(239,68,68,0.6)] border border-red-400 max-w-md">
+            <div class="text-7xl mb-6 drop-shadow-lg animate-bounce">🏆</div>
+            <h2 class="text-4xl font-extrabold text-white mb-4 uppercase tracking-widest">Missão<br/>Finalizada!</h2>
+            <p class="text-red-100 text-xl mb-4 font-bold">Você construiu um sistema agroecológico de sucesso.</p>
+            <p class="text-white text-2xl mb-8 font-extrabold bg-black/20 p-4 rounded-xl">Caixa Final: <span id="final-money" class="text-yellow-400">R$ 0</span></p>
+            <button onclick="location.reload()" class="bg-white text-red-800 px-10 py-4 rounded-full font-bold text-xl hover:bg-red-50 transition-transform hover:scale-105 shadow-xl w-full">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div id="game-over" class="fixed inset-0 z-50 items-center justify-center bg-red-900/90 backdrop-blur-md transition-opacity duration-500 opacity-0 hidden">
+        <div class="bg-gradient-to-br from-orange-600 to-red-900 p-10 rounded-[32px] text-center shadow-[0_20px_60px_rgba(234,88,12,0.6)] border border-orange-400 max-w-md">
+            <div class="text-7xl mb-6 drop-shadow-lg">💀</div>
+            <h2 class="text-4xl font-extrabold text-white mb-4 uppercase tracking-widest">Falência</h2>
+            <p class="text-orange-100 text-xl mb-8 font-bold">Seu dinheiro acabou e as terras secaram.</p>
+            <button onclick="location.reload()" class="bg-white text-orange-800 px-10 py-4 rounded-full font-bold text-xl hover:bg-orange-50 transition-transform hover:scale-105 shadow-xl w-full">Tentar Novamente</button>
+        </div>
+    </div>
+
+    <nav class="p-6 border-b border-white/5 flex justify-between items-center z-10 bg-onyx/80 backdrop-blur-md">
+        <a href="index.html" class="text-ash font-bold hover:text-white transition">&larr; Voltar</a>
+        <div class="flex items-center gap-4">
+            <div class="text-sm font-extrabold text-red-500 uppercase tracking-widest hidden md:block">Módulo Adultos</div>
+            <img src="assets/mascote_robo.jpg" class="w-10 h-10 rounded-full border-2 border-white/20 shadow-lg object-cover" alt="Mascote">
+        </div>
+    </nav>
+
+    <main class="flex-grow p-6 w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-8 blur-sm transition-all duration-500" id="main-content">
+        
+        <!-- Left Sidebar: Tools & Stats -->
+        <div class="glass rounded-card p-6 w-full md:w-1/3 flex flex-col gap-6">
+            <div class="bg-obsidian/50 p-6 rounded-2xl border border-white/5 shadow-inner">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="text-xs font-bold text-ash uppercase">Mês Atual</div>
+                    <div class="text-xl font-black text-ivory"><span id="month-display">1</span><span class="text-ash text-sm">/24</span></div>
+                </div>
+                <div class="flex justify-between items-center mb-4">
+                    <div class="text-xs font-bold text-ash uppercase">Estação</div>
+                    <div class="text-xl font-black text-blue-400" id="season-display">🌧️ Chuvosa</div>
+                </div>
+                <div class="flex justify-between items-center pt-4 border-t border-white/10">
+                    <div class="text-xs font-bold text-ash uppercase">Caixa</div>
+                    <div class="text-3xl font-black text-emerald-400" id="money-display">R$ 500</div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-sm font-extrabold text-ash uppercase mb-4 tracking-wider">Ferramentas de Manejo</h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="tool-btn active" onclick="selectTool('water')" id="tool-water">
+                        <span class="text-3xl mb-2">🚿</span>
+                        <span class="text-xs font-bold">Regador (-R$5)</span>
+                    </div>
+                    <div class="tool-btn" onclick="selectTool('harvest')" id="tool-harvest">
+                        <span class="text-3xl mb-2">🧺</span>
+                        <span class="text-xs font-bold">Colher</span>
+                    </div>
+                    <div class="tool-btn" onclick="selectTool('corn')" id="tool-corn">
+                        <span class="text-3xl mb-2">🌽</span>
+                        <span class="text-xs font-bold">Milho (-R$50)</span>
+                    </div>
+                    <div class="tool-btn" onclick="selectTool('beans')" id="tool-beans">
+                        <span class="text-3xl mb-2">🫘</span>
+                        <span class="text-xs font-bold">Feijão (-R$30)</span>
+                    </div>
+                    <div class="tool-btn col-span-2" onclick="selectTool('green')" id="tool-green">
+                        <span class="text-3xl mb-2">🌱</span>
+                        <span class="text-xs font-bold">Adubo Verde (Restaura Solo) (-R$20)</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-primary w-full mt-auto py-4" onclick="endTurn()">Avançar 1 Mês &rarr;</button>
+        </div>
+
+        <!-- Right: The Farm Grid -->
+        <div class="w-full md:w-2/3 glass rounded-card p-6 flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBoNDBWMEgwem0yMCAyMGMtNS41IDAtMTAtNC41LTEwLTEwUzE0LjUgMTAgMjAgMTBzMTAgNC41IDEwIDEwLTQuNSAxMC0xMCAxMHoiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMikiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZykiLz48L3N2Zz4=')] opacity-50"></div>
+            
+            <div class="grid-farm w-full max-w-[500px] relative z-10" id="farm-grid">
+                <!-- Plots generated via JS -->
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Web Audio API
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playSound(type) {
+            if(audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            
+            if(type === 'plant') {
+                osc.type = 'triangle'; osc.frequency.setValueAtTime(300, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1); gain.gain.setValueAtTime(0.3, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1); osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+            } else if(type === 'water') {
+                osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.2); gain.gain.setValueAtTime(0.2, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2); osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+            } else if (type === 'coin') {
+                osc.type = 'sine'; osc.frequency.setValueAtTime(1200, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(1600, audioCtx.currentTime + 0.1); gain.gain.setValueAtTime(0.1, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2); osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+            }
+        }
+
+        function startMission() {
+            playSound('coin');
+            document.getElementById('mission-start').classList.add('opacity-0');
+            document.getElementById('main-content').classList.remove('blur-sm');
+            setTimeout(() => document.getElementById('mission-start').classList.add('hidden'), 500);
+        }
+
+        let money = 500;
+        let month = 1;
+        let season = "Chuvosa";
+        let activeTool = "water";
+
+        const cropsData = {
+            'corn': { emoji: '🌽', cost: 50, sell: 150, growTime: 3, waterDrain: 30, fertDrain: 25 },
+            'beans': { emoji: '🫘', cost: 30, sell: 80, growTime: 2, waterDrain: 20, fertDrain: 5 }, // Beans fix nitrogen slightly, so low fert drain
+            'green': { emoji: '🌱', cost: 20, sell: 0, growTime: 1, waterDrain: 10, fertDrain: -30 } // Adds fertility
+        };
+
+        const grid = [];
+        for(let i=0; i<9; i++) {
+            grid.push({
+                water: 50, fert: 80, plant: null, age: 0
+            });
+        }
+
+        function initGrid() {
+            const container = document.getElementById('farm-grid');
+            container.innerHTML = '';
+            grid.forEach((plot, i) => {
+                const p = document.createElement('div');
+                p.className = 'plot';
+                p.onclick = () => useTool(i);
+                
+                let contentHTML = '';
+                if(plot.plant) {
+                    const plantType = cropsData[plot.plant];
+                    const size = plot.age >= plantType.growTime ? '1' : (0.5 + (plot.age/plantType.growTime)*0.4);
+                    contentHTML = `<div class="plant-emoji" style="transform: scale(${size})">${plantType.emoji}</div>`;
+                }
+
+                p.innerHTML = `
+                    ${contentHTML}
+                    <div class="absolute bottom-2 left-0 w-full flex flex-col items-center gap-1 z-20">
+                        <div class="stat-bar"><div class="stat-fill-water" style="width: ${plot.water}%"></div></div>
+                        <div class="stat-bar"><div class="stat-fill-fert" style="width: ${plot.fert}%"></div></div>
+                    </div>
+                `;
+                container.appendChild(p);
+            });
+        }
+
+        function selectTool(t) {
+            playSound('water'); // Generic UI sound
+            activeTool = t;
+            document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tool-'+t).classList.add('active');
+        }
+
+        function useTool(idx) {
+            let p = grid[idx];
+            if (activeTool === 'water') {
+                if (money >= 5) { money -= 5; p.water = Math.min(100, p.water + 40); playSound('water'); }
+            } else if (activeTool === 'harvest') {
+                if (p.plant && p.age >= cropsData[p.plant].growTime) {
+                    const profit = cropsData[p.plant].sell;
+                    money += profit;
+                    p.plant = null; p.age = 0;
+                    playSound('coin');
+                }
+            } else {
+                // Planting
+                let plantType = activeTool;
+                let cost = cropsData[plantType].cost;
+                if (!p.plant && money >= cost) {
+                    if (p.fert <= 10) {
+                        alert("Solo muito pobre para plantar!");
+                    } else {
+                        money -= cost;
+                        p.plant = plantType;
+                        p.age = 0;
+                        playSound('plant');
+                    }
+                }
+            }
+            updateUI();
+        }
+
+        function endTurn() {
+            month++;
+            if (month > 24) {
+                const win = document.getElementById('mission-end');
+                document.getElementById('final-money').textContent = `R$ ${money}`;
+                win.classList.remove('hidden');
+                void win.offsetWidth;
+                win.classList.remove('opacity-0');
+                win.classList.add('flex');
+                document.getElementById('main-content').classList.add('blur-sm');
+                return;
+            }
+
+            if (money < 0) {
+                const over = document.getElementById('game-over');
+                over.classList.remove('hidden');
+                void over.offsetWidth;
+                over.classList.remove('opacity-0');
+                over.classList.add('flex');
+                document.getElementById('main-content').classList.add('blur-sm');
+                return;
+            }
+
+            // Seasons logic
+            let isRainy = (month % 12 >= 1 && month % 12 <= 4);
+            season = isRainy ? "🌧️ Chuvosa" : "☀️ Seca";
+
+            // Process grid
+            grid.forEach(p => {
+                // Weather effects
+                p.water -= isRainy ? 5 : 20;
+                
+                // Plant effects
+                if (p.plant) {
+                    let type = cropsData[p.plant];
+                    if (p.water > 0) {
+                        p.age++;
+                        p.water -= type.waterDrain;
+                        p.fert -= type.fertDrain;
+                    } else {
+                        // Died from drought
+                        p.plant = null;
+                        p.age = 0;
+                    }
+                }
+                
+                // Clamp
+                if(p.water < 0) p.water = 0;
+                if(p.water > 100) p.water = 100;
+                if(p.fert < 0) p.fert = 0;
+                if(p.fert > 100) p.fert = 100;
+            });
+
+            playSound('plant'); // Generic turn sound
+            updateUI();
+        }
+
+        function updateUI() {
+            document.getElementById('money-display').textContent = `R$ ${money}`;
+            document.getElementById('month-display').textContent = month;
+            document.getElementById('season-display').textContent = season;
+            initGrid();
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>

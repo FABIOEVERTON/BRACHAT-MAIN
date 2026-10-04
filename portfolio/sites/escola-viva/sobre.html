@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Sobre o Projeto - Mentalidade Sustentável</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { onyx: '#171721', graphite: '#1e1e2a', obsidian: '#272735', cobalt: '#5266eb', ash: '#c3c3cc', ivory: '#ededf3' },
+                          fontFamily: { sans: ['Nunito', 'sans-serif'] },
+                          borderRadius: { card: '24px', pill: '40px' } }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #171721; color: #ededf3; }
+        .btn-ghost { background-color: transparent; border: 2px solid #ededf3; color: #ededf3; padding: 10px 20px; border-radius: 40px; font-weight: 800; transition: all 0.2s; }
+        .btn-ghost:hover { background-color: #ededf3; color: #171721; transform: translateY(-2px); }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-onyx">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 p-6 border-b border-white/10 flex justify-between items-center bg-onyx/50 backdrop-blur-md">
+        <a href="index.html" class="btn-ghost text-sm">&larr; Voltar aos Jogos</a>
+        <div class="flex items-center gap-3">
+            <div class="text-sm font-extrabold text-cobalt tracking-widest uppercase hidden md:block">Nosso Propósito</div>
+            <img src="assets/mascote_robo.jpg" class="w-10 h-10 rounded-full border-2 border-white/20 shadow-lg object-cover" alt="Mascote">
+        </div>
+    </nav>
+
+    <!-- Hero Banner with Robot -->
+    <header class="relative w-full h-[60vh] flex flex-col items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="assets/mascote_robo.jpg" alt="Mascote" class="w-full h-full object-cover object-[50%_60%]" />
+            <div class="absolute inset-0 bg-onyx/60 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-onyx via-transparent to-transparent"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-[900px] mx-auto px-6 text-center mt-20">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)] text-emerald-400">
+                Formando uma <br/><span class="text-white">Mentalidade Sustentável</span>
+            </h1>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-[900px] mx-auto w-full p-6 py-16 relative z-10">
+        
+        <div class="prose prose-invert prose-lg max-w-none text-ash space-y-6">
+            <p class="text-2xl text-ivory font-bold border-l-4 border-cobalt pl-6 py-2 bg-obsidian/30 rounded-r-2xl">
+                "A tecnologia não deve nos afastar da terra, mas nos ajudar a entendê-la melhor."
+            </p>
+            
+            <p class="text-lg font-medium">
+                O projeto <strong>Escola Viva do Campo</strong> nasceu da necessidade de conectar as novas gerações com as raízes da nossa terra, utilizando a linguagem que eles mais conhecem: o ambiente digital. Nosso mascote está aqui para guiar os alunos em uma jornada onde não substituímos o contato físico com a terra, mas <em>preparamos a mente</em> para a importância de preservá-la.
+            </p>
+
+            <h2 class="text-4xl font-extrabold text-ivory mt-16 mb-6">Por que criar jogos?</h2>
+            <p class="text-lg font-medium">
+                As cartilhas tradicionais ensinam, mas os <strong>jogos permitem que o aluno experimente as consequências</strong>. Quando um jovem joga o <em>Guardiões do Bioma</em> e vê sua floresta desaparecer, ele entende na prática a complexidade da gestão pública e ambiental. Quando um adulto joga o <em>Agroecologia Simulator</em> e perde sua safra por exaurir os nutrientes do solo, ele interioriza o valor da rotação de culturas.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-16">
+                <div class="bg-graphite p-8 rounded-card border border-white/5 shadow-xl hover:-translate-y-2 transition-transform">
+                    <div class="text-5xl mb-6">🌱</div>
+                    <h3 class="text-2xl font-bold text-ivory mb-3">Consciência Ecológica</h3>
+                    <p class="text-base font-medium text-ash">Ensinar a respeitar os ciclos da natureza, a importância da água e a biodiversidade local.</p>
+                </div>
+                <div class="bg-graphite p-8 rounded-card border border-white/5 shadow-xl hover:-translate-y-2 transition-transform">
+                    <div class="text-5xl mb-6">💡</div>
+                    <h3 class="text-2xl font-bold text-ivory mb-3">Resolução de Problemas</h3>
+                    <p class="text-base font-medium text-ash">Fomentar o pensamento crítico diante das mudanças climáticas e da necessidade de produção sustentável.</p>
+                </div>
+            </div>
+
+            <h2 class="text-4xl font-extrabold text-ivory mt-16 mb-6">Da Escola para a Comunidade</h2>
+            <p class="text-lg font-medium">
+                Tudo o que você vê nesta plataforma foi estruturado com base nas vivências da nossa escola rural. Ao jogar, você está participando da mesma metodologia de ensino que tem transformado a forma como nossos alunos interagem com o meio ambiente. 
+            </p>
+        </div>
+
+    </main>
+
+    <footer class="w-full bg-graphite border-t border-slate/20 py-10 text-center font-bold text-ash mt-12">
+        &copy; 2026 Escola Viva do Campo. Juntos por um futuro sustentável.
+    </footer>
+</body>
+</html>

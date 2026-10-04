@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BT Gov AI — Painel do DPO</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #060913; color: #f8f9fa; margin: 0; overflow: hidden; }
+    .glass-card {
+      background: rgba(14, 21, 33, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(62, 207, 190, 0.1);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    }
+    .kill-switch {
+      background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+      box-shadow: 0 0 15px rgba(229, 62, 62, 0.5);
+      border: 1px solid #fc8181;
+      transition: all 0.2s;
+    }
+    .kill-switch:hover {
+      box-shadow: 0 0 25px rgba(229, 62, 62, 0.8);
+      transform: scale(1.02);
+    }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(62, 207, 190, 0.2); border-radius: 4px; }
+    
+    /* Radar Grid Pattern */
+    .radar-bg {
+      background-image: 
+        linear-gradient(rgba(62, 207, 190, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(62, 207, 190, 0.05) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+  </style>
+</head>
+<body class="flex h-screen text-gray-100 radar-bg">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 border-r border-[#3ecfbe]/10 bg-[#060913]/90 backdrop-blur-md flex flex-col z-10">
+    <div class="h-16 flex items-center px-6 border-b border-[#3ecfbe]/10">
+      <h1 class="text-xl font-bold tracking-widest text-white">
+        <span class="text-[#3ecfbe]">BT</span> Gov AI
+      </h1>
+    </div>
+    
+    <!-- Client Info -->
+    <div class="p-4 border-b border-[#3ecfbe]/10">
+      <div class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Inquilino Atual</div>
+      <div class="text-sm font-bold text-gray-200">Hospital Albert Einstein</div>
+      <div class="text-xs text-[#3ecfbe] font-mono mt-1 flex items-center gap-1">
+        <i data-lucide="shield-check" class="w-3 h-3"></i> Proteção Ativa
+      </div>
+    </div>
+
+    <nav class="flex-1 py-4 flex flex-col gap-2 px-4">
+      <div class="text-[10px] text-gray-600 font-mono uppercase tracking-widest mb-2 mt-2">Core</div>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 bg-[#3ecfbe]/10 text-[#3ecfbe] rounded-lg border border-[#3ecfbe]/20 shadow-[0_0_10px_rgba(62,207,190,0.1)]">
+        <i data-lucide="layout-dashboard" class="w-4 h-4"></i> <span class="text-sm font-medium">Visão do DPO</span>
+      </a>
+      
+      <div class="text-[10px] text-gray-600 font-mono uppercase tracking-widest mb-2 mt-4">Módulos</div>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:text-[#3ecfbe] hover:bg-[#3ecfbe]/5 rounded-lg transition-all">
+        <i data-lucide="scan-line" class="w-4 h-4"></i> <span class="text-sm font-medium">BTScan <span class="text-[9px] ml-2 text-gray-500">Mapeamento</span></span>
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:text-[#3ecfbe] hover:bg-[#3ecfbe]/5 rounded-lg transition-all">
+        <i data-lucide="cpu" class="w-4 h-4"></i> <span class="text-sm font-medium">BTMonitor <span class="text-[9px] ml-2 text-gray-500">Runtime</span></span>
+      </a>
+      
+      <div class="text-[10px] text-gray-600 font-mono uppercase tracking-widest mb-2 mt-4">Auditoria</div>
+      <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-gray-400 hover:text-[#3ecfbe] hover:bg-[#3ecfbe]/5 rounded-lg transition-all">
+        <i data-lucide="database" class="w-4 h-4"></i> <span class="text-sm font-medium">Cofre WORM</span>
+      </a>
+    </nav>
+    
+    <div class="p-4 border-t border-[#3ecfbe]/10">
+      <div class="flex items-center gap-3 text-xs text-gray-400">
+        <div class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-[#3ecfbe] font-bold">DPO</div>
+        <div>
+          <div class="font-medium text-gray-200">Admin Jurídico</div>
+          <div class="text-[10px] font-mono">ID: 884-X</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 flex flex-col h-screen z-10 relative">
+    
+    <!-- TOP HEADER -->
+    <header class="h-16 border-b border-[#3ecfbe]/10 bg-[#060913]/90 backdrop-blur-md flex items-center justify-between px-6">
+      <div class="flex items-center gap-4">
+        <h2 class="text-lg font-medium text-gray-200 tracking-wide">Painel de Governança de IA</h2>
+      </div>
+      
+      <!-- KILL SWITCH -->
+      <button class="kill-switch flex items-center gap-2 px-4 py-2 rounded font-bold text-white text-xs uppercase tracking-widest">
+        <i data-lucide="alert-triangle" class="w-4 h-4 text-white"></i>
+        Kill-Switch (Bloquear Rede)
+      </button>
+    </header>
+
+    <!-- DASHBOARD SCROLL AREA -->
+    <div class="flex-1 overflow-y-auto p-6 space-y-6">
+      
+      <!-- TOP CARDS -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- RISK GAUGE -->
+        <div class="glass-card p-6 rounded-xl flex items-center justify-between border-l-4 border-l-yellow-500">
+          <div>
+            <div class="text-xs text-gray-400 uppercase tracking-widest font-mono mb-1">Nível de Risco Atual</div>
+            <div class="text-2xl font-bold text-yellow-500 mb-1">MODERADO</div>
+            <div class="text-[10px] text-gray-500">2 anomalias nas últimas 24h</div>
+          </div>
+          <i data-lucide="gauge" class="w-12 h-12 text-yellow-500/50"></i>
+        </div>
+
+        <div class="glass-card p-6 rounded-xl relative overflow-hidden">
+          <div class="absolute right-0 top-0 opacity-5 -mt-4 -mr-4"><i data-lucide="bot" class="w-32 h-32"></i></div>
+          <div class="text-xs text-gray-400 uppercase tracking-widest font-mono mb-1">Shadow AI Detectadas</div>
+          <div class="text-3xl font-bold text-white mb-1">14</div>
+          <div class="text-[10px] text-[#3ecfbe] flex items-center gap-1">
+            <i data-lucide="trending-down" class="w-3 h-3"></i> 2 ferramentas banidas hoje
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-xl">
+          <div class="text-xs text-gray-400 uppercase tracking-widest font-mono mb-1">Interceptações (Runtime)</div>
+          <div class="text-3xl font-bold text-white mb-1">1,402</div>
+          <div class="text-[10px] text-gray-500 font-mono">100% gravado no cofre WORM</div>
+        </div>
+      </div>
+
+      <!-- MAIN SPLIT -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- RADAR DE AMEAÇAS -->
+        <div class="glass-card p-6 rounded-xl flex flex-col h-80">
+          <h3 class="text-xs font-mono text-white uppercase tracking-widest border-b border-white/10 pb-3 mb-4 flex items-center gap-2">
+            <i data-lucide="radar" class="w-4 h-4 text-[#3ecfbe]"></i> Vetores de Ameaça (IA)
+          </h3>
+          <div class="flex-1 flex flex-col justify-center space-y-4">
+            
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-gray-300">Vazamento LGPD (Dados Sensiveis)</span>
+                <span class="text-red-400 font-mono">Alta</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/5 rounded overflow-hidden">
+                <div class="h-full bg-red-500 w-[78%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-gray-300">Viés Discriminatório no Algoritmo</span>
+                <span class="text-yellow-400 font-mono">Moderada</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/5 rounded overflow-hidden">
+                <div class="h-full bg-yellow-500 w-[45%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-gray-300">Violação de Copyright / Marcas</span>
+                <span class="text-green-400 font-mono">Baixa</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/5 rounded overflow-hidden">
+                <div class="h-full bg-green-500 w-[12%]"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-gray-300">Alucinação (Respostas Falsas)</span>
+                <span class="text-orange-400 font-mono">Frequente</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/5 rounded overflow-hidden">
+                <div class="h-full bg-orange-500 w-[62%]"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- LIVE FEED (RUNTIME BLOCKER) -->
+        <div class="lg:col-span-2 glass-card rounded-xl flex flex-col h-80">
+          <div class="p-4 border-b border-white/10 flex justify-between items-center bg-[#3ecfbe]/5">
+            <h3 class="text-xs font-mono text-white flex items-center gap-2 uppercase tracking-widest">
+              <i data-lucide="shield-alert" class="w-4 h-4 text-[#3ecfbe]"></i> Controlador CPT (Live Feed)
+            </h3>
+            <span class="text-[10px] flex items-center gap-1 text-[#3ecfbe] font-mono border border-[#3ecfbe]/30 px-2 py-0.5 rounded">
+              <div class="w-1.5 h-1.5 rounded-full bg-[#3ecfbe] animate-ping"></div> Interceptando
+            </span>
+          </div>
+          
+          <div class="flex-1 overflow-y-auto p-4 space-y-3 font-mono">
+            
+            <div class="bg-red-500/10 border border-red-500/20 p-3 rounded-lg text-xs">
+              <div class="flex justify-between mb-2">
+                <span class="text-red-400 font-bold flex items-center gap-1"><i data-lucide="x-circle" class="w-3 h-3"></i> BLOQUEIO LGPD</span>
+                <span class="text-gray-500">Hoje, 14:32:01</span>
+              </div>
+              <div class="text-gray-300 mb-2">
+                Tentativa de envio de <span class="bg-red-500/20 text-red-300 px-1 rounded">CPF e Prontuário</span> via API (ChatGPT) originada do setor de Cardiologia (IP: 192.168.1.44).
+              </div>
+              <div class="flex justify-between items-center border-t border-red-500/20 pt-2 mt-1">
+                <span class="text-[9px] text-gray-500">Hash: 8a4c0b2...f92a</span>
+                <button class="text-[9px] text-red-400 hover:text-white underline">Baixar Laudo PDF</button>
+              </div>
+            </div>
+
+            <div class="bg-yellow-500/10 border border-yellow-500/20 p-3 rounded-lg text-xs">
+              <div class="flex justify-between mb-2">
+                <span class="text-yellow-400 font-bold flex items-center gap-1"><i data-lucide="alert-triangle" class="w-3 h-3"></i> ALERTA DE VIÉS</span>
+                <span class="text-gray-500">Hoje, 11:15:44</span>
+              </div>
+              <div class="text-gray-300 mb-2">
+                Modelo de Triagem RH apresentou viés contra faixa etária >50 anos. Resposta interceptada e reescrita pelo CPT.
+              </div>
+              <div class="flex justify-between items-center border-t border-yellow-500/20 pt-2 mt-1">
+                <span class="text-[9px] text-gray-500">Hash: 2b9e1c4...a199</span>
+                <button class="text-[9px] text-yellow-400 hover:text-white underline">Ver Árvore de Decisão</button>
+              </div>
+            </div>
+
+            <div class="bg-[#3ecfbe]/5 border border-[#3ecfbe]/20 p-3 rounded-lg text-xs opacity-70">
+              <div class="flex justify-between mb-2">
+                <span class="text-[#3ecfbe] font-bold flex items-center gap-1"><i data-lucide="check-circle-2" class="w-3 h-3"></i> REQUISIÇÃO SEGURA</span>
+                <span class="text-gray-500">Hoje, 09:44:12</span>
+              </div>
+              <div class="text-gray-400">
+                Geração de texto para Marketing. Zero PII detectado. Tráfego liberado em 14ms.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

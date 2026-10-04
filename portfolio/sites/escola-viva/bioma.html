@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Guardiões do Bioma - Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { onyx: '#171721', graphite: '#1e1e2a', obsidian: '#272735', cobalt: '#5266eb', ash: '#c3c3cc', ivory: '#ededf3' },
+                          fontFamily: { sans: ['Nunito', 'sans-serif'] },
+                          borderRadius: { card: '24px', pill: '32px' } }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #171721; color: #ededf3; font-family: 'Nunito', sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(30, 30, 42, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .btn-primary { background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; padding: 12px 24px; border-radius: 40px; font-weight: 800; transition: all 0.3s; box-shadow: 0 4px 15px rgba(245,158,11,0.4); text-transform: uppercase; letter-spacing: 1px; }
+        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 20px rgba(245,158,11,0.6); }
+        .progress-bar::-webkit-progress-bar { background-color: #272735; border-radius: 12px; }
+        .progress-bar::-webkit-progress-value { background-color: #10b981; border-radius: 12px; transition: width 0.5s ease-out; }
+        .progress-bar.warning::-webkit-progress-value { background-color: #f59e0b; }
+        .progress-bar.danger::-webkit-progress-value { background-color: #ef4444; }
+        .card-region { transition: transform 0.3s, box-shadow 0.3s; }
+        .card-region:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+        .shake { animation: shakeAnim 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shakeAnim { 10%, 90% { transform: translate3d(-2px, 0, 0); } 20%, 80% { transform: translate3d(4px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-8px, 0, 0); } 40%, 60% { transform: translate3d(8px, 0, 0); } }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Mission Start Modal -->
+    <div id="mission-start" class="fixed inset-0 z-50 flex items-center justify-center bg-onyx/90 backdrop-blur-md transition-opacity duration-500">
+        <div class="bg-gradient-to-br from-amber-500 to-orange-700 p-10 rounded-[32px] text-center shadow-[0_20px_60px_rgba(245,158,11,0.6)] border border-white/20 max-w-md">
+            <div class="text-7xl mb-6 drop-shadow-lg">🌳</div>
+            <h2 class="text-3xl font-extrabold text-white mb-4 uppercase tracking-wider">Nova Missão</h2>
+            <p class="text-amber-100 text-lg mb-8 font-medium">Você é o Gestor Ambiental. Sobreviva 12 meses mantendo a saúde de todos os biomas acima de 0%!</p>
+            <button onclick="startMission()" class="bg-white text-amber-700 px-10 py-4 rounded-full font-bold text-xl hover:bg-orange-50 transition-transform hover:scale-105 shadow-xl">Aceitar Cargo</button>
+        </div>
+    </div>
+
+    <!-- Mission End Modal -->
+    <div id="mission-end" class="fixed inset-0 z-50 items-center justify-center bg-onyx/90 backdrop-blur-md transition-opacity duration-500 opacity-0 hidden">
+        <div class="bg-gradient-to-br from-amber-600 to-yellow-800 p-10 rounded-[32px] text-center shadow-[0_20px_60px_rgba(245,158,11,0.6)] border border-amber-400 max-w-md">
+            <div class="text-7xl mb-6 drop-shadow-lg animate-bounce">🏆</div>
+            <h2 class="text-4xl font-extrabold text-white mb-4 uppercase tracking-widest">Missão<br/>Cumprida!</h2>
+            <p class="text-amber-100 text-xl mb-8 font-bold">Você salvou o Bioma após 12 meses intensos.</p>
+            <button onclick="location.reload()" class="bg-white text-amber-800 px-10 py-4 rounded-full font-bold text-xl hover:bg-amber-50 transition-transform hover:scale-105 shadow-xl w-full">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div id="game-over" class="fixed inset-0 z-50 items-center justify-center bg-red-900/90 backdrop-blur-md transition-opacity duration-500 opacity-0 hidden">
+        <div class="bg-gradient-to-br from-red-600 to-red-900 p-10 rounded-[32px] text-center shadow-[0_20px_60px_rgba(239,68,68,0.6)] border border-red-400 max-w-md">
+            <div class="text-7xl mb-6 drop-shadow-lg">🥀</div>
+            <h2 class="text-4xl font-extrabold text-white mb-4 uppercase tracking-widest">Bioma<br/>Destruído</h2>
+            <p class="text-red-100 text-xl mb-8 font-bold">A saúde de uma das regiões chegou a 0%.</p>
+            <button onclick="location.reload()" class="bg-white text-red-800 px-10 py-4 rounded-full font-bold text-xl hover:bg-red-50 transition-transform hover:scale-105 shadow-xl w-full">Tentar Novamente</button>
+        </div>
+    </div>
+
+    <nav class="p-6 border-b border-white/5 flex justify-between items-center z-10 bg-onyx/80 backdrop-blur-md">
+        <a href="index.html" class="text-ash font-bold hover:text-white transition">&larr; Voltar</a>
+        <div class="flex items-center gap-4">
+            <div class="text-sm font-extrabold text-amber-500 uppercase tracking-widest hidden md:block">Módulo Jovens</div>
+            <img src="assets/mascote_robo.jpg" class="w-10 h-10 rounded-full border-2 border-white/20 shadow-lg object-cover" alt="Mascote">
+        </div>
+    </nav>
+    
+    <main class="flex-grow p-6 w-full max-w-5xl mx-auto blur-sm transition-all duration-500" id="main-content">
+        <!-- Dashboard Header -->
+        <div class="glass rounded-card p-6 mb-8 flex justify-between items-center relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-32 h-32 bg-amber-500/20 rounded-full blur-[40px]"></div>
+            <div>
+                <h1 class="text-3xl font-extrabold text-ivory mb-1">Painel de Controle Ambiental</h1>
+                <p class="text-ash font-medium">Tome decisões e invista para proteger o bioma dos desastres.</p>
+            </div>
+            <div class="flex gap-6">
+                <div class="text-center">
+                    <div class="text-sm text-ash font-bold uppercase mb-1">Mês</div>
+                    <div class="text-4xl font-black text-ivory" id="monthDisplay">1<span class="text-lg text-ash font-medium">/12</span></div>
+                </div>
+                <div class="text-center pl-6 border-l border-white/10">
+                    <div class="text-sm text-ash font-bold uppercase mb-1">Verba Disponível</div>
+                    <div class="text-4xl font-black text-emerald-400" id="fundsDisplay">R$ 5.000</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Regions Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="regionsGrid">
+            <!-- Rendered by JS -->
+        </div>
+
+        <div class="mt-8 text-center">
+            <button class="btn-primary px-12 py-5 text-xl" onclick="endTurn()">Avançar para o Próximo Mês &rarr;</button>
+        </div>
+        
+        <!-- Events Log -->
+        <div class="glass rounded-card p-6 mt-8">
+            <h3 class="text-lg font-bold text-ivory mb-4 uppercase tracking-wider text-center">Registro de Satélite</h3>
+            <div id="log" class="space-y-3 max-h-[150px] overflow-y-auto text-sm font-medium"></div>
+        </div>
+    </main>
+
+    <script>
+        function startMission() {
+            document.getElementById('mission-start').classList.add('opacity-0');
+            document.getElementById('main-content').classList.remove('blur-sm');
+            setTimeout(() => document.getElementById('mission-start').classList.add('hidden'), 500);
+        }
+
+        const regions = [
+            { id: 'river', name: 'Nascente do Rio', emoji: '💧', health: 80, 
+              actions: [ { name: 'Filtro Natural', cost: 1000, effect: 15 }, { name: 'Fiscalizar Esgoto', cost: 2500, effect: 35 } ] },
+            { id: 'forest', name: 'Mata Densa', emoji: '🌳', health: 90, 
+              actions: [ { name: 'Monitoramento Drone', cost: 1500, effect: 20 }, { name: 'Reflorestamento', cost: 3000, effect: 40 } ] },
+            { id: 'farm', name: 'Área Agrícola', emoji: '🚜', health: 70, 
+              actions: [ { name: 'Oficina Orgânica', cost: 800, effect: 10 }, { name: 'Controle Biológico', cost: 2000, effect: 30 } ] }
+        ];
+
+        let month = 1, funds = 5000;
+
+        function renderRegions() {
+            const grid = document.getElementById('regionsGrid');
+            grid.innerHTML = '';
+            
+            regions.forEach(r => {
+                let colorClass = r.health > 60 ? '' : (r.health > 30 ? 'warning' : 'danger');
+                
+                let actionsHTML = r.actions.map((a, idx) => `
+                    <button class="w-full bg-obsidian hover:bg-graphite border border-white/5 rounded-xl p-3 text-left transition-colors flex justify-between items-center group" onclick="buyAction('${r.id}', ${idx})">
+                        <span class="font-bold text-ash group-hover:text-ivory">${a.name}</span>
+                        <span class="text-amber-400 font-extrabold text-sm border border-amber-400/30 px-2 py-1 rounded-md">R$ ${a.cost}</span>
+                    </button>
+                `).join('');
+                
+                grid.innerHTML += `
+                    <div class="glass rounded-card p-6 card-region relative overflow-hidden" id="card-${r.id}">
+                        <div class="text-6xl mb-4 drop-shadow-md relative z-10">${r.emoji}</div>
+                        <h2 class="text-2xl font-extrabold text-ivory mb-2 relative z-10">${r.name}</h2>
+                        
+                        <div class="mb-6 relative z-10">
+                            <div class="flex justify-between text-xs font-bold text-ash uppercase mb-2"><span>Saúde</span> <span>${r.health}%</span></div>
+                            <progress class="progress-bar ${colorClass} w-full h-3" value="${r.health}" max="100"></progress>
+                        </div>
+                        
+                        <div class="space-y-3 relative z-10">${actionsHTML}</div>
+                    </div>
+                `;
+            });
+        }
+
+        function buyAction(regionId, actionIdx) {
+            const region = regions.find(r => r.id === regionId);
+            const action = region.actions[actionIdx];
+            if (funds >= action.cost) {
+                funds -= action.cost;
+                region.health = Math.min(100, region.health + action.effect);
+                updateUI();
+                logMsg(`Investiu em ${action.name} na ${region.name}. (+${action.effect}% saúde)`, 'text-emerald-400');
+                
+                // Visual pop
+                const card = document.getElementById(`card-${regionId}`);
+                card.style.transform = 'scale(1.05)';
+                card.style.boxShadow = '0 0 40px rgba(52,211,153,0.4)';
+                setTimeout(() => { card.style.transform = ''; card.style.boxShadow = ''; }, 300);
+            } else {
+                logMsg(`Sem verba para ${action.name}!`, 'text-red-400');
+                const card = document.getElementById(`card-${regionId}`);
+                card.classList.add('shake');
+                setTimeout(() => card.classList.remove('shake'), 400);
+            }
+        }
+
+        function endTurn() {
+            if (month >= 12) return;
+            
+            // Random degradation
+            regions.forEach(r => {
+                let damage = Math.floor(Math.random() * 15) + 5;
+                r.health -= damage;
+                if(r.health <= 0) r.health = 0;
+            });
+            
+            // Random event
+            const events = [
+                { msg: "Alerta! Queimada ilegal na Mata Densa detectada.", target: 'forest', dmg: 20 },
+                { msg: "Vazamento de agrotóxicos poluindo a Nascente do Rio.", target: 'river', dmg: 25 },
+                { msg: "Seca severa prejudica a Área Agrícola.", target: 'farm', dmg: 15 },
+                { msg: "Mês tranquilo. A natureza respira.", target: null, dmg: 0 }
+            ];
+            let ev = events[Math.floor(Math.random() * events.length)];
+            
+            if (ev.target) {
+                let r = regions.find(x => x.id === ev.target);
+                r.health -= ev.dmg;
+                if(r.health < 0) r.health = 0;
+                logMsg(`⚠️ EVENTO: ${ev.msg} (-${ev.dmg}%)`, 'text-red-400');
+                const card = document.getElementById(`card-${r.id}`);
+                card.classList.add('shake');
+                setTimeout(() => card.classList.remove('shake'), 400);
+            } else {
+                logMsg(`🌱 ${ev.msg}`, 'text-emerald-400');
+            }
+            
+            // Check fail
+            if (regions.some(r => r.health <= 0)) {
+                updateUI();
+                setTimeout(() => {
+                    const over = document.getElementById('game-over');
+                    over.classList.remove('hidden');
+                    void over.offsetWidth;
+                    over.classList.remove('opacity-0');
+                    over.classList.add('flex');
+                    document.getElementById('main-content').classList.add('blur-sm');
+                }, 500);
+                return;
+            }
+            
+            // Monthly income based on average health
+            let avgHealth = regions.reduce((sum, r) => sum + r.health, 0) / 3;
+            let income = Math.floor(avgHealth * 40) + 1000;
+            funds += income;
+            logMsg(`Fim do Mês ${month}. Arrecadação: R$ ${income}`, 'text-amber-400');
+            
+            month++;
+            updateUI();
+            
+            // Check win
+            if (month > 12) {
+                setTimeout(() => {
+                    const win = document.getElementById('mission-end');
+                    win.classList.remove('hidden');
+                    void win.offsetWidth;
+                    win.classList.remove('opacity-0');
+                    win.classList.add('flex');
+                    document.getElementById('main-content').classList.add('blur-sm');
+                }, 500);
+            }
+        }
+
+        function updateUI() {
+            document.getElementById('monthDisplay').innerHTML = `${month}<span class="text-lg text-ash font-medium">/12</span>`;
+            document.getElementById('fundsDisplay').textContent = `R$ ${funds.toLocaleString('pt-BR')}`;
+            renderRegions();
+        }
+
+        function logMsg(msg, colorClass = 'text-ash') {
+            const log = document.getElementById('log');
+            log.innerHTML = `<div class="${colorClass} p-2 bg-obsidian/50 rounded border border-white/5 animate-pulse">${msg}</div>` + log.innerHTML;
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>

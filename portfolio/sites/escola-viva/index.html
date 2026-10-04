@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escola Viva do Campo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { onyx: '#171721', graphite: '#1e1e2a', obsidian: '#272735', slate: '#70707d', mist: '#e2e3ed', ash: '#c3c3cc', ivory: '#ededf3', cobalt: '#5266eb' },
+                    fontFamily: { sans: ['Nunito', 'sans-serif'], display: ['Nunito', 'sans-serif'] },
+                    borderRadius: { 'card': '24px', 'pill': '40px' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #171721; color: #ededf3; font-family: 'Nunito', sans-serif; }
+        .text-display { font-size: 55px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; }
+        .text-heading { font-size: 36px; line-height: 1.2; font-weight: 800; }
+        
+        .btn-primary { background: linear-gradient(135deg, #5266eb, #3b4bc2); color: #ffffff; padding: 14px 28px; border-radius: 40px; font-weight: 800; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 4px 15px rgba(82,102,235,0.4); }
+        .btn-primary:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 25px rgba(82,102,235,0.6); }
+        
+        .btn-ghost { background-color: transparent; border: 2px solid #ededf3; color: #ededf3; padding: 12px 24px; border-radius: 40px; font-weight: 800; transition: all 0.3s; }
+        .btn-ghost:hover { background-color: #ededf3; color: #171721; transform: translateY(-2px); }
+
+        /* Colorful hover states for cards */
+        .card-horta:hover { border-color: #34d399; box-shadow: 0 10px 30px rgba(52, 211, 153, 0.15); transform: translateY(-5px); }
+        .card-agua:hover { border-color: #3b82f6; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15); transform: translateY(-5px); }
+        .card-bioma:hover { border-color: #fbbf24; box-shadow: 0 10px 30px rgba(251, 191, 36, 0.15); transform: translateY(-5px); }
+        .card-agro:hover { border-color: #f87171; box-shadow: 0 10px 30px rgba(248, 113, 113, 0.15); transform: translateY(-5px); }
+        .card-transition { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); border: 2px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body class="antialiased bg-onyx">
+
+    <!-- Transparent Navbar over the Hero Image -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-onyx/50 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-[1200px] mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="assets/mascote_robo.jpg" class="w-10 h-10 rounded-full border-2 border-white/20 shadow-lg object-cover" alt="Mascote">
+                <span class="text-ivory font-bold tracking-wide text-xl drop-shadow-md">Escola Viva</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-base font-bold text-ash">
+                <a href="#" class="hover:text-white transition drop-shadow-md">Início</a>
+                <a href="#jogos" class="hover:text-white transition drop-shadow-md">Jogos Educativos</a>
+                <a href="sobre.html" class="hover:text-white transition drop-shadow-md">O Projeto Sustentável</a>
+            </div>
+            <div><a href="#jogos" class="btn-primary inline-block text-sm">Explorar Jogos</a></div>
+        </div>
+    </nav>
+
+    <!-- FULL PAGE ROBOT HERO BACKGROUND -->
+    <header class="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
+        
+        <!-- The Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="assets/mascote_robo.jpg" alt="Mascote Robô no Campo" class="w-full h-full object-cover object-[50%_40%] scale-105" />
+            
+            <!-- Dark Gradients to make the text readable and blend perfectly into the games section -->
+            <div class="absolute inset-0 bg-onyx/40 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/50 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-onyx/80 via-transparent to-transparent"></div>
+        </div>
+        
+        <!-- Center Text Content -->
+        <div class="relative z-10 max-w-[800px] mx-auto px-6 text-center mt-20">
+            <div class="inline-block px-5 py-2 bg-white/10 backdrop-blur-md text-ivory font-extrabold rounded-full text-sm mb-6 border border-white/20 tracking-wide uppercase shadow-2xl">🌱 Aprenda Com a Natureza</div>
+            
+            <h1 class="text-display text-white mb-6 drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)]">Saberes do Campo</h1>
+            
+            <p class="text-xl text-ivory mb-10 leading-relaxed font-bold drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] max-w-[600px] mx-auto">
+                Explore, jogue e crie uma <strong>mentalidade sustentável</strong>. O nosso mascote guiará você e as crianças por projetos focados na conservação da natureza.
+            </p>
+            
+            <div class="flex gap-4 flex-wrap justify-center">
+                <a href="#jogos" class="btn-primary px-10 py-4 text-lg">Acessar os Jogos</a>
+                <a href="sobre.html" class="btn-ghost px-10 py-4 text-lg bg-onyx/40 backdrop-blur">Conheça o Propósito</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="jogos" class="w-full bg-onyx relative z-10">
+        <div class="max-w-[1200px] mx-auto px-6 py-[100px]">
+            <div class="mb-16 text-center">
+                <h2 class="text-heading text-ivory mb-4">Aprenda Jogando</h2>
+                <p class="text-xl text-ash max-w-2xl mx-auto">Escolha sua jornada ecológica através dos nossos simuladores e puzzles educativos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Horta (Crianças) -->
+                <div class="bg-graphite rounded-card p-8 flex flex-col h-full card-transition card-horta shadow-lg">
+                    <div class="text-5xl mb-6 drop-shadow-md">🐞</div>
+                    <div class="inline-block px-3 py-1 bg-obsidian text-emerald-400 font-bold text-[11px] uppercase tracking-wider rounded-full w-max mb-4">Infantil • Biologia</div>
+                    <h3 class="text-2xl font-bold text-ivory mb-3">Mistério na Horta</h3>
+                    <p class="text-base text-ash mb-8 flex-grow font-medium">Escave a terra, descubra insetos e aprenda a separar os polinizadores e amigos das pragas destruidoras.</p>
+                    <a href="horta.html" class="btn-ghost text-center w-full block border-emerald-500/50 hover:bg-emerald-500 hover:border-emerald-500 hover:text-white">Escavar Agora</a>
+                </div>
+
+                <!-- Canos (Crianças) NOVO -->
+                <div class="bg-graphite rounded-card p-8 flex flex-col h-full card-transition card-agua shadow-lg">
+                    <div class="text-5xl mb-6 drop-shadow-md">💧</div>
+                    <div class="inline-block px-3 py-1 bg-obsidian text-blue-400 font-bold text-[11px] uppercase tracking-wider rounded-full w-max mb-4">Infantil • Lógica</div>
+                    <h3 class="text-2xl font-bold text-ivory mb-3">Caminho da Água</h3>
+                    <p class="text-base text-ash mb-8 flex-grow font-medium">A água da chuva não pode ser desperdiçada! Gire e conecte os canos para levar a água até a cisterna da horta.</p>
+                    <a href="canos.html" class="btn-ghost text-center w-full block border-blue-500/50 hover:bg-blue-500 hover:border-blue-500 hover:text-white">Captar Água</a>
+                </div>
+
+                <!-- Bioma (Jovens) -->
+                <div class="bg-graphite rounded-card p-8 flex flex-col h-full card-transition card-bioma shadow-lg">
+                    <div class="text-5xl mb-6 drop-shadow-md">🌳</div>
+                    <div class="inline-block px-3 py-1 bg-obsidian text-amber-400 font-bold text-[11px] uppercase tracking-wider rounded-full w-max mb-4">Jovens • Estratégia</div>
+                    <h3 class="text-2xl font-bold text-ivory mb-3">Guardiões do Bioma</h3>
+                    <p class="text-base text-ash mb-8 flex-grow font-medium">Gerencie as finanças e tome decisões difíceis para frear a degradação e proteger a bacia hidrográfica.</p>
+                    <a href="bioma.html" class="btn-ghost text-center w-full block border-amber-500/50 hover:bg-amber-500 hover:border-amber-500 hover:text-white">Iniciar Gestão</a>
+                </div>
+
+                <!-- Agro (Adultos) -->
+                <div class="bg-graphite rounded-card p-8 flex flex-col h-full card-transition card-agro shadow-lg">
+                    <div class="text-5xl mb-6 drop-shadow-md">🚜</div>
+                    <div class="inline-block px-3 py-1 bg-obsidian text-red-400 font-bold text-[11px] uppercase tracking-wider rounded-full w-max mb-4">Adultos • Simulação</div>
+                    <h3 class="text-2xl font-bold text-ivory mb-3">Agroecologia Sim</h3>
+                    <p class="text-base text-ash mb-8 flex-grow font-medium">Simulador avançado de plantio. Equilibre umidade, fertilidade e lucros no mercado com rotação de culturas.</p>
+                    <a href="agro.html" class="btn-ghost text-center w-full block border-red-500/50 hover:bg-red-500 hover:border-red-500 hover:text-white">Plantar Safra</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="w-full bg-graphite border-t border-white/5">
+        <div class="max-w-[1200px] mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
+            <span class="text-sm font-bold text-ash tracking-wide">&copy; 2026 Escola Viva do Campo. Crescendo juntos.</span>
+            <div class="flex gap-6 text-sm font-bold text-ash">
+                <a href="sobre.html" class="hover:text-ivory transition">Nosso Propósito</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
